@@ -1,20 +1,43 @@
+// Sansation font
 @font-face {
   font-family: "Sansation";
-  src: url("../assets/fonts/Sansation-Light.ttf");
+  src: url("../assets/fonts/Sansation/Sansation-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Sansation";
-  src: url("../assets/fonts/Sansation-Regular.ttf");
+  src: url("../assets/fonts/Sansation/Sansation-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Sansation";
-  src: url("../assets/fonts/Sansation-Bold.ttf");
+  src: url("../assets/fonts/Sansation/Sansation-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+// Parsi font
+@font-face {
+  font-family: "Parsi";
+  src: url("../assets/fonts/Parsi/Parsi-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Parsi";
+  src: url("../assets/fonts/Parsi/Parsi-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Parsi";
+  src: url("../assets/fonts/Parsi/Parsi-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
