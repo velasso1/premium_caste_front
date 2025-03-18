@@ -22,7 +22,7 @@ const MainModule: FC = () => {
   useEffect(() => {}, []);
 
   return (
-    <div className="">
+    <div className="main-module">
       <Header />
       <div className="container">
         <Routes>

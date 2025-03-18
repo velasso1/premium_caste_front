@@ -1,7 +1,13 @@
 import { FC } from "react";
 
+import PageTitle from "../../ui/page-title/page-title";
+
 const NotFoundPage: FC = () => {
-  return <div>this page is not exist</div>;
+  return (
+    <div>
+      <PageTitle pageName="Страница не найдена" />
+    </div>
+  );
 };
 
 export default NotFoundPage;

@@ -1,0 +1,10 @@
+{
+  "navigationMenu": [
+    { "linkName": "глвная", "route": "GENERAL_PAGE" },
+    { "linkName": "услуги", "route": "SERVICES_PAGE" },
+    { "linkName": "работы", "route": "OUR_WORKS_PAGE" },
+    { "linkName": "о нас", "route": "ABOUT_PAGE" },
+    { "linkName": "блог", "route": "BLOG_PAGE" },
+    { "linkName": "контакты", "route": "CONTACTS_PAGE" }
+  ]
+}

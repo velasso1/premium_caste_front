@@ -1,12 +1,23 @@
 // IMPORT RESET STYLES
-@import 'reset.scss';
+@import "reset.scss";
+// ============================================
+
+// IMPORT VARIABLES STYLES
+@import "./variables.scss";
 // ============================================
 
 // IMPORT FONTS
-@import './fonts.scss';
+@import "./fonts.scss";
 // ============================================
 
 // GENERAL STYLES
+body {
+  font-family: "Sansation";
+  font-weight: 300;
+  background-color: #0c0c0c;
+  color: #fff;
+}
+
 .container {
   display: flex;
   margin: 0 auto;
@@ -17,5 +28,7 @@
 // ============================================
 
 // IMPORT COMPONENT STYLES
-@import './ui/style.scss';
+@import "./pages-style/style.scss";
+@import "./ui-style/style.scss";
+@import "./modules-style/style.scss";
 // ============================================
