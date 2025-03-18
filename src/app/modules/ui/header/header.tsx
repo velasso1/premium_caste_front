@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import { FC } from "react";
 
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 // utils
-import { routes } from '../../../utils/routes/main-routes/main-routes';
-import logo from '../../../assets/images/logo.png';
+import { routes } from "../../../utils/routes/main-routes/main-routes";
+import logo from "../../../assets/images/logo.png";
 
 const Header: FC = () => {
   return (
@@ -20,22 +20,22 @@ const Header: FC = () => {
             </NavLink>
           </li>
           <li className="header__nav-item">
-            <NavLink to="" className="header__link">
+            <NavLink to={routes.OUR_WORKS_PAGE} className="header__link">
               наши работы
             </NavLink>
           </li>
           <li className="header__nav-item">
-            <NavLink to="" className="header__link">
+            <NavLink to={routes.ABOUT_PAGE} className="header__link">
               о нас
             </NavLink>
           </li>
           <li className="header__nav-item">
-            <NavLink to="" className="header__link">
+            <NavLink to={routes.BLOG_PAGE} className="header__link">
               блог
             </NavLink>
           </li>
           <li className="header__nav-item">
-            <NavLink to="" className="header__link">
+            <NavLink to={routes.CONTACTS_PAGE} className="header__link">
               контакты
             </NavLink>
           </li>
