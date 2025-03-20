@@ -20,50 +20,50 @@ const Header: FC = () => {
       <nav className="header__nav">
         <ul className="header__list">
           <li className="header__nav-item">
-            <NavLink to={routes.GENERAL_PAGE} className="header__link">
+            <NavLink className="header__link" to={routes.GENERAL_PAGE}>
               главная
             </NavLink>
           </li>
           <li className="header__nav-item">
-            <NavLink to={routes.SERVICES_PAGE} className="header__link">
+            <NavLink className="header__link" to={routes.SERVICES_PAGE}>
               услуги
             </NavLink>
           </li>
           <li className="header__nav-item">
-            <NavLink to={routes.OUR_WORKS_PAGE} className="header__link">
+            <NavLink className="header__link" to={routes.OUR_WORKS_PAGE}>
               наши работы
             </NavLink>
           </li>
           <li className="header__nav-item">
-            <NavLink to={routes.ABOUT_PAGE} className="header__link">
+            <NavLink className="header__link" to={routes.ABOUT_PAGE}>
               о нас
             </NavLink>
           </li>
           <li className="header__nav-item">
-            <NavLink to={routes.BLOG_PAGE} className="header__link">
+            <NavLink className="header__link" to={routes.BLOG_PAGE}>
               блог
             </NavLink>
           </li>
           <li className="header__nav-item">
-            <NavLink to={routes.CONTACTS_PAGE} className="header__link">
+            <NavLink className="header__link" to={routes.CONTACTS_PAGE}>
               контакты
             </NavLink>
           </li>
         </ul>
       </nav>
       <div className="header__icons">
-        <div className="header__icon">
+        <NavLink className="header__icon" to={routes.CART_PAGE}>
           <img src={cart} alt="cart" className="header__icon-image" />
-        </div>
-        <div className="header__icon">
+        </NavLink>
+        <NavLink className="header__icon" to="/not-exist">
           <img src={stats} alt="stats" className="header__icon-image" />
-        </div>
-        <div className="header__icon">
+        </NavLink>
+        <NavLink className="header__icon" to={routes.FAVORITES_PAGE}>
           <img src={heart} alt="heart" className="header__icon-image" />
-        </div>
-        <div className="header__icon">
+        </NavLink>
+        <NavLink className="header__icon" to={routes.ACCOUNT_PAGE}>
           <img src={human} alt="human" className="header__icon-image" />
-        </div>
+        </NavLink>
       </div>
     </header>
   );

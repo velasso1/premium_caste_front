@@ -10,6 +10,9 @@ import AboutPage from "../pages/about-page/about-page";
 import BlogPage from "../pages/blog-page/blog-page";
 import ContactsPage from "../pages/contacts-page/contacts-page";
 import NotFoundPage from "../pages/not-found-page/not-found-page";
+import CartPage from "../pages/cart-page/cart-page";
+import FavoritesPage from "../pages/favorites-page/favorites-page";
+import AccountPage from "../pages/account-page/account-page";
 
 // ui
 import Header from "../ui/header/header";
@@ -33,6 +36,9 @@ const MainModule: FC = () => {
           <Route path={routes.BLOG_PAGE} element={<BlogPage />} />
           <Route path={routes.CONTACTS_PAGE} element={<ContactsPage />} />
           <Route path={routes.NOT_EXIST_PAGE} element={<NotFoundPage />} />
+          <Route path={routes.CART_PAGE} element={<CartPage />} />
+          <Route path={routes.FAVORITES_PAGE} element={<FavoritesPage />} />
+          <Route path={routes.ACCOUNT_PAGE} element={<AccountPage />} />
         </Routes>
       </div>
       <Footer />

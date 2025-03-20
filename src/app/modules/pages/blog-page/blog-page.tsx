@@ -1,12 +1,13 @@
 import { FC } from "react";
 
 import PageTitle from "../../ui/page-title/page-title";
+import PageLayout from "../../ui/page-layout/page-layout";
 
 const BlogPage: FC = () => {
   return (
-    <div className="blog-page">
+    <PageLayout pageClassName="blog-page">
       <PageTitle pageName="Блог" />
-    </div>
+    </PageLayout>
   );
 };
 

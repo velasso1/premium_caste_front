@@ -1,1 +1,5 @@
 $mainColor: #ff5000;
+
+@mixin defaultPageStyle {
+  margin: 0 auto;
+}

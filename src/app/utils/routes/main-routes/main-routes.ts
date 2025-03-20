@@ -12,6 +12,9 @@ export const routes = {
   ABOUT_PAGE: "about",
   BLOG_PAGE: "blog",
   CONTACTS_PAGE: "contacts",
+  CART_PAGE: "cart",
+  FAVORITES_PAGE: "favorites",
+  ACCOUNT_PAGE: "account",
 
   //   not exists pages
   NOT_EXIST_PAGE: "*",
