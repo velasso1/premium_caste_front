@@ -1,0 +1,23 @@
+.general-page {
+  @include defaultPageStyle;
+  width: full;
+  overflow: hidden;
+
+  &__video {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__clip {
+    width: 100%;
+    transform: scale(1.324);
+    opacity: 30%;
+  }
+
+  &__banner {
+    position: absolute;
+    top: 35%;
+    z-index: 1;
+  }
+}

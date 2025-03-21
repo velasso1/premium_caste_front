@@ -1,0 +1,24 @@
+import { FC } from "react";
+
+import { NavLink } from "react-router-dom";
+import { PAGES_NAVIGATION_LIST } from "../../../../utils/auxuliary/navigation-link-list";
+
+const NavigationMenu: FC = () => {
+  return (
+    <nav className="header__nav">
+      <ul className="header__list">
+        {PAGES_NAVIGATION_LIST.map((item) => {
+          return (
+            <li className="header__nav-item">
+              <NavLink className="header__link" to={item.href}>
+                {item.pageName}
+              </NavLink>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  );
+};
+
+export default NavigationMenu;

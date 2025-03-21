@@ -3,6 +3,7 @@ export const routes = {
   // modules routes
   MAIN_MODULE: "/main/*",
   AUTH_MODULE: "/auth/:page/*",
+  NOT_EXIST_PAGE: "*",
 
   //   pages routes
   WELCOME_PAGE: "/",
@@ -17,5 +18,4 @@ export const routes = {
   ACCOUNT_PAGE: "account",
 
   //   not exists pages
-  NOT_EXIST_PAGE: "*",
 };
