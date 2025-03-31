@@ -1,17 +1,19 @@
 .general-page {
   @include defaultPageStyle;
-  width: full;
   overflow: hidden;
 
   &__video {
     position: relative;
     display: flex;
     justify-content: center;
+    height: 100vh;
   }
 
   &__clip {
     width: 100%;
-    transform: scale(1.324);
+    height: 100vh;
+    overflow: hidden;
+    // transform: scale(1.324);
     opacity: 30%;
   }
 
@@ -19,5 +21,16 @@
     position: absolute;
     top: 35%;
     z-index: 1;
+  }
+
+  &__slider-block {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 500px 0;
+  }
+
+  &__slider {
+    display: flex;
+    flex-direction: column;
   }
 }

@@ -10,7 +10,7 @@ const NotFoundPage: FC = () => {
     <PageLayout pageClassName="not-found-page">
       <>
         <PageTitle pageName="Страница не найдена" />
-        <div className="div">
+        <div className="not-found-page__banner">
           <img className="" src={notFoundPage} alt="page-not-found" />
         </div>
       </>

@@ -2,7 +2,7 @@
 export const routes = {
   // modules routes
   MAIN_MODULE: "/main/*",
-  AUTH_MODULE: "/auth/:page/*",
+  AUTH_MODULE: "/auth/*",
   NOT_EXIST_PAGE: "*",
 
   //   pages routes
@@ -16,6 +16,6 @@ export const routes = {
   CART_PAGE: "cart",
   FAVORITES_PAGE: "favorites",
   ACCOUNT_PAGE: "account",
-
-  //   not exists pages
+  LOGIN_PAGE: "login",
+  REGISTRATION_PAGE: "registration,",
 };

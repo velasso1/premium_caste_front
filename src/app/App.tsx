@@ -1,9 +1,10 @@
 import { FC } from "react";
 
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 // modules
 import MainModule from "./modules/main/main-module";
+import AuthModule from "./modules/auth/auth-module";
 
 // pages
 import PreloadPage from "./modules/pages/preload-page/preload-page";
@@ -17,6 +18,8 @@ import CartPage from "./modules/pages/cart-page/cart-page";
 import FavoritesPage from "./modules/pages/favorites-page/favorites-page";
 import AccountPage from "./modules/pages/account-page/account-page";
 import NotFoundPage from "./modules/pages/not-found-page/not-found-page";
+import LoginForm from "./modules/auth/components/login-form/login-form";
+import RegistrationForm from "./modules/auth/components/registration-form/registration-form";
 
 // ui
 import Header from "./modules/ui/header/header";
@@ -46,6 +49,13 @@ const App: FC = () => {
           </Route>
           <Route />
           <Route path={routes.NOT_EXIST_PAGE} element={<NotFoundPage />} />
+          <Route path={routes.AUTH_MODULE} element={<AuthModule />}>
+            <Route path={routes.LOGIN_PAGE} element={<LoginForm />} />
+            <Route
+              path={routes.REGISTRATION_PAGE}
+              element={<RegistrationForm />}
+            />
+          </Route>
         </Routes>
       </div>
       <Footer />

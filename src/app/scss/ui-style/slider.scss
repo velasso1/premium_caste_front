@@ -1,0 +1,56 @@
+// general swiper styles
+
+.swiper {
+  height: 500px 0 !important;
+}
+
+.swiper-wrapper {
+  margin: 50px 0 !important;
+  height: max-content !important;
+}
+
+// navigation arrows
+
+.swiper-button-prev {
+  left: 0 !important;
+}
+
+.swiper-button-next {
+  right: 0 !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff !important;
+}
+
+// swiper pagination
+
+.swiper-pagination-bullet,
+.swiper-pagination-bullet-active {
+  border: 1px solid $mainColor;
+  padding: 8px;
+}
+
+.swiper-pagination-bullet-active {
+  background: $mainColor !important;
+}
+
+.swiper-pagination {
+  top: 91% !important;
+  margin: 20px 0 0 0 !important;
+}
+
+// slide styles
+
+.slide-layout {
+  margin: 0 20px;
+  border: 1px solid red;
+  width: max-content;
+}
+
+.swiper-slide {
+  display: flex !important;
+  justify-content: center !important;
+  height: 350px !important;
+}

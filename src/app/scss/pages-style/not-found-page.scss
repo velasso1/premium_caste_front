@@ -1,5 +1,10 @@
 .not-found-page {
-  display: flex;
-  justify-content: center;
   @include defaultPageStyle;
+
+  display: flex;
+  flex-direction: column;
+
+  &__banner {
+    margin: 100px auto;
+  }
 }

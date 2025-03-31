@@ -20,23 +20,21 @@ body {
   height: 100vh;
 }
 
+// body::-webkit-scrollbar {
+//   display: none;
+// }
+
 .container {
   display: flex;
   margin: 0 auto;
   border-right: 1px solid red;
   border-left: 1px solid red;
   width: 1400px;
-  // height: 100%;
 }
 
 .main {
   display: flex;
   flex-direction: column;
-  // min-height: 100%;
-}
-
-.main-content {
-  // flex-grow: 1;
 }
 // ============================================
 

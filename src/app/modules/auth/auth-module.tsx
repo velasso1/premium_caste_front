@@ -1,7 +1,9 @@
 import { FC } from "react";
 
+import { Outlet } from "react-router-dom";
+
 const AuthModule: FC = () => {
-  return <div>auth module</div>;
+  return <Outlet />;
 };
 
 export default AuthModule;
