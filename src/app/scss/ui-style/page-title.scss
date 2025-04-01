@@ -5,7 +5,7 @@
   border-bottom: 2px solid $mainColor;
   font-size: 32px;
 
-  &::first-letter {
+  &__text::first-letter {
     text-transform: uppercase;
   }
 }

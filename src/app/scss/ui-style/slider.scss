@@ -1,9 +1,5 @@
 // general swiper styles
 
-.swiper {
-  height: 500px 0 !important;
-}
-
 .swiper-wrapper {
   margin: 50px 0 !important;
   height: max-content !important;
@@ -37,20 +33,60 @@
 }
 
 .swiper-pagination {
-  top: 91% !important;
+  top: 90% !important;
   margin: 20px 0 0 0 !important;
 }
 
 // slide styles
 
-.slide-layout {
-  margin: 0 20px;
-  border: 1px solid red;
-  width: max-content;
-}
-
 .swiper-slide {
   display: flex !important;
   justify-content: center !important;
   height: 350px !important;
+}
+
+.slide-layout {
+  margin: 0 20px;
+  border: 1px solid red;
+  width: max-content;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+// autoplay circle styles
+
+.autoplay-progress {
+  position: absolute;
+  right: -5px;
+  bottom: 0px;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #fff;
+
+  svg {
+    --progress: 0;
+    position: absolute;
+    left: 0;
+    top: 0px;
+    z-index: 10;
+    width: 80%;
+    height: 80%;
+    stroke-width: 3px;
+    stroke: $mainColor;
+    fill: none;
+    stroke-dashoffset: calc(125.6px * (1 - var(--progress)));
+    stroke-dasharray: 125.6;
+    transform: rotate(-90deg);
+  }
+
+  span {
+    margin: -9px 0 0 -7px;
+  }
 }

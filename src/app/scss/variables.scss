@@ -3,3 +3,10 @@ $mainColor: #ff5000;
 @mixin defaultPageStyle {
   margin: 0 auto;
 }
+
+@mixin navigationList {
+  display: flex;
+  text-transform: uppercase;
+  list-style-type: none;
+  font-size: 15px;
+}

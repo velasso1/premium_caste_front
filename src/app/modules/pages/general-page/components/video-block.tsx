@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import video from "../../../../assets/video/main-video-bmw.mp4";
+import video from "../../../../assets/video/dodge-chalenger.mp4";
 import premium from "../../../../assets/images/premiun-caste.png";
 
 const VideoBlock: FC = () => {

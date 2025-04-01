@@ -2,4 +2,45 @@
   color: #fff;
   background-color: #141414;
   height: max-content;
+
+  &__list {
+    @include navigationList;
+    // width: 100%;
+    justify-content: space-between;
+    padding: 40px 0;
+  }
+
+  &__nav-item {
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  &__link {
+    color: #ccc;
+    text-decoration: underline;
+    text-transform: lowercase;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__information {
+    width: 100%;
+  }
+
+  &__article {
+    // width: 700px;
+    padding: 0 15vw;
+    text-align: center;
+    margin: 0 auto;
+    color: #888888;
+  }
+
+  &__copyright {
+    color: #888888;
+    text-align: center;
+    padding: 40px 0;
+  }
 }

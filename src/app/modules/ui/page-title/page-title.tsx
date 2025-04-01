@@ -5,7 +5,11 @@ interface IPageTitleProps {
 }
 
 const PageTitle: FC<IPageTitleProps> = ({ pageName }) => {
-  return <div className="page-title">{pageName}</div>;
+  return (
+    <div className="page-title">
+      <p className="page-title__text">{pageName}</p>
+    </div>
+  );
 };
 
 export default PageTitle;
