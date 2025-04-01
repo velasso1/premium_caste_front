@@ -12,6 +12,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+import pic1 from "../../../assets/images/belt.png";
+import pic2 from "../../../assets/images/vinyl.png";
+import pic3 from "../../../assets/images/toner-film.png";
+
 const Slider: FC = () => {
   const progressCircle = useRef<SVGSVGElement>(null);
   const progressContent = useRef<HTMLSpanElement>(null);
@@ -30,7 +34,7 @@ const Slider: FC = () => {
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         slidesPerView={3}
-        spaceBetween={"30"}
+        spaceBetween={"0"}
         pagination={{ clickable: true }}
         navigation={true}
         autoplay={{
@@ -42,28 +46,28 @@ const Slider: FC = () => {
         }
       >
         <SwiperSlide>
-          <SlideLayout />
+          <SlideLayout imageUrl={pic1} slideText="Виниловые плёнки" />
         </SwiperSlide>
         <SwiperSlide>
-          <SlideLayout />
+          <SlideLayout imageUrl={pic2} slideText="Цветные ремни и автоковры" />
         </SwiperSlide>
         <SwiperSlide>
-          <SlideLayout />
+          <SlideLayout imageUrl={pic3} slideText="Тонировочные плёнки" />
         </SwiperSlide>
         <SwiperSlide>
-          <SlideLayout />
+          <SlideLayout imageUrl={pic1} slideText="Виниловые плёнки" />
         </SwiperSlide>
         <SwiperSlide>
-          <SlideLayout />
+          <SlideLayout imageUrl={pic2} slideText="Цветные ремни и автоковры" />
         </SwiperSlide>
         <SwiperSlide>
-          <SlideLayout />
+          <SlideLayout imageUrl={pic3} slideText="Тонировочные плёнки" />
         </SwiperSlide>
         <SwiperSlide>
-          <SlideLayout />
+          <SlideLayout imageUrl={pic1} slideText="Виниловые плёнки" />
         </SwiperSlide>
         <SwiperSlide>
-          <SlideLayout />
+          <SlideLayout imageUrl={pic2} slideText="Цветные ремни и автоковры" />
         </SwiperSlide>
 
         <div className="autoplay-progress" slot="container-end">

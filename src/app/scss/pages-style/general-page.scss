@@ -39,7 +39,86 @@
 
   // promotion block styles
 
+  .promotion-block {
+    display: flex;
+    flex-direction: column;
+    background-color: $lightSectionColor;
+    padding: 0 0 40px 0;
+
+    &__content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    &__image {
+      width: 650px;
+      filter: $brightness;
+      transition: $transition;
+
+      &:hover {
+        filter: $brightnessHover;
+        cursor: pointer;
+      }
+    }
+
+    &__left,
+    &__right {
+      position: relative;
+      text-align: center;
+    }
+
+    &__title {
+      @include titleOnImage;
+    }
+  }
+
   // about block styles
+
+  .about-block {
+    &__content {
+      font-size: 20px;
+    }
+
+    &__article {
+      text-align: center;
+      margin: 0 0 40px 0;
+    }
+
+    &__works {
+    }
+
+    &__works-title {
+      display: block;
+      color: $mainColor;
+      margin-bottom: 10px;
+    }
+
+    &__works-list {
+      list-style-type: none;
+    }
+
+    &__fact {
+      margin: 40px 0 0 0;
+      padding: 0 0 4px 0;
+      border-bottom: 1px solid $mainColor;
+      width: max-content;
+    }
+
+    &__works-item {
+      margin: 0 0 4px 0px;
+
+      &::first-letter {
+        text-transform: uppercase;
+      }
+
+      &::before {
+        content: "•";
+        color: $mainColor;
+        padding-right: 8px;
+      }
+    }
+  }
 
   // place block styles
 }
