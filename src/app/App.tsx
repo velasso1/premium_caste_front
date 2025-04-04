@@ -7,23 +7,25 @@ import MainModule from "./modules/main/main-module";
 import AuthModule from "./modules/auth/auth-module";
 
 // pages
-import PreloadPage from "./modules/pages/preload-page/preload-page";
-import GeneralPage from "./modules/pages/general-page/general-page";
-import ServicesPage from "./modules/pages/services-page/services-page";
-import OurWorksPage from "./modules/pages/our-works-page/our-works-page";
-import AboutPage from "./modules/pages/about-page/about-page";
-import BlogPage from "./modules/pages/blog-page/blog-page";
-import ContactsPage from "./modules/pages/contacts-page/contacts-page";
-import CartPage from "./modules/pages/cart-page/cart-page";
-import FavoritesPage from "./modules/pages/favorites-page/favorites-page";
-import AccountPage from "./modules/pages/account-page/account-page";
-import NotFoundPage from "./modules/pages/not-found-page/not-found-page";
-import LoginForm from "./modules/auth/components/login-form/login-form";
-import RegistrationForm from "./modules/auth/components/registration-form/registration-form";
+import PreloadPage from "#pages/preload-page/preload-page.tsx";
+import GeneralPage from "#pages/general-page/general-page.tsx";
+import ServicesPage from "#pages/services-page/services-page.tsx";
+import OurWorksPage from "#pages/our-works-page/our-works-page.tsx";
+import AboutPage from "#pages/about-page/about-page.tsx";
+import BlogPage from "#pages/blog-page/blog-page.tsx";
+import ContactsPage from "#pages/contacts-page/contacts-page.tsx";
+import CartPage from "#pages/cart-page/cart-page.tsx";
+import FavoritesPage from "#pages/favorites-page/favorites-page.tsx";
+import AccountPage from "#pages/account-page/account-page.tsx";
+import NotFoundPage from "#pages/not-found-page/not-found-page.tsx";
+
+// auth
+import LoginForm from "#auth/components/login-form/login-form.tsx";
+import RegistrationForm from "#auth/components/registration-form/registration-form.tsx";
 
 // ui
-import Header from "./modules/ui/header/header";
-import Footer from "./modules/ui/footer/footer";
+import Header from "#ui/header/header.tsx";
+import Footer from "#ui/footer/footer.tsx";
 
 // utils
 import { routes } from "./utils/routes/main-routes/main-routes";
@@ -51,10 +53,7 @@ const App: FC = () => {
           <Route path={routes.NOT_EXIST_PAGE} element={<NotFoundPage />} />
           <Route path={routes.AUTH_MODULE} element={<AuthModule />}>
             <Route path={routes.LOGIN_PAGE} element={<LoginForm />} />
-            <Route
-              path={routes.REGISTRATION_PAGE}
-              element={<RegistrationForm />}
-            />
+            <Route path={routes.REGISTRATION_PAGE} element={<RegistrationForm />} />
           </Route>
         </Routes>
       </div>

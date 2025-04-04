@@ -18,7 +18,7 @@ const AboutBlock: FC = () => {
             появились. Богатый опыт работы с авто- и мототехникой различных
             марок позволяет нам с уверенностью сказать: мы воплотим Вашу мечту.
           </div>
-          <div className="about-block__works">
+          {/* <div className="about-block__works">
             <span className="about-block__works-title">
               Выполняем все виды работ эстетического тюнинга:
             </span>
@@ -55,7 +55,7 @@ const AboutBlock: FC = () => {
               <li className="about-block__works-item">брендирование</li>
               <li className="about-block__works-item">создание дизайна.</li>
             </ul>
-          </div>
+          </div> */}
           <div className="about-block__fact">
             Являемся дилерами производителей — Optima Premium, Шумофф,
             NanoTekas.

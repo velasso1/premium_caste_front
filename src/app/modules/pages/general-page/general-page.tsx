@@ -6,12 +6,14 @@ import PromotionBlock from "./components/promotion-block";
 import AboutBlock from "./components/about-block";
 import PlaceBlock from "./components/place-block";
 
+import YandexMap from "#ui/map/yandex-map.tsx";
+
 const GeneralPage: FC = () => {
   return (
     <div className="general-page">
       <VideoBlock />
       <SliderBlock />
-      <PromotionBlock />
+      {/* <PromotionBlock /> */}
       <AboutBlock />
       <PlaceBlock />
     </div>

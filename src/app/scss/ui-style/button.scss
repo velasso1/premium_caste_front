@@ -1,0 +1,12 @@
+.button {
+  background-color: $mainColor;
+  width: max-content;
+  font-size: 24px;
+  padding: 10px 35px;
+  font-weight: 300;
+  border-radius: 10px;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}

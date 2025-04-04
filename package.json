@@ -1,8 +1,13 @@
 {
-  "name": "app-starter",
+  "name": "premium-caste",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "imports": {
+    "#pages/*": "./src/app/modules/pages/*",
+    "#auth/*": "./src/app/modules/auth/*",
+    "#ui/*": "./src/app/modules/ui/*"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

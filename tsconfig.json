@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
-    "noUnusedLocals": false
+    "noUnusedLocals": false,
+    "typeRoots": ["@yandex/ymaps3-types"],
+    "paths": {
+      "ymaps3": ["@yandex/ymaps3-types"]
+    }
   },
   "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }]
 }

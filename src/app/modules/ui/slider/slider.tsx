@@ -19,21 +19,18 @@ import pic3 from "../../../assets/images/toner-film.png";
 const Slider: FC = () => {
   const progressCircle = useRef<SVGSVGElement>(null);
   const progressContent = useRef<HTMLSpanElement>(null);
-  const onAutoplayTimeLeft = (
-    s: SwiperType,
-    time: number,
-    progress: number
-  ) => {
+  const onAutoplayTimeLeft = (s: SwiperType, time: number, progress: number) => {
     if (progressCircle.current && progressContent.current) {
       progressCircle.current.style.setProperty("--progress", `${1 - progress}`);
       progressContent.current.textContent = `${Math.ceil(time / 1000)}`;
     }
   };
+
   return (
     <div className="swiper-wrapper">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
-        slidesPerView={3}
+        slidesPerView={4}
         spaceBetween={"0"}
         pagination={{ clickable: true }}
         navigation={true}
@@ -41,9 +38,7 @@ const Slider: FC = () => {
           delay: 5000,
           disableOnInteraction: false,
         }}
-        onAutoplayTimeLeft={(s, time, progress) =>
-          onAutoplayTimeLeft(s, time, progress)
-        }
+        onAutoplayTimeLeft={(s, time, progress) => onAutoplayTimeLeft(s, time, progress)}
       >
         <SwiperSlide>
           <SlideLayout imageUrl={pic1} slideText="Виниловые плёнки" />
@@ -69,13 +64,13 @@ const Slider: FC = () => {
         <SwiperSlide>
           <SlideLayout imageUrl={pic2} slideText="Цветные ремни и автоковры" />
         </SwiperSlide>
-
-        <div className="autoplay-progress" slot="container-end">
+        {/* progress bar */}
+        {/* <div className="autoplay-progress" slot="container-end">
           <svg viewBox="0 0 48 48" ref={progressCircle}>
             <circle cx="24" cy="24" r="20"></circle>
           </svg>
           <span ref={progressContent}></span>
-        </div>
+        </div> */}
       </Swiper>
     </div>
   );
