@@ -39,6 +39,25 @@ const Slider: FC = () => {
           disableOnInteraction: false,
         }}
         onAutoplayTimeLeft={(s, time, progress) => onAutoplayTimeLeft(s, time, progress)}
+        breakpoints={{
+          400: {
+            slidesPerView: 1,
+          },
+          1024: {
+            slidesPerView: 2,
+          },
+          1640: {
+            slidesPerView: 3,
+          },
+
+          1920: {
+            slidesPerView: 4,
+          },
+
+          2200: {
+            slidesPerView: 5,
+          },
+        }}
       >
         <SwiperSlide>
           <SlideLayout imageUrl={pic1} slideText="Виниловые плёнки" />
