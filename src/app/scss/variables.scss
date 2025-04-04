@@ -23,3 +23,12 @@ $transition: 0.3s;
   right: 20px;
   font-size: 22px;
 }
+
+@mixin animationOnHover {
+  transition: $transition;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+}

@@ -9,4 +9,6 @@
   &::first-letter {
     text-transform: uppercase;
   }
+
+  @include animationOnHover;
 }

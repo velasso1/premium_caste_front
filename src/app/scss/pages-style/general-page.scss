@@ -132,8 +132,47 @@
   .place-block {
     background-color: $lightSectionColor;
     &__action {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
       margin: 0 auto;
       padding: 20px 0;
+    }
+
+    &__button,
+    &__icons {
+      margin: 0 auto;
+    }
+
+    &__icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 80px 0;
+    }
+
+    &__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      // width: 0px;
+      background-color: $mainColor;
+      border-radius: 50px;
+      padding: 8px;
+
+      &:first-child {
+        padding: 14px 8px;
+      }
+
+      &:nth-child(n):not(:last-child) {
+        margin: 0 100px 0 0;
+      }
+
+      @include animationOnHover;
+    }
+
+    &__icon-image {
+      width: 50px;
     }
   }
 
