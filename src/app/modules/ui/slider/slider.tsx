@@ -31,9 +31,9 @@ const Slider: FC = () => {
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         slidesPerView={4}
-        spaceBetween={"0"}
         pagination={{ clickable: true }}
         navigation={true}
+        loop={true}
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,
@@ -76,12 +76,6 @@ const Slider: FC = () => {
         </SwiperSlide>
         <SwiperSlide>
           <SlideLayout imageUrl={pic3} slideText="Тонировочные плёнки" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideLayout imageUrl={pic1} slideText="Виниловые плёнки" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideLayout imageUrl={pic2} slideText="Цветные ремни и автоковры" />
         </SwiperSlide>
         {/* progress bar */}
         {/* <div className="autoplay-progress" slot="container-end">
