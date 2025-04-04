@@ -28,6 +28,7 @@
   // slider block styles
 
   &__slider-block {
+    background-color: $lightSectionColor;
     display: flex;
     flex-direction: column;
   }
@@ -76,7 +77,6 @@
   // about block styles
 
   .about-block {
-    background-color: $lightSectionColor;
     padding: 0 0 40px 0;
     &__content {
       font-size: 20px;
@@ -130,8 +130,10 @@
   // place block styles
 
   .place-block {
+    background-color: $lightSectionColor;
     &__action {
       margin: 0 auto;
+      padding: 20px 0;
     }
   }
 

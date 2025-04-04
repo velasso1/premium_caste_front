@@ -15,6 +15,8 @@ const PlaceBlock: FC = () => {
             buttonText="открыть в картах"
             onClickAction={() => window.open("https://yandex.ru/maps/-/CHVqFALm", "_blank")}
           />
+
+          <div className="place-block__icons">ICONS</div>
         </div>
       </div>
     </div>
