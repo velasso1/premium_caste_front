@@ -139,6 +139,21 @@
       padding: 20px 0;
     }
 
+    &__address,
+    &__contanct-phone {
+      margin: 0 auto 20px auto;
+      font-size: 24px;
+      color: #ccc;
+
+      a {
+        color: #ccc;
+
+        &:hover {
+          color: #b9b9b9;
+        }
+      }
+    }
+
     &__button,
     &__icons {
       margin: 0 auto;

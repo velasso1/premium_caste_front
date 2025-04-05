@@ -15,6 +15,7 @@ const PlaceBlock: FC = () => {
     <div className="place-block">
       <div className="block-container">
         <PageTitle pageName="контакты" />
+        <div className="place-block__address">г. Москва, ул. Никулинская, 23, корп. 4, стр. 1</div>
         <YandexMap />
         <div className="place-block__action">
           <div className="place-block__button">
@@ -39,6 +40,9 @@ const PlaceBlock: FC = () => {
             <div className="place-block__icon">
               <img src={vk} alt="" className="place-block__icon-image" />
             </div>
+          </div>
+          <div className="place-block__contanct-phone">
+            <a href="tel:79684373983">+7-(968)-437-39-83</a>
           </div>
         </div>
       </div>
