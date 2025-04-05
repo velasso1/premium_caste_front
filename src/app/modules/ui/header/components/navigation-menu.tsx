@@ -9,7 +9,7 @@ const NavigationMenu: FC = () => {
       <ul className="header__list">
         {PAGES_NAVIGATION_LIST.map((item) => {
           return (
-            <li className="header__nav-item">
+            <li className="header__nav-item" key={crypto.randomUUID()}>
               <NavLink className="header__link" to={item.href}>
                 {item.pageName}
               </NavLink>

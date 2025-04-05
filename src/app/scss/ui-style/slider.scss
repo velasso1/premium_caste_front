@@ -80,7 +80,7 @@
   position: absolute;
   right: -5px;
   bottom: 0px;
-  z-index: 10;
+  z-index: $zIndex10;
   width: 36px;
   height: 36px;
   display: flex;
@@ -94,7 +94,7 @@
     position: absolute;
     left: 0;
     top: 0px;
-    z-index: 10;
+    z-index: $zIndex10;
     width: 80%;
     height: 80%;
     stroke-width: 3px;

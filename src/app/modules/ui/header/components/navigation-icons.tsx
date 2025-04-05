@@ -4,10 +4,10 @@ import { NavLink } from "react-router-dom";
 
 import { routes } from "../../../../utils/routes/main-routes/main-routes";
 
-import cart from "../../../../assets/images/cart.png";
-import heart from "../../../../assets/images/heart.png";
-import human from "../../../../assets/images/human.png";
-import stats from "../../../../assets/images/stats.png";
+import cart from "#images/cart.png";
+import heart from "#images/heart.png";
+import human from "#images/human.png";
+import stats from "#images/stats.png";
 
 const NavigationIcons: FC = () => {
   return (

@@ -12,9 +12,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import pic1 from "../../../assets/images/belt.png";
-import pic2 from "../../../assets/images/vinyl.png";
-import pic3 from "../../../assets/images/toner-film.png";
+import pic1 from "#images/belt.png";
+import pic2 from "#images/vinyl.png";
+import pic3 from "#images/toner-film.png";
 
 const Slider: FC = () => {
   const progressCircle = useRef<SVGSVGElement>(null);
@@ -44,7 +44,7 @@ const Slider: FC = () => {
             slidesPerView: 1,
           },
           1024: {
-            slidesPerView: 2,
+            slidesPerView: 3,
           },
           1640: {
             slidesPerView: 3,

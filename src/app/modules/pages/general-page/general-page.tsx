@@ -6,7 +6,7 @@ import PromotionBlock from "./components/promotion-block";
 import AboutBlock from "./components/about-block";
 import PlaceBlock from "./components/place-block";
 
-import YandexMap from "#ui/map/yandex-map.tsx";
+import { useLocation, useParams } from "react-router-dom";
 
 const GeneralPage: FC = () => {
   return (

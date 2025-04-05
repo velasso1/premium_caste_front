@@ -3,7 +3,7 @@ import { FC } from "react";
 import PageTitle from "../../ui/page-title/page-title";
 import PageLayout from "../../ui/page-layout/page-layout";
 
-import notFoundPage from "../../../assets/images/404-page.png";
+import notFoundPage from "#images/404-page.png";
 
 const NotFoundPage: FC = () => {
   return (

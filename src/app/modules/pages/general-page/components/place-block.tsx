@@ -4,11 +4,11 @@ import PageTitle from "../../../ui/page-title/page-title";
 import YandexMap from "#ui/map/yandex-map.tsx";
 import Button from "#ui/button/button.tsx";
 
-import d2 from "../../../../assets/images/D2.png";
-import inst from "../../../../assets/images/mdi_instagram.png";
-import teleg from "../../../../assets/images/mingcute_telegram-fill.png";
-import facebook from "../../../../assets/images/icon-park-outline_facebook.png";
-import vk from "../../../../assets/images/basil_vk-outline.png";
+import d2 from "#images/D2.png";
+import inst from "#images/mdi_instagram.png";
+import teleg from "#images/mingcute_telegram-fill.png";
+import facebook from "#images/icon-park-outline_facebook.png";
+import vk from "#images/basil_vk-outline.png";
 
 const PlaceBlock: FC = () => {
   return (

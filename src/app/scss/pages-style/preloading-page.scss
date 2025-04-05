@@ -1,0 +1,53 @@
+.preloading-page {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  z-index: $zIndex15;
+  width: 100%;
+  height: 100%;
+  background-color: $lightSectionColor;
+
+  &__logo {
+    margin: 0 auto;
+    width: 650px;
+  }
+
+  &__start-button {
+    width: max-content;
+    margin: 0 auto;
+    border-radius: 20px;
+    border: 1px solid $mainColor;
+    background: rgba(197, 74, 33, 0.151);
+    color: #fff;
+    padding: 10px 50px;
+    margin-top: -50px;
+    text-transform: uppercase;
+    transition: 0.3s;
+
+    &:hover {
+      background: $mainColor;
+      transform: scale(1.1);
+    }
+  }
+}
+
+.preloading__closed {
+  animation-name: closer;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  overflow: hidden;
+}
+
+@keyframes closer {
+  0% {
+    height: 100%;
+    opacity: 100%;
+  }
+  100% {
+    height: 0%;
+    opacity: 0%;
+    display: none;
+  }
+}

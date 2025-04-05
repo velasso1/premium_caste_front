@@ -6,7 +6,8 @@
   "imports": {
     "#pages/*": "./src/app/modules/pages/*",
     "#auth/*": "./src/app/modules/auth/*",
-    "#ui/*": "./src/app/modules/ui/*"
+    "#ui/*": "./src/app/modules/ui/*",
+    "#images/*": "./src/app/assets/images/*"
   },
   "scripts": {
     "dev": "vite",

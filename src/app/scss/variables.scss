@@ -5,6 +5,11 @@ $brightness: brightness(40%);
 $brightnessHover: brightness(80%);
 $transition: 0.3s;
 
+$zIndex1: 1;
+$zIndex2: 2;
+$zIndex10: 10;
+$zIndex15: 15;
+
 @mixin defaultPageStyle {
   margin: 0 auto;
 }

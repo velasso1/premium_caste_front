@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import logo from "../../../assets/images/logo.png";
+import logo from "#images/logo.png";
 
 import NavigationMenu from "./components/navigation-menu";
 import NavigationIcons from "./components/navigation-icons";

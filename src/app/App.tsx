@@ -1,6 +1,6 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useParams, useLocation } from "react-router-dom";
 
 // modules
 import MainModule from "./modules/main/main-module";
@@ -31,12 +31,17 @@ import Footer from "#ui/footer/footer.tsx";
 import { routes } from "./utils/routes/main-routes/main-routes";
 
 const App: FC = () => {
+  const location = useLocation();
+
+  console.log(location.pathname);
+
   return (
     <div className="main">
+      <PreloadPage />
       <Header />
       <div className="main-content">
         <Routes>
-          <Route path={routes.WELCOME_PAGE} element={<PreloadPage />} />
+          <Route path={routes.WELCOME_PAGE} element={null} />
           <Route index path={routes.GENERAL_PAGE} element={<GeneralPage />} />
           <Route path={routes.MAIN_MODULE} element={<MainModule />}>
             <Route path={routes.SERVICES_PAGE} element={<ServicesPage />} />
