@@ -159,8 +159,12 @@
     }
   }
 
+  &__map-block {
+    height: 300px;
+  }
+
   &__map {
-    width: auto;
+    width: 100%;
     height: 100%;
     border-radius: 20px;
     background-color: #5d5d5d;

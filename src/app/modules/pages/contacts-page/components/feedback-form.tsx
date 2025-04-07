@@ -10,7 +10,11 @@ const FeedbackForm: FC = () => {
         <input className="feedback-form__name" type="text" placeholder="Как к Вам обращаться?" />
         <input className="feedback-form__telegram" type="text" placeholder="Ваш Telegram в форме @user" />
         <textarea className="feedback-form__message" placeholder="Текст сообщения" />
-        <Button buttonText="Отправить" onClickAction={() => console.log("form is sended")} />
+        <Button
+          buttonText="Отправить"
+          onClickAction={() => console.log("form is sended")}
+          customClass="button-inline"
+        />
       </form>
     </>
   );

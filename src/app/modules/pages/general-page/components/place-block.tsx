@@ -12,7 +12,9 @@ const PlaceBlock: FC = () => {
       <div className="block-container">
         <PageTitle pageName="контакты" />
         <div className="place-block__address">г. Москва, ул. Никулинская, 23, корп. 4, стр. 1</div>
-        <YandexMap />
+        <div className="general-page__map-block">
+          <YandexMap />
+        </div>
         <div className="place-block__action">
           <div className="place-block__button">
             <Button
