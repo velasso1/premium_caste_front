@@ -7,7 +7,8 @@
     "#pages/*": "./src/app/modules/pages/*",
     "#auth/*": "./src/app/modules/auth/*",
     "#ui/*": "./src/app/modules/ui/*",
-    "#images/*": "./src/app/assets/images/*"
+    "#images/*": "./src/app/assets/images/*",
+    "#utils/*": "./src/app/utils/*"
   },
   "scripts": {
     "dev": "vite",

@@ -17,5 +17,5 @@ export const routes = {
   FAVORITES_PAGE: "favorites",
   ACCOUNT_PAGE: "account",
   LOGIN_PAGE: "login",
-  REGISTRATION_PAGE: "registration,",
+  REGISTRATION_PAGE: "registration",
 };

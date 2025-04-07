@@ -1,14 +1,10 @@
 import { FC } from "react";
 
-import PageTitle from "../../../ui/page-title/page-title";
+import ContactIcons from "./contact-icons";
+
+import PageTitle from "#ui/page-title/page-title.tsx";
 import YandexMap from "#ui/map/yandex-map.tsx";
 import Button from "#ui/button/button.tsx";
-
-import d2 from "#images/D2.png";
-import inst from "#images/mdi_instagram.png";
-import teleg from "#images/mingcute_telegram-fill.png";
-import facebook from "#images/icon-park-outline_facebook.png";
-import vk from "#images/basil_vk-outline.png";
 
 const PlaceBlock: FC = () => {
   return (
@@ -24,23 +20,7 @@ const PlaceBlock: FC = () => {
               onClickAction={() => window.open("https://yandex.ru/maps/-/CHVqFALm", "_blank")}
             />
           </div>
-          <div className="place-block__icons">
-            <div className="place-block__icon">
-              <img src={d2} alt="" className="place-block__icon-image" />
-            </div>
-            <div className="place-block__icon">
-              <img src={inst} alt="" className="place-block__icon-image" />
-            </div>
-            <div className="place-block__icon">
-              <img src={teleg} alt="" className="place-block__icon-image" />
-            </div>
-            <div className="place-block__icon">
-              <img src={facebook} alt="" className="place-block__icon-image" />
-            </div>
-            <div className="place-block__icon">
-              <img src={vk} alt="" className="place-block__icon-image" />
-            </div>
-          </div>
+          <ContactIcons />
           <div className="place-block__contanct-phone">
             <a href="tel:79684373983">+7-(968)-437-39-83</a>
           </div>

@@ -33,8 +33,6 @@ import { routes } from "./utils/routes/main-routes/main-routes";
 const App: FC = () => {
   const location = useLocation();
 
-  console.log(location.pathname);
-
   return (
     <div className="main">
       <PreloadPage />

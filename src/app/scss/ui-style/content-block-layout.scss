@@ -1,0 +1,15 @@
+.content-block-layout {
+  background-color: #1b1b1b;
+  border-radius: 15px;
+  padding: 30px;
+  margin: 0 30px 0 0;
+
+  &:not(:first-child) {
+    margin: 20px 30px 0 0;
+  }
+
+  &__title {
+    font-size: 25px;
+    text-align: center;
+  }
+}
