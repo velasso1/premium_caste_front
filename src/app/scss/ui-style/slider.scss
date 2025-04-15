@@ -53,7 +53,8 @@
   position: relative;
   text-align: center;
   margin: 0 20px;
-  @include animationOnHover;
+  overflow: hidden;
+
   &:hover {
     cursor: pointer;
   }
@@ -63,6 +64,7 @@
     filter: $brightness;
     transition: $transition;
 
+    @include animationOnHover;
     &:hover {
       filter: $brightnessHover;
     }

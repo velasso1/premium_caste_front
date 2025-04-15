@@ -37,3 +37,12 @@ $zIndex15: 15;
     transform: scale(1.1);
   }
 }
+
+@mixin defualtInputStyle {
+  background-color: #1b1b1b;
+  color: #fff;
+  border-radius: 15px;
+  width: full;
+  padding: 15px 0 15px 10px;
+  margin: 15px 0 0 0;
+}

@@ -1,3 +1,45 @@
 .account-page {
   @include defaultPageStyle;
 }
+
+.account-info {
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  margin: 0 auto;
+  padding: 0 0 40px 0;
+
+  &__photo {
+    margin: 0 auto;
+    padding: 0 0 40px 0;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 500px;
+  }
+
+  &__image {
+    width: 250px;
+    border-radius: 50%;
+  }
+
+  &__name,
+  &__surname,
+  &__phone,
+  &__email {
+    @include defualtInputStyle;
+    margin: 5px 0 25px 0;
+  }
+
+  &__surname {
+  }
+
+  &__phone {
+  }
+
+  &__email {
+  }
+}
