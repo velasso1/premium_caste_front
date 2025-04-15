@@ -1,0 +1,31 @@
+.sidebar {
+  background-color: #272727;
+  width: max-content;
+  height: max-content;
+  border-radius: 15px;
+
+  &__item {
+    &:not(:first-child) {
+      border-top: 1px solid black;
+    }
+    color: fff;
+    padding: 5px 0;
+
+    span {
+      display: block;
+      margin: 0 10px;
+      padding: 10px;
+      border-radius: 15px;
+      transition: $transition;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      span {
+        color: $mainColor;
+        background-color: rgb(24, 24, 24);
+      }
+    }
+  }
+}

@@ -1,3 +1,62 @@
 .our-works-page {
   @include defaultPageStyle;
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__work-item {
+    height: max-content;
+    width: 250px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__banner {
+    width: 250px;
+    overflow: hidden;
+    position: relative;
+
+    &:hover {
+      span {
+        display: block;
+      }
+    }
+  }
+
+  &__image {
+    width: 250px;
+    transition: $transition;
+
+    &:hover {
+      transform: scale(1.2);
+      filter: $brightness;
+    }
+  }
+
+  &__item-title {
+    text-align: center;
+    font-weight: 500;
+  }
+
+  &__work-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    margin: 0 auto;
+    padding: 0 0 40px 0;
+  }
+
+  &__notice {
+    display: none;
+    position: absolute;
+    color: $mainColor;
+    font-weight: 500;
+    left: 30%;
+    top: 45%;
+    text-transform: uppercase;
+  }
 }
