@@ -16,3 +16,17 @@
 .button-inline {
   width: 100%;
 }
+
+.button-disabled {
+  width: max-content;
+  font-size: 24px;
+  padding: 10px 35px;
+  font-weight: 300;
+  border-radius: 10px;
+  pointer-events: none;
+  filter: $brightness;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}

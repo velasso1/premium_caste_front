@@ -1,5 +1,11 @@
 .account-page {
   @include defaultPageStyle;
+
+  &__exit-button {
+    position: absolute;
+    top: 10vh;
+    left: 90.5vw;
+  }
 }
 
 .account-info {
@@ -19,6 +25,20 @@
     flex-direction: column;
     text-align: center;
     width: 500px;
+
+    label {
+      filter: $brightness;
+    }
+
+    input {
+      border: 1px solid #1b1b1b;
+
+      transition: $transition;
+    }
+
+    input:focus {
+      border: 1px solid $mainColor;
+    }
   }
 
   &__image {

@@ -11,7 +11,9 @@ const AccountPage: FC = () => {
     <PageLayout pageClassName="account-page">
       <>
         <PageTitle pageName="Личный кабинет" />
-
+        <div className="account-page__exit-button">
+          <Button buttonText="Выход" buttonType="DISABLED" onClickAction={() => console.log("exit")} />
+        </div>
         <div className="account-info">
           <div className="account-info__photo">
             <img className="account-info__image" src={user} alt="user-photo" />
