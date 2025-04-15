@@ -54,13 +54,12 @@
   text-align: center;
   margin: 0 20px;
   @include animationOnHover;
-
   &:hover {
     cursor: pointer;
   }
 
   &__image {
-    width: 386px;
+    width: 100%;
     filter: $brightness;
     transition: $transition;
 

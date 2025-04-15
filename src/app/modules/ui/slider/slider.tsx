@@ -12,9 +12,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import pic1 from "#images/belt.png";
-import pic2 from "#images/vinyl.png";
-import pic3 from "#images/toner-film.png";
+import pic1 from "#images/alfa-romeo.jpg";
+import pic2 from "#images/audi.jpg";
+import pic3 from "#images/toyota.jpg";
 
 const Slider: FC = () => {
   const progressCircle = useRef<SVGSVGElement>(null);
@@ -60,22 +60,22 @@ const Slider: FC = () => {
         }}
       >
         <SwiperSlide>
-          <SlideLayout imageUrl={pic1} slideText="Виниловые плёнки" />
+          <SlideLayout imageUrl={pic1} slideText="Alfa Romeo Giulia True Blood" />
         </SwiperSlide>
         <SwiperSlide>
-          <SlideLayout imageUrl={pic2} slideText="Цветные ремни и автоковры" />
+          <SlideLayout imageUrl={pic2} slideText="Audi A5 from Lime to Lemon" />
         </SwiperSlide>
         <SwiperSlide>
-          <SlideLayout imageUrl={pic3} slideText="Тонировочные плёнки" />
+          <SlideLayout imageUrl={pic3} slideText="Toyota Highlander Cranberry" />
         </SwiperSlide>
         <SwiperSlide>
-          <SlideLayout imageUrl={pic1} slideText="Виниловые плёнки" />
+          <SlideLayout imageUrl={pic1} slideText="Alfa Romeo Giulia True Blood" />
         </SwiperSlide>
         <SwiperSlide>
-          <SlideLayout imageUrl={pic2} slideText="Цветные ремни и автоковры" />
+          <SlideLayout imageUrl={pic2} slideText="Audi A5 from Lime to Lemon" />
         </SwiperSlide>
         <SwiperSlide>
-          <SlideLayout imageUrl={pic3} slideText="Тонировочные плёнки" />
+          <SlideLayout imageUrl={pic3} slideText="Toyota Highlander Cranberry" />
         </SwiperSlide>
         {/* progress bar */}
         {/* <div className="autoplay-progress" slot="container-end">
