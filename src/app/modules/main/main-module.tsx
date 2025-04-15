@@ -15,9 +15,9 @@ import { Outlet } from "react-router-dom";
 const MainModule: FC = () => {
   return (
     <div className="main-module">
-      <div className="container">
-        <Outlet />
-      </div>
+      {/* <div className="container"> */}
+      <Outlet />
+      {/* </div> */}
     </div>
   );
 };

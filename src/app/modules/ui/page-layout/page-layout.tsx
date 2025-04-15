@@ -6,7 +6,11 @@ interface IPageLayoutProps {
 }
 
 const PageLayout: FC<IPageLayoutProps> = ({ pageClassName, children }) => {
-  return <div className={`${pageClassName} page-layout`}>{children}</div>;
+  return (
+    <div className={`${pageClassName} page-layout`}>
+      <div className="container">{children}</div>
+    </div>
+  );
 };
 
 export default PageLayout;

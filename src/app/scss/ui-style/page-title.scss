@@ -4,6 +4,7 @@
   padding: 0px 0 2px 0;
   border-bottom: 2px solid $mainColor;
   font-size: 32px;
+  width: max-content;
 
   &__text::first-letter {
     text-transform: uppercase;
