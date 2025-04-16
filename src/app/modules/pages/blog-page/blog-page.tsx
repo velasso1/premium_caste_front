@@ -15,9 +15,13 @@ const BlogPage: FC = () => {
         <div className="blog-page__upper-side">
           <div className="blog-page__main-news">
             <img className="blog-page__main-image" src={bmw} alt="news-image" />
+            <div className="blog-page__shadow"></div>
+            <span className="blog-page__main-news-title">ГЛАВНАЯ НОВОСТЬ НЕДЕЛИ 21.01</span>
           </div>
           <div className="blog-page__second-news">
             <img className="blog-page__second-image" src={polish} alt="second news image" />
+            <div className="blog-page__shadow"></div>
+            <span className="blog-page__second-news-title">ПОЛИРОВКА ФАР</span>
           </div>
         </div>
         <div className="blog-page__lower-side">

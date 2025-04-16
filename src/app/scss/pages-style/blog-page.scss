@@ -8,12 +8,61 @@
   }
 
   &__main-news {
+    position: relative;
+    transition: $transition;
+    width: 799px;
+    overflow: hidden;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    img {
+      transition: 7s;
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  &__main-news-title,
+  &__second-news-title {
+    position: absolute;
+    bottom: 2%;
+    left: 1%;
+    font-size: 25px;
+    font-weight: 500;
+  }
+
+  &__shadow {
+    transition: 3s;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 20%, rgba(0, 0, 0, 0) 100%);
   }
 
   &__main-image {
   }
 
   &__second-news {
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    img {
+      transition: 7s;
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
   }
 
   &__second-image {
@@ -64,6 +113,7 @@
 
   &__item-date {
     position: absolute;
+    pointer-events: none;
     font-weight: 500;
     bottom: 12%;
     right: 1%;
@@ -71,12 +121,11 @@
   }
 
   &__cross {
+    @include titleOnImage;
     display: none;
-    pointer-events: none;
+    font-size: 15px;
     position: absolute;
     color: $mainColor;
-    left: 42%;
-    top: 40%;
     font-weight: 500;
     text-transform: uppercase;
   }

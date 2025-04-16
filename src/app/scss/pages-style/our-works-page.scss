@@ -51,13 +51,13 @@
   }
 
   &__notice {
+    @include titleOnImage;
+    top: 50%;
+    font-size: 15px;
     display: none;
-    pointer-events: none;
     position: absolute;
     color: $mainColor;
     font-weight: 500;
-    left: 30%;
-    top: 45%;
     text-transform: uppercase;
   }
 }

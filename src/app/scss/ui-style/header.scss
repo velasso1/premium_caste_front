@@ -48,6 +48,7 @@
   &__icon-image {
     transition: $transition;
     width: 70%;
+
     &:hover {
       cursor: pointer;
       filter: $brightnessHover;

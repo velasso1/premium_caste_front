@@ -23,9 +23,10 @@ $zIndex15: 15;
 
 @mixin titleOnImage {
   position: absolute;
-  top: 42%;
-  left: 20px;
-  right: 20px;
+  pointer-events: none;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
   font-size: 22px;
 }
 

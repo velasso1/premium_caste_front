@@ -12,7 +12,7 @@ const BlogItem: FC = () => {
         temporibus ea!
       </div>
       <span className="blog-page__item-date">17.01.2025</span>
-      <span className="blog-page__cross">перейти</span>
+      <span className="blog-page__cross">подробнее</span>
     </div>
   );
 };
