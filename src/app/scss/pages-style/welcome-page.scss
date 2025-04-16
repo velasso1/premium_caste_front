@@ -1,4 +1,4 @@
-.preloading-page {
+.welcome-page {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -32,7 +32,7 @@
   }
 }
 
-.preloading__closed {
+.welcome__closed {
   animation-name: closer;
   animation-duration: 2s;
   animation-iteration-count: 1;
@@ -42,8 +42,8 @@
 
 @keyframes closer {
   0% {
-    height: 100%;
-    opacity: 100%;
+    height: 0%;
+    opacity: 0%;
   }
   100% {
     height: 0%;

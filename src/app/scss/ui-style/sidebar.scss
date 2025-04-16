@@ -28,4 +28,11 @@
       }
     }
   }
+
+  &__item--active {
+    span {
+      color: $mainColor;
+      background-color: rgb(24, 24, 24);
+    }
+  }
 }

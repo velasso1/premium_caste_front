@@ -1,13 +1,13 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 
-import { Routes, Route, useParams, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 // modules
 import MainModule from "./modules/main/main-module";
 import AuthModule from "./modules/auth/auth-module";
 
 // pages
-import PreloadPage from "#pages/preload-page/preload-page.tsx";
+import WelcomePage from "#pages/preloaders/welcome-page.tsx";
 import GeneralPage from "#pages/general-page/general-page.tsx";
 import ServicesPage from "#pages/services-page/services-page.tsx";
 import OurWorksPage from "#pages/our-works-page/our-works-page.tsx";
@@ -33,9 +33,15 @@ import { routes } from "./utils/routes/main-routes/main-routes";
 const App: FC = () => {
   const location = useLocation();
 
+  const [showPreloadPage, setShowPreloadPage] = useState<boolean>(false);
+
+  // useEffect(() => {
+  //   console.log(location);
+  // }, [location]);
+
   return (
     <div className="main">
-      <PreloadPage />
+      <WelcomePage preloadingMode={false} />
       <Header />
       <div className="main-content">
         <Routes>
