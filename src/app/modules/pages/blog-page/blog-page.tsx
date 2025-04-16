@@ -1,12 +1,35 @@
 import { FC } from "react";
 
-import PageTitle from "../../ui/page-title/page-title";
-import PageLayout from "../../ui/page-layout/page-layout";
+import PageTitle from "#ui/page-title/page-title.tsx";
+import PageLayout from "#ui/page-layout/page-layout.tsx";
+import BlogItem from "./components/blog-item";
+
+import bmw from "#images/bmw.png";
+import polish from "#images/polish.png";
 
 const BlogPage: FC = () => {
   return (
     <PageLayout pageClassName="blog-page">
-      <PageTitle pageName="Блог" />
+      <>
+        <PageTitle pageName="Блог" />
+        <div className="blog-page__upper-side">
+          <div className="blog-page__main-news">
+            <img className="blog-page__main-image" src={bmw} alt="news-image" />
+          </div>
+          <div className="blog-page__second-news">
+            <img className="blog-page__second-image" src={polish} alt="second news image" />
+          </div>
+        </div>
+        <div className="blog-page__lower-side">
+          <BlogItem />
+          <BlogItem />
+          <BlogItem />
+          <BlogItem />
+          <BlogItem />
+          <BlogItem />
+          <BlogItem />
+        </div>
+      </>
     </PageLayout>
   );
 };

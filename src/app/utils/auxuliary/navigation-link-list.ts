@@ -9,7 +9,7 @@ export const PAGES_NAVIGATION_LIST: IPagesNavigationItems[] = [
   { pageName: "главная", href: routes.GENERAL_PAGE },
   { pageName: "услуги", href: MAIN_MODULE_ROUTE + routes.SERVICES_PAGE },
   { pageName: "наши работы", href: MAIN_MODULE_ROUTE + routes.OUR_WORKS_PAGE },
-  { pageName: "о нас", href: MAIN_MODULE_ROUTE + routes.ABOUT_PAGE },
+  // { pageName: "о нас", href: MAIN_MODULE_ROUTE + routes.ABOUT_PAGE },
   { pageName: "блог", href: MAIN_MODULE_ROUTE + routes.BLOG_PAGE },
   { pageName: "контакты", href: MAIN_MODULE_ROUTE + routes.CONTACTS_PAGE },
 ];

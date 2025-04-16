@@ -52,6 +52,7 @@
 
   &__notice {
     display: none;
+    pointer-events: none;
     position: absolute;
     color: $mainColor;
     font-weight: 500;
