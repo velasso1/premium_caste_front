@@ -25,14 +25,14 @@
   }
 
   &__banner-closed {
-    animation: closed;
+    animation: closedImage;
     animation-duration: 2s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
   }
 }
 
-@keyframes closed {
+@keyframes closedImage {
   0% {
     opacity: 0%;
   }
