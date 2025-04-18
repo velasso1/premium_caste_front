@@ -10,23 +10,7 @@ const Shedule: FC = () => {
       <div className="shedule">
         <ul className="contacts-page__list">
           <li className="contacts-page__item">
-            <span className="contacts-page__day">Понедельник: </span>
-            <span className="contacts-page__highlight">{workingTime}</span>
-          </li>
-          <li className="contacts-page__item">
-            <span className="contacts-page__day">Вторник: </span>{" "}
-            <span className="contacts-page__highlight">{workingTime}</span>
-          </li>
-          <li className="contacts-page__item">
-            <span className="contacts-page__day">Среда: </span>
-            <span className="contacts-page__highlight">{workingTime}</span>
-          </li>
-          <li className="contacts-page__item">
-            <span className="contacts-page__day">Четверг: </span>
-            <span className="contacts-page__highlight">{workingTime}</span>
-          </li>
-          <li className="contacts-page__item">
-            <span className="contacts-page__day">Пятница: </span>
+            <span className="contacts-page__day">Понедельник - Пятница: </span>
             <span className="contacts-page__highlight">{workingTime}</span>
           </li>
           <li className="contacts-page__item">

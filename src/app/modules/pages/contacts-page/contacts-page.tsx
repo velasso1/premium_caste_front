@@ -16,14 +16,15 @@ const ContactsPage: FC = () => {
       <>
         <PageTitle pageName="Контакты" />
         <div className="contacts-page__information">
-          <div className="contacts-page__left">
-            <ContactsBlock />
-            <Shedule />
-          </div>
-          <div className="contacts-page__right">
-            <YandexMap />
-            <FeedbackForm />
-          </div>
+          {/* <div className="contacts-page__left"> */}
+          <ContactsBlock />
+          <YandexMap />
+          <Shedule />
+          {/* </div> */}
+          {/* <div className="contacts-page__right"> */}
+
+          <FeedbackForm />
+          {/* </div> */}
         </div>
         <div className="contacts-page__links-title">Мы в социальных сетях</div>
         <ContactIcons />

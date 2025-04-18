@@ -22,11 +22,11 @@ const PageLayout: FC<IPageLayoutProps> = ({ pageClassName, children }) => {
 
   return (
     <div className={`${pageClassName} page-layout`}>
-      {/* {showPreloader && (
+      {showPreloader && (
         <div className="page-layout__preloader">
           <img className="page-layout__banner page-layout__banner-closed" src={premium} alt="premium caste" />
         </div>
-      )} */}
+      )}
 
       <div className="container">{children}</div>
     </div>

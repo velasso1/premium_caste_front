@@ -10,19 +10,19 @@ const ContactIcons: FC = () => {
   return (
     <div className="place-block__icons">
       <div className="place-block__icon">
-        <img src={d2} alt="" className="place-block__icon-image" />
+        <img className="place-block__icon-image" src={d2} alt="drive2" />
       </div>
       <div className="place-block__icon">
-        <img src={inst} alt="" className="place-block__icon-image" />
+        <img className="place-block__icon-image" src={inst} alt="instagram" />
       </div>
       <div className="place-block__icon">
-        <img src={teleg} alt="" className="place-block__icon-image" />
+        <img className="place-block__icon-image" src={teleg} alt="telegram" />
       </div>
       <div className="place-block__icon">
-        <img src={facebook} alt="" className="place-block__icon-image" />
+        <img className="place-block__icon-image" src={facebook} alt="facebook" />
       </div>
       <div className="place-block__icon">
-        <img src={vk} alt="" className="place-block__icon-image" />
+        <img className="place-block__icon-image" src={vk} alt="vk" />
       </div>
     </div>
   );

@@ -5,13 +5,17 @@
   &__list {
     @include navigationList;
     // width: 100%;
-    justify-content: space-between;
+    justify-content: center;
     padding: 40px 0;
   }
 
   &__nav-item {
     &::first-letter {
       text-transform: uppercase;
+    }
+
+    &:not(:last-child) {
+      padding-right: 50px;
     }
   }
 

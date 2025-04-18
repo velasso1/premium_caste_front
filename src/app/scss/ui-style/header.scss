@@ -10,6 +10,11 @@
   justify-content: flex-start;
   padding: 20px 20px;
 
+  &--sticky {
+    position: sticky;
+    background-color: black;
+  }
+
   &__nav {
     margin: 0 0 0 63px;
   }
