@@ -10,15 +10,15 @@ interface IPageLayoutProps {
 const PageLayout: FC<IPageLayoutProps> = ({ pageClassName, children }) => {
   const [showPreloader, setShowPreloader] = useState<boolean>(true);
 
-  useEffect(() => {
-    turnOffPreloader();
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0 });
   }, []);
 
-  const turnOffPreloader = () => {
+  useEffect(() => {
     setTimeout(() => {
       setShowPreloader(false);
     }, 2500);
-  };
+  }, []);
 
   return (
     <div className={`${pageClassName} page-layout`}>

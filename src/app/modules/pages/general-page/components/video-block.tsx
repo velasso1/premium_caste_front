@@ -20,8 +20,7 @@ const VideoBlock: FC = () => {
         poster={poster}
         src={video}
       ></video>
-      <span className="general-page__clue">
-        scroll to
+      <span className="general-page__clue" onClick={() => window.scrollTo({ top: 900, behavior: "smooth" })}>
         <img className="general-page__arrow" src={arrow} alt="" />
       </span>
     </div>

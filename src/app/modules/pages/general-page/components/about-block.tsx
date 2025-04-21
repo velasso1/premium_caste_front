@@ -2,11 +2,13 @@ import { FC } from "react";
 
 import PageTitle from "../../../ui/page-title/page-title";
 
+import { routes } from "#utils/routes/main-routes/main-routes.ts";
+
 const AboutBlock: FC = () => {
   return (
     <div className="about-block">
       <div className="block-container">
-        <PageTitle pageName="О нас" />
+        <PageTitle pageName="О нас" isLink={true} linkHref={"../main/" + routes.ABOUT_PAGE} />
         <div className="about-block__content">
           <div className="about-block__article">
             Студия создания АвтоСтиля PremiumCaste — это команда профессионалов и энтузиастов своего дела, главной
