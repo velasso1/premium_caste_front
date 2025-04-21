@@ -1,6 +1,6 @@
 .header {
   color: #fff;
-  position: absolute;
+  position: fixed;
   z-index: $zIndex2;
   top: 0;
   width: 100%;
@@ -11,8 +11,11 @@
   padding: 20px 20px;
 
   &--sticky {
-    position: sticky;
     background-color: black;
+    animation: headerStickyVisible;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
   }
 
   &__nav {
@@ -58,5 +61,14 @@
       cursor: pointer;
       filter: $brightnessHover;
     }
+  }
+}
+
+@keyframes headerStickyVisible {
+  0% {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+  }
+  100% {
+    background-color: black;
   }
 }

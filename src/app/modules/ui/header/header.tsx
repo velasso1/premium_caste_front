@@ -5,7 +5,7 @@ import logo from "#images/logo.png";
 import NavigationMenu from "./components/navigation-menu";
 import NavigationIcons from "./components/navigation-icons";
 
-import { throttle } from "#utils/debounce.ts";
+import { throttle } from "#utils/throttle.ts";
 
 const Header: FC = () => {
   const [scrollValue, setScrollValue] = useState<number>(0);
