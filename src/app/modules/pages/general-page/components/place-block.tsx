@@ -26,7 +26,7 @@ const PlaceBlock: FC = () => {
           </div>
           <ContactIcons />
           <div className="place-block__contanct-phone">
-            <a href="tel:79684373983">+7-(968)-437-39-83</a>
+            <a href="tel:79684373983">+7 (968) 437-39-83</a>
           </div>
         </div>
       </div>

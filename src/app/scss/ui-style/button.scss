@@ -9,17 +9,18 @@
 
 .button {
   @include buttonStyle;
+  @include animationOnHover;
+
+  &--outlined {
+    background-color: none;
+    border: 1px solid $mainColor;
+
+    @include buttonStyle;
+  }
+
   &::first-letter {
     text-transform: uppercase;
   }
-
-  &--outlined {
-    @include buttonStyle;
-    background-color: none;
-    border: 1px solid $mainColor;
-  }
-
-  @include animationOnHover;
 }
 
 .button-inline {

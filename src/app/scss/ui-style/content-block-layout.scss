@@ -6,5 +6,8 @@
   &__title {
     font-size: 25px;
     text-align: center;
+    border-bottom: 1px solid $mainColor;
+    width: max-content;
+    margin: 0 auto;
   }
 }

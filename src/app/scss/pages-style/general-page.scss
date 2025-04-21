@@ -111,8 +111,8 @@
       line-height: 35px;
     }
 
-    &__works {
-    }
+    // &__works {
+    // }
 
     &__works-title {
       display: block;
@@ -208,24 +208,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  // width: 0px;
   background-color: $mainColor;
   border-radius: 50px;
-  padding: 8px;
+  padding: 5px;
+
+  @include animationOnHover;
 
   &:first-child {
     padding: 14px 8px;
+    img {
+      width: 30px;
+    }
   }
 
   &:nth-child(n):not(:last-child) {
     margin: 0 50px 0 0;
   }
-
-  @include animationOnHover;
 }
 
 .place-block__icon-image {
-  width: 50px;
+  width: 40px;
 }
 
 @keyframes scrollClue {

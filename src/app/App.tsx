@@ -1,6 +1,6 @@
-import { FC, useEffect, useState, useRef } from "react";
+import { FC } from "react";
 
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 // modules
 import MainModule from "./modules/main/main-module";
@@ -31,14 +31,6 @@ import Footer from "#ui/footer/footer.tsx";
 import { routes } from "./utils/routes/main-routes/main-routes";
 
 const App: FC = () => {
-  const location = useLocation();
-
-  const [showPreloadPage, setShowPreloadPage] = useState<boolean>(false);
-
-  // useEffect(() => {
-  //   console.log(location);
-  // }, [location]);
-
   return (
     <div className="main">
       <WelcomePage preloadingMode={false} />
