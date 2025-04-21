@@ -18,7 +18,9 @@ const ContactsPage: FC = () => {
         <div className="contacts-page__information">
           {/* <div className="contacts-page__left"> */}
           <ContactsBlock />
-          <YandexMap />
+          <div className="contacts-page__map">
+            <YandexMap />
+          </div>
           <Shedule />
           {/* </div> */}
           {/* <div className="contacts-page__right"> */}

@@ -11,7 +11,7 @@ interface IButtonProps {
 const Button: FC<IButtonProps> = ({ buttonType = "DEFAULT", buttonText, onClickAction, customClass, buttonStyle }) => {
   return (
     <button
-      className={`${buttonType === "DISABLED" ? "button-disabled" : "button"} ${customClass}`}
+      className={`${buttonType === "DISABLED" ? "button-disabled" : "button--outlined"} ${customClass}`}
       onClick={(e) => onClickAction(e)}
     >
       {buttonText}

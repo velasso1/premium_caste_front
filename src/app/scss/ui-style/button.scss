@@ -1,13 +1,22 @@
-.button {
+@mixin buttonStyle {
   background-color: $mainColor;
   width: max-content;
   font-size: 24px;
   padding: 10px 35px;
   font-weight: 300;
   border-radius: 10px;
+}
 
+.button {
+  @include buttonStyle;
   &::first-letter {
     text-transform: uppercase;
+  }
+
+  &--outlined {
+    @include buttonStyle;
+    background-color: none;
+    border: 1px solid $mainColor;
   }
 
   @include animationOnHover;

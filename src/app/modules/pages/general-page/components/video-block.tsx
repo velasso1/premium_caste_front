@@ -5,6 +5,8 @@ import premium from "#images/premiun-caste.png";
 
 import poster from "#images/poster.png";
 
+import arrow from "#images/arrow-down.png";
+
 const VideoBlock: FC = () => {
   return (
     <div className="general-page__video">
@@ -18,6 +20,10 @@ const VideoBlock: FC = () => {
         poster={poster}
         src={video}
       ></video>
+      <span className="general-page__clue">
+        scroll to
+        <img className="general-page__arrow" src={arrow} alt="" />
+      </span>
     </div>
   );
 };

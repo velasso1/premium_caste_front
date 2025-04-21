@@ -10,9 +10,18 @@
   &__information {
     display: flex;
     flex-direction: column;
+
     margin: 0 auto;
     justify-content: center;
     width: 50%;
+
+    &:not(:first-child) {
+      gap: 40px 0;
+    }
+  }
+
+  &__map {
+    height: 300px;
   }
 
   &__left {
