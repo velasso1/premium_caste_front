@@ -2,13 +2,15 @@ import { FC } from "react";
 
 import { IFieldProps } from "../../../types/fields-types";
 
-interface ITextFieldProps extends IFieldProps {}
+interface ITextFieldProps extends IFieldProps {
+  type: "text" | "email";
+}
 
-const TextField: FC<ITextFieldProps> = ({ labelText, placeholder, includeLabel, className, id }) => {
+const TextField: FC<ITextFieldProps> = ({ labelText, placeholder, className, id, type }) => {
   return (
     <>
-      {includeLabel && <label htmlFor={id}>{labelText}</label>}
-      <input className={className} id={id} type="text" placeholder={placeholder} />
+      {labelText && <label htmlFor={id}>{labelText}</label>}
+      <input className={className} id={id} type={type} placeholder={placeholder} />
     </>
   );
 };

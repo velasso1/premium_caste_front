@@ -4,10 +4,10 @@ import { IFieldProps } from "../../../types/fields-types";
 
 interface IPasswordFieldProps extends IFieldProps {}
 
-const PasswordField: FC<IPasswordFieldProps> = ({ labelText, className, placeholder, includeLabel, id }) => {
+const PasswordField: FC<IPasswordFieldProps> = ({ labelText, className, placeholder, id }) => {
   return (
     <>
-      {includeLabel && <label htmlFor={id}>{labelText}</label>}
+      {labelText && <label htmlFor={id}>{labelText}</label>}
       <input className={className} id={id} type="password" placeholder={placeholder} />
     </>
   );

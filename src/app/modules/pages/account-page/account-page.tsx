@@ -3,6 +3,8 @@ import { FC } from "react";
 import PageTitle from "#ui/page-title/page-title.tsx";
 import PageLayout from "#ui/page-layout/page-layout.tsx";
 import Button from "#ui/button/button.tsx";
+import TextField from "#ui/fields/text-field.tsx";
+import NumberField from "#ui/fields/number-field.tsx";
 
 import user from "#images/user-without-photo.jpg";
 
@@ -20,40 +22,19 @@ const AccountPage: FC = () => {
           </div>
           <div className="account-info__form1">
             <form className="account-info__form" action="submit">
-              <label htmlFor="account-info__name-field">Имя</label>
-              <input
-                className="account-info__name"
-                id="account-info__name-field"
-                placeholder="Имя"
-                type="text"
-                value="Иван"
-              />
-
-              <label htmlFor="account-info__surname-field">Фамилия</label>
-              <input
+              <TextField className="account-info__name" id="account-info__name-field" type="text" labelText="Имя" />
+              <TextField
                 className="account-info__surname"
                 id="account-info__surname-field"
-                placeholder="Фамилия"
                 type="text"
-                value="Иванов"
+                labelText="Фамилия"
               />
-
-              <label htmlFor="account-info__phone-field">Номер телефона</label>
-              <input
-                className="account-info__phone"
-                id="account-info__phone-field"
-                placeholder="Телефон"
-                type="text"
-                value="+7 (900) 000-00-00"
-              />
-
-              <label htmlFor="account-info__email-field">Почта</label>
-              <input
+              <NumberField className="account-info__phone" id="account-info__phone-field" labelText="Телефон" />
+              <TextField
                 className="account-info__email"
                 id="account-info__email-field"
-                placeholder="Почта"
-                type="text"
-                value="ivanov@email.com"
+                type="email"
+                labelText="Почта"
               />
               <div className="account-info__action">
                 <Button buttonText="Сохранить" onClickAction={() => console.log("data is saved")} />

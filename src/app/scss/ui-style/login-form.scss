@@ -23,6 +23,11 @@
         border: 1px solid $mainColor;
       }
     }
+
+    input::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
   }
 
   &__forget-pass,

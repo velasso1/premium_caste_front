@@ -16,7 +16,7 @@ const LoginForm: FC = () => {
         <ContentBlockLayout contentTitle="Вход в аккаунт" customClassName="login-form__content-block">
           <form className="login-form__form" action="submit">
             <span className="login-form__registration">Регистрация</span>
-            <TextField className="login-form__username" placeholder="Логин" />
+            <TextField className="login-form__username" type="text" placeholder="Логин" />
             <PasswordField className="login-form__password" placeholder="Пароль" />
             <span className="login-form__forget-pass">Забыли пароль?</span>
             <Button buttonText="войти" onClickAction={() => console.log("login")} />
