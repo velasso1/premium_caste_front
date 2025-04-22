@@ -2,9 +2,7 @@ import { FC, InputHTMLAttributes, Ref } from "react";
 
 import { IFieldProps } from "../../../types/fields-types";
 
-interface IPasswordFieldProps extends IFieldProps, InputHTMLAttributes<HTMLInputElement> {
-  ref?: Ref<HTMLInputElement>;
-}
+interface IPasswordFieldProps extends IFieldProps, InputHTMLAttributes<HTMLInputElement> {}
 
 const PasswordField: FC<IPasswordFieldProps> = ({
   labelText,

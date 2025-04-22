@@ -2,12 +2,16 @@ import { FC } from "react";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 
+import { NavLink } from "react-router-dom";
+
 import PageLayout from "#ui/page-layout/page-layout.tsx";
 import PageTitle from "#ui/page-title/page-title.tsx";
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 import Button from "#ui/button/button.tsx";
 import TextField from "#ui/fields/text-field.tsx";
 import PasswordField from "#ui/fields/password-field.tsx";
+
+import { routes } from "#utils/routes/main-routes/main-routes.ts";
 
 interface ILoginForm {
   login: string;
@@ -28,12 +32,14 @@ const LoginForm: FC = () => {
   };
 
   return (
-    <PageLayout pageClassName="login-form">
+    <PageLayout pageClassName="login-form" includePreloader={false}>
       <>
         <PageTitle pageName=" " />
         <ContentBlockLayout contentTitle="Вход в аккаунт" customClassName="login-form__content-block">
           <form className="login-form__form" onSubmit={handleSubmit(onSubmit)}>
-            <span className="login-form__registration">Регистрация</span>
+            <NavLink className="login-form__registration" to={`../${routes.REGISTRATION_PAGE}`}>
+              Регистрация
+            </NavLink>
             <TextField
               classNameText="login-form__username"
               type="text"

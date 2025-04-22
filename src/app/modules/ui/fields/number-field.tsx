@@ -2,9 +2,7 @@ import { FC, InputHTMLAttributes, Ref } from "react";
 
 import { IFieldProps } from "../../../types/fields-types";
 
-interface INumberFieldProps extends IFieldProps, InputHTMLAttributes<HTMLInputElement> {
-  ref?: Ref<HTMLInputElement>;
-}
+interface INumberFieldProps extends IFieldProps, InputHTMLAttributes<HTMLInputElement> {}
 
 const NumberField: FC<INumberFieldProps> = ({ labelText, placeholderText, customId, classNameText, ref, ...props }) => {
   return (

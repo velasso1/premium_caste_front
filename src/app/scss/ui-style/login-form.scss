@@ -1,4 +1,5 @@
-.login-form {
+.login-form,
+.registration-form {
   display: flex;
   padding: 150px 0 0 0;
   width: 100%;
@@ -37,10 +38,29 @@
 
     &:hover {
       cursor: pointer;
+      text-decoration: underline;
     }
   }
 
+  //   registration link in login form
   &__registration {
     margin-top: 20px;
+    color: white;
+    text-decoration: underline;
+  }
+
+  //   styles for registratiom form
+
+  &__auth {
+    margin: 20px auto;
+
+    a {
+      color: white;
+      text-decoration: underline;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 }

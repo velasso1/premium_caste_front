@@ -5,9 +5,10 @@ import premium from "#images/premiun-caste.png";
 interface IPageLayoutProps {
   children: React.ReactElement;
   pageClassName: string;
+  includePreloader?: boolean;
 }
 
-const PageLayout: FC<IPageLayoutProps> = ({ pageClassName, children }) => {
+const PageLayout: FC<IPageLayoutProps> = ({ pageClassName, children, includePreloader = true }) => {
   const [showPreloader, setShowPreloader] = useState<boolean>(true);
 
   useLayoutEffect(() => {
@@ -22,7 +23,7 @@ const PageLayout: FC<IPageLayoutProps> = ({ pageClassName, children }) => {
 
   return (
     <div className={`${pageClassName} page-layout`}>
-      {showPreloader && (
+      {includePreloader && showPreloader && (
         <div className="page-layout__preloader">
           <img className="page-layout__banner page-layout__banner-closed" src={premium} alt="premium caste" />
         </div>

@@ -4,7 +4,6 @@ import { IFieldProps } from "../../../types/fields-types";
 
 interface ITextFieldProps extends IFieldProps, InputHTMLAttributes<HTMLInputElement> {
   type: "text" | "email";
-  ref?: Ref<HTMLInputElement>;
 }
 
 const TextField: FC<ITextFieldProps> = ({ labelText, placeholderText, classNameText, id, type, ref, ...props }) => {
