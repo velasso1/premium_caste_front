@@ -1,14 +1,16 @@
-import { FC } from "react";
+import { FC, InputHTMLAttributes, Ref } from "react";
 
 import { IFieldProps } from "../../../types/fields-types";
 
-interface INumberFieldProps extends IFieldProps {}
+interface INumberFieldProps extends IFieldProps, InputHTMLAttributes<HTMLInputElement> {
+  ref?: Ref<HTMLInputElement>;
+}
 
-const NumberField: FC<INumberFieldProps> = ({ labelText, placeholder, id, className }) => {
+const NumberField: FC<INumberFieldProps> = ({ labelText, placeholderText, customId, classNameText, ref, ...props }) => {
   return (
     <>
-      {labelText && <label htmlFor={id}>{labelText}</label>}
-      <input className={className} id={id} type="number" placeholder={placeholder} />
+      {labelText && <label htmlFor={customId}>{labelText}</label>}
+      <input className={classNameText} id={customId} type="number" ref={ref} placeholder={placeholderText} {...props} />
     </>
   );
 };

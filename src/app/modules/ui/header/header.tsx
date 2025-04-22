@@ -16,7 +16,6 @@ const Header: FC = () => {
   };
 
   useEffect(() => {
-    console.log(scrollValue);
     window.addEventListener("scroll", throttle(handleScroll, 200));
 
     return () => {

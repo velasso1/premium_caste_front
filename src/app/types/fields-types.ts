@@ -1,6 +1,6 @@
 export interface IFieldProps {
-  className: string;
-  placeholder?: string;
+  classNameText: string;
+  placeholderText?: string;
   labelText?: string;
-  id?: string;
+  customId?: string;
 }
