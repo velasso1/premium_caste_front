@@ -31,13 +31,11 @@
     }
 
     input {
-      border: 1px solid #1b1b1b;
+      @include defualtInputStyle;
 
-      transition: $transition;
-    }
-
-    input:focus {
-      border: 1px solid $mainColor;
+      &:focus {
+        border: 1px solid $mainColor;
+      }
     }
   }
 

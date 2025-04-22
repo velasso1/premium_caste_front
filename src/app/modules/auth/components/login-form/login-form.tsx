@@ -4,24 +4,26 @@ import PageLayout from "#ui/page-layout/page-layout.tsx";
 import PageTitle from "#ui/page-title/page-title.tsx";
 
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
+import Button from "#ui/button/button.tsx";
+import TextField from "#ui/fields/text-field.tsx";
+import PasswordField from "#ui/fields/password-field.tsx";
 
 const LoginForm: FC = () => {
   return (
-    <div className="login-form">
-      <PageLayout pageClassName="login-form">
-        <>
-          <PageTitle pageName=" " />
-          <ContentBlockLayout contentTitle="Вход в аккаунт">
-            <div className="">
-              <form action="">
-                <input type="text" />
-                <input type="text" />
-              </form>
-            </div>
-          </ContentBlockLayout>
-        </>
-      </PageLayout>
-    </div>
+    <PageLayout pageClassName="login-form">
+      <>
+        <PageTitle pageName=" " />
+        <ContentBlockLayout contentTitle="Вход в аккаунт" customClassName="login-form__content-block">
+          <form className="login-form__form" action="submit">
+            <span className="login-form__registration">Регистрация</span>
+            <TextField className="login-form__username" placeholder="Логин" />
+            <PasswordField className="login-form__password" placeholder="Пароль" />
+            <span className="login-form__forget-pass">Забыли пароль?</span>
+            <Button buttonText="войти" onClickAction={() => console.log("login")} />
+          </form>
+        </ContentBlockLayout>
+      </>
+    </PageLayout>
   );
 };
 

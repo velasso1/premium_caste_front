@@ -1,1 +1,41 @@
+.login-form {
+  display: flex;
+  padding: 150px 0 0 0;
+  width: 100%;
 
+  &__content-block {
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    justify-content: center;
+    margin: 0 auto;
+
+    input {
+      @include defualtInputStyle;
+
+      &:focus {
+        border: 1px solid $mainColor;
+      }
+    }
+  }
+
+  &__forget-pass,
+  &__registration {
+    text-decoration: underline;
+    margin: 0 auto 20px auto;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__registration {
+    margin-top: 20px;
+  }
+}

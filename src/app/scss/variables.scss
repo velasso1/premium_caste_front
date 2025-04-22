@@ -40,10 +40,12 @@ $zIndex15: 15;
 }
 
 @mixin defualtInputStyle {
-  background-color: #1b1b1b;
+  background-color: #0f0f0f;
   color: #fff;
   border-radius: 15px;
   width: full;
   padding: 15px 0 15px 10px;
-  margin: 15px 0 0 0;
+  margin: 5px 0 25px 0;
+  border: 1px solid #1b1b1b;
+  transition: $transition;
 }

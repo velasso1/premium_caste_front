@@ -12,7 +12,7 @@ const AccountPage: FC = () => {
       <>
         <PageTitle pageName="Личный кабинет" />
         <div className="account-page__exit-button">
-          <Button buttonText="Выход" onClickAction={() => console.log("exit")} />
+          <Button buttonText="Выход" buttonStyle="OUTLINED" onClickAction={() => console.log("exit")} />
         </div>
         <div className="account-info">
           <div className="account-info__photo">

@@ -2,17 +2,24 @@ import { FC } from "react";
 
 interface IButtonProps {
   buttonText: string;
-  buttonType?: "DEFAULT" | "LOADING" | "DISABLED";
+  buttonType?: "DEFAULT" | "LOADING";
   buttonStyle?: "PRIMARY" | "OUTLINED";
-  customClass?: string;
+  disabled?: boolean;
   onClickAction: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Button: FC<IButtonProps> = ({ buttonType = "DEFAULT", buttonText, onClickAction, customClass, buttonStyle }) => {
+const Button: FC<IButtonProps> = ({
+  buttonType = "DEFAULT",
+  buttonText,
+  onClickAction,
+  buttonStyle = "PRIMARY",
+  disabled = false,
+}) => {
   return (
     <button
-      className={`${buttonType === "DISABLED" ? "button-disabled" : "button--outlined"} ${customClass}`}
+      className={`${buttonStyle === "PRIMARY" ? "button" : "button--outlined"}`}
       onClick={(e) => onClickAction(e)}
+      disabled={disabled}
     >
       {buttonText}
     </button>
