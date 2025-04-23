@@ -1,0 +1,48 @@
+.notification {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  //
+  animation: notificationShow;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+
+  &--error {
+    background-color: tomato;
+  }
+
+  &--success {
+    background-color: rgb(43, 161, 69);
+  }
+
+  &--warning {
+    background-color: rgb(201, 162, 80);
+  }
+
+  &--information {
+    background-color: rgb(125, 145, 189);
+  }
+
+  &__title {
+    text-transform: uppercase;
+  }
+
+  &__body {
+  }
+}
+
+@keyframes notificationShow {
+  0% {
+    opacity: 100%;
+  }
+
+  100% {
+    opacity: 0%;
+    display: none;
+  }
+}
