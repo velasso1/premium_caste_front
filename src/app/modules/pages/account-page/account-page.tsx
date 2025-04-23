@@ -22,17 +22,26 @@ const AccountPage: FC = () => {
           </div>
           <div className="account-info__form1">
             <form className="account-info__form" action="submit">
-              <TextField className="account-info__name" id="account-info__name-field" type="text" labelText="Имя" />
               <TextField
-                className="account-info__surname"
+                classNameText="account-info__name"
+                customId="account-info__name-field"
+                type="text"
+                labelText="Имя"
+              />
+              <TextField
+                classNameText="account-info__surname"
                 id="account-info__surname-field"
                 type="text"
                 labelText="Фамилия"
               />
-              <NumberField className="account-info__phone" id="account-info__phone-field" labelText="Телефон" />
+              <NumberField
+                classNameText="account-info__phone"
+                customId="account-info__phone-field"
+                labelText="Телефон"
+              />
               <TextField
-                className="account-info__email"
-                id="account-info__email-field"
+                classNameText="account-info__email"
+                customId="account-info__email-field"
                 type="email"
                 labelText="Почта"
               />
