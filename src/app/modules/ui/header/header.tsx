@@ -1,11 +1,11 @@
-import { FC, useRef, useEffect, useState } from "react";
-
-import logo from "#images/logo.png";
+import { FC, useEffect, useState } from "react";
 
 import NavigationMenu from "./components/navigation-menu";
 import NavigationIcons from "./components/navigation-icons";
 
 import { throttle } from "#utils/throttle.ts";
+
+import logo from "#images/logo.png";
 
 const Header: FC = () => {
   const [scrollValue, setScrollValue] = useState<number>(0);

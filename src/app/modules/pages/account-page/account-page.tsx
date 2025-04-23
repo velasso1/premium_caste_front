@@ -1,5 +1,8 @@
 import { FC } from "react";
 
+import { useAppDispatch } from "../../../store";
+import { changeUserLoginStatus } from "../../../store/slices/user";
+
 import PageTitle from "#ui/page-title/page-title.tsx";
 import PageLayout from "#ui/page-layout/page-layout.tsx";
 import Button from "#ui/button/button.tsx";
@@ -9,12 +12,18 @@ import NumberField from "#ui/fields/number-field.tsx";
 import user from "#images/user-without-photo.jpg";
 
 const AccountPage: FC = () => {
+  const dispatch = useAppDispatch();
+
+  const logout = (): void => {
+    dispatch(changeUserLoginStatus(false));
+  };
+
   return (
     <PageLayout pageClassName="account-page">
       <>
         <PageTitle pageName="Личный кабинет" />
         <div className="account-page__exit-button">
-          <Button buttonText="Выход" buttonStyle="OUTLINED" onClickAction={() => console.log("exit")} />
+          <Button buttonText="Выход" buttonStyle="OUTLINED" onClickAction={() => logout()} />
         </div>
         <div className="account-info">
           <div className="account-info__photo">
@@ -23,24 +32,20 @@ const AccountPage: FC = () => {
           <div className="account-info__form1">
             <form className="account-info__form" action="submit">
               <TextField
-                classNameText="account-info__name"
+                className="account-info__name"
                 customId="account-info__name-field"
                 type="text"
                 labelText="Имя"
               />
               <TextField
-                classNameText="account-info__surname"
+                className="account-info__surname"
                 id="account-info__surname-field"
                 type="text"
                 labelText="Фамилия"
               />
-              <NumberField
-                classNameText="account-info__phone"
-                customId="account-info__phone-field"
-                labelText="Телефон"
-              />
+              <NumberField className="account-info__phone" customId="account-info__phone-field" labelText="Телефон" />
               <TextField
-                classNameText="account-info__email"
+                className="account-info__email"
                 customId="account-info__email-field"
                 type="email"
                 labelText="Почта"

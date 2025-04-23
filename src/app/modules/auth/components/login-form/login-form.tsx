@@ -1,8 +1,11 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+
+import { useAppDispatch, useAppSelector } from "../../../../store";
+import { changeUserLoginStatus } from "../../../../store/slices/user";
 
 import PageLayout from "#ui/page-layout/page-layout.tsx";
 import PageTitle from "#ui/page-title/page-title.tsx";
@@ -19,6 +22,9 @@ interface ILoginForm {
 }
 
 const LoginForm: FC = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { userIsAuth } = useAppSelector((state) => state.userSlice);
   const {
     register,
     handleSubmit,
@@ -26,9 +32,19 @@ const LoginForm: FC = () => {
     formState: { errors },
   } = useForm<ILoginForm>();
 
+  useEffect(() => {
+    if (userIsAuth) {
+      navigate("/main/" + routes.ACCOUNT_PAGE);
+    }
+  }, [userIsAuth]);
+
   const onSubmit: SubmitHandler<ILoginForm> = (data) => {
     console.log(data);
     reset();
+  };
+
+  const login = (): void => {
+    dispatch(changeUserLoginStatus(true));
   };
 
   return (
@@ -41,18 +57,18 @@ const LoginForm: FC = () => {
               Регистрация
             </NavLink>
             <TextField
-              classNameText="login-form__username"
+              className="login-form__username"
               type="text"
               placeholder="Логин"
               {...register("login", { required: true })}
             />
             <PasswordField
-              classNameText="login-form__password"
-              placeholderText="Пароль"
+              className="login-form__password"
+              placeholder="Пароль"
               {...register("password", { required: true })}
             />
             <span className="login-form__forget-pass">Забыли пароль?</span>
-            <Button buttonText="войти" onClickAction={() => null} />
+            <Button buttonText="войти" onClickAction={() => login()} />
           </form>
         </ContentBlockLayout>
       </>

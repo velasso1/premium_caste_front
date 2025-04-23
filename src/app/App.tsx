@@ -29,6 +29,7 @@ import Footer from "#ui/footer/footer.tsx";
 
 // utils
 import { routes } from "./utils/routes/main-routes/main-routes";
+import PrivateRoute from "#utils/routes/private-routes/private-route.tsx";
 
 const App: FC = () => {
   return (
@@ -47,7 +48,7 @@ const App: FC = () => {
             <Route path={routes.CONTACTS_PAGE} element={<ContactsPage />} />
             <Route path={routes.CART_PAGE} element={<CartPage />} />
             <Route path={routes.FAVORITES_PAGE} element={<FavoritesPage />} />
-            <Route path={routes.ACCOUNT_PAGE} element={<AccountPage />} />
+            <Route path={routes.ACCOUNT_PAGE} element={<PrivateRoute children={<AccountPage />} />} />
             <Route path={routes.NOT_EXIST_PAGE} element={<NotFoundPage />} />
           </Route>
           <Route />

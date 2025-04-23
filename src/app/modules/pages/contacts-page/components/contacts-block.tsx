@@ -4,7 +4,7 @@ import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 
 const ContactsBlock: FC = () => {
   return (
-    <ContentBlockLayout contentTitle="Контакты для связи">
+    <ContentBlockLayout contentTitle="Контакты для связи" customClassName="contacts-page__content">
       <ul className="contacts-page__list">
         <li className="contacts-page__item--contact">
           Телефон: <span className="contacts-page__highlight">+7 (968) 437-39-83</span>{" "}
