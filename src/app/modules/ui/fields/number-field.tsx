@@ -4,11 +4,18 @@ import { IFieldProps } from "../../../types/fields-types";
 
 interface INumberFieldProps extends IFieldProps, InputHTMLAttributes<HTMLInputElement> {}
 
-const NumberField: FC<INumberFieldProps> = ({ labelText, placeholderText, customId, classNameText, ref, ...props }) => {
+const NumberField: FC<INumberFieldProps> = ({ labelText, customId, ref, ...props }) => {
   return (
     <>
       {labelText && <label htmlFor={customId}>{labelText}</label>}
-      <input className={classNameText} id={customId} type="number" ref={ref} placeholder={placeholderText} {...props} />
+      <input
+        className={props.className}
+        id={customId}
+        type="number"
+        ref={ref}
+        placeholder={props.placeholder}
+        {...props}
+      />
     </>
   );
 };

@@ -26,6 +26,7 @@ import RegistrationForm from "#auth/components/registration-form/registration-fo
 // ui
 import Header from "#ui/header/header.tsx";
 import Footer from "#ui/footer/footer.tsx";
+import Notification from "#ui/notifications/notification.tsx";
 
 // utils
 import { routes } from "./utils/routes/main-routes/main-routes";
@@ -34,6 +35,7 @@ import PrivateRoute from "#utils/routes/private-routes/private-route.tsx";
 const App: FC = () => {
   return (
     <div className="main">
+      <Notification notifMessage="it's a test message for notification" notifType="error" />
       <WelcomePage preloadingMode={false} />
       <Header />
       <div className="main-content">

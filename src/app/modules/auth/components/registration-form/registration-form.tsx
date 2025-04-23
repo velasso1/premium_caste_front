@@ -19,24 +19,24 @@ const RegistrationForm: FC = () => {
               Уже есть аккаунт? <NavLink to="../login">Авторизоваться</NavLink>
             </span>
             <TextField
-              classNameText="registration-form__username"
+              className="registration-form__username"
               type="text"
               placeholder="Имя"
               // {...register("login", { required: true })}
             />
             <TextField
-              classNameText="registration-form__surname"
+              className="registration-form__surname"
               type="text"
               placeholder="Фамилия"
               // {...register("login", { required: true })}
             />
             <TextField
-              classNameText="registration-form__email"
+              className="registration-form__email"
               type="email"
               placeholder="Почта*"
               // {...register("login", { required: true })}
             />
-            <NumberField classNameText="registration-form__phone" placeholder="Номер телефона" />
+            <NumberField className="registration-form__phone" placeholder="Номер телефона" />
             <Button buttonText="далее" onClickAction={() => null} />
           </form>
         </ContentBlockLayout>
