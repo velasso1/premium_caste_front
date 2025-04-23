@@ -1,39 +1,55 @@
 .notification {
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
-  top: 5%;
+  top: 120px;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
+  text-align: center;
+  border-radius: 15px;
+  font-weight: 800;
+  max-width: 450px;
+
   //
-  animation: notificationShow;
-  animation-duration: 2s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
 
   &--error {
-    background-color: tomato;
+    background-color: #fa5a5a;
+    color: rgb(83, 1, 1);
   }
 
   &--success {
-    background-color: rgb(43, 161, 69);
+    background-color: #5cb85c;
+    color: rgb(0, 70, 15);
   }
 
   &--warning {
-    background-color: rgb(201, 162, 80);
+    background-color: rgb(236, 128, 26);
+    color: rgb(102, 50, 0);
   }
 
   &--information {
-    background-color: rgb(125, 145, 189);
+    background-color: rgb(120, 131, 233);
+    color: black;
   }
 
   &__title {
     text-transform: uppercase;
+    border-bottom: 1px solid;
+    border-color: inherit;
+    padding: 10px;
   }
 
   &__body {
+    padding: 20px 50px;
   }
+}
+
+.notification--hide {
+  animation: notificationShow;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 @keyframes notificationShow {
