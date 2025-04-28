@@ -24,11 +24,6 @@
         border: 1px solid $mainColor;
       }
     }
-
-    input::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
   }
 
   &__forget-pass,
@@ -50,6 +45,12 @@
   }
 
   //   styles for registratiom form
+
+  &__clue {
+    margin: 0 auto;
+    padding: 20px 0 0 0;
+    color: red;
+  }
 
   &__auth {
     margin: 20px auto;

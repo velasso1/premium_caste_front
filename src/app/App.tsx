@@ -35,7 +35,7 @@ import PrivateRoute from "#utils/routes/private-routes/private-route.tsx";
 const App: FC = () => {
   return (
     <div className="main">
-      <Notification notifMessage="Заявка успешно оформлена!" notifType="error" />
+      {/* <Notification notifMessage="Заявка успешно оформлена!" notifType="error" /> */}
       <WelcomePage preloadingMode={false} />
       <Header />
       <div className="main-content">

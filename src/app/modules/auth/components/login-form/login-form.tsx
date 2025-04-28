@@ -22,6 +22,8 @@ interface ILoginForm {
 }
 
 const LoginForm: FC = () => {
+  alert("Функционал авторизации в разработке. &nbsp Чтобы авторизоваться, нажмите - 'войти' ");
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { userIsAuth } = useAppSelector((state) => state.userSlice);
@@ -47,6 +49,8 @@ const LoginForm: FC = () => {
     dispatch(changeUserLoginStatus(true));
   };
 
+  console.log(errors);
+
   return (
     <PageLayout pageClassName="login-form" includePreloader={false}>
       <>
@@ -56,12 +60,14 @@ const LoginForm: FC = () => {
             <NavLink className="login-form__registration" to={`../${routes.REGISTRATION_PAGE}`}>
               Регистрация
             </NavLink>
+
             <TextField
-              className="login-form__username"
+              className={`login-form__username${errors.login && "--empty"}`}
               type="text"
               placeholder="Логин"
               {...register("login", { required: true })}
             />
+
             <PasswordField
               className="login-form__password"
               placeholder="Пароль"
@@ -69,6 +75,7 @@ const LoginForm: FC = () => {
             />
             <span className="login-form__forget-pass">Забыли пароль?</span>
             <Button buttonText="войти" onClickAction={() => login()} />
+            {(errors.login || errors.password) && <p className="login-form__clue">*поля обязательны для заполнения</p>}
           </form>
         </ContentBlockLayout>
       </>
