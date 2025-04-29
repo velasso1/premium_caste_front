@@ -25,7 +25,7 @@ const ContactsPage: FC = () => {
           {/* </div> */}
           {/* <div className="contacts-page__right"> */}
 
-          <FeedbackForm />
+          {/* <FeedbackForm /> */}
           {/* </div> */}
         </div>
         <div className="contacts-page__links-title">Мы в социальных сетях</div>

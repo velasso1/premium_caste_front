@@ -43,8 +43,24 @@
 
   &__item,
   &__item--contact {
+    display: flex;
     font-size: 22px;
     padding-top: 25px;
+    align-items: center;
+  }
+
+  &__item-telegram,
+  &__item-whatsapp {
+    width: 40px;
+    margin: 0 0 0 20px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__item-whatsapp {
+    width: 45px;
   }
 
   &__item:not(--contact) {

@@ -27,7 +27,7 @@ const ServicesPage: FC = () => {
           <CategoryItem title="СВЕТОВОЙ ТЮНИНГ" icon={toner} />
           <CategoryItem title="ОКЛЕЙКА ЗАЩИТНЫМИ ПЛЕНКАМИ" icon={safety} />
           <CategoryItem title="УСТАНОВКА ШУМОИЗОЛЯЦИИ" icon={shumka} />
-          <CategoryItem title="АВТОЗВУК И МУЛЬИМЕДИя" icon={sound} />
+          <CategoryItem title="АВТОЗВУК И МУЛЬтИМЕДИя" icon={sound} />
           <CategoryItem title="ДЕТЕЙЛИНГ" icon={detailing} />
           <CategoryItem title="УСТАНОВКА ДОП ОБОРУДОВАНИЯ" icon={dop} />
         </div>

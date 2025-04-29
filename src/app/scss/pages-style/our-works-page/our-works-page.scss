@@ -33,7 +33,7 @@
 
     &:hover {
       transform: scale(1.2);
-      filter: $brightness;
+      filter: brightness(20%);
     }
   }
 
@@ -61,3 +61,5 @@
     text-transform: uppercase;
   }
 }
+
+@import "./repsonsive.scss";

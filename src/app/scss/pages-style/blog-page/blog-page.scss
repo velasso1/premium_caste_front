@@ -9,20 +9,41 @@
 
   &__main-news {
     position: relative;
-    transition: $transition;
-    width: 799px;
+    // transition: $transition;
+    width: 800px;
     overflow: hidden;
 
     &:hover {
       cursor: pointer;
+
+      span {
+        display: block;
+        pointer-events: none;
+        font-size: 20px;
+      }
     }
 
     img {
-      transition: 7s;
+      transition: 0.5s;
       &:hover {
-        transform: scale(1.2);
+        filter: brightness(20%);
+        // transform: scale(1.2);
       }
     }
+  }
+
+  &__main-news-clue {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-transform: uppercase;
+    color: $mainColor;
+  }
+
+  &__main-image {
+    // width: 100%;
   }
 
   &__main-news-title,
@@ -46,21 +67,25 @@
     background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 20%, rgba(0, 0, 0, 0) 100%);
   }
 
-  &__main-image {
-  }
-
   &__second-news {
     position: relative;
     overflow: hidden;
+    justify-content: right;
+    // width: 20%;
 
     &:hover {
       cursor: pointer;
+      span {
+        display: block;
+        pointer-events: none;
+        font-size: 20px;
+      }
     }
 
     img {
-      transition: 7s;
+      transition: 0.5s;
       &:hover {
-        transform: scale(1.2);
+        filter: brightness(20%);
       }
     }
   }
@@ -90,7 +115,7 @@
 
       &:hover {
         cursor: pointer;
-        filter: $brightness;
+        filter: brightness(20%);
       }
     }
 
@@ -130,3 +155,5 @@
     text-transform: uppercase;
   }
 }
+
+@import "./responsive.scss";

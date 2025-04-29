@@ -6,8 +6,8 @@ export const routes = {
   NOT_EXIST_PAGE: "*",
 
   //   pages routes
-  WELCOME_PAGE: "/",
-  GENERAL_PAGE: "general",
+  // WELCOME_PAGE: "/",
+  GENERAL_PAGE: "",
   SERVICES_PAGE: "services",
   OUR_WORKS_PAGE: "our-works",
   ABOUT_PAGE: "about",

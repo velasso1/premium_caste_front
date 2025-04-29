@@ -1,10 +1,10 @@
 .footer {
+  width: 100%;
   color: #fff;
   height: max-content;
 
   &__list {
     @include navigationList;
-    // width: 100%;
     justify-content: center;
     padding: 40px 0;
   }
@@ -46,4 +46,7 @@
     text-align: center;
     padding: 40px 0;
   }
+}
+
+@media screen and (max-width: 1800px) {
 }

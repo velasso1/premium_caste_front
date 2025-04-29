@@ -37,7 +37,7 @@ const RegistrationForm: FC = () => {
               // {...register("login", { required: true })}
             />
             <NumberField className="registration-form__phone" placeholder="Номер телефона" />
-            <Button buttonText="далее" onClickAction={() => null} />
+            <Button buttonText="далее" onClickAction={() => alert("функционал в разрабокте")} />
           </form>
         </ContentBlockLayout>
       </>

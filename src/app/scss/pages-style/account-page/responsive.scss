@@ -1,0 +1,23 @@
+@media screen and (max-width: 1200px) {
+  .account-page {
+    &__exit-button {
+      top: 14vh;
+      left: 85vw;
+    }
+  }
+  .account-info {
+    padding: 0 0 40px 0;
+
+    &__photo {
+      padding: 0 0 20px 0;
+    }
+
+    &__form {
+      width: 350px;
+    }
+
+    &__image {
+      width: 200px;
+    }
+  }
+}

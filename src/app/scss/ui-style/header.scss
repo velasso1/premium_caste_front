@@ -72,3 +72,23 @@
     background-color: black;
   }
 }
+
+@media screen and (max-width: 1200px) {
+  .header {
+    &__logo-image {
+      width: 100%;
+    }
+
+    a {
+      font-size: 13px;
+    }
+
+    &__icon-image {
+      width: 60%;
+    }
+
+    &__icons {
+      gap: 15px;
+    }
+  }
+}

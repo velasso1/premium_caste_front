@@ -57,6 +57,7 @@
 
   &:hover {
     cursor: pointer;
+    font-weight: 800;
   }
 
   &__image {
@@ -66,12 +67,22 @@
 
     @include animationOnHover;
     &:hover {
-      filter: $brightnessHover;
+      filter: brightness(60%);
     }
   }
 
   &__title {
     @include titleOnImage;
+  }
+
+  &__context-block {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: tomato;
   }
 }
 
@@ -108,5 +119,29 @@
 
   span {
     margin: -9px 0 0 -7px;
+  }
+}
+
+@keyframes showBlock {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .slide-layout {
+    margin: 0 10px;
+
+    &__image {
+      width: 90%;
+    }
+
+    &__title {
+      font-size: 15px;
+    }
   }
 }

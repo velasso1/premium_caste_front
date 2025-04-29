@@ -1,0 +1,21 @@
+@media screen and (max-width: 1200px) {
+  .blog-page {
+    // &__main-news {
+    //   position: relative;
+    //   transition: $transition;
+    //   //   width: 200px;
+    //   overflow: hidden;
+    // }
+
+    &__main-news {
+      width: 600px;
+      height: 350px;
+      margin: 0 60px 0 0;
+    }
+
+    &__second-news {
+      width: 400px;
+      height: 350px;
+    }
+  }
+}

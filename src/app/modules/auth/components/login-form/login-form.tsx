@@ -22,7 +22,9 @@ interface ILoginForm {
 }
 
 const LoginForm: FC = () => {
-  alert("Функционал авторизации в разработке. &nbsp Чтобы авторизоваться, нажмите - 'войти' ");
+  useEffect(() => {
+    alert("Функционал авторизации в разработке. &nbsp Чтобы авторизоваться, нажмите - 'войти' ");
+  }, []);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();

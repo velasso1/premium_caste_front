@@ -1,6 +1,6 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
 // modules
 import MainModule from "./modules/main/main-module";
@@ -33,14 +33,20 @@ import { routes } from "./utils/routes/main-routes/main-routes";
 import PrivateRoute from "#utils/routes/private-routes/private-route.tsx";
 
 const App: FC = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // navigate("/general");
+  }, []);
+
   return (
     <div className="main">
       {/* <Notification notifMessage="Заявка успешно оформлена!" notifType="error" /> */}
-      <WelcomePage preloadingMode={false} />
+      {/* <WelcomePage preloadingMode={false} /> */}
       <Header />
       <div className="main-content">
         <Routes>
-          <Route path={routes.WELCOME_PAGE} element={null} />
+          {/* <Route path={routes.WELCOME_PAGE} element={null} /> */}
           <Route index path={routes.GENERAL_PAGE} element={<GeneralPage />} />
           <Route path={routes.MAIN_MODULE} element={<MainModule />}>
             <Route path={routes.SERVICES_PAGE} element={<ServicesPage />} />
