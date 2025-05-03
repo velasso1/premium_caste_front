@@ -31,6 +31,8 @@ const RegistrationForm: FC = () => {
     formState: { errors },
   } = useForm<IRegistrationForm>();
 
+  console.log("a");
+
   const registration: SubmitHandler<IRegistrationForm> = (data, event) => {
     createAccount(data);
   };
