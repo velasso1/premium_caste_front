@@ -1,6 +1,10 @@
 import { FC } from "react";
 
+import { useCreateAccountMutation } from "../../../../store/api/user-api";
+
 import { useForm, SubmitHandler } from "react-hook-form";
+
+import { NavLink } from "react-router-dom";
 
 import PageLayout from "#ui/page-layout/page-layout.tsx";
 import PageTitle from "#ui/page-title/page-title.tsx";
@@ -8,10 +12,9 @@ import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 import TextField from "#ui/fields/text-field.tsx";
 import Button from "#ui/button/button.tsx";
 import NumberField from "#ui/fields/number-field.tsx";
-import { NavLink } from "react-router-dom";
 import PasswordField from "#ui/fields/password-field.tsx";
 
-interface IRegistrationForm {
+export interface IRegistrationForm {
   email: string;
   name: string;
   password: string;
@@ -19,6 +22,8 @@ interface IRegistrationForm {
 }
 
 const RegistrationForm: FC = () => {
+  const [createAccount, { data, isLoading, error }] = useCreateAccountMutation();
+
   const {
     register,
     handleSubmit,
@@ -26,15 +31,8 @@ const RegistrationForm: FC = () => {
     formState: { errors },
   } = useForm<IRegistrationForm>();
 
-  const registration: SubmitHandler<IRegistrationForm> = (data) => {
-    console.log(data);
-    fetch("http://localhost:8080/api/v1/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+  const registration: SubmitHandler<IRegistrationForm> = (data, event) => {
+    createAccount(data);
   };
 
   return (
@@ -51,32 +49,24 @@ const RegistrationForm: FC = () => {
               type="text"
               placeholder="Имя"
               {...register("name", { required: true })}
+              disabled={isLoading}
             />
-            {/* <TextField
-              className="registration-form__surname"
-              type="text"
-              placeholder="Фамилия"
-              {...register("login", { required: true })}
-            /> */}
             <TextField
               className="registration-form__email"
               type="email"
               placeholder="Почта*"
               {...register("email", { required: true })}
+              disabled={isLoading}
             />
             <TextField
               className="registration-form__email"
               type="text"
               placeholder="Телефон"
               {...register("phone", { required: true })}
+              disabled={isLoading}
             />
-            {/* <NumberField
-              className="registration-form__phone"
-              placeholder="Номер телефона"
-              {...register("phone", { required: true })}
-            /> */}
-            <PasswordField placeholder="Пароль" {...register("password", { required: true })} />
-            <Button buttonText="зарегистрироваться" onClickAction={(e) => console.log(null)} />
+            <PasswordField placeholder="Пароль" {...register("password", { required: true })} disabled={isLoading} />
+            <Button buttonText="зарегистрироваться" onClickAction={(e) => null} disabled={isLoading} />
           </form>
         </ContentBlockLayout>
       </>
