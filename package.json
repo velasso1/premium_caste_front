@@ -23,6 +23,7 @@
     "react-hook-form": "^7.56.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^6.30.0",
+    "react-spinners": "^0.17.0",
     "sass": "^1.87.0",
     "scrollmagic": "^2.0.8",
     "swiper": "^11.2.6"

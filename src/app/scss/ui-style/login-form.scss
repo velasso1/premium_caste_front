@@ -12,6 +12,7 @@
 
   &__form {
     display: flex;
+    position: relative;
     flex-direction: column;
     width: 350px;
     justify-content: center;
@@ -22,6 +23,10 @@
 
       &:focus {
         border: 1px solid $mainColor;
+      }
+
+      &:disabled {
+        background-color: #171717;
       }
     }
   }

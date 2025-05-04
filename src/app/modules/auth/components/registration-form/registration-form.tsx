@@ -6,6 +6,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 
 import { NavLink } from "react-router-dom";
 
+import { IRegistrationPayload } from "../../../../types/store-types/form-types";
+
 import PageLayout from "#ui/page-layout/page-layout.tsx";
 import PageTitle from "#ui/page-title/page-title.tsx";
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
@@ -14,26 +16,17 @@ import Button from "#ui/button/button.tsx";
 import NumberField from "#ui/fields/number-field.tsx";
 import PasswordField from "#ui/fields/password-field.tsx";
 
-export interface IRegistrationForm {
-  email: string;
-  name: string;
-  password: string;
-  phone: string;
-}
-
 const RegistrationForm: FC = () => {
-  const [createAccount, { data, isLoading, error }] = useCreateAccountMutation();
+  const [createAccount, { data, isLoading, isSuccess, error }] = useCreateAccountMutation();
 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<IRegistrationForm>();
+  } = useForm<IRegistrationPayload>();
 
-  console.log("a");
-
-  const registration: SubmitHandler<IRegistrationForm> = (data, event) => {
+  const registration: SubmitHandler<IRegistrationPayload> = (data, event) => {
     createAccount(data);
   };
 
