@@ -39,6 +39,8 @@ const LoginForm: FC = () => {
     }
   }, [data]);
 
+  console.log("test");
+
   const {
     register,
     handleSubmit,
