@@ -7,7 +7,7 @@ import { IRegistrationResponse, ILoginResponse } from "../../types/general-types
 
 type CustomizedFetchBaseQueryError = {
   status?: number;
-  data?: { details: string; error: string; status: string };
+  data: { details: string; error: string; status: string };
 };
 
 export const userApi = createApi({

@@ -35,7 +35,7 @@ const LoginForm: FC = () => {
     formState: { errors },
   } = useForm<ILoginPayload>();
 
-  const [login, { data, isLoading, isSuccess, error }] = useLoginMutation();
+  const [login, { data, isLoading, isSuccess, error: responseError }] = useLoginMutation();
 
   // useEffect(() => {
   //   reset();
@@ -86,7 +86,9 @@ const LoginForm: FC = () => {
             />
             <span className="login-form__forget-pass">Забыли пароль?</span>
             <Button buttonText="войти" onClickAction={handleSubmit(onSubmit)} disabled={isLoading} />
-            {error && "data" in error && <LineNotification text={responseErrors[error?.data?.error]} />}
+            {responseError && "data" in responseError && (
+              <LineNotification text={responseErrors[responseError?.data?.error]} />
+            )}
           </form>
         </ContentBlockLayout>
       </>
