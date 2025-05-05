@@ -27,6 +27,13 @@ const LoginForm: FC = () => {
   const dispatch = useAppDispatch();
   const { userIsAuth } = useAppSelector((state) => state.userSlice);
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ILoginPayload>();
+
   const [login, { data, isLoading, isSuccess, error }] = useLoginMutation();
 
   useEffect(() => {
@@ -35,16 +42,10 @@ const LoginForm: FC = () => {
 
   useEffect(() => {
     if (isSuccess) {
+      dispatch(changeUserLoginStatus(isSuccess));
       navigate("/main/" + routes.ACCOUNT_PAGE);
     }
   }, [data]);
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<ILoginPayload>();
 
   const onSubmit: SubmitHandler<ILoginPayload> = (data) => {
     login(data);
@@ -55,15 +56,15 @@ const LoginForm: FC = () => {
       <>
         <PageTitle pageName=" " />
         <ContentBlockLayout contentTitle="Вход в аккаунт" customClassName="login-form__content-block">
-          <form className="login-form__form">
+          <form className="login-form__form" onSubmit={handleSubmit(onSubmit)}>
             {isLoading && <Loader />}
             <NavLink className="login-form__registration" to={`../${routes.REGISTRATION_PAGE}`}>
               Регистрация
             </NavLink>
 
             <TextField
-              className={`login-form__username${errors.email && "--empty"}`}
-              type="text"
+              className="login-form__username"
+              type="email"
               placeholder="E-mail"
               {...register("email", { required: true })}
               disabled={isLoading}
@@ -76,7 +77,7 @@ const LoginForm: FC = () => {
               disabled={isLoading}
             />
             <span className="login-form__forget-pass">Забыли пароль?</span>
-            <Button buttonText="войти" onClickAction={handleSubmit(onSubmit)} disabled={isLoading} />
+            <Button buttonText="войти" onClickAction={() => null} disabled={isLoading} />
             {(errors.email || errors.password) && (
               <p className="login-form__clue">*все вполя обязательны для заполнения</p>
             )}
