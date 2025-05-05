@@ -1,13 +1,20 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { BaseQueryFn, createApi, fetchBaseQuery, FetchArgs } from "@reduxjs/toolkit/query/react";
 
 import { IRegistrationPayload } from "../../types/store-types/form-types";
 import { ILoginPayload } from "../../types/store-types/form-types";
 
 import { IRegistrationResponse, ILoginResponse } from "../../types/general-types";
 
+type CustomizedFetchBaseQueryError = {
+  status?: number;
+  data?: { details: string; error: string; status: string };
+};
+
 export const userApi = createApi({
   reducerPath: "userApi",
-  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL }),
+  baseQuery: <BaseQueryFn<string | FetchArgs, unknown, CustomizedFetchBaseQueryError, {}>>(
+    fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL })
+  ),
   endpoints: (build) => ({
     createAccount: build.mutation<IRegistrationResponse, IRegistrationPayload>({
       query: (data) => ({

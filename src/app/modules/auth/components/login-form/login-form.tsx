@@ -18,6 +18,7 @@ import Button from "#ui/button/button.tsx";
 import TextField from "#ui/fields/text-field.tsx";
 import PasswordField from "#ui/fields/password-field.tsx";
 import Loader from "#ui/loader/loader.tsx";
+import LineNotification from "#ui/notifications/line-notification.tsx";
 
 import { routes } from "#utils/routes/main-routes/main-routes.ts";
 import { responseErrors } from "#utils/constants.ts";
@@ -36,9 +37,9 @@ const LoginForm: FC = () => {
 
   const [login, { data, isLoading, isSuccess, error }] = useLoginMutation();
 
-  useEffect(() => {
-    reset();
-  }, [data, error]);
+  // useEffect(() => {
+  //   reset();
+  // }, [data, error]);
 
   useEffect(() => {
     if (isSuccess) {
@@ -61,27 +62,31 @@ const LoginForm: FC = () => {
             <NavLink className="login-form__registration" to={`../${routes.REGISTRATION_PAGE}`}>
               Регистрация
             </NavLink>
-
+            {errors?.email && <LineNotification text={errors?.email?.message ?? "error"} />}
             <TextField
               className="login-form__username"
               type="email"
               placeholder="E-mail"
-              {...register("email", { required: true })}
+              {...register("email", {
+                required: "Поле обязательно для заполнения",
+                minLength: { value: 4, message: "Не мнее 4 символов" },
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "Некорректный E-mail",
+                },
+              })}
               disabled={isLoading}
             />
-
+            {errors?.password && <LineNotification text={errors?.password?.message ?? "error"} />}
             <PasswordField
               className="login-form__password"
               placeholder="Пароль"
-              {...register("password", { required: true })}
+              {...register("password", { required: "Поле обязательно для заполнения" })}
               disabled={isLoading}
             />
             <span className="login-form__forget-pass">Забыли пароль?</span>
-            <Button buttonText="войти" onClickAction={() => null} disabled={isLoading} />
-            {(errors.email || errors.password) && (
-              <p className="login-form__clue">*все вполя обязательны для заполнения</p>
-            )}
-            {error && <p className="login-form__clue">{responseErrors[error?.data?.error]}</p>}
+            <Button buttonText="войти" onClickAction={handleSubmit(onSubmit)} disabled={isLoading} />
+            {error && "data" in error && <LineNotification text={responseErrors[error?.data?.error]} />}
           </form>
         </ContentBlockLayout>
       </>
