@@ -28,6 +28,13 @@ const LoginForm: FC = () => {
   const dispatch = useAppDispatch();
   const { userIsAuth } = useAppSelector((state) => state.userSlice);
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ILoginPayload>();
+
   const [login, { data, isLoading, isSuccess, error }] = useLoginMutation();
 
   // useEffect(() => {
@@ -36,16 +43,10 @@ const LoginForm: FC = () => {
 
   useEffect(() => {
     if (isSuccess) {
+      dispatch(changeUserLoginStatus(isSuccess));
       navigate("/main/" + routes.ACCOUNT_PAGE);
     }
   }, [data]);
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<ILoginPayload>();
 
   const onSubmit: SubmitHandler<ILoginPayload> = (data) => {
     login(data);
@@ -56,7 +57,7 @@ const LoginForm: FC = () => {
       <>
         <PageTitle pageName=" " />
         <ContentBlockLayout contentTitle="Вход в аккаунт" customClassName="login-form__content-block">
-          <form className="login-form__form">
+          <form className="login-form__form" onSubmit={handleSubmit(onSubmit)}>
             {isLoading && <Loader />}
             <NavLink className="login-form__registration" to={`../${routes.REGISTRATION_PAGE}`}>
               Регистрация
@@ -65,7 +66,6 @@ const LoginForm: FC = () => {
             <TextField
               className="login-form__username"
               type="email"
-              autoComplete="false"
               placeholder="E-mail"
               {...register("email", {
                 required: "Поле обязательно для заполнения",
