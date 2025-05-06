@@ -21,7 +21,7 @@ import Loader from "#ui/loader/loader.tsx";
 import LineNotification from "#ui/notifications/line-notification.tsx";
 
 import { routes } from "#utils/routes/main-routes/main-routes.ts";
-import { responseErrors } from "#utils/constants.ts";
+import { RESPONSE_ERRORS } from "#utils/constants.ts";
 
 const LoginForm: FC = () => {
   const navigate = useNavigate();
@@ -87,7 +87,7 @@ const LoginForm: FC = () => {
             <span className="login-form__forget-pass">Забыли пароль?</span>
             <Button buttonText="войти" onClickAction={handleSubmit(onSubmit)} disabled={isLoading} />
             {responseError && "data" in responseError && (
-              <LineNotification text={responseErrors[responseError?.data?.error]} />
+              <LineNotification text={RESPONSE_ERRORS[responseError?.data?.error]} />
             )}
           </form>
         </ContentBlockLayout>

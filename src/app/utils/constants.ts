@@ -1,8 +1,8 @@
 interface IResponseErrors {
-  [key: string]: string;
+  readonly [key: string]: string;
 }
 
-export const responseErrors: IResponseErrors = {
+export const RESPONSE_ERRORS: IResponseErrors = {
   authentication_failed: "Неверный логин или пароль",
   invalid_request: "Проверьте правильность вводимых данных",
-};
+} as const;
