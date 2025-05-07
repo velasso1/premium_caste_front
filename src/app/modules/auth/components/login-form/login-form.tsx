@@ -64,7 +64,7 @@ const LoginForm: FC = () => {
             </NavLink>
             {errors?.email && <LineNotification text={errors?.email?.message ?? "error"} />}
             <TextField
-              className="login-form__username"
+              className={`login-form__username ${errors?.email && "field_error"}`}
               type="email"
               placeholder="E-mail"
               {...register("email", {
@@ -79,7 +79,7 @@ const LoginForm: FC = () => {
             />
             {errors?.password && <LineNotification text={errors?.password?.message ?? "error"} />}
             <PasswordField
-              className="login-form__password"
+              className={`login-form__password ${errors?.password && "field_error"}`}
               placeholder="Пароль"
               {...register("password", { required: "Поле обязательно для заполнения" })}
               disabled={isLoading}
