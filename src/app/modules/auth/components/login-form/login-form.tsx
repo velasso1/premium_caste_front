@@ -22,6 +22,7 @@ import LineNotification from "#ui/notifications/line-notification.tsx";
 
 import { routes } from "#utils/routes/main-routes/main-routes.ts";
 import { RESPONSE_ERRORS } from "#utils/constants.ts";
+import { EMAIL_FIELD_PATTERN, REQUIRED_MESSAGE } from "#utils/fields-rules/field-patterns.ts";
 
 const LoginForm: FC = () => {
   const navigate = useNavigate();
@@ -65,21 +66,14 @@ const LoginForm: FC = () => {
               className={`login-form__username ${errors?.email && "field_error"}`}
               type="email"
               placeholder="E-mail"
-              {...register("email", {
-                required: "Поле обязательно для заполнения",
-                minLength: { value: 4, message: "Не мнее 4 символов" },
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: "Некорректный E-mail",
-                },
-              })}
+              {...register("email", EMAIL_FIELD_PATTERN)}
               disabled={isLoading}
             />
             {errors?.password && <LineNotification text={errors?.password?.message ?? "error"} />}
             <PasswordField
               className={`login-form__password ${errors?.password && "field_error"}`}
               placeholder="Пароль"
-              {...register("password", { required: "Поле обязательно для заполнения" })}
+              {...register("password", { required: REQUIRED_MESSAGE })}
               disabled={isLoading}
             />
             <span className="login-form__forget-pass">Забыли пароль?</span>

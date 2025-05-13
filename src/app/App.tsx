@@ -2,6 +2,8 @@ import { FC, useEffect } from "react";
 
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
+import { useAppSelector } from "./store";
+
 // modules
 import MainModule from "./modules/main/main-module";
 import AuthModule from "./modules/auth/auth-module";
@@ -34,6 +36,7 @@ import PrivateRoute from "#utils/routes/private-routes/private-route.tsx";
 
 const App: FC = () => {
   const navigate = useNavigate();
+  const { effectData } = useAppSelector((state) => state.effectsSlice);
 
   useEffect(() => {
     // navigate("/general");
@@ -41,7 +44,7 @@ const App: FC = () => {
 
   return (
     <div className="main">
-      {/* <Notification notifMessage="Заявка успешно оформлена!" notifType="error" /> */}
+      <Notification notifMessage={effectData.message} notifType={effectData.status ? effectData?.status : "error"} />
       {/* <WelcomePage preloadingMode={false} /> */}
       <Header />
       <div className="main-content">

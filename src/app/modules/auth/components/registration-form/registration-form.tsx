@@ -6,6 +6,11 @@ import { useForm, SubmitHandler } from "react-hook-form";
 
 import { NavLink, useNavigate } from "react-router-dom";
 
+import { useAppDispatch } from "../../../../store";
+import { setEffect } from "../../../../store/slices/effects";
+
+import { useMaskito } from "@maskito/react";
+
 import { IRegistrationPayload } from "../../../../types/store-types/form-types";
 
 import PageLayout from "#ui/page-layout/page-layout.tsx";
@@ -13,24 +18,34 @@ import PageTitle from "#ui/page-title/page-title.tsx";
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 import TextField from "#ui/fields/text-field.tsx";
 import Button from "#ui/button/button.tsx";
-import NumberField from "#ui/fields/number-field.tsx";
+// import NumberField from "#ui/fields/number-field.tsx";
 import Loader from "#ui/loader/loader.tsx";
 import PasswordField from "#ui/fields/password-field.tsx";
-import Notification from "#ui/notifications/notification.tsx";
+// import Notification from "#ui/notifications/notification.tsx";
 import LineNotification from "#ui/notifications/line-notification.tsx";
 
 import { routes } from "#utils/routes/main-routes/main-routes.ts";
+import { PHONE_MASK } from "#utils/fields-rules/phone-mask.ts";
+import {
+  EMAIL_FIELD_PATTERN,
+  NAME_FIELD_PATTERN,
+  PASSWORD_FIELD_PATTERN,
+  REQUIRED_MESSAGE,
+} from "#utils/fields-rules/field-patterns.ts";
 
 const RegistrationForm: FC = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [createAccount, { data, isLoading, isSuccess, error }] = useCreateAccountMutation();
+  const maskedInputRef = useMaskito({ options: PHONE_MASK });
+  const [createAccount, { data: createAccData, isLoading, isSuccess, error }] = useCreateAccountMutation();
 
   useEffect(() => {
     if (isSuccess) {
       reset();
       navigate("/auth/" + routes.LOGIN_PAGE);
+      dispatch(setEffect({ status: "success", message: "Регистрация прошла успешно" }));
     }
-  }, [data, isSuccess]);
+  }, [createAccData, isSuccess]);
 
   const {
     register,
@@ -58,8 +73,7 @@ const RegistrationForm: FC = () => {
               className={`registration-form__username ${errors?.name && "field_error"}`}
               type="text"
               placeholder="Имя"
-              {...register("name", { required: "Поле обязательно для заполнения" })}
-              // error={errors?.name}
+              {...register("name", NAME_FIELD_PATTERN)}
               disabled={isLoading}
             />
             {errors?.email && <LineNotification text={errors?.email?.message ?? "error"} />}
@@ -67,28 +81,30 @@ const RegistrationForm: FC = () => {
               className={`registration-form__email ${errors?.email && "field_error"}`}
               type="email"
               placeholder="Почта"
-              {...register("email", { required: "Поле обязательно для заполнения" })}
+              {...register("email", EMAIL_FIELD_PATTERN)}
               disabled={isLoading}
             />
+            {errors?.phone && <LineNotification text={errors?.phone?.message ?? "error"} />}
             <TextField
               className={`registration-form__phone ${errors?.phone && "field_error"}`}
               type="text"
               placeholder="Телефон*"
-              {...register("phone", { required: false })}
+              {...register("phone", {
+                // required: REQUIRED_MESSAGE,
+                // minLength: { value: 18, message: "Неверный формат телефона" },
+              })}
+              // здесь проблема с Maskito
+              // он через ref изменяет value у инпута и из-за этого не тригерится onChange
+              // из-за этого не срабаывает валидация react-hook-form
               disabled={isLoading}
+              // ref={maskedInputRef}
             />
 
             {errors?.password && <LineNotification text={errors?.password?.message ?? "error"} />}
             <PasswordField
               className={`registration-form__password ${errors?.password && "field_error"}`}
               placeholder="Пароль"
-              {...register("password", {
-                required: "Поле обязательно для заполнения",
-                minLength: {
-                  value: 8,
-                  message: "Длина пароля не менее 8 символов",
-                },
-              })}
+              {...register("password", PASSWORD_FIELD_PATTERN)}
               disabled={isLoading}
             />
             <Button buttonText="зарегистрироваться" onClickAction={(e) => null} disabled={isLoading} />
