@@ -29,6 +29,7 @@ export const userApi = createApi({
     }),
     login: build.mutation<ILoginResponse, ILoginPayload>({
       query: (data) => ({
+        credentials: "include",
         url: import.meta.env.VITE_LOGIN,
         method: "POST",
         headers: {
@@ -48,7 +49,7 @@ export const userApi = createApi({
 
     checkUserStatus: build.query<{ data: { access_token: string } }, void>({
       query: (data) => ({
-        url: import.meta.env.VITE_USERS_URL + `36d53d9b-dae6-462c-8512-3693ac23d22a` + import.meta.env.VITE_IS_ADMIN,
+        url: import.meta.env.VITE_USERS_URL + `daae6041-7dfb-4203-b287-057bb65821fe` + import.meta.env.VITE_IS_ADMIN,
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
