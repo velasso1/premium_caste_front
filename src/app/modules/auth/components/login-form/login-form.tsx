@@ -6,7 +6,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 import { useAppDispatch, useAppSelector } from "../../../../store";
 
-import { useLoginMutation } from "../../../../store/api/user-api";
+import { useLoginMutation, useLazyCheckUserStatusQuery } from "../../../../store/api/user-api";
 import { changeUserLoginStatus } from "../../../../store/slices/user";
 
 import { ILoginPayload } from "../../../../types/store-types/form-types";
@@ -36,17 +36,15 @@ const LoginForm: FC = () => {
   } = useForm<ILoginPayload>();
 
   const [login, { data, isLoading, isSuccess, error: responseError }] = useLoginMutation();
-
-  // useEffect(() => {
-  //   reset();
-  // }, [data, error]);
+  const [checkAdmin, { data: isAdminData }] = useLazyCheckUserStatusQuery();
 
   useEffect(() => {
     if (isSuccess) {
       dispatch(changeUserLoginStatus(isSuccess));
+      checkAdmin();
       navigate("/main/" + routes.ACCOUNT_PAGE);
     }
-  }, [data]);
+  }, [data, isSuccess]);
 
   const onSubmit: SubmitHandler<ILoginPayload> = (data) => {
     login(data);

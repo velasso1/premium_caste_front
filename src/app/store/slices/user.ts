@@ -1,9 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IUserSliceState } from "../../types/store-types/user-initial-state-types";
+import { IUserSliceState, IUserData } from "../../types/store-types/user-initial-state-types";
 
 const initialState: IUserSliceState = {
   userIsAuth: false,
+  userId: "",
+  // userData: {
+  //   access_token: "",
+  //   refresh_token: "",
+  //   user_id: "",
+  // },
 };
 
 const userSlice = createSlice({
@@ -14,6 +20,10 @@ const userSlice = createSlice({
     changeUserLoginStatus(state, action: PayloadAction<boolean>) {
       state.userIsAuth = action.payload;
     },
+
+    // setUserData(state, action: PayloadAction<IUserData>) {
+    //   state.userData = action.payload;
+    // },
   },
 });
 

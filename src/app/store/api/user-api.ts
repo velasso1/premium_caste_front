@@ -1,9 +1,10 @@
-import { BaseQueryFn, createApi, fetchBaseQuery, FetchArgs } from "@reduxjs/toolkit/query/react";
+import { BaseQueryFn, createApi, fetchBaseQuery, FetchArgs, RootState } from "@reduxjs/toolkit/query/react";
 
 import { IRegistrationPayload } from "../../types/store-types/form-types";
 import { ILoginPayload } from "../../types/store-types/form-types";
 
 import { IRegistrationResponse, ILoginResponse } from "../../types/general-types";
+// import { setUserData } from "../slices/user";
 
 type CustomizedFetchBaseQueryError = {
   status?: number;
@@ -35,8 +36,26 @@ export const userApi = createApi({
         },
         body: JSON.stringify(data),
       }),
+      // async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+      //   try {
+      //     const { data } = await queryFulfilled;
+      //     dispatch(setUserData(data.data));
+      //   } catch (error) {
+      //     console.error(error);
+      //   }
+      // },
+    }),
+
+    checkUserStatus: build.query<{ data: { access_token: string } }, void>({
+      query: (data) => ({
+        url: import.meta.env.VITE_USERS_URL + `36d53d9b-dae6-462c-8512-3693ac23d22a` + import.meta.env.VITE_IS_ADMIN,
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }),
     }),
   }),
 });
 
-export const { useCreateAccountMutation, useLoginMutation } = userApi;
+export const { useCreateAccountMutation, useLoginMutation, useLazyCheckUserStatusQuery } = userApi;
