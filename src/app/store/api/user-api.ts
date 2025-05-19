@@ -4,7 +4,7 @@ import { IRegistrationPayload } from "../../types/store-types/form-types";
 import { ILoginPayload } from "../../types/store-types/form-types";
 
 import { IRegistrationResponse, ILoginResponse } from "../../types/general-types";
-// import { setUserData } from "../slices/user";
+import { setUserData } from "../slices/user";
 
 type CustomizedFetchBaseQueryError = {
   status?: number;
@@ -29,32 +29,40 @@ export const userApi = createApi({
     }),
     login: build.mutation<ILoginResponse, ILoginPayload>({
       query: (data) => ({
-        credentials: "include",
         url: import.meta.env.VITE_LOGIN,
+        credentials: "include",
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       }),
-      // async onQueryStarted(arg, { dispatch, queryFulfilled }) {
-      //   try {
-      //     const { data } = await queryFulfilled;
-      //     dispatch(setUserData(data.data));
-      //   } catch (error) {
-      //     console.error(error);
-      //   }
-      // },
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setUserData(data.data.user_id));
+        } catch (error) {
+          console.error(error);
+        }
+      },
     }),
 
-    checkUserStatus: build.query<{ data: { access_token: string } }, void>({
+    checkUserStatus: build.query<{ is_admin: boolean }, { userId: string }>({
       query: (data) => ({
-        url: import.meta.env.VITE_USERS_URL + `daae6041-7dfb-4203-b287-057bb65821fe` + import.meta.env.VITE_IS_ADMIN,
+        url: import.meta.env.VITE_USERS_URL + `36d53d9b-dae6-462c-8512-3693ac23d22a` + import.meta.env.VITE_IS_ADMIN,
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
       }),
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setUserData(data.is_admin));
+        } catch (error) {
+          console.error(error);
+        }
+      },
     }),
   }),
 });

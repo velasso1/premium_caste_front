@@ -24,18 +24,15 @@ const Notification: FC<INotificationProps> = ({ notifMessage, notifType }) => {
   useEffect(() => {
     setTimeout(() => {
       setVisibilityNotif(true);
+      dispatch(setEffect({ status: null, message: "" }));
     }, 5000);
   }, []);
 
   return (
-    effectData.status && (
-      <div
-        className={`notification notification--${notificationTitles[notifType]} ${showNotif && "notification--hide"}`}
-      >
-        <div className="notification__title">{notificationTitles[notifType]}</div>
-        <div className="notification__body">{notifMessage}</div>
-      </div>
-    )
+    <div className={`notification notification--${notificationTitles[notifType]} ${showNotif && "notification--hide"}`}>
+      <div className="notification__title">{notificationTitles[notifType]}</div>
+      <div className="notification__body">{notifMessage}</div>
+    </div>
   );
 };
 

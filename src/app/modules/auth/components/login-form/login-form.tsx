@@ -5,6 +5,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import { useAppDispatch, useAppSelector } from "../../../../store";
+import { setEffect } from "../../../../store/slices/effects";
 
 import { useLoginMutation, useLazyCheckUserStatusQuery } from "../../../../store/api/user-api";
 import { changeUserLoginStatus } from "../../../../store/slices/user";
@@ -27,7 +28,7 @@ import { EMAIL_FIELD_PATTERN, REQUIRED_MESSAGE } from "#utils/fields-rules/field
 const LoginForm: FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { userIsAuth } = useAppSelector((state) => state.userSlice);
+  const { userIsAuth, userId } = useAppSelector((state) => state.userSlice);
 
   const {
     register,
@@ -42,10 +43,21 @@ const LoginForm: FC = () => {
   useEffect(() => {
     if (isSuccess) {
       dispatch(changeUserLoginStatus(isSuccess));
-      checkAdmin();
       navigate("/main/" + routes.ACCOUNT_PAGE);
     }
   }, [data, isSuccess]);
+
+  useEffect(() => {
+    if (responseError && "status" in responseError) {
+      dispatch(setEffect({ status: "error", message: "Произошла ошибка, повторите позднее" }));
+    }
+  }, [responseError]);
+
+  useEffect(() => {
+    if (userId) {
+      checkAdmin({ userId: userId });
+    }
+  }, [userId]);
 
   const onSubmit: SubmitHandler<ILoginPayload> = (data) => {
     login(data);
@@ -61,12 +73,12 @@ const LoginForm: FC = () => {
             <NavLink className="login-form__registration" to={`../${routes.REGISTRATION_PAGE}`}>
               Регистрация
             </NavLink>
-            {errors?.email && <LineNotification text={errors?.email?.message ?? "error"} />}
+            {errors?.identifier && <LineNotification text={errors?.identifier?.message ?? "error"} />}
             <TextField
-              className={`login-form__username ${errors?.email && "field_error"}`}
+              className={`login-form__username ${errors?.identifier && "field_error"}`}
               type="email"
               placeholder="E-mail"
-              {...register("email", EMAIL_FIELD_PATTERN)}
+              {...register("identifier", EMAIL_FIELD_PATTERN)}
               disabled={isLoading}
             />
             {errors?.password && <LineNotification text={errors?.password?.message ?? "error"} />}
@@ -78,6 +90,7 @@ const LoginForm: FC = () => {
             />
             <span className="login-form__forget-pass">Забыли пароль?</span>
             <Button buttonText="войти" onClickAction={handleSubmit(onSubmit)} disabled={isLoading} />
+
             {responseError && "data" in responseError && (
               <LineNotification text={RESPONSE_ERRORS[responseError?.data?.error]} />
             )}

@@ -5,9 +5,10 @@ import { IUserSliceState, IUserData } from "../../types/store-types/user-initial
 const initialState: IUserSliceState = {
   userIsAuth: false,
   userId: "",
+  userIsAdmin: false,
   // userData: {
-  //   access_token: "",
-  //   refresh_token: "",
+  // access_token: "",
+  // refresh_token: "",
   //   user_id: "",
   // },
 };
@@ -21,11 +22,15 @@ const userSlice = createSlice({
       state.userIsAuth = action.payload;
     },
 
-    // setUserData(state, action: PayloadAction<IUserData>) {
-    //   state.userData = action.payload;
-    // },
+    setUserData(state, action: PayloadAction<string | boolean>) {
+      if (typeof action.payload === "string") {
+        state.userId = action.payload;
+      } else {
+        state.userIsAdmin = action.payload;
+      }
+    },
   },
 });
 
-export const { changeUserLoginStatus } = userSlice.actions;
+export const { changeUserLoginStatus, setUserData } = userSlice.actions;
 export default userSlice.reducer;
