@@ -1,9 +1,8 @@
 import { BaseQueryFn, createApi, fetchBaseQuery, FetchArgs, RootState } from "@reduxjs/toolkit/query/react";
 
-import { IRegistrationPayload } from "../../types/store-types/form-types";
-import { ILoginPayload } from "../../types/store-types/form-types";
+import { ILoginPayload, ICheckAdminPayload, IRegistrationPayload } from "../../types/store-types/form-types";
 
-import { IRegistrationResponse, ILoginResponse } from "../../types/general-types";
+import { IRegistrationResponse, ILoginResponse, ICheckAdminResponse } from "../../types/general-types";
 import { setUserData } from "../slices/user";
 
 type CustomizedFetchBaseQueryError = {
@@ -47,9 +46,9 @@ export const userApi = createApi({
       },
     }),
 
-    checkUserStatus: build.query<{ is_admin: boolean }, { userId: string }>({
+    checkUserStatus: build.query<ICheckAdminResponse, ICheckAdminPayload>({
       query: (data) => ({
-        url: import.meta.env.VITE_USERS_URL + `36d53d9b-dae6-462c-8512-3693ac23d22a` + import.meta.env.VITE_IS_ADMIN,
+        url: import.meta.env.VITE_USERS_URL + data.userId + import.meta.env.VITE_IS_ADMIN,
         credentials: "include",
         headers: {
           "Content-Type": "application/json",

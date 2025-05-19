@@ -9,3 +9,7 @@ export interface IRegistrationPayload {
   password: string;
   phone: string;
 }
+
+export interface ICheckAdminPayload {
+  userId: string;
+}

@@ -19,3 +19,7 @@ export interface ILoginResponse extends IServerResponse {
     user_id: string;
   };
 }
+
+export interface ICheckAdminResponse {
+  is_admin: boolean;
+}
