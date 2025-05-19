@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
@@ -36,15 +36,15 @@ import PrivateRoute from "#utils/routes/private-routes/private-route.tsx";
 
 const App: FC = () => {
   const navigate = useNavigate();
-  const { effectData } = useAppSelector((state) => state.effectsSlice);
 
-  useEffect(() => {
-    // navigate("/general");
-  }, []);
+  const { effectData } = useAppSelector((state) => state.effectsSlice);
 
   return (
     <div className="main">
-      <Notification notifMessage={effectData.message} notifType={effectData.status ? effectData?.status : "error"} />
+      {effectData.status && (
+        <Notification notifMessage={effectData.message} notifType={effectData.status ? effectData?.status : "error"} />
+      )}
+
       {/* <WelcomePage preloadingMode={false} /> */}
       <Header />
       <div className="main-content">

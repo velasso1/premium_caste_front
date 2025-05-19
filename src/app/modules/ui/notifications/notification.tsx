@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, useLayoutEffect } from "react";
 
 import { useAppSelector, useAppDispatch } from "../../../store";
 import { setEffect } from "../../../store/slices/effects";
@@ -21,18 +21,26 @@ const Notification: FC<INotificationProps> = ({ notifMessage, notifType }) => {
 
   const [showNotif, setVisibilityNotif] = useState<boolean>(false);
 
+  useLayoutEffect(() => {
+    setVisibilityNotif(true);
+  }, [effectData]);
+
   useEffect(() => {
     setTimeout(() => {
-      setVisibilityNotif(true);
+      setVisibilityNotif(false);
       dispatch(setEffect({ status: null, message: "" }));
     }, 5000);
-  }, []);
+  }, [effectData]);
 
   return (
-    <div className={`notification notification--${notificationTitles[notifType]} ${showNotif && "notification--hide"}`}>
-      <div className="notification__title">{notificationTitles[notifType]}</div>
-      <div className="notification__body">{notifMessage}</div>
-    </div>
+    effectData.status && (
+      <div
+        className={`notification notification--${notificationTitles[notifType]} ${showNotif && "notification--hide"}`}
+      >
+        <div className="notification__title">{notificationTitles[notifType]}</div>
+        <div className="notification__body">{notifMessage}</div>
+      </div>
+    )
   );
 };
 

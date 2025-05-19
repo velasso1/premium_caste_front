@@ -35,6 +35,7 @@
 
   &--hide {
     animation: notificationShow;
+    animation-delay: 3s;
     animation-duration: 2s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
