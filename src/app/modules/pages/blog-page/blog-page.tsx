@@ -8,6 +8,8 @@ import bmw from "#images/bmw.png";
 import polish from "#images/polish.png";
 
 const BlogPage: FC = () => {
+  const elements = [1, 2, 3, 4, 5, 6, 7, 8];
+
   return (
     <PageLayout pageClassName="blog-page">
       <>
@@ -27,13 +29,9 @@ const BlogPage: FC = () => {
           </div>
         </div>
         <div className="blog-page__lower-side">
-          <BlogItem />
-          <BlogItem />
-          <BlogItem />
-          <BlogItem />
-          <BlogItem />
-          <BlogItem />
-          <BlogItem />
+          {elements.map((item, index) => {
+            return <BlogItem id={item} />;
+          })}
         </div>
       </>
     </PageLayout>

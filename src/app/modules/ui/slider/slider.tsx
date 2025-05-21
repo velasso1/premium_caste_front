@@ -1,4 +1,4 @@
-import { FC, useRef } from "react";
+import React, { FC, useRef } from "react";
 
 import SlideLayout from "./components/slide-layout";
 
@@ -12,11 +12,11 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import pic1 from "#images/alfa-romeo.jpg";
-import pic2 from "#images/audi.jpg";
-import pic3 from "#images/toyota.jpg";
+interface ISliderProps {
+  children: React.ReactElement[];
+}
 
-const Slider: FC = () => {
+const Slider: FC<ISliderProps> = ({ children }) => {
   const progressCircle = useRef<SVGSVGElement>(null);
   const progressContent = useRef<HTMLSpanElement>(null);
   const onAutoplayTimeLeft = (s: SwiperType, time: number, progress: number) => {
@@ -59,24 +59,7 @@ const Slider: FC = () => {
           },
         }}
       >
-        <SwiperSlide>
-          <SlideLayout imageUrl={pic1} slideText="Alfa Romeo Giulia True Blood" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideLayout imageUrl={pic2} slideText="Audi A5 from Lime to Lemon" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideLayout imageUrl={pic3} slideText="Toyota Highlander Cranberry" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideLayout imageUrl={pic1} slideText="Alfa Romeo Giulia True Blood" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideLayout imageUrl={pic2} slideText="Audi A5 from Lime to Lemon" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideLayout imageUrl={pic3} slideText="Toyota Highlander Cranberry" />
-        </SwiperSlide>
+        {children}
         {/* progress bar */}
         {/* <div className="autoplay-progress" slot="container-end">
           <svg viewBox="0 0 48 48" ref={progressCircle}>

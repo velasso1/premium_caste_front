@@ -1,10 +1,17 @@
 import { FC } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import polish2 from "#images/polish2.png";
 
-const BlogItem: FC = () => {
+interface IBlogItemProps {
+  id: number;
+}
+
+const BlogItem: FC<IBlogItemProps> = ({ id }) => {
+  const navigate = useNavigate();
   return (
-    <div className="blog-page__blog-item">
+    <div className="blog-page__blog-item" onClick={() => navigate(`item/${id}`)}>
       <img src={polish2} alt="polish" />
       <div className="blog-page__item-description">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae reprehenderit et quod quia veritatis

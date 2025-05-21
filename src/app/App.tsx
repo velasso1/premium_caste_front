@@ -33,6 +33,7 @@ import Notification from "#ui/notifications/notification.tsx";
 // utils
 import { routes } from "./utils/routes/main-routes/main-routes";
 import PrivateRoute from "#utils/routes/private-routes/private-route.tsx";
+import CurrentPostPage from "#pages/current-post-page/current-post-page.tsx";
 
 const App: FC = () => {
   const navigate = useNavigate();
@@ -50,6 +51,8 @@ const App: FC = () => {
       <div className="main-content">
         <Routes>
           {/* <Route path={routes.WELCOME_PAGE} element={null} /> */}
+
+          {/* MAIN PAGES */}
           <Route index path={routes.GENERAL_PAGE} element={<GeneralPage />} />
           <Route path={routes.MAIN_MODULE} element={<MainModule />}>
             <Route path={routes.SERVICES_PAGE} element={<ServicesPage />} />
@@ -61,6 +64,8 @@ const App: FC = () => {
             <Route path={routes.FAVORITES_PAGE} element={<FavoritesPage />} />
             <Route path={routes.ACCOUNT_PAGE} element={<PrivateRoute children={<AccountPage />} />} />
             <Route path={routes.NOT_EXIST_PAGE} element={<NotFoundPage />} />
+            {/* SECONDARY PAGES */}
+            <Route path={`${routes.BLOG_PAGE}/item/:id`} element={<CurrentPostPage />} />
           </Route>
           <Route />
           <Route path={routes.NOT_EXIST_PAGE} element={<NotFoundPage />} />

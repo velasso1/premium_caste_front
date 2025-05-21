@@ -2,7 +2,7 @@ import { FC } from "react";
 
 interface ISlideLayoutProps {
   imageUrl: string;
-  slideText: string;
+  slideText?: string;
 }
 
 const SlideLayout: FC<ISlideLayoutProps> = ({ imageUrl, slideText }) => {
