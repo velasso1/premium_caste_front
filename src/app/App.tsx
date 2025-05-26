@@ -31,7 +31,7 @@ import Footer from "#ui/footer/footer.tsx";
 import Notification from "#ui/notifications/notification.tsx";
 
 // utils
-import { routes } from "./utils/routes/main-routes/main-routes";
+import { routes } from "#utils/routes/main-routes/main-routes.ts";
 import PrivateRoute from "#utils/routes/private-routes/private-route.tsx";
 import CurrentPostPage from "#pages/current-post-page/current-post-page.tsx";
 
