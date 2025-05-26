@@ -7,10 +7,12 @@ import { userApi } from "./api/user-api";
 // slices
 import userSlice from "./slices/user";
 import effectsSlice from "./slices/effects";
+import adminSlice from "./slices/admin";
 
 const rootReducer = combineReducers({
   userSlice: userSlice,
   effectsSlice: effectsSlice,
+  adminSlice: adminSlice,
   [userApi.reducerPath]: userApi.reducer,
 });
 

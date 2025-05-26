@@ -29,6 +29,7 @@ import RegistrationForm from "#auth/components/registration-form/registration-fo
 import Header from "#ui/header/header.tsx";
 import Footer from "#ui/footer/footer.tsx";
 import Notification from "#ui/notifications/notification.tsx";
+import AdminPanel from "#ui/admin-ui/admin-panel/admin-panel.tsx";
 
 // utils
 import { routes } from "#utils/routes/main-routes/main-routes.ts";
@@ -45,6 +46,8 @@ const App: FC = () => {
       {effectData.status && (
         <Notification notifMessage={effectData.message} notifType={effectData.status ? effectData?.status : "error"} />
       )}
+
+      <AdminPanel />
 
       {/* <WelcomePage preloadingMode={false} /> */}
       <Header />

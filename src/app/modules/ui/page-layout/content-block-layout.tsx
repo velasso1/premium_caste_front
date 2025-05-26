@@ -1,8 +1,8 @@
 import { FC } from "react";
 
 interface IContentBlockLayoutProps {
-  children: React.ReactElement;
-  contentTitle: string;
+  children: string | React.ReactElement | React.ReactElement[];
+  contentTitle?: string;
   customClassName?: string;
 }
 

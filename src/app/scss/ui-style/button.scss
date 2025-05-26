@@ -1,6 +1,6 @@
 @mixin buttonstyle {
   background-color: $mainColor;
-  width: 100%;
+  width: max-content;
   font-size: 24px;
   padding: 10px 35px;
   font-weight: 300;

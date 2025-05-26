@@ -14,9 +14,11 @@ import "swiper/css/pagination";
 
 interface ISliderProps {
   children: React.ReactElement[];
+  navigationInculde?: boolean;
+  paginationInculde?: boolean;
 }
 
-const Slider: FC<ISliderProps> = ({ children }) => {
+const Slider: FC<ISliderProps> = ({ children, paginationInculde = true, navigationInculde = true }) => {
   const progressCircle = useRef<SVGSVGElement>(null);
   const progressContent = useRef<HTMLSpanElement>(null);
   const onAutoplayTimeLeft = (s: SwiperType, time: number, progress: number) => {
@@ -31,8 +33,8 @@ const Slider: FC<ISliderProps> = ({ children }) => {
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         slidesPerView={4}
-        pagination={{ clickable: true }}
-        navigation={true}
+        pagination={paginationInculde}
+        navigation={navigationInculde}
         loop={true}
         autoplay={{
           delay: 5000,

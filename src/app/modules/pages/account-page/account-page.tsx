@@ -8,6 +8,7 @@ import PageLayout from "#ui/page-layout/page-layout.tsx";
 import Button from "#ui/button/button.tsx";
 import TextField from "#ui/fields/text-field.tsx";
 import NumberField from "#ui/fields/number-field.tsx";
+import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 
 import user from "#images/user-without-photo.jpg";
 
@@ -20,17 +21,18 @@ const AccountPage: FC = () => {
 
   return (
     <PageLayout pageClassName="account-page">
-      <>
+      <div className="account-page__exit-button">
         <PageTitle pageName="Личный кабинет" />
-        <div className="account-page__exit-button">
-          <Button buttonText="Выход" buttonStyle="OUTLINED" onClickAction={() => logout()} />
-        </div>
-        <div className="account-info">
-          <div className="account-info__photo">
-            <img className="account-info__image" src={user} alt="user-photo" />
-          </div>
-          <div className="account-info__form1">
-            <form className="account-info__form" action="submit">
+        <Button buttonText="Выход" buttonStyle="OUTLINED" onClickAction={() => logout()} />
+      </div>
+      <div className="account-page__content">
+        <ContentBlockLayout>
+          <div className="account-info">
+            <div className="account-info__photo">
+              <img className="account-info__image" src={user} alt="user-photo" />
+            </div>
+            <div className="account-info__form1">
+              {/* <form className="account-info__form" action="submit">
               <TextField
                 className="account-info__name"
                 customId="account-info__name-field"
@@ -53,10 +55,15 @@ const AccountPage: FC = () => {
               <div className="account-info__action">
                 <Button buttonText="Сохранить" onClickAction={() => console.log("data is saved")} />
               </div>
-            </form>
+            </form> */}
+              <div className="account-info__name">Иванов Иван</div>
+              <div className="account-info__phone">+7 900 000-00-00</div>
+              <div className="account-info__email">ivanov.ivan@mail.ru</div>
+            </div>
           </div>
-        </div>
-      </>
+        </ContentBlockLayout>
+        <ContentBlockLayout contentTitle="Мои заявки">Пока что заявок нет</ContentBlockLayout>
+      </div>
     </PageLayout>
   );
 };
