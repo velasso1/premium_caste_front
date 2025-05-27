@@ -35,6 +35,7 @@ import AdminPanel from "#ui/admin-ui/admin-panel/admin-panel.tsx";
 // utils
 import { routes } from "#utils/routes/main-routes/main-routes.ts";
 import PrivateRoute from "#utils/routes/private-routes/private-route.tsx";
+import AdminRoute from "#utils/routes/private-routes/admin-route.tsx";
 import CurrentPostPage from "#pages/current-post-page/current-post-page.tsx";
 
 const App: FC = () => {
@@ -70,7 +71,7 @@ const App: FC = () => {
             <Route path={routes.NOT_EXIST_PAGE} element={<NotFoundPage />} />
             {/* SECONDARY PAGES */}
             <Route path={`${routes.BLOG_PAGE}/item/:id`} element={<CurrentPostPage />} />
-            <Route path={routes.CREATE_BLOG_POST_PAGE} element={<CreateBlogPostPage />} />
+            <Route path={routes.CREATE_BLOG_POST_PAGE} element={<AdminRoute children={<CreateBlogPostPage />} />} />
           </Route>
           <Route />
           <Route path={routes.NOT_EXIST_PAGE} element={<NotFoundPage />} />
