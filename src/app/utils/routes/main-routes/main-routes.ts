@@ -18,4 +18,5 @@ export const routes = {
   ACCOUNT_PAGE: "account",
   LOGIN_PAGE: "login",
   REGISTRATION_PAGE: "registration",
+  CREATE_BLOG_POST_PAGE: "create-blog-post",
 };

@@ -60,57 +60,55 @@ const RegistrationForm: FC = () => {
 
   return (
     <PageLayout pageClassName="registration-form" includePreloader={false}>
-      <>
-        <PageTitle pageName=" " />
-        <ContentBlockLayout contentTitle="Регистрация" customClassName="registration-form__content-block">
-          <form className="registration-form__form" onSubmit={handleSubmit(registration)}>
-            {isLoading && <Loader />}
-            <span className="registration-form__auth">
-              Уже есть аккаунт? <NavLink to="../login">Авторизоваться</NavLink>
-            </span>
-            {errors?.name && <LineNotification text={errors?.name?.message ?? "error"} />}
-            <TextField
-              className={`registration-form__username ${errors?.name && "field_error"}`}
-              type="text"
-              placeholder="Имя"
-              {...register("name", NAME_FIELD_PATTERN)}
-              disabled={isLoading}
-            />
-            {errors?.email && <LineNotification text={errors?.email?.message ?? "error"} />}
-            <TextField
-              className={`registration-form__email ${errors?.email && "field_error"}`}
-              type="email"
-              placeholder="Почта"
-              {...register("email", EMAIL_FIELD_PATTERN)}
-              disabled={isLoading}
-            />
-            {errors?.phone && <LineNotification text={errors?.phone?.message ?? "error"} />}
-            <TextField
-              className={`registration-form__phone ${errors?.phone && "field_error"}`}
-              type="text"
-              placeholder="Телефон*"
-              {...register("phone", {
-                // required: REQUIRED_MESSAGE,
-                // minLength: { value: 18, message: "Неверный формат телефона" },
-              })}
-              // здесь проблема с Maskito
-              // он через ref изменяет value у инпута и из-за этого не тригерится onChange
-              // из-за этого не срабаывает валидация react-hook-form
-              disabled={isLoading}
-              // ref={maskedInputRef}
-            />
+      <PageTitle pageName=" " />
+      <ContentBlockLayout contentTitle="Регистрация" customClassName="registration-form__content-block">
+        <form className="registration-form__form" onSubmit={handleSubmit(registration)}>
+          {isLoading && <Loader />}
+          <span className="registration-form__auth">
+            Уже есть аккаунт? <NavLink to="../login">Авторизоваться</NavLink>
+          </span>
+          {errors?.name && <LineNotification text={errors?.name?.message ?? "error"} />}
+          <TextField
+            className={`registration-form__username ${errors?.name && "field_error"}`}
+            type="text"
+            placeholder="Имя"
+            {...register("name", NAME_FIELD_PATTERN)}
+            disabled={isLoading}
+          />
+          {errors?.email && <LineNotification text={errors?.email?.message ?? "error"} />}
+          <TextField
+            className={`registration-form__email ${errors?.email && "field_error"}`}
+            type="email"
+            placeholder="Почта"
+            {...register("email", EMAIL_FIELD_PATTERN)}
+            disabled={isLoading}
+          />
+          {errors?.phone && <LineNotification text={errors?.phone?.message ?? "error"} />}
+          <TextField
+            className={`registration-form__phone ${errors?.phone && "field_error"}`}
+            type="text"
+            placeholder="Телефон*"
+            {...register("phone", {
+              // required: REQUIRED_MESSAGE,
+              // minLength: { value: 18, message: "Неверный формат телефона" },
+            })}
+            // здесь проблема с Maskito
+            // он через ref изменяет value у инпута и из-за этого не тригерится onChange
+            // из-за этого не срабаывает валидация react-hook-form
+            disabled={isLoading}
+            // ref={maskedInputRef}
+          />
 
-            {errors?.password && <LineNotification text={errors?.password?.message ?? "error"} />}
-            <PasswordField
-              className={`registration-form__password ${errors?.password && "field_error"}`}
-              placeholder="Пароль"
-              {...register("password", PASSWORD_FIELD_PATTERN)}
-              disabled={isLoading}
-            />
-            <Button buttonText="зарегистрироваться" onClickAction={(e) => null} disabled={isLoading} />
-          </form>
-        </ContentBlockLayout>
-      </>
+          {errors?.password && <LineNotification text={errors?.password?.message ?? "error"} />}
+          <PasswordField
+            className={`registration-form__password ${errors?.password && "field_error"}`}
+            placeholder="Пароль"
+            {...register("password", PASSWORD_FIELD_PATTERN)}
+            disabled={isLoading}
+          />
+          <Button buttonText="зарегистрироваться" onClickAction={(e) => null} disabled={isLoading} />
+        </form>
+      </ContentBlockLayout>
     </PageLayout>
   );
 };

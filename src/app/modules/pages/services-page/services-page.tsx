@@ -18,20 +18,18 @@ import dop from "#images/services-page-icons/dop-icon.png";
 const ServicesPage: FC = () => {
   return (
     <PageLayout pageClassName="services-page">
-      <>
-        <PageTitle pageName="Услуги" />
-        <div className="services-page__content">
-          <CategoryItem title="оклейка винилом" icon={vinyl} />
-          <CategoryItem title="ПОШИВ САЛОНОВ" icon={salon} />
-          <CategoryItem title="ТОНИРОВАНИЕ СТЕКОЛ И ОПТИКИ" icon={toner} />
-          <CategoryItem title="СВЕТОВОЙ ТЮНИНГ" icon={toner} />
-          <CategoryItem title="ОКЛЕЙКА ЗАЩИТНЫМИ ПЛЕНКАМИ" icon={safety} />
-          <CategoryItem title="УСТАНОВКА ШУМОИЗОЛЯЦИИ" icon={shumka} />
-          <CategoryItem title="АВТОЗВУК И МУЛЬтИМЕДИя" icon={sound} />
-          <CategoryItem title="ДЕТЕЙЛИНГ" icon={detailing} />
-          <CategoryItem title="УСТАНОВКА ДОП ОБОРУДОВАНИЯ" icon={dop} />
-        </div>
-      </>
+      <PageTitle pageName="Услуги" />
+      <div className="services-page__content">
+        <CategoryItem title="оклейка винилом" icon={vinyl} />
+        <CategoryItem title="ПОШИВ САЛОНОВ" icon={salon} />
+        <CategoryItem title="ТОНИРОВАНИЕ СТЕКОЛ И ОПТИКИ" icon={toner} />
+        <CategoryItem title="СВЕТОВОЙ ТЮНИНГ" icon={toner} />
+        <CategoryItem title="ОКЛЕЙКА ЗАЩИТНЫМИ ПЛЕНКАМИ" icon={safety} />
+        <CategoryItem title="УСТАНОВКА ШУМОИЗОЛЯЦИИ" icon={shumka} />
+        <CategoryItem title="АВТОЗВУК И МУЛЬтИМЕДИя" icon={sound} />
+        <CategoryItem title="ДЕТЕЙЛИНГ" icon={detailing} />
+        <CategoryItem title="УСТАНОВКА ДОП ОБОРУДОВАНИЯ" icon={dop} />
+      </div>
     </PageLayout>
   );
 };

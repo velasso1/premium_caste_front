@@ -12,28 +12,26 @@ const BlogPage: FC = () => {
 
   return (
     <PageLayout pageClassName="blog-page">
-      <>
-        <PageTitle pageName="Блог" />
-        <div className="blog-page__upper-side">
-          <div className="blog-page__main-news">
-            <img className="blog-page__main-image" src={bmw} alt="news-image" />
-            <div className="blog-page__shadow"></div>
-            <p className="blog-page__main-news-title">ГЛАВНАЯ НОВОСТЬ НЕДЕЛИ 21.01</p>
-            <span className="blog-page__main-news-clue">подробнее</span>
-          </div>
-          <div className="blog-page__second-news">
-            <img className="blog-page__second-image" src={polish} alt="second news image" />
-            <div className="blog-page__shadow"></div>
-            <p className="blog-page__second-news-title">ПОЛИРОВКА ФАР</p>
-            <span className="blog-page__main-news-clue">подробнее</span>
-          </div>
+      <PageTitle pageName="Блог" />
+      <div className="blog-page__upper-side">
+        <div className="blog-page__main-news">
+          <img className="blog-page__main-image" src={bmw} alt="news-image" />
+          <div className="blog-page__shadow"></div>
+          <p className="blog-page__main-news-title">ГЛАВНАЯ НОВОСТЬ НЕДЕЛИ 21.01</p>
+          <span className="blog-page__main-news-clue">подробнее</span>
         </div>
-        <div className="blog-page__lower-side">
-          {elements.map((item, index) => {
-            return <BlogItem id={item} />;
-          })}
+        <div className="blog-page__second-news">
+          <img className="blog-page__second-image" src={polish} alt="second news image" />
+          <div className="blog-page__shadow"></div>
+          <p className="blog-page__second-news-title">ПОЛИРОВКА ФАР</p>
+          <span className="blog-page__main-news-clue">подробнее</span>
         </div>
-      </>
+      </div>
+      <div className="blog-page__lower-side">
+        {elements.map((item, index) => {
+          return <BlogItem id={item} />;
+        })}
+      </div>
     </PageLayout>
   );
 };

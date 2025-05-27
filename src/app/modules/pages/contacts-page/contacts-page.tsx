@@ -13,24 +13,22 @@ import YandexMap from "#ui/map/yandex-map.tsx";
 const ContactsPage: FC = () => {
   return (
     <PageLayout pageClassName="contacts-page">
-      <>
-        <PageTitle pageName="Контакты" />
-        <div className="contacts-page__information">
-          {/* <div className="contacts-page__left"> */}
-          <ContactsBlock />
-          <div className="contacts-page__map">
-            <YandexMap />
-          </div>
-          <Shedule />
-          {/* </div> */}
-          {/* <div className="contacts-page__right"> */}
-
-          {/* <FeedbackForm /> */}
-          {/* </div> */}
+      <PageTitle pageName="Контакты" />
+      <div className="contacts-page__information">
+        {/* <div className="contacts-page__left"> */}
+        <ContactsBlock />
+        <div className="contacts-page__map">
+          <YandexMap />
         </div>
-        <div className="contacts-page__links-title">Мы в социальных сетях</div>
-        <ContactIcons />
-      </>
+        <Shedule />
+        {/* </div> */}
+        {/* <div className="contacts-page__right"> */}
+
+        {/* <FeedbackForm /> */}
+        {/* </div> */}
+      </div>
+      <div className="contacts-page__links-title">Мы в социальных сетях</div>
+      <ContactIcons />
     </PageLayout>
   );
 };

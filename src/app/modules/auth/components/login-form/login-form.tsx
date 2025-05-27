@@ -65,38 +65,36 @@ const LoginForm: FC = () => {
 
   return (
     <PageLayout pageClassName="login-form" includePreloader={false}>
-      <>
-        <PageTitle pageName=" " />
-        <ContentBlockLayout contentTitle="Вход в аккаунт" customClassName="login-form__content-block">
-          <form className="login-form__form" onSubmit={handleSubmit(onSubmit)}>
-            {isLoading && <Loader />}
-            <NavLink className="login-form__registration" to={`../${routes.REGISTRATION_PAGE}`}>
-              Регистрация
-            </NavLink>
-            {errors?.identifier && <LineNotification text={errors?.identifier?.message ?? "error"} />}
-            <TextField
-              className={`login-form__username ${errors?.identifier && "field_error"}`}
-              type="email"
-              placeholder="E-mail"
-              {...register("identifier", EMAIL_FIELD_PATTERN)}
-              disabled={isLoading}
-            />
-            {errors?.password && <LineNotification text={errors?.password?.message ?? "error"} />}
-            <PasswordField
-              className={`login-form__password ${errors?.password && "field_error"}`}
-              placeholder="Пароль"
-              {...register("password", { required: REQUIRED_MESSAGE })}
-              disabled={isLoading}
-            />
-            <span className="login-form__forget-pass">Забыли пароль?</span>
-            <Button buttonText="войти" onClickAction={handleSubmit(onSubmit)} disabled={isLoading} />
+      <PageTitle pageName=" " />
+      <ContentBlockLayout contentTitle="Вход в аккаунт" customClassName="login-form__content-block">
+        <form className="login-form__form" onSubmit={handleSubmit(onSubmit)}>
+          {isLoading && <Loader />}
+          <NavLink className="login-form__registration" to={`../${routes.REGISTRATION_PAGE}`}>
+            Регистрация
+          </NavLink>
+          {errors?.identifier && <LineNotification text={errors?.identifier?.message ?? "error"} />}
+          <TextField
+            className={`login-form__username ${errors?.identifier && "field_error"}`}
+            type="email"
+            placeholder="E-mail"
+            {...register("identifier", EMAIL_FIELD_PATTERN)}
+            disabled={isLoading}
+          />
+          {errors?.password && <LineNotification text={errors?.password?.message ?? "error"} />}
+          <PasswordField
+            className={`login-form__password ${errors?.password && "field_error"}`}
+            placeholder="Пароль"
+            {...register("password", { required: REQUIRED_MESSAGE })}
+            disabled={isLoading}
+          />
+          <span className="login-form__forget-pass">Забыли пароль?</span>
+          <Button buttonText="войти" onClickAction={handleSubmit(onSubmit)} disabled={isLoading} />
 
-            {responseError && "data" in responseError && (
-              <LineNotification text={RESPONSE_ERRORS[responseError?.data?.error]} />
-            )}
-          </form>
-        </ContentBlockLayout>
-      </>
+          {responseError && "data" in responseError && (
+            <LineNotification text={RESPONSE_ERRORS[responseError?.data?.error]} />
+          )}
+        </form>
+      </ContentBlockLayout>
     </PageLayout>
   );
 };

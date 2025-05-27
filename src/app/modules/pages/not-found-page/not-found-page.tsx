@@ -8,12 +8,10 @@ import notFoundPage from "#images/404-page.png";
 const NotFoundPage: FC = () => {
   return (
     <PageLayout pageClassName="not-found-page">
-      <>
-        <PageTitle pageName="Страница не найдена" />
-        <div className="not-found-page__banner">
-          <img className="" src={notFoundPage} alt="page-not-found" />
-        </div>
-      </>
+      <PageTitle pageName="Страница не найдена" />
+      <div className="not-found-page__banner">
+        <img className="" src={notFoundPage} alt="page-not-found" />
+      </div>
     </PageLayout>
   );
 };
