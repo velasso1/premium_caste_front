@@ -8,7 +8,7 @@ interface IProtectedRouteProps {
   children: ReactElement;
 }
 
-const CreateProtectedRoute = (
+const createProtectedRoute = (
   selector: (state: RootState) => boolean,
   redirectPath: string
 ): FC<IProtectedRouteProps> => {
@@ -18,4 +18,4 @@ const CreateProtectedRoute = (
   };
 };
 
-export default CreateProtectedRoute;
+export default createProtectedRoute;

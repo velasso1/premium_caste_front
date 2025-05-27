@@ -2,12 +2,22 @@ import { FC } from "react";
 
 import PageLayout from "#ui/page-layout/page-layout.tsx";
 import PageTitle from "#ui/page-title/page-title.tsx";
+import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
+import Button from "#ui/button/button.tsx";
+
+import PostImages from "./components/post-images";
+import PostInformation from "./components/post-information";
 
 const CreateBlogPostPage: FC = () => {
   return (
-    <PageLayout pageClassName="crate-blog-post-page">
+    <PageLayout pageClassName="create-blog-post-page">
       <PageTitle pageName="Создание поста" />
-      <div>create blog post page</div>
+      <div className="create-blog-post-page__content">
+        <PostImages />
+        <PostInformation />
+
+        {/* <Button buttonText="Создать" onClickAction={() => alert("Пост создан")} /> */}
+      </div>
     </PageLayout>
   );
 };

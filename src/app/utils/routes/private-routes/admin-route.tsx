@@ -1,3 +1,3 @@
-import CreateProtectedRoute from "../../../hoc/create-protected-route";
+import createProtectedRoute from "../../../hoc/create-protected-route";
 
-export default CreateProtectedRoute((state) => state.userSlice.userIsAdmin, "/");
+export default createProtectedRoute((state) => state.userSlice.userIsAdmin, "/");
