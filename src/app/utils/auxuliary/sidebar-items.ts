@@ -26,6 +26,7 @@ export const sidebarItemsWorks: ISidebarItem[] = [
 
 export const sidebarItemsAdminMenu: ISidebarItemAdminMenu[] = [
   { itemName: "Создать пост", linkTo: routes.CREATE_BLOG_POST_PAGE },
+  { itemName: "Опубликовать пост", linkTo: "undefined" },
   { itemName: "Назначить модератора", linkTo: "undefined" },
   { itemName: "Добавить услугу", linkTo: "undefined" },
 ] as const;

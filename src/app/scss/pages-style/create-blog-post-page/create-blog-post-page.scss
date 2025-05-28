@@ -1,12 +1,31 @@
 .create-blog-post-page {
+  width: 100%;
+
   &__content {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+    gap: 20px;
+  }
+
+  &__images-upload {
+    width: 50%;
     margin: 0 auto;
   }
 
+  &__post-info {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  &__upload-container {
+    text-align: center;
+  }
+
   &__custom-file-button {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
@@ -34,7 +53,7 @@
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
-    margin-top: 16px;
+    margin: 16px 0;
   }
 
   &__preview-item {
@@ -73,6 +92,22 @@
 
   &__remove-button:hover {
     background: #ff3000;
+  }
+
+  &__file-description,
+  &__post-title,
+  &__post-excerpt,
+  &__post-content {
+    @include defualtInputStyle;
+  }
+
+  &__post-content {
+    resize: vertical;
+  }
+
+  &__post-fields {
+    display: flex;
+    flex-direction: column;
   }
 }
 

@@ -29,8 +29,12 @@ const userSlice = createSlice({
         state.userIsAdmin = action.payload;
       }
     },
+
+    logOut() {
+      return initialState;
+    },
   },
 });
 
-export const { changeUserLoginStatus, setUserData } = userSlice.actions;
+export const { changeUserLoginStatus, setUserData, logOut } = userSlice.actions;
 export default userSlice.reducer;

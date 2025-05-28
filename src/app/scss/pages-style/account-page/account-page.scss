@@ -1,13 +1,27 @@
 .account-page {
   @include defaultPageStyle;
 
-  &__exit-button {
+  &__buttons {
+    width: 100%;
     display: flex;
     justify-content: right;
+    margin: 0 0 20px 0;
   }
 
   &__content {
     display: flex;
+    gap: 20px;
+  }
+
+  &__applications {
+    width: 100%;
+  }
+
+  &__applications {
+    &--empty {
+      font-size: 20px;
+      text-align: center;
+    }
   }
 }
 

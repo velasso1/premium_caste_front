@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IAdminSliceTypes } from "../../types/store-types/admin-slice-types";
+import { IAdminSliceTypes } from "../../types/store-types/admin-initial-state-types";
 
 const initialState: IAdminSliceTypes = {};
 

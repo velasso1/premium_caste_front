@@ -1,11 +1,16 @@
 import { FC, useState, useRef } from "react";
 
+import { useAppSelector } from "../../../../store";
+
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 import Button from "#ui/button/button.tsx";
+import TextField from "#ui/fields/text-field.tsx";
 
 const PostImages: FC = () => {
   const [previews, setPreviews] = useState<string[]>([]);
-  const [inputState, setInputState] = useState(null);
+  const [imagesState, setImagesState] = useState<string>("");
+
+  const { userId } = useAppSelector((state) => state.userSlice);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -29,8 +34,32 @@ const PostImages: FC = () => {
     });
   };
 
+  const uploadFiles = () => {
+    if (previews.length === 0) return;
+
+    const formData = new FormData();
+
+    previews.forEach((file, index) => {
+      formData.append(`image${index}`, file);
+    });
+
+    formData.append("uploader_id", userId);
+    formData.append("description", imagesState);
+
+    console.log(formData.get("description"));
+  };
+
   return (
-    <ContentBlockLayout contentTitle="Загрузка изображений">
+    <ContentBlockLayout contentTitle="Загрузка изображений" customClassName="create-blog-post-page__images-upload">
+      <div style={{ display: "flex", flexDirection: "column", textAlign: "center" }}>
+        <TextField
+          className="create-blog-post-page__file-description"
+          type="text"
+          placeholder="Одним словом опишите изборажения"
+          onChange={(e) => setImagesState(e.target.value)}
+        />
+      </div>
+
       <div className="create-blog-post-page__upload-container">
         <label className="create-blog-post-page__custom-file-button">
           <input
@@ -61,8 +90,8 @@ const PostImages: FC = () => {
             </div>
           ))}
         </div>
+        <Button buttonText="Загрузить" onClickAction={uploadFiles} />
       </div>
-      <Button buttonText="Загрузить" onClickAction={() => console.log(previews)} />
     </ContentBlockLayout>
   );
 };

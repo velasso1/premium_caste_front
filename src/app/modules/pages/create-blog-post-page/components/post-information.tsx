@@ -1,9 +1,49 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 
+import TextField from "#ui/fields/text-field.tsx";
+import Button from "#ui/button/button.tsx";
+
+import { IPostInfoPayload } from "../../../../types/store-types/posts-initial-state-types";
+
+const initialStatePost: IPostInfoPayload = {
+  title: "",
+  content: "",
+  excerpt: "",
+  author_id: "",
+  featured_image_id: "",
+};
+
 const PostInformation: FC = () => {
-  return <ContentBlockLayout contentTitle="Информация о посте">1</ContentBlockLayout>;
+  const [postInfo, setPostInfo] = useState<IPostInfoPayload>(initialStatePost);
+
+  return (
+    <ContentBlockLayout contentTitle="Содержание поста" customClassName="create-blog-post-page__post-info">
+      <div className="create-blog-post-page__post-fields">
+        <TextField
+          className="create-blog-post-page__post-title"
+          type="text"
+          placeholder="Заголовок"
+          onChange={(e) => setPostInfo({ ...postInfo, title: e.target.value.trim() })}
+        />
+
+        <TextField
+          className="create-blog-post-page__post-excerpt"
+          type="text"
+          placeholder="Превью для поста"
+          onChange={(e) => setPostInfo({ ...postInfo, excerpt: e.target.value.trim() })}
+        />
+
+        <textarea
+          className="create-blog-post-page__post-content"
+          placeholder="Текст поста"
+          onChange={(e) => setPostInfo({ ...postInfo, content: e.target.value.trim() })}
+        />
+        <Button buttonText="Создать пост" onClickAction={() => alert("Пост создан")} />
+      </div>
+    </ContentBlockLayout>
+  );
 };
 
 export default PostInformation;

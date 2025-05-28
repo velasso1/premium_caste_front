@@ -1,7 +1,7 @@
 .content-block-layout {
   background-color: #1b1b1b;
   border-radius: 15px;
-  width: max-content;
+  // width: max-content;
   padding: 30px;
 
   &__title {
@@ -9,6 +9,6 @@
     text-align: center;
     border-bottom: 1px solid $mainColor;
     width: max-content;
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
   }
 }
