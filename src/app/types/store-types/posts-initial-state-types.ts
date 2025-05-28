@@ -6,4 +6,5 @@ export interface IPostInfoPayload {
   excerpt: string;
   author_id: string;
   featured_image_id?: string;
+  status: "draft" | "published" | "archived";
 }

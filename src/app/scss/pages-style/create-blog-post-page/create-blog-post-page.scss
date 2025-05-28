@@ -10,6 +10,13 @@
     gap: 20px;
   }
 
+  &__buttons {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   &__images-upload {
     width: 50%;
     margin: 0 auto;
@@ -51,6 +58,7 @@
 
   &__preview-container {
     display: flex;
+    justify-content: center;
     gap: 12px;
     flex-wrap: wrap;
     margin: 16px 0;

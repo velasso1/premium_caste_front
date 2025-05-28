@@ -13,6 +13,7 @@ const initialStatePost: IPostInfoPayload = {
   excerpt: "",
   author_id: "",
   featured_image_id: "",
+  status: "draft",
 };
 
 const PostInformation: FC = () => {
@@ -40,7 +41,12 @@ const PostInformation: FC = () => {
           placeholder="Текст поста"
           onChange={(e) => setPostInfo({ ...postInfo, content: e.target.value.trim() })}
         />
+      </div>
+
+      <div className="create-blog-post-page__post-images">Прикрепить загруженные фото к посту</div>
+      <div className="create-blog-post-page__buttons">
         <Button buttonText="Создать пост" onClickAction={() => alert("Пост создан")} />
+        <Button buttonText="Создать и опубликовать" onClickAction={() => alert("Пост создан")} />
       </div>
     </ContentBlockLayout>
   );
