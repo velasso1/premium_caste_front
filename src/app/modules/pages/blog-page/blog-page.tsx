@@ -1,5 +1,7 @@
 import { FC } from "react";
 
+import { useGetPostsQuery } from "../../../store/api/posts-api";
+
 import PageTitle from "#ui/page-title/page-title.tsx";
 import PageLayout from "#ui/page-layout/page-layout.tsx";
 import BlogItem from "./components/blog-item";
@@ -8,6 +10,10 @@ import bmw from "#images/bmw.png";
 import polish from "#images/polish.png";
 
 const BlogPage: FC = () => {
+  const { data, isLoading, isError } = useGetPostsQuery();
+
+  console.log(data);
+
   const elements = [1, 2, 3, 4, 5, 6, 7, 8];
 
   return (

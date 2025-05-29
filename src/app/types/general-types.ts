@@ -23,3 +23,9 @@ export interface ILoginResponse extends IServerResponse {
 export interface ICheckAdminResponse {
   is_admin: boolean;
 }
+
+
+export type CustomizedFetchBaseQueryError = {
+  status?: number;
+  data: { details: string; error: string; status: string };
+};

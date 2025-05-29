@@ -2,13 +2,13 @@ import { BaseQueryFn, createApi, fetchBaseQuery, FetchArgs, RootState } from "@r
 
 import { ILoginPayload, ICheckAdminPayload, IRegistrationPayload } from "../../types/store-types/form-types";
 
-import { IRegistrationResponse, ILoginResponse, ICheckAdminResponse } from "../../types/general-types";
+import {
+  IRegistrationResponse,
+  ILoginResponse,
+  ICheckAdminResponse,
+  CustomizedFetchBaseQueryError,
+} from "../../types/general-types";
 import { setUserData } from "../slices/user";
-
-type CustomizedFetchBaseQueryError = {
-  status?: number;
-  data: { details: string; error: string; status: string };
-};
 
 export const userApi = createApi({
   reducerPath: "userApi",

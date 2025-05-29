@@ -3,6 +3,7 @@ import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { userApi } from "./api/user-api";
+import { postsApi } from "./api/posts-api";
 
 // slices
 import userSlice from "./slices/user";
@@ -13,13 +14,15 @@ const rootReducer = combineReducers({
   userSlice: userSlice,
   effectsSlice: effectsSlice,
   adminSlice: adminSlice,
+  // api reducers
   [userApi.reducerPath]: userApi.reducer,
+  [postsApi.reducerPath]: postsApi.reducer,
 });
 
 const store = configureStore({
   reducer: rootReducer,
 
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(userApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(userApi.middleware, postsApi.middleware),
 });
 
 export default store;
