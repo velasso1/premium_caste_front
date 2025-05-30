@@ -10,7 +10,7 @@ export const postsApi = createApi({
   endpoints: (build) => ({
     getPosts: build.query<void, void>({
       query: (data) => ({
-        url: import.meta.env.VITE_POST_ACTIONS,
+        url: import.meta.env.VITE_POST_ACTIONS + "?status=published",
         credentials: "include",
       }),
     }),
