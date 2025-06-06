@@ -43,3 +43,25 @@ export interface IGetUserInfoResponse {
   registration_date: string;
   last_login: string;
 }
+
+// ответ от сервера с постами
+export interface IAllPostsResponse {
+  page: number;
+  per_page: number;
+  posts: IPost[];
+  total_count: number;
+}
+
+export interface IPost {
+  author_id: string;
+  content: string;
+  created_at: string;
+  excerpt: string;
+  featured_image_id: string;
+  id: string;
+  published_at: string;
+  slug: string;
+  status: string;
+  title: string;
+  updated_at: string;
+}

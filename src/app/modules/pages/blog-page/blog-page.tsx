@@ -12,10 +12,6 @@ import polish from "#images/polish.png";
 const BlogPage: FC = () => {
   const { data, isLoading, isError } = useGetPostsQuery();
 
-  console.log(data);
-
-  const elements = [1, 2, 3, 4, 5, 6, 7, 8];
-
   return (
     <PageLayout pageClassName="blog-page">
       <PageTitle pageName="Блог" />
@@ -34,8 +30,8 @@ const BlogPage: FC = () => {
         </div>
       </div>
       <div className="blog-page__lower-side">
-        {elements.map((item, index) => {
-          return <BlogItem id={item} />;
+        {data?.posts.map((item, index) => {
+          return <BlogItem postInfo={item} />;
         })}
       </div>
     </PageLayout>
