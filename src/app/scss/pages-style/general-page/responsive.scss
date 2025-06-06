@@ -6,20 +6,9 @@
       height: 100%;
     }
 
-    &__clip {
-      //   height: max-content;
-    }
-
     &__banner {
       //   top: 20%;
       width: 60%;
-    }
-
-    &__clue {
-      //   display: none;
-    }
-
-    &__arrow {
     }
 
     a {
@@ -38,6 +27,63 @@
       &__article {
         font-size: 15px;
         line-height: 30px;
+      }
+    }
+
+    // place block
+
+    .place-block {
+      &__address,
+      &__contanct-phone {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .general-page {
+    // video block
+    height: 80%;
+
+    &__video {
+      height: 100%;
+    }
+
+    &__clip {
+      height: 80%;
+    }
+
+    &__banner {
+      top: 40%;
+      width: 40%;
+    }
+
+    a {
+      font-size: 23px;
+    }
+
+    &__clue {
+      // top: 20px;
+    }
+
+    // slider block
+
+    // about block
+
+    .about-block {
+      &__content {
+        font-size: 20px;
+      }
+
+      &__article {
+        font-size: 15px;
+        line-height: 30px;
+      }
+
+      &__fact {
+        width: 100%;
+        font-size: 15px;
       }
     }
 

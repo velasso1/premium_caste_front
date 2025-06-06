@@ -42,3 +42,32 @@
     }
   }
 }
+
+@media screen and (max-width: 992px) {
+  .services-page {
+    &__content {
+      gap: 10px;
+    }
+
+    &__category-item {
+      height: 200px;
+      width: 180px;
+      overflow: hidden;
+      justify-self: center;
+      margin: 0 0 25px 0;
+      padding: 2px;
+    }
+
+    &__image {
+      img {
+        width: 60%;
+      }
+    }
+
+    &__title {
+      font-size: 15px;
+      line-height: 17px;
+      padding: 20px 0 0 0;
+    }
+  }
+}

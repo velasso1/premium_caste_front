@@ -92,3 +92,59 @@
     }
   }
 }
+
+@media screen and (max-width: 992px) {
+  .header {
+    &__nav {
+      margin: 0 0 0 30px;
+    }
+
+    &__logo-image {
+      width: 80%;
+    }
+
+    &__icon-image {
+      width: 60%;
+    }
+
+    &__icons {
+      gap: 10px;
+    }
+
+    &__nav-item {
+      &:nth-child(n + 2) {
+        margin: 0 0 0 40px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    &__nav {
+      margin: 0 0 0 10px;
+    }
+
+    &__logo-image {
+      width: 70%;
+    }
+
+    a {
+      font-size: 10px;
+    }
+
+    &__icon-image {
+      width: 50%;
+    }
+
+    &__icons {
+      gap: 5px;
+    }
+
+    &__nav-item {
+      &:nth-child(n + 2) {
+        margin: 0 0 0 20px;
+      }
+    }
+  }
+}

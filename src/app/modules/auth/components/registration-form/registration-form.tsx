@@ -71,7 +71,7 @@ const RegistrationForm: FC = () => {
           <TextField
             className={`registration-form__username ${errors?.name && "field_error"}`}
             type="text"
-            placeholder="Имя"
+            placeholder="Имя*"
             {...register("name", NAME_FIELD_PATTERN)}
             disabled={isLoading}
           />
@@ -79,7 +79,7 @@ const RegistrationForm: FC = () => {
           <TextField
             className={`registration-form__email ${errors?.email && "field_error"}`}
             type="email"
-            placeholder="Почта"
+            placeholder="Почта*"
             {...register("email", EMAIL_FIELD_PATTERN)}
             disabled={isLoading}
           />
@@ -87,7 +87,7 @@ const RegistrationForm: FC = () => {
           <TextField
             className={`registration-form__phone ${errors?.phone && "field_error"}`}
             type="text"
-            placeholder="Телефон*"
+            placeholder="Телефон"
             {...register("phone", {
               // required: REQUIRED_MESSAGE,
               // minLength: { value: 18, message: "Неверный формат телефона" },
@@ -102,7 +102,7 @@ const RegistrationForm: FC = () => {
           {errors?.password && <LineNotification text={errors?.password?.message ?? "error"} />}
           <PasswordField
             className={`registration-form__password ${errors?.password && "field_error"}`}
-            placeholder="Пароль"
+            placeholder="Пароль*"
             {...register("password", PASSWORD_FIELD_PATTERN)}
             disabled={isLoading}
           />

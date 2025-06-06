@@ -13,3 +13,19 @@
     }
   }
 }
+
+@media screen and (max-width: 992px) {
+  .our-works-page {
+    &__work-items {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .our-works-page {
+    &__work-items {
+      grid-template-columns: 1fr;
+    }
+  }
+}

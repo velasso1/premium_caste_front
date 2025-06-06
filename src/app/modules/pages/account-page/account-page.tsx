@@ -4,6 +4,9 @@ import { useAppDispatch, useAppSelector } from "../../../store";
 import { changeUserLoginStatus, logOut } from "../../../store/slices/user";
 import { useGetUserInfoMutation } from "../../../store/api/user-api";
 
+import { useMaskito } from "@maskito/react";
+import { PHONE_MASK } from "#utils/fields-rules/phone-mask.ts";
+
 import PageTitle from "#ui/page-title/page-title.tsx";
 import PageLayout from "#ui/page-layout/page-layout.tsx";
 import Button from "#ui/button/button.tsx";
@@ -14,6 +17,7 @@ import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 import user from "#images/user-without-photo.jpg";
 
 const AccountPage: FC = () => {
+  const maskedInputRef = useMaskito({ options: PHONE_MASK });
   const dispatch = useAppDispatch();
   const { userId } = useAppSelector((state) => state.userSlice);
 

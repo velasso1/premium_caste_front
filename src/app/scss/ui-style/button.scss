@@ -9,6 +9,7 @@
 
 .button {
   @include buttonstyle;
+  margin: 0 auto;
 
   &--outlined {
     @include buttonstyle;

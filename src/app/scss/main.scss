@@ -74,6 +74,20 @@ input:-moz-autofill:active {
     width: 1000px;
   }
 }
+
+@media screen and (max-width: 992px) {
+  .container,
+  .block-container {
+    width: 800px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container,
+  .block-container {
+    width: 600px;
+  }
+}
 // ============================================
 
 // IMPORT COMPONENT STYLES
