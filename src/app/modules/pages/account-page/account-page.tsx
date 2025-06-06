@@ -1,7 +1,8 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
-import { useAppDispatch } from "../../../store";
+import { useAppDispatch, useAppSelector } from "../../../store";
 import { changeUserLoginStatus, logOut } from "../../../store/slices/user";
+import { useGetUserInfoMutation } from "../../../store/api/user-api";
 
 import PageTitle from "#ui/page-title/page-title.tsx";
 import PageLayout from "#ui/page-layout/page-layout.tsx";
@@ -14,6 +15,15 @@ import user from "#images/user-without-photo.jpg";
 
 const AccountPage: FC = () => {
   const dispatch = useAppDispatch();
+  const { userId } = useAppSelector((state) => state.userSlice);
+
+  const [getUserInfo, { data, isLoading, isSuccess, isError }] = useGetUserInfoMutation();
+
+  useEffect(() => {
+    if (userId) {
+      getUserInfo({ user_id: userId });
+    }
+  }, [userId]);
 
   const logout = (): void => {
     dispatch(changeUserLoginStatus(false));
@@ -58,9 +68,9 @@ const AccountPage: FC = () => {
                 <Button buttonText="Сохранить" onClickAction={() => console.log("data is saved")} />
               </div>
             </form> */}
-              <div className="account-info__name">Иванов Иван</div>
-              <div className="account-info__phone">+7 900 000-00-00</div>
-              <div className="account-info__email">ivanov.ivan@mail.ru</div>
+              <div className="account-info__name">{data?.name}</div>
+              <div className="account-info__phone">{data?.phone}</div>
+              <div className="account-info__email">{data?.email}</div>
             </div>
           </div>
         </ContentBlockLayout>

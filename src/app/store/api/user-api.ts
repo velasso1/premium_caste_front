@@ -1,13 +1,19 @@
 import { BaseQueryFn, createApi, fetchBaseQuery, FetchArgs, RootState } from "@reduxjs/toolkit/query/react";
 
-import { ILoginPayload, ICheckAdminPayload, IRegistrationPayload } from "../../types/store-types/form-types";
+import {
+  ILoginPayload,
+  ICheckAdminPayload,
+  IRegistrationPayload,
+  IGetUserInfoPayload,
+} from "#types/api-payload-types.ts";
 
 import {
   IRegistrationResponse,
   ILoginResponse,
   ICheckAdminResponse,
+  IGetUserInfoResponse,
   CustomizedFetchBaseQueryError,
-} from "../../types/general-types";
+} from "#types/api-response-types.ts";
 import { setUserData } from "../slices/user";
 
 export const userApi = createApi({
@@ -63,7 +69,20 @@ export const userApi = createApi({
         }
       },
     }),
+
+    getUserInfo: build.mutation<IGetUserInfoResponse, IGetUserInfoPayload>({
+      query: (data) => ({
+        url: import.meta.env.VITE_GET_USER_INFO,
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }),
+    }),
   }),
 });
 
-export const { useCreateAccountMutation, useLoginMutation, useLazyCheckUserStatusQuery } = userApi;
+export const { useCreateAccountMutation, useLoginMutation, useLazyCheckUserStatusQuery, useGetUserInfoMutation } =
+  userApi;

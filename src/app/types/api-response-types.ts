@@ -1,0 +1,45 @@
+// Общие типы данных для ответов от сервера
+export interface IServerResponse {
+  status: "success" | "error";
+  error?: string | undefined;
+  details?: string | undefined;
+}
+
+// тип с ошибкой запроса
+export type CustomizedFetchBaseQueryError = {
+  status?: number;
+  data: { details: string; error: string; status: string };
+};
+
+// ответ от сервера при регистрации
+export interface IRegistrationResponse extends IServerResponse {
+  data: {
+    user_id: string;
+  };
+}
+
+// ответ от сервера при входе в аккаунт
+export interface ILoginResponse extends IServerResponse {
+  data: {
+    access_token: string;
+    refresh_token: string;
+    user_id: string;
+  };
+}
+
+// ответ от сервера при проверке статуса пользователя
+export interface ICheckAdminResponse {
+  is_admin: boolean;
+}
+
+// ответ от сервера с данными пользователя
+export interface IGetUserInfoResponse {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  is_admin: boolean;
+  basket_id: string;
+  registration_date: string;
+  last_login: string;
+}

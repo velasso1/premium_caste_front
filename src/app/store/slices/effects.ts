@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IEffectsSliceState, IEffectPayload } from "../../types/store-types/effects-initial-state-types";
+import { IEffectsSliceState, IEffectPayload } from "#types/store-types/effects-initial-state-types.ts";
 
 const initialState: IEffectsSliceState = {
   effectData: {

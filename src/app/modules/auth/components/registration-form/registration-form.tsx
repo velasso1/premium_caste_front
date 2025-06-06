@@ -11,7 +11,7 @@ import { setEffect } from "../../../../store/slices/effects";
 
 import { useMaskito } from "@maskito/react";
 
-import { IRegistrationPayload } from "../../../../types/store-types/form-types";
+import { IRegistrationPayload } from "#types/api-payload-types.ts";
 
 import PageLayout from "#ui/page-layout/page-layout.tsx";
 import PageTitle from "#ui/page-title/page-title.tsx";

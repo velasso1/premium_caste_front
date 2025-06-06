@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IUserSliceState, IUserData } from "../../types/store-types/user-initial-state-types";
+import { IUserSliceState, IUserData } from "#types/store-types/user-initial-state-types.ts";
 
 const initialState: IUserSliceState = {
   userIsAuth: false,

@@ -5,7 +5,7 @@ import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 import TextField from "#ui/fields/text-field.tsx";
 import Button from "#ui/button/button.tsx";
 
-import { IPostInfoPayload } from "../../../../types/store-types/posts-initial-state-types";
+import { IPostInfoPayload } from "#types/store-types/posts-initial-state-types.ts";
 
 const initialStatePost: IPostInfoPayload = {
   title: "",

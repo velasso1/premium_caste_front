@@ -1,6 +1,6 @@
 import { BaseQueryFn, createApi, fetchBaseQuery, FetchArgs, RootState } from "@reduxjs/toolkit/query/react";
 
-import { CustomizedFetchBaseQueryError } from "../../types/general-types";
+import { CustomizedFetchBaseQueryError } from "../../types/api-response-types";
 
 export const postsApi = createApi({
   reducerPath: "postsApi",

@@ -8,7 +8,8 @@
     "#auth/*": "./src/app/modules/auth/*",
     "#ui/*": "./src/app/modules/ui/*",
     "#images/*": "./src/app/assets/images/*",
-    "#utils/*": "./src/app/utils/*"
+    "#utils/*": "./src/app/utils/*",
+    "#types/*": "./src/app/types/*"
   },
   "scripts": {
     "dev": "vite",
