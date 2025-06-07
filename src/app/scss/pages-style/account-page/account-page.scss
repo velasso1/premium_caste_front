@@ -4,7 +4,9 @@
   &__buttons {
     width: 100%;
     display: flex;
+    align-items: center;
     justify-content: right;
+    // grid-template-columns: 1fr auto;
     margin: 0 0 20px 0;
   }
 

@@ -17,3 +17,13 @@ export interface ICheckAdminPayload {
 export interface IGetUserInfoPayload {
   user_id: string;
 }
+
+export interface IUploadImagesPayload {
+  file: File;
+  uploader_id: string;
+  media_type: "photo" | "video" | "audio" | "document";
+  is_public?: boolean;
+  width?: number;
+  height?: number;
+  duration?: number;
+}

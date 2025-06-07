@@ -37,8 +37,26 @@ export const postsApi = createApi({
         credentials: "include",
       }),
     }),
+
+    createNewPost: build.mutation<void, void>({
+      query: (data) => ({
+        url: import.meta.env.VITE_POST_ACTIONS,
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify(data),
+      }),
+    }),
   }),
 });
 
-export const { useGetPostsQuery, useGetCurrentPostQuery, useGetMediaGroupsOfPostQuery, useGetMediaGroupQuery } =
-  postsApi;
+export const {
+  useGetPostsQuery,
+  useGetCurrentPostQuery,
+  useGetMediaGroupsOfPostQuery,
+  useGetMediaGroupQuery,
+  useCreateNewPostMutation,
+} = postsApi;

@@ -1,24 +1,44 @@
-import { FC, useState, useRef } from "react";
+import { FC, useState, useRef, useEffect } from "react";
 
-import { useAppSelector } from "../../../../store";
+import { useAppSelector, useAppDispatch } from "../../../../store";
+import { setEffect } from "../../../../store/slices/effects";
+import { useUploadMediaMutation } from "../../../../store/api/media-api";
+import { IUploadImagesPayload } from "#types/api-payload-types.ts";
 
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 import Button from "#ui/button/button.tsx";
 import TextField from "#ui/fields/text-field.tsx";
 
+import Loader from "#ui/loader/loader.tsx";
+
 const PostImages: FC = () => {
+  const dispatch = useAppDispatch();
   const [previews, setPreviews] = useState<string[]>([]);
-  const [imagesState, setImagesState] = useState<string>("");
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  // const [imagesState, setImagesState] = useState<string>("");
+
+  const [uploadImages, { data, isSuccess, isLoading, isError }] = useUploadMediaMutation();
 
   const { userId } = useAppSelector((state) => state.userSlice);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(setEffect({ status: "success", message: "Изображение успешно загружено" }));
+
+      setPreviews(() => []);
+      setSelectedFiles(() => []);
+    }
+  }, [isSuccess]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files) return;
 
     const validFiles = Array.from(files).filter((file) => file.type.startsWith("image/"));
+
+    setSelectedFiles((prev) => [...prev, ...validFiles]);
 
     const newPreviews = validFiles.map((file) => URL.createObjectURL(file));
 
@@ -39,28 +59,32 @@ const PostImages: FC = () => {
 
     const formData = new FormData();
 
-    previews.forEach((file, index) => {
-      formData.append(`image${index}`, file);
+    selectedFiles.forEach((file, index) => {
+      formData.append(`file`, file);
     });
 
+    // formData.append("file", selectedFiles);
     formData.append("uploader_id", userId);
-    formData.append("description", imagesState);
+    formData.append("media_type", "photo");
+    formData.append("width", "100");
+    formData.append("height", "100");
 
-    console.log(formData.get("description"));
+    uploadImages(formData);
   };
 
   return (
     <ContentBlockLayout contentTitle="Загрузка изображений" customClassName="create-blog-post-page__images-upload">
-      <div style={{ display: "flex", flexDirection: "column", textAlign: "center" }}>
+      {/* <div style={{ display: "flex", flexDirection: "column", textAlign: "center" }}>
         <TextField
           className="create-blog-post-page__file-description"
           type="text"
           placeholder="Одним словом опишите изборажения"
           onChange={(e) => setImagesState(e.target.value)}
         />
-      </div>
+      </div> */}
 
       <div className="create-blog-post-page__upload-container">
+        {isLoading && <Loader />}
         <label className="create-blog-post-page__custom-file-button">
           <input
             className="visually-hidden"

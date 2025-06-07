@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../../store";
-import { changeUserLoginStatus, logOut } from "../../../store/slices/user";
+import { logOut } from "../../../store/slices/user";
 import { useGetUserInfoMutation } from "../../../store/api/user-api";
 
 import { useMaskito } from "@maskito/react";
@@ -30,14 +30,13 @@ const AccountPage: FC = () => {
   }, [userId]);
 
   const logout = (): void => {
-    dispatch(changeUserLoginStatus(false));
     dispatch(logOut());
   };
 
   return (
     <PageLayout pageClassName="account-page">
-      <PageTitle pageName="Личный кабинет" />
       <div className="account-page__buttons">
+        {/* <PageTitle pageName="Личный кабинет" /> */}
         {/* <Button buttonText="Редактировать профиль" buttonStyle="OUTLINED" onClickAction={() => alert("IN DRAFT")} /> */}
         <Button buttonText="Выход" buttonStyle="OUTLINED" onClickAction={() => logout()} />
       </div>

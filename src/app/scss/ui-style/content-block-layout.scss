@@ -1,8 +1,9 @@
 .content-block-layout {
   background-color: #1b1b1b;
+  position: relative;
   border-radius: 15px;
-  // width: max-content;
   padding: 30px;
+  margin: 0 auto 40px auto;
 
   &__title {
     font-size: 25px;
