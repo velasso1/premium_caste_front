@@ -114,7 +114,7 @@ const PostImages: FC = () => {
             </div>
           ))}
         </div>
-        <Button buttonText="Загрузить" onClickAction={uploadFiles} />
+        <Button disabled={previews.length === 0} buttonText="Загрузить" onClickAction={uploadFiles} />
       </div>
     </ContentBlockLayout>
   );

@@ -1,6 +1,7 @@
 import { BaseQueryFn, createApi, fetchBaseQuery, FetchArgs, RootState } from "@reduxjs/toolkit/query/react";
 
 import { CustomizedFetchBaseQueryError, IAllPostsResponse, IPost } from "#types/api-response-types.ts";
+import { IPostInfoPayload } from "#types/store-types/posts-initial-state-types.ts";
 
 export const postsApi = createApi({
   reducerPath: "postsApi",
@@ -10,7 +11,7 @@ export const postsApi = createApi({
   endpoints: (build) => ({
     getPosts: build.query<IAllPostsResponse, void>({
       query: (data) => ({
-        url: import.meta.env.VITE_POST_ACTIONS + "?status=draft",
+        url: import.meta.env.VITE_POST_ACTIONS + "?status=published",
         // credentials: "include",
       }),
     }),
@@ -38,7 +39,7 @@ export const postsApi = createApi({
       }),
     }),
 
-    createNewPost: build.mutation<void, void>({
+    createNewPost: build.mutation<void, IPostInfoPayload>({
       query: (data) => ({
         url: import.meta.env.VITE_POST_ACTIONS,
         method: "POST",

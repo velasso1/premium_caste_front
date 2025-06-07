@@ -1,5 +1,7 @@
 import { FC, useState } from "react";
 
+import { useAppSelector } from "../../../../store";
+import { useCreateNewPostMutation } from "../../../../store/api/posts-api";
 import { useGetAllImagesQuery } from "../../../../store/api/media-api";
 
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
@@ -9,18 +11,26 @@ import Button from "#ui/button/button.tsx";
 import { IPostInfoPayload } from "#types/store-types/posts-initial-state-types.ts";
 
 const initialStatePost: IPostInfoPayload = {
-  title: "",
+  author_id: "",
   content: "",
   excerpt: "",
-  author_id: "",
   featured_image_id: "",
   status: "draft",
+  title: "",
 };
 
 const PostInformation: FC = () => {
   const { data, isLoading, isSuccess, isError } = useGetAllImagesQuery();
+  const [createNewPost, { data: newPostData, isLoading: newPostLoading, isSuccess: newPostSuccess }] =
+    useCreateNewPostMutation();
 
-  const [postInfo, setPostInfo] = useState<IPostInfoPayload>(initialStatePost);
+  const { userId } = useAppSelector((state) => state.userSlice);
+
+  const [postInfo, setPostInfo] = useState<IPostInfoPayload>({ ...initialStatePost, author_id: userId });
+
+  const createPostHandler = (createStatus: "draft" | "published") => {
+    createNewPost({ ...postInfo, status: createStatus });
+  };
 
   return (
     <ContentBlockLayout contentTitle="Содержание поста" customClassName="create-blog-post-page__post-info">
@@ -28,20 +38,20 @@ const PostInformation: FC = () => {
         <TextField
           className="create-blog-post-page__post-title"
           type="text"
-          placeholder="Заголовок"
+          placeholder="Заголовок поста"
           onChange={(e) => setPostInfo({ ...postInfo, title: e.target.value.trim() })}
         />
 
         <TextField
           className="create-blog-post-page__post-excerpt"
           type="text"
-          placeholder="Превью для поста"
+          placeholder="Краткое описание"
           onChange={(e) => setPostInfo({ ...postInfo, excerpt: e.target.value.trim() })}
         />
 
         <textarea
           className="create-blog-post-page__post-content"
-          placeholder="Текст поста"
+          placeholder="Основной текст поста"
           onChange={(e) => setPostInfo({ ...postInfo, content: e.target.value.trim() })}
         />
       </div>
@@ -55,14 +65,24 @@ const PostInformation: FC = () => {
               key={item.id}
               src={"http://localhost:8080/" + item.storage_path}
               alt={item.original_filename}
-              onClick={() => console.log(item.id)}
+              onClick={() => setPostInfo((prev) => ({ ...prev, featured_image_id: item.id }))}
             />
           );
         })}
       </div>
       <div className="create-blog-post-page__buttons">
-        <Button buttonText="Создать пост" onClickAction={() => alert("Пост создан")} />
-        <Button buttonText="Создать и опубликовать" onClickAction={() => alert("Пост создан")} />
+        <Button
+          buttonText="Создать пост"
+          onClickAction={() => {
+            createPostHandler("draft");
+          }}
+        />
+        <Button
+          buttonText="Создать и опубликовать"
+          onClickAction={() => {
+            createPostHandler("published");
+          }}
+        />
       </div>
     </ContentBlockLayout>
   );
