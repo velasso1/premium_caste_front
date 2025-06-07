@@ -65,3 +65,21 @@ export interface IPost {
   title: string;
   updated_at: string;
 }
+
+// ответ от сервера при получении картинок
+export interface IGetAllImagesResponse {
+  data: IImageInfo[];
+}
+
+export interface IImageInfo {
+  id: string;
+  uploader_id: string;
+  created_at: "2025-04-28T07:00:00Z";
+  file_size: number;
+  height: number;
+  width: number;
+  is_public: boolean;
+  media_type: "photo" | "audio" | "video" | "document";
+  original_filename: string;
+  storage_path: string;
+}

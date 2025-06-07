@@ -1,6 +1,6 @@
 import { BaseQueryFn, createApi, fetchBaseQuery, FetchArgs, RootState } from "@reduxjs/toolkit/query/react";
 
-import { CustomizedFetchBaseQueryError } from "#types/api-response-types.ts";
+import { CustomizedFetchBaseQueryError, IGetAllImagesResponse } from "#types/api-response-types.ts";
 
 import { IUploadImagesPayload } from "#types/api-payload-types.ts";
 
@@ -10,8 +10,8 @@ export const mediaApi = createApi({
     fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL })
   ),
   endpoints: (build) => ({
-    getAllImages: build.query<void, void>({
-      query: (data) => ({
+    getAllImages: build.query<IGetAllImagesResponse, void>({
+      query: () => ({
         url: import.meta.env.VITE_GET_IMAGES,
         credentials: "include",
       }),

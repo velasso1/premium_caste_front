@@ -1,7 +1,8 @@
 import { FC, useState } from "react";
 
-import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
+import { useGetAllImagesQuery } from "../../../../store/api/media-api";
 
+import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 import TextField from "#ui/fields/text-field.tsx";
 import Button from "#ui/button/button.tsx";
 
@@ -17,6 +18,8 @@ const initialStatePost: IPostInfoPayload = {
 };
 
 const PostInformation: FC = () => {
+  const { data, isLoading, isSuccess, isError } = useGetAllImagesQuery();
+
   const [postInfo, setPostInfo] = useState<IPostInfoPayload>(initialStatePost);
 
   return (
@@ -43,7 +46,20 @@ const PostInformation: FC = () => {
         />
       </div>
 
-      <div className="create-blog-post-page__post-images">Прикрепить загруженные фото к посту</div>
+      <div className="create-blog-post-page__preview-container">
+        Прикрепить загруженные фото к посту
+        {data?.data.map((item, index) => {
+          return (
+            <img
+              className="create-blog-post-page__preview-image"
+              key={item.id}
+              src={"http://localhost:8080/" + item.storage_path}
+              alt={item.original_filename}
+              onClick={() => console.log(item.id)}
+            />
+          );
+        })}
+      </div>
       <div className="create-blog-post-page__buttons">
         <Button buttonText="Создать пост" onClickAction={() => alert("Пост создан")} />
         <Button buttonText="Создать и опубликовать" onClickAction={() => alert("Пост создан")} />
