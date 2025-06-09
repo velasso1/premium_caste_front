@@ -19,4 +19,5 @@ export const routes = {
   LOGIN_PAGE: "login",
   REGISTRATION_PAGE: "registration",
   CREATE_BLOG_POST_PAGE: "create-blog-post",
-};
+  BLOG_POST_MANAGING: "posts-managing",
+} as const;

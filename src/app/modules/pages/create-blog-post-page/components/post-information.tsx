@@ -1,14 +1,16 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 
-import { useAppSelector } from "../../../../store";
+import { useAppDispatch, useAppSelector } from "../../../../store";
 import { useCreateNewPostMutation } from "../../../../store/api/posts-api";
 import { useGetAllImagesQuery } from "../../../../store/api/media-api";
 
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 import TextField from "#ui/fields/text-field.tsx";
 import Button from "#ui/button/button.tsx";
+import Loader from "#ui/loader/loader.tsx";
 
 import { IPostInfoPayload } from "#types/store-types/posts-initial-state-types.ts";
+import { setEffect } from "../../../../store/slices/effects";
 
 const initialStatePost: IPostInfoPayload = {
   author_id: "",
@@ -20,13 +22,28 @@ const initialStatePost: IPostInfoPayload = {
 };
 
 const PostInformation: FC = () => {
+  const dispatch = useAppDispatch();
+
   const { data, isLoading, isSuccess, isError } = useGetAllImagesQuery();
-  const [createNewPost, { data: newPostData, isLoading: newPostLoading, isSuccess: newPostSuccess }] =
-    useCreateNewPostMutation();
+  const [
+    createNewPost,
+    { data: newPostData, error, isLoading: newPostLoading, isSuccess: newPostSuccess, isError: newPostError },
+  ] = useCreateNewPostMutation();
 
   const { userId } = useAppSelector((state) => state.userSlice);
 
   const [postInfo, setPostInfo] = useState<IPostInfoPayload>({ ...initialStatePost, author_id: userId });
+
+  useEffect(() => {
+    if (newPostSuccess) {
+      setPostInfo(initialStatePost);
+      dispatch(setEffect({ status: "success", message: "Пост успешно создан!" }));
+    }
+
+    if (newPostError) {
+      dispatch(setEffect({ status: "error", message: "Произошла ошибка при загрузке данных" }));
+    }
+  }, [newPostSuccess, newPostError]);
 
   const createPostHandler = (createStatus: "draft" | "published") => {
     createNewPost({ ...postInfo, status: createStatus });
@@ -35,6 +52,7 @@ const PostInformation: FC = () => {
   return (
     <ContentBlockLayout contentTitle="Содержание поста" customClassName="create-blog-post-page__post-info">
       <div className="create-blog-post-page__post-fields">
+        {newPostLoading && <Loader />}
         <TextField
           className="create-blog-post-page__post-title"
           type="text"

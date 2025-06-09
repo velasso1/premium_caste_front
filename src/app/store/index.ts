@@ -10,11 +10,13 @@ import { mediaApi } from "./api/media-api";
 import userSlice from "./slices/user";
 import effectsSlice from "./slices/effects";
 import adminSlice from "./slices/admin";
+import postsSlice from "./slices/posts";
 
 const rootReducer = combineReducers({
   userSlice: userSlice,
   effectsSlice: effectsSlice,
   adminSlice: adminSlice,
+  postsSlice: postsSlice,
   // api reducers
   [userApi.reducerPath]: userApi.reducer,
   [postsApi.reducerPath]: postsApi.reducer,

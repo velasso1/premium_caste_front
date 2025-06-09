@@ -18,7 +18,7 @@ const BlogItem: FC<IBlogItemProps> = ({ postInfo }) => {
   return (
     <div className="blog-page__blog-item" onClick={() => navigate(`item/${postInfo.id}`)}>
       <img src={polish2} alt="polish" />
-      <div className="blog-page__item-description">{postInfo.title}</div>
+      <div className="blog-page__item-description">{postInfo.excerpt}</div>
       <span className="blog-page__item-date">{createdDate}</span>
       <span className="blog-page__cross">подробнее</span>
     </div>

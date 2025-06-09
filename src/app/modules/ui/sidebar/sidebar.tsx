@@ -1,17 +1,26 @@
 import { FC } from "react";
 
 import SidebarItem from "./components/sidebar-item";
-import { ISidebarItem, ISidebarItemAdminMenu } from "#utils/auxuliary/sidebar-items.ts";
+import { ISidebarItem, ISidebarItemAdminMenu, ISidebarItemsPostsMenu } from "#utils/auxuliary/sidebar-items.ts";
 
 interface ISidebarProps {
-  sidebarItems: ISidebarItem[] | ISidebarItemAdminMenu[];
+  sidebarItems: ISidebarItemsPostsMenu[] | ISidebarItemAdminMenu[] | ISidebarItem[];
+  managementType: "dispatch" | "nav";
+  itemsManagement?: () => void;
 }
 
-const Sidebar: FC<ISidebarProps> = ({ sidebarItems }) => {
+const Sidebar: FC<ISidebarProps> = ({ sidebarItems, managementType, itemsManagement }) => {
   return (
     <div className="sidebar">
       {sidebarItems.map((item, index) => {
-        return <SidebarItem key={index} itemName={item.itemName} url={"linkTo" in item ? item.linkTo : null} />;
+        return (
+          <SidebarItem
+            managementType={managementType}
+            key={index}
+            itemInfo={item}
+            url={"linkTo" in item ? item.linkTo : null}
+          />
+        );
       })}
 
       {/* customClass={index === 0 ? "sidebar__item--active" : ""} */}

@@ -1,5 +1,9 @@
 // payload for create post
 
+export interface IPostsInitialState {
+  postStatus: "published" | "archived" | "draft";
+}
+
 export interface IPostInfoPayload {
   title: string;
   content: string;

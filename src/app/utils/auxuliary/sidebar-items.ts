@@ -4,9 +4,15 @@ export interface ISidebarItem {
   itemName: string;
 }
 
+// type TLinkTo = ;
+
 export interface ISidebarItemAdminMenu extends ISidebarItem {
-  linkTo: string;
+  linkTo: (typeof routes)[keyof typeof routes] | "undefined";
   action?: "NAV";
+}
+
+export interface ISidebarItemsPostsMenu extends ISidebarItem {
+  dispatchAction: "draft" | "published" | "archived";
 }
 
 export const sidebarItemsWorks: ISidebarItem[] = [
@@ -26,7 +32,13 @@ export const sidebarItemsWorks: ISidebarItem[] = [
 
 export const sidebarItemsAdminMenu: ISidebarItemAdminMenu[] = [
   { itemName: "Создать пост", linkTo: routes.CREATE_BLOG_POST_PAGE },
-  { itemName: "Опубликовать пост", linkTo: "undefined" },
+  { itemName: "Управление постами", linkTo: routes.BLOG_POST_MANAGING },
   { itemName: "Назначить модератора", linkTo: "undefined" },
   { itemName: "Добавить услугу", linkTo: "undefined" },
+] as const;
+
+export const sidebarItemsPostsMenu: ISidebarItemsPostsMenu[] = [
+  { itemName: "Опубликованные", dispatchAction: "published" },
+  { itemName: "Ждут публикации", dispatchAction: "draft" },
+  { itemName: "В архиве", dispatchAction: "archived" },
 ] as const;

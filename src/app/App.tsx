@@ -21,6 +21,7 @@ import FavoritesPage from "#pages/favorites-page/favorites-page.tsx";
 import AccountPage from "#pages/account-page/account-page.tsx";
 import NotFoundPage from "#pages/not-found-page/not-found-page.tsx";
 import CreateBlogPostPage from "#pages/create-blog-post-page/create-blog-post-page.tsx";
+import BlogPostManagingPage from "#pages/blog-post-managing-page/blog-post-managing-page.tsx";
 
 // auth
 import LoginForm from "#auth/components/login-form/login-form.tsx";
@@ -72,6 +73,7 @@ const App: FC = () => {
             {/* SECONDARY PAGES */}
             <Route path={`${routes.BLOG_PAGE}/item/:id`} element={<CurrentPostPage />} />
             <Route path={routes.CREATE_BLOG_POST_PAGE} element={<AdminRoute children={<CreateBlogPostPage />} />} />
+            <Route path={routes.BLOG_POST_MANAGING} element={<AdminRoute children={<BlogPostManagingPage />} />} />
           </Route>
           <Route />
           <Route path={routes.NOT_EXIST_PAGE} element={<NotFoundPage />} />

@@ -10,7 +10,7 @@ import bmw from "#images/bmw.png";
 import polish from "#images/polish.png";
 
 const BlogPage: FC = () => {
-  const { data, isLoading, isError } = useGetPostsQuery();
+  const { data, isLoading, isError } = useGetPostsQuery({ postStatus: "published" });
 
   return (
     <PageLayout pageClassName="blog-page">

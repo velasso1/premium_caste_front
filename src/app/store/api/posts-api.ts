@@ -9,9 +9,9 @@ export const postsApi = createApi({
     fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL })
   ),
   endpoints: (build) => ({
-    getPosts: build.query<IAllPostsResponse, void>({
+    getPosts: build.query<IAllPostsResponse, { postStatus: "published" | "draft" | "archived" }>({
       query: (data) => ({
-        url: import.meta.env.VITE_POST_ACTIONS + "?status=published",
+        url: import.meta.env.VITE_POST_ACTIONS + `?status=${data.postStatus}`,
         // credentials: "include",
       }),
     }),

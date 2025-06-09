@@ -14,9 +14,12 @@ const AdminPanel: FC = () => {
     <div className="admin-panel">
       {panelIsOpen ? (
         <>
-          <div className="admin-panel__title--open">Админ меню</div>
+          <div className="admin-panel__title--open">
+            <span>Админ меню</span> &nbsp;
+            <span onClick={() => setPanelState((prev) => !prev)}>X</span>
+          </div>
           <div className="admin-panel--open" onClick={() => setPanelState(false)}>
-            <Sidebar sidebarItems={sidebarItemsAdminMenu} />
+            <Sidebar sidebarItems={sidebarItemsAdminMenu} managementType="nav" />
           </div>
         </>
       ) : (
