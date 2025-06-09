@@ -47,6 +47,7 @@ const PostInformation: FC = () => {
 
   const createPostHandler = (createStatus: "draft" | "published") => {
     createNewPost({ ...postInfo, status: createStatus });
+    setPostInfo(initialStatePost);
   };
 
   return (
@@ -73,20 +74,31 @@ const PostInformation: FC = () => {
           onChange={(e) => setPostInfo({ ...postInfo, content: e.target.value.trim() })}
         />
       </div>
-
-      <div className="create-blog-post-page__preview-container">
-        Прикрепить загруженные фото к посту
-        {data?.data.map((item, index) => {
-          return (
-            <img
-              className="create-blog-post-page__preview-image"
-              key={item.id}
-              src={"http://localhost:8080/" + item.storage_path}
-              alt={item.original_filename}
-              onClick={() => setPostInfo((prev) => ({ ...prev, featured_image_id: item.id }))}
-            />
-          );
-        })}
+      <div className="create-blog-post-page__upload-container">
+        Выберите превью для поста
+        <div className="create-blog-post-page__preview-container">
+          {data?.data ? (
+            data?.data.map((item, index) => {
+              return (
+                <div
+                  className={`create-blog-post-page__preview-item ${
+                    item.id === postInfo.featured_image_id ? "create-blog-post-page__preview-item--selected" : null
+                  }`}
+                >
+                  <img
+                    className="create-blog-post-page__preview-image"
+                    key={item.id}
+                    src={"http://localhost:8080/uploads/uploads/" + userId + "/" + item.original_filename}
+                    alt={item.original_filename}
+                    onClick={() => setPostInfo((prev) => ({ ...prev, featured_image_id: item.id }))}
+                  />
+                </div>
+              );
+            })
+          ) : (
+            <div>Пока что картинок нет</div>
+          )}
+        </div>
       </div>
       <div className="create-blog-post-page__buttons">
         <Button

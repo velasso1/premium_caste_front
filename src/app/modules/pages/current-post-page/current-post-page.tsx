@@ -17,9 +17,13 @@ import Button from "#ui/button/button.tsx";
 import pic1 from "#images/alfa-romeo.jpg";
 import pic2 from "#images/audi.jpg";
 import pic3 from "#images/toyota.jpg";
+import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
+import { useAppSelector } from "../../../store";
 
 const CurrentPostPage = () => {
   const params = useParams();
+
+  const { userIsAdmin } = useAppSelector((state) => state.userSlice);
 
   const { data, isLoading, isSuccess, isError } = useGetCurrentPostQuery({ post_id: params?.id });
 
@@ -34,11 +38,24 @@ const CurrentPostPage = () => {
   return (
     <PageLayout pageClassName="current-post-page">
       <PageTitle pageName={data?.title ?? "Загрузка.."} />
+      <>
+        {userIsAdmin && (
+          <div className="current-post-page__managing-buttons">
+            <Button buttonStyle="OUTLINED" buttonText="Опубликовать" onClickAction={() => undefined} />
 
-      <div className="current-post-page__post">{data?.content}</div>
+            <Button buttonStyle="OUTLINED" buttonText="Архивировать" onClickAction={() => undefined} />
 
-      <div className="current-post-page__album">
-        {/* <Slider paginationInculde={false}>
+            <Button buttonStyle="OUTLINED" buttonText="Редактировать" onClickAction={() => undefined} />
+            <Button buttonStyle="OUTLINED" buttonText="Удалить пост" onClickAction={() => undefined} />
+          </div>
+        )}
+      </>
+
+      <ContentBlockLayout>
+        <div className="current-post-page__post">{data?.content}</div>
+
+        <div className="current-post-page__album">
+          {/* <Slider paginationInculde={false}>
           <SwiperSlide>
             <SlideLayout imageUrl={pic1} />
           </SwiperSlide>
@@ -57,7 +74,8 @@ const CurrentPostPage = () => {
             <SlideLayout imageUrl={pic3} />
           </SwiperSlide>
         </Slider> */}
-      </div>
+        </div>
+      </ContentBlockLayout>
     </PageLayout>
   );
 };

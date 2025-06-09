@@ -3,7 +3,7 @@ import React, { FC, useState, useEffect, useLayoutEffect } from "react";
 import premium from "#images/premiun-caste.png";
 
 interface IPageLayoutProps {
-  children: React.ReactElement[] | React.ReactElement;
+  children: React.ReactElement[] | React.ReactElement | null;
   pageClassName: string;
   includePreloader?: boolean;
 }

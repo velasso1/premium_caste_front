@@ -5,6 +5,11 @@
     padding-bottom: 40px;
   }
 
+  &__managing-buttons {
+    display: flex;
+    gap: 40px;
+  }
+
   &__back-button {
     display: flex;
     align-items: center;

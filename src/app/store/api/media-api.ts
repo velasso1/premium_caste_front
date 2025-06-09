@@ -9,12 +9,15 @@ export const mediaApi = createApi({
   baseQuery: <BaseQueryFn<string | FetchArgs, unknown, CustomizedFetchBaseQueryError, {}>>(
     fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL })
   ),
+  tagTypes: ["Images"],
   endpoints: (build) => ({
     getAllImages: build.query<IGetAllImagesResponse, void>({
       query: () => ({
         url: import.meta.env.VITE_GET_IMAGES,
         credentials: "include",
       }),
+      providesTags: (result, error, arg) =>
+        result ? [...result.data.map(({ id }) => ({ type: "Images" as const, id })), "Images"] : ["Images"],
     }),
 
     uploadMedia: build.mutation<void, FormData>({
@@ -24,6 +27,7 @@ export const mediaApi = createApi({
         credentials: "include",
         body: data,
       }),
+      invalidatesTags: ["Images"],
     }),
   }),
 });
