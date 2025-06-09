@@ -9,9 +9,10 @@ import { useAppSelector } from "../../../../store";
 
 interface IBlogItemProps {
   postInfo: IPost;
+  postPreview: string;
 }
 
-const BlogItem: FC<IBlogItemProps> = ({ postInfo }) => {
+const BlogItem: FC<IBlogItemProps> = ({ postInfo, postPreview }) => {
   const navigate = useNavigate();
 
   const { userIsAdmin } = useAppSelector((state) => state.userSlice);
@@ -20,7 +21,7 @@ const BlogItem: FC<IBlogItemProps> = ({ postInfo }) => {
 
   return (
     <div className="blog-page__blog-item" onClick={() => navigate(`../blog/item/${postInfo.id}`)}>
-      <img src={polish2} alt="polish" />
+      <img src={"http://localhost:8080/uploads/" + postInfo.featured_image_path} alt="postImage" />
       <div className="blog-page__item-description">{postInfo.excerpt}</div>
       <span className="blog-page__item-date">{createdDate}</span>
       <span className="blog-page__cross">подробнее</span>

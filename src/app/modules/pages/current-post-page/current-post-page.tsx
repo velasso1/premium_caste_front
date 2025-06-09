@@ -1,10 +1,16 @@
+import { FC, useEffect } from "react";
+
 import { useParams } from "react-router-dom";
 
 import {
   useGetCurrentPostQuery,
   useGetMediaGroupsOfPostQuery,
   useGetMediaGroupQuery,
+  usePublishPostMutation,
 } from "../../../store/api/posts-api";
+
+import { useAppDispatch, useAppSelector } from "../../../store";
+import { setEffect } from "../../../store/slices/effects";
 
 import { SwiperSlide } from "swiper/react";
 
@@ -18,12 +24,17 @@ import pic1 from "#images/alfa-romeo.jpg";
 import pic2 from "#images/audi.jpg";
 import pic3 from "#images/toyota.jpg";
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
-import { useAppSelector } from "../../../store";
 
-const CurrentPostPage = () => {
+const CurrentPostPage: FC = () => {
   const params = useParams();
+  const dispatch = useAppDispatch();
 
   const { userIsAdmin } = useAppSelector((state) => state.userSlice);
+
+  const [
+    publishPost,
+    { data: publishData, isLoading: publishLoading, isError: publishError, isSuccess: publishSuccess },
+  ] = usePublishPostMutation();
 
   const { data, isLoading, isSuccess, isError } = useGetCurrentPostQuery({ post_id: params?.id });
 
@@ -33,7 +44,11 @@ const CurrentPostPage = () => {
     isError: mediaError,
   } = useGetMediaGroupsOfPostQuery({ post_id: params?.id });
 
-  console.log("MEDIA GROUPS:", mediaData);
+  useEffect(() => {
+    if (publishSuccess) {
+      dispatch(setEffect({ status: "success", message: "Пост успешно опубликован" }));
+    }
+  }, [publishSuccess]);
 
   return (
     <PageLayout pageClassName="current-post-page">
@@ -41,7 +56,15 @@ const CurrentPostPage = () => {
       <>
         {userIsAdmin && (
           <div className="current-post-page__managing-buttons">
-            <Button buttonStyle="OUTLINED" buttonText="Опубликовать" onClickAction={() => undefined} />
+            <Button
+              buttonStyle="OUTLINED"
+              buttonText="Опубликовать"
+              onClickAction={() => {
+                if (params?.id) {
+                  publishPost({ postId: params?.id });
+                }
+              }}
+            />
 
             <Button buttonStyle="OUTLINED" buttonText="Архивировать" onClickAction={() => undefined} />
 

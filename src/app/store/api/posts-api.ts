@@ -51,6 +51,17 @@ export const postsApi = createApi({
         body: JSON.stringify(data),
       }),
     }),
+
+    publishPost: build.mutation<void, { postId: string }>({
+      query: (data) => ({
+        url: import.meta.env.VITE_POST_ACTIONS + `/${data.postId}` + import.meta.env.VITE_PUBLISH_POST,
+        methood: "PATCH",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }),
+    }),
   }),
 });
 
@@ -60,4 +71,5 @@ export const {
   useGetMediaGroupsOfPostQuery,
   useGetMediaGroupQuery,
   useCreateNewPostMutation,
+  usePublishPostMutation,
 } = postsApi;

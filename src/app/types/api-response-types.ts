@@ -58,6 +58,7 @@ export interface IPost {
   created_at: string;
   excerpt: string;
   featured_image_id: string;
+  featured_image_path: string;
   id: string;
   published_at: string;
   slug: string;

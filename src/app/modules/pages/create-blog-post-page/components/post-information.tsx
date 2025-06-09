@@ -3,14 +3,17 @@ import { FC, useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../store";
 import { useCreateNewPostMutation } from "../../../../store/api/posts-api";
 import { useGetAllImagesQuery } from "../../../../store/api/media-api";
+import { setEffect } from "../../../../store/slices/effects";
+
+import { useForm, SubmitHandler } from "react-hook-form";
+
+import { IPostInfoPayload } from "#types/store-types/posts-initial-state-types.ts";
 
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 import TextField from "#ui/fields/text-field.tsx";
 import Button from "#ui/button/button.tsx";
 import Loader from "#ui/loader/loader.tsx";
-
-import { IPostInfoPayload } from "#types/store-types/posts-initial-state-types.ts";
-import { setEffect } from "../../../../store/slices/effects";
+import LineNotification from "#ui/notifications/line-notification.tsx";
 
 const initialStatePost: IPostInfoPayload = {
   author_id: "",
@@ -32,7 +35,15 @@ const PostInformation: FC = () => {
 
   const { userId } = useAppSelector((state) => state.userSlice);
 
-  const [postInfo, setPostInfo] = useState<IPostInfoPayload>({ ...initialStatePost, author_id: userId });
+  const [postInfo, setPostInfo] = useState<IPostInfoPayload>(initialStatePost);
+  const [previewSelected, setPreviewSelected] = useState<boolean>(false);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<IPostInfoPayload>();
 
   useEffect(() => {
     if (newPostSuccess) {
@@ -45,40 +56,52 @@ const PostInformation: FC = () => {
     }
   }, [newPostSuccess, newPostError]);
 
-  const createPostHandler = (createStatus: "draft" | "published") => {
-    createNewPost({ ...postInfo, status: createStatus });
-    setPostInfo(initialStatePost);
-  };
+  const createPostHandler =
+    (postStatus: "draft" | "published"): SubmitHandler<IPostInfoPayload> =>
+    (data) => {
+      createNewPost({ ...data, author_id: userId, status: postStatus, featured_image_id: postInfo.featured_image_id });
+
+      reset();
+    };
 
   return (
     <ContentBlockLayout contentTitle="Содержание поста" customClassName="create-blog-post-page__post-info">
       <div className="create-blog-post-page__post-fields">
         {newPostLoading && <Loader />}
+
+        {(errors.content || errors.title || errors.excerpt) && (
+          <LineNotification text="Все поля должны быть заполнены" />
+        )}
+
+        {previewSelected && <LineNotification text="Выберите превью" />}
+
         <TextField
-          className="create-blog-post-page__post-title"
+          className={`create-blog-post-page__post-title ${errors?.title && "field_error"}`}
           type="text"
           placeholder="Заголовок поста"
-          onChange={(e) => setPostInfo({ ...postInfo, title: e.target.value.trim() })}
+          {...register("title", { required: true })}
         />
 
         <TextField
-          className="create-blog-post-page__post-excerpt"
+          className={`create-blog-post-page__post-excerpt ${errors?.excerpt && "field_error"}`}
           type="text"
           placeholder="Краткое описание"
-          onChange={(e) => setPostInfo({ ...postInfo, excerpt: e.target.value.trim() })}
+          {...register("excerpt", { required: true })}
         />
 
         <textarea
-          className="create-blog-post-page__post-content"
+          className={`create-blog-post-page__post-content ${errors?.content && "field_error"}`}
           placeholder="Основной текст поста"
-          onChange={(e) => setPostInfo({ ...postInfo, content: e.target.value.trim() })}
+          {...register("content", { required: true })}
         />
       </div>
       <div className="create-blog-post-page__upload-container">
         Выберите превью для поста
         <div className="create-blog-post-page__preview-container">
           {data?.data ? (
-            data?.data.map((item, index) => {
+            data?.data.map((item) => {
+              const IMAGE_PATH = "http://localhost:8080/uploads/uploads/" + userId + "/" + item.original_filename;
+
               return (
                 <div
                   className={`create-blog-post-page__preview-item ${
@@ -88,9 +111,11 @@ const PostInformation: FC = () => {
                   <img
                     className="create-blog-post-page__preview-image"
                     key={item.id}
-                    src={"http://localhost:8080/uploads/uploads/" + userId + "/" + item.original_filename}
+                    src={IMAGE_PATH}
                     alt={item.original_filename}
-                    onClick={() => setPostInfo((prev) => ({ ...prev, featured_image_id: item.id }))}
+                    onClick={() => {
+                      setPostInfo((prev) => ({ ...prev, featured_image_id: item.id }));
+                    }}
                   />
                 </div>
               );
@@ -101,37 +126,11 @@ const PostInformation: FC = () => {
         </div>
       </div>
       <div className="create-blog-post-page__buttons">
-        <Button
-          buttonText="Создать пост"
-          onClickAction={() => {
-            createPostHandler("draft");
-          }}
-        />
-        <Button
-          buttonText="Создать и опубликовать"
-          onClickAction={() => {
-            createPostHandler("published");
-          }}
-        />
+        <Button buttonText="Создать пост" onClickAction={handleSubmit(createPostHandler("draft"))} />
+        <Button buttonText="Создать и опубликовать" onClickAction={handleSubmit(createPostHandler("published"))} />
       </div>
     </ContentBlockLayout>
   );
 };
 
 export default PostInformation;
-
-// {
-//   "author_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-//   "content": "string",
-//   "excerpt": "string",
-//   "featured_image_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-//   "metadata": {
-//     "additionalProp1": "string",
-//     "additionalProp2": "string",
-//     "additionalProp3": "string"
-//   },
-//   "published_at": "string",
-//   "slug": "string",
-//   "status": "draft",
-//   "title": "string"
-// }
