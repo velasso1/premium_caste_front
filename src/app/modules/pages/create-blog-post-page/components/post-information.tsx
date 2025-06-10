@@ -59,8 +59,13 @@ const PostInformation: FC = () => {
   const createPostHandler =
     (postStatus: "draft" | "published"): SubmitHandler<IPostInfoPayload> =>
     (data) => {
-      createNewPost({ ...data, author_id: userId, status: postStatus, featured_image_id: postInfo.featured_image_id });
+      if (postInfo.featured_image_id === "") {
+        setPreviewSelected(true);
+        return;
+      }
 
+      createNewPost({ ...data, author_id: userId, status: postStatus, featured_image_id: postInfo.featured_image_id });
+      setPreviewSelected(false);
       reset();
     };
 

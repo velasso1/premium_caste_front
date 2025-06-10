@@ -1,16 +1,18 @@
 import { FC, useEffect } from "react";
 
-import { useParams } from "react-router-dom";
-
 import {
   useGetCurrentPostQuery,
   useGetMediaGroupsOfPostQuery,
   useGetMediaGroupQuery,
   usePublishPostMutation,
+  useArchivePostMutation,
+  useDeletePostMutation,
 } from "../../../store/api/posts-api";
 
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setEffect } from "../../../store/slices/effects";
+
+import { useNavigate, useParams } from "react-router-dom";
 
 import { SwiperSlide } from "swiper/react";
 
@@ -19,40 +21,35 @@ import PageTitle from "#ui/page-title/page-title.tsx";
 import Slider from "#ui/slider/slider.tsx";
 import SlideLayout from "#ui/slider/components/slide-layout.tsx";
 import Button from "#ui/button/button.tsx";
-
-import pic1 from "#images/alfa-romeo.jpg";
-import pic2 from "#images/audi.jpg";
-import pic3 from "#images/toyota.jpg";
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 
 const CurrentPostPage: FC = () => {
   const params = useParams();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const { userIsAdmin } = useAppSelector((state) => state.userSlice);
 
-  const [
-    publishPost,
-    { data: publishData, isLoading: publishLoading, isError: publishError, isSuccess: publishSuccess },
-  ] = usePublishPostMutation();
+  const [publish, publishStatus] = usePublishPostMutation();
+  const [archive, archiveStatus] = useArchivePostMutation();
+  const [deletePost, deletingStatus] = useDeletePostMutation();
 
-  const { data, isLoading, isSuccess, isError } = useGetCurrentPostQuery({ post_id: params?.id });
-
-  const {
-    data: mediaData,
-    isLoading: mediaLoading,
-    isError: mediaError,
-  } = useGetMediaGroupsOfPostQuery({ post_id: params?.id });
+  const currentPost = useGetCurrentPostQuery({ post_id: params?.id });
+  const mediaGroups = useGetMediaGroupsOfPostQuery({ post_id: params?.id });
 
   useEffect(() => {
-    if (publishSuccess) {
+    if (publishStatus.isSuccess) {
       dispatch(setEffect({ status: "success", message: "Пост успешно опубликован" }));
     }
-  }, [publishSuccess]);
+
+    if (publishStatus.isError) {
+      dispatch(setEffect({ status: "error", message: "Ошибка при опубликовании" }));
+    }
+  }, [publishStatus]);
 
   return (
     <PageLayout pageClassName="current-post-page">
-      <PageTitle pageName={data?.title ?? "Загрузка.."} />
+      <PageTitle pageName={currentPost?.data?.title ?? "Загрузка.."} />
       <>
         {userIsAdmin && (
           <div className="current-post-page__managing-buttons">
@@ -61,21 +58,39 @@ const CurrentPostPage: FC = () => {
               buttonText="Опубликовать"
               onClickAction={() => {
                 if (params?.id) {
-                  publishPost({ postId: params?.id });
+                  console.log(params.id);
+                  publish({ postId: params?.id });
                 }
               }}
             />
 
-            <Button buttonStyle="OUTLINED" buttonText="Архивировать" onClickAction={() => undefined} />
+            <Button
+              buttonStyle="OUTLINED"
+              buttonText="Архивировать"
+              onClickAction={() => {
+                if (params.id) {
+                  archive({ postId: params?.id });
+                }
+              }}
+            />
 
             <Button buttonStyle="OUTLINED" buttonText="Редактировать" onClickAction={() => undefined} />
-            <Button buttonStyle="OUTLINED" buttonText="Удалить пост" onClickAction={() => undefined} />
+            <Button
+              buttonStyle="OUTLINED"
+              buttonText="Удалить пост"
+              onClickAction={() => {
+                if (params.id) {
+                  deletePost({ postId: params?.id });
+                  navigate(-1);
+                }
+              }}
+            />
           </div>
         )}
       </>
 
       <ContentBlockLayout>
-        <div className="current-post-page__post">{data?.content}</div>
+        <div className="current-post-page__post">{currentPost?.data?.content}</div>
 
         <div className="current-post-page__album">
           {/* <Slider paginationInculde={false}>
