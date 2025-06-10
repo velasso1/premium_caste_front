@@ -38,14 +38,19 @@ const CurrentPostPage: FC = () => {
   const mediaGroups = useGetMediaGroupsOfPostQuery({ post_id: params?.id });
 
   useEffect(() => {
-    if (publishStatus.isSuccess) {
-      dispatch(setEffect({ status: "success", message: "Пост успешно опубликован" }));
+    if (publishStatus.isSuccess || archiveStatus.isSuccess || deletingStatus.isSuccess) {
+      dispatch(setEffect({ status: "success", message: "Успешно" }));
     }
 
-    if (publishStatus.isError) {
-      dispatch(setEffect({ status: "error", message: "Ошибка при опубликовании" }));
+    if (publishStatus.isError || archiveStatus.isError || deletingStatus.isError) {
+      dispatch(
+        setEffect({
+          status: "error",
+          message: "Возникла ошибка, попробуйте позже",
+        })
+      );
     }
-  }, [publishStatus]);
+  }, [publishStatus, archiveStatus, deletingStatus]);
 
   return (
     <PageLayout pageClassName="current-post-page">

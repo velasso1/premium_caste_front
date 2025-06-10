@@ -13,6 +13,7 @@ const VideoBlock: FC = () => {
       <img className="general-page__banner" src={premium} alt="premium caste" />
       <video
         className="general-page__clip"
+        playsInline={true}
         autoPlay={true}
         loop
         muted

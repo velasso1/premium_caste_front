@@ -21,7 +21,7 @@ const BlogItem: FC<IBlogItemProps> = ({ postInfo, postPreview }) => {
 
   return (
     <div className="blog-page__blog-item" onClick={() => navigate(`../blog/item/${postInfo.id}`)}>
-      <img src={"http://localhost:8080/uploads/" + postInfo.featured_image_path} alt="postImage" />
+      <img className="blog-page__item-preview" src={"http://localhost:8080/uploads/" + postInfo.featured_image_path} alt="postImage" />
       <div className="blog-page__item-description">{postInfo.excerpt}</div>
       <span className="blog-page__item-date">{createdDate}</span>
       <span className="blog-page__cross">подробнее</span>

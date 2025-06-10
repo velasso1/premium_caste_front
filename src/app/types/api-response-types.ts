@@ -7,8 +7,8 @@ export interface IServerResponse {
 
 // тип с ошибкой запроса
 export type CustomizedFetchBaseQueryError = {
-  status?: number;
   data: { details: string; error: string; status: string };
+  status?: number;
 };
 
 // ответ от сервера при регистрации

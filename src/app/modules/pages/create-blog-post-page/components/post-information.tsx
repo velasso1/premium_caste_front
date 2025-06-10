@@ -27,13 +27,10 @@ const initialStatePost: IPostInfoPayload = {
 const PostInformation: FC = () => {
   const dispatch = useAppDispatch();
 
-  const { data, isLoading, isSuccess, isError } = useGetAllImagesQuery();
-  const [
-    createNewPost,
-    { data: newPostData, error, isLoading: newPostLoading, isSuccess: newPostSuccess, isError: newPostError },
-  ] = useCreateNewPostMutation();
-
   const { userId } = useAppSelector((state) => state.userSlice);
+
+  const images = useGetAllImagesQuery();
+  const [createNewPost, creatingStatus] = useCreateNewPostMutation();
 
   const [postInfo, setPostInfo] = useState<IPostInfoPayload>(initialStatePost);
   const [previewSelected, setPreviewSelected] = useState<boolean>(false);
@@ -46,15 +43,15 @@ const PostInformation: FC = () => {
   } = useForm<IPostInfoPayload>();
 
   useEffect(() => {
-    if (newPostSuccess) {
+    if (creatingStatus.isSuccess) {
       setPostInfo(initialStatePost);
       dispatch(setEffect({ status: "success", message: "Пост успешно создан!" }));
     }
 
-    if (newPostError) {
+    if (creatingStatus.isError) {
       dispatch(setEffect({ status: "error", message: "Произошла ошибка при загрузке данных" }));
     }
-  }, [newPostSuccess, newPostError]);
+  }, [creatingStatus]);
 
   const createPostHandler =
     (postStatus: "draft" | "published"): SubmitHandler<IPostInfoPayload> =>
@@ -72,7 +69,7 @@ const PostInformation: FC = () => {
   return (
     <ContentBlockLayout contentTitle="Содержание поста" customClassName="create-blog-post-page__post-info">
       <div className="create-blog-post-page__post-fields">
-        {newPostLoading && <Loader />}
+        {creatingStatus.isLoading && <Loader />}
 
         {(errors.content || errors.title || errors.excerpt) && (
           <LineNotification text="Все поля должны быть заполнены" />
@@ -103,8 +100,8 @@ const PostInformation: FC = () => {
       <div className="create-blog-post-page__upload-container">
         Выберите превью для поста
         <div className="create-blog-post-page__preview-container">
-          {data?.data ? (
-            data?.data.map((item) => {
+          {images?.data?.data ? (
+            images?.data.data.map((item) => {
               const IMAGE_PATH = "http://localhost:8080/uploads/uploads/" + userId + "/" + item.original_filename;
 
               return (
