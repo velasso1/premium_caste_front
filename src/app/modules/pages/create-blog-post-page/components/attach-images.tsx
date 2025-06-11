@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 
 import { IGetAllImagesResponse } from "#types/api-response-types.ts";
 import { useAppDispatch, useAppSelector } from "../../../../store";
@@ -13,8 +13,6 @@ const AttachImages: FC<IAttachImagesProps> = ({ images, userId }) => {
   const dispatch = useAppDispatch();
 
   const { attachedImages } = useAppSelector((state) => state.postsSlice);
-
-  const [selectedImages, setImages] = useState<string[]>([]);
 
   return (
     <div className="create-blog-post-page__upload-container">

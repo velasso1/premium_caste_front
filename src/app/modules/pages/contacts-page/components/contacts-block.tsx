@@ -14,7 +14,7 @@ const ContactsBlock: FC = () => {
           Телефон:&nbsp;<span className="contacts-page__highlight">+7 (968) 437-39-83</span>
         </li>
         <li className="contacts-page__item--contact">
-          Напишите нам:{/* <span className="contacts-page__highlight"> */}
+          Напишите нам:
           <Link to="https://t.me/premiumcaste_admin" target="_blank" rel="noopener noreferrer">
             <img className="contacts-page__item-telegram" src={telegram} alt="telegram" />
           </Link>

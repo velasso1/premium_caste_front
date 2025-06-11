@@ -63,7 +63,6 @@ const CurrentPostPage: FC = () => {
               buttonText="Опубликовать"
               onClickAction={() => {
                 if (params?.id) {
-                  console.log(params.id);
                   publish({ postId: params?.id });
                 }
               }}

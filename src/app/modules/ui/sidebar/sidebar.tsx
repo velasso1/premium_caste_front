@@ -23,8 +23,6 @@ const Sidebar: FC<ISidebarProps> = ({ sidebarItems, managementType, itemsManagem
           />
         );
       })}
-
-      {/* customClass={index === 0 ? "sidebar__item--active" : ""} */}
     </div>
   );
 };

@@ -3,11 +3,9 @@ import { FC, useState, useRef, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../../../store";
 import { setEffect } from "../../../../store/slices/effects";
 import { useUploadMediaMutation } from "../../../../store/api/media-api";
-import { IUploadImagesPayload } from "#types/api-payload-types.ts";
 
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 import Button from "#ui/button/button.tsx";
-import TextField from "#ui/fields/text-field.tsx";
 
 import Loader from "#ui/loader/loader.tsx";
 
@@ -15,7 +13,6 @@ const PostImages: FC = () => {
   const dispatch = useAppDispatch();
   const [previews, setPreviews] = useState<string[]>([]);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-  // const [imagesState, setImagesState] = useState<string>("");
 
   const [uploadImages, { data, isSuccess, isLoading, isError }] = useUploadMediaMutation();
 
@@ -63,7 +60,6 @@ const PostImages: FC = () => {
       formData.append(`file`, file);
     });
 
-    // formData.append("file", selectedFiles);
     formData.append("uploader_id", userId);
     formData.append("media_type", "photo");
     formData.append("width", "100");
@@ -74,15 +70,6 @@ const PostImages: FC = () => {
 
   return (
     <ContentBlockLayout contentTitle="Загрузка изображений" customClassName="create-blog-post-page__images-upload">
-      {/* <div style={{ display: "flex", flexDirection: "column", textAlign: "center" }}>
-        <TextField
-          className="create-blog-post-page__file-description"
-          type="text"
-          placeholder="Одним словом опишите изборажения"
-          onChange={(e) => setImagesState(e.target.value)}
-        />
-      </div> */}
-
       <div className="create-blog-post-page__upload-container">
         {isLoading && <Loader />}
         <label className="create-blog-post-page__custom-file-button">
