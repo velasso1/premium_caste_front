@@ -9,6 +9,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 
 import { IPostInfoPayload } from "#types/store-types/posts-initial-state-types.ts";
 
+import AttachImages from "./attach-images";
+
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 import TextField from "#ui/fields/text-field.tsx";
 import Button from "#ui/button/button.tsx";
@@ -28,12 +30,14 @@ const PostInformation: FC = () => {
   const dispatch = useAppDispatch();
 
   const { userId } = useAppSelector((state) => state.userSlice);
+  const { attachedImages } = useAppSelector((state) => state.postsSlice);
 
   const images = useGetAllImagesQuery();
   const [createNewPost, creatingStatus] = useCreateNewPostMutation();
 
   const [postInfo, setPostInfo] = useState<IPostInfoPayload>(initialStatePost);
   const [previewSelected, setPreviewSelected] = useState<boolean>(false);
+  const [creatingStep, setCreatingStep] = useState<number>(1);
 
   const {
     register,
@@ -97,39 +101,61 @@ const PostInformation: FC = () => {
           {...register("content", { required: true })}
         />
       </div>
-      <div className="create-blog-post-page__upload-container">
-        Выберите превью для поста
-        <div className="create-blog-post-page__preview-container">
-          {images?.data?.data ? (
-            images?.data.data.map((item) => {
-              const IMAGE_PATH = "http://localhost:8080/uploads/uploads/" + userId + "/" + item.original_filename;
 
-              return (
-                <div
-                  className={`create-blog-post-page__preview-item ${
-                    item.id === postInfo.featured_image_id ? "create-blog-post-page__preview-item--selected" : null
-                  }`}
-                >
-                  <img
-                    className="create-blog-post-page__preview-image"
-                    key={item.id}
-                    src={IMAGE_PATH}
-                    alt={item.original_filename}
-                    onClick={() => {
-                      setPostInfo((prev) => ({ ...prev, featured_image_id: item.id }));
-                    }}
-                  />
-                </div>
-              );
-            })
-          ) : (
-            <div>Пока что картинок нет</div>
-          )}
-        </div>
-      </div>
+      <>
+        {creatingStep === 1 && (
+          <div className="create-blog-post-page__upload-container">
+            Выберите превью для поста
+            <div className="create-blog-post-page__preview-container">
+              {images?.data?.data ? (
+                images?.data.data.map((item) => {
+                  const IMAGE_PATH = "http://localhost:8080/uploads/uploads/" + userId + "/" + item.original_filename;
+
+                  return (
+                    <div
+                      className={`create-blog-post-page__preview-item ${
+                        item.id === postInfo.featured_image_id ? "create-blog-post-page__preview-item--selected" : null
+                      }`}
+                    >
+                      <img
+                        className="create-blog-post-page__preview-image"
+                        key={item.id}
+                        src={IMAGE_PATH}
+                        alt={item.original_filename}
+                        onClick={() => {
+                          setPostInfo((prev) => ({ ...prev, featured_image_id: item.id }));
+                        }}
+                      />
+                    </div>
+                  );
+                })
+              ) : (
+                <div>Пока что картинок нет</div>
+              )}
+            </div>
+          </div>
+        )}
+      </>
+
+      <>{creatingStep === 2 && <AttachImages images={images?.data} userId={userId} />}</>
+
       <div className="create-blog-post-page__buttons">
-        <Button buttonText="Создать пост" onClickAction={handleSubmit(createPostHandler("draft"))} />
-        <Button buttonText="Создать и опубликовать" onClickAction={handleSubmit(createPostHandler("published"))} />
+        {creatingStep === 1 && <Button buttonText="Далее" onClickAction={() => setCreatingStep(2)} />}
+        {creatingStep === 2 && (
+          <>
+            <Button buttonText="Назад" onClickAction={() => setCreatingStep((prev) => prev - 1)} />
+            <Button
+              buttonText="Создать пост"
+              disabled={attachedImages.length <= 1}
+              onClickAction={handleSubmit(createPostHandler("draft"))}
+            />
+            <Button
+              buttonText="Создать и опубликовать"
+              disabled={attachedImages.length <= 1}
+              onClickAction={handleSubmit(createPostHandler("published"))}
+            />
+          </>
+        )}
       </div>
     </ContentBlockLayout>
   );

@@ -2,6 +2,7 @@
 
 export interface IPostsInitialState {
   postStatus: "published" | "archived" | "draft";
+  attachedImages: string[];
 }
 
 export interface IPostInfoPayload {

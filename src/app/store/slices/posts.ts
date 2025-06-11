@@ -5,6 +5,7 @@ import { IPostsInitialState } from "#types/store-types/posts-initial-state-types
 
 const initialState: IPostsInitialState = {
   postStatus: "published",
+  attachedImages: [],
 };
 
 const postsSlice = createSlice({
@@ -15,8 +16,16 @@ const postsSlice = createSlice({
     changePostStatus(state, action: PayloadAction<"published" | "draft" | "archived">) {
       state.postStatus = action.payload;
     },
+
+    selectImagesForPost(state, action: PayloadAction<string>) {
+      if (state.attachedImages.includes(action.payload)) {
+        state.attachedImages = state.attachedImages.filter((arrayItem) => arrayItem !== action.payload);
+        return;
+      }
+      state.attachedImages.push(action.payload);
+    },
   },
 });
 
-export const { changePostStatus } = postsSlice.actions;
+export const { changePostStatus, selectImagesForPost } = postsSlice.actions;
 export default postsSlice.reducer;
