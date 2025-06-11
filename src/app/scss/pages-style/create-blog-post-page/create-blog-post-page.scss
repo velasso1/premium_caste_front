@@ -62,6 +62,8 @@
     gap: 12px;
     flex-wrap: wrap;
     margin: 16px 0;
+    max-height: 400px;
+    overflow-y: scroll;
   }
 
   &__preview-item {
