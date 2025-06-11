@@ -97,6 +97,7 @@ export const postsApi = createApi({
 
 export const {
   useGetPostsQuery,
+  useLazyGetPostsQuery,
   useGetCurrentPostQuery,
   useGetMediaGroupsOfPostQuery,
   useGetMediaGroupQuery,
