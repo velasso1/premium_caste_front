@@ -18,8 +18,14 @@ const BlogPage: FC = () => {
     <PageLayout pageClassName="blog-page">
       <PageTitle pageName="Блог" />
       <div className="blog-page__upper-side">
-        <BlogMainNews postInfo={MAIN_POST} />
-        <BlogSecondNews postInfo={SECOND_POST} />
+        {posts?.data?.posts.length ? (
+          <>
+            <BlogMainNews postInfo={MAIN_POST} />
+            <BlogSecondNews postInfo={SECOND_POST} />
+          </>
+        ) : (
+          "Постов пока что нет"
+        )}
       </div>
       <div className="blog-page__lower-side">
         {posts.data?.posts.map((item, index) => {

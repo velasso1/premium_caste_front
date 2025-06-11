@@ -93,7 +93,30 @@
     padding: 60px 0;
   }
 
+  &__managing-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
   &__blog-item {
+    &[data-managing="true"] {
+      &:hover {
+        .blog-page__item-preview {
+          filter: brightness(20%);
+        }
+      }
+    }
+
+    &[data-managing="false"] {
+      &:hover {
+        .blog-page__cross {
+          pointer-events: none;
+        }
+      }
+    }
+
     position: relative;
     margin: 0 auto;
     overflow: hidden;
@@ -149,6 +172,7 @@
     color: $mainColor;
     font-weight: 500;
     text-transform: uppercase;
+    pointer-events: auto;
   }
 }
 

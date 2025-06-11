@@ -7,9 +7,10 @@ interface ISidebarProps {
   sidebarItems: ISidebarItemsPostsMenu[] | ISidebarItemAdminMenu[] | ISidebarItem[];
   managementType: "dispatch" | "nav";
   itemsManagement?: () => void;
+  activeElement?: string;
 }
 
-const Sidebar: FC<ISidebarProps> = ({ sidebarItems, managementType, itemsManagement }) => {
+const Sidebar: FC<ISidebarProps> = ({ sidebarItems, managementType, itemsManagement, activeElement }) => {
   return (
     <div className="sidebar">
       {sidebarItems.map((item, index) => {
