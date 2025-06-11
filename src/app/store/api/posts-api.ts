@@ -15,6 +15,7 @@ export const postsApi = createApi({
         url: import.meta.env.VITE_POST_ACTIONS + `?status=${data.postStatus}`,
         // credentials: "include",
       }),
+      keepUnusedDataFor: 0,
       providesTags: (result, error, arg) =>
         result ? [...result.posts.map(({ id }) => ({ type: "Posts" as const, id })), "Posts"] : ["Posts"],
     }),

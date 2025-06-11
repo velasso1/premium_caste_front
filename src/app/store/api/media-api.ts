@@ -16,6 +16,7 @@ export const mediaApi = createApi({
         url: import.meta.env.VITE_GET_IMAGES,
         credentials: "include",
       }),
+      keepUnusedDataFor: 0,
       providesTags: (result, error, arg) =>
         result ? [...result.data.map(({ id }) => ({ type: "Images" as const, id })), "Images"] : ["Images"],
     }),

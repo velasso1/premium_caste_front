@@ -30,15 +30,8 @@ const LoginForm: FC = () => {
   const dispatch = useAppDispatch();
   const { userIsAuth, userId } = useAppSelector((state) => state.userSlice);
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<ILoginPayload>();
-
   const [login, { data, isLoading, isSuccess, error: responseError }] = useLoginMutation();
-  const [checkAdmin, { data: isAdminData }] = useLazyCheckUserStatusQuery();
+  // const [checkAdmin, { data: isAdminData }] = useLazyCheckUserStatusQuery();
 
   useEffect(() => {
     if (isSuccess) {
@@ -49,15 +42,22 @@ const LoginForm: FC = () => {
 
   useEffect(() => {
     if (responseError && "status" in responseError) {
-      dispatch(setEffect({ status: "error", message: "Произошла ошибка, повторите позднее" }));
+      dispatch(setEffect({ status: "error", message: "Произошла ошибка, попробуйте еще раз" }));
     }
   }, [responseError]);
 
-  useEffect(() => {
-    if (userId) {
-      checkAdmin({ userId: userId });
-    }
-  }, [userId]);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ILoginPayload>();
+
+  // useEffect(() => {
+  //   if (userId) {
+  //     checkAdmin({ userId: userId });
+  //   }
+  // }, [userId]);
 
   const onSubmit: SubmitHandler<ILoginPayload> = (data) => {
     login(data);

@@ -80,6 +80,15 @@ export const userApi = createApi({
         },
         body: JSON.stringify(data),
       }),
+
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setUserData(data.is_admin));
+        } catch (error) {
+          console.error(error);
+        }
+      },
     }),
   }),
 });

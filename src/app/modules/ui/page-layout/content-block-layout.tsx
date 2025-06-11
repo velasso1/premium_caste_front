@@ -8,9 +8,9 @@ interface IContentBlockLayoutProps {
 
 const ContentBlockLayout: FC<IContentBlockLayoutProps> = ({ children, contentTitle, customClassName }) => {
   return (
-    <div className={`${customClassName} content-block-layout`}>
-      <div className="content-block-layout__title">{contentTitle}</div>
-      <div className="content-block-layout__content">{children}</div>
+    <div className={`${customClassName ?? ""} content-block-layout`}>
+      {contentTitle ? <div className="content-block-layout__title">{contentTitle}</div> : null}
+      <div className={`content-block-layout__content`}>{children}</div>
     </div>
   );
 };
