@@ -73,78 +73,312 @@
   }
 }
 
+// @media screen and (max-width: 1200px) {
+//   .header {
+//     &__logo-image {
+//       width: 100%;
+//     }
+
+//     a {
+//       font-size: 13px;
+//     }
+
+//     &__icon-image {
+//       width: 60%;
+//     }
+
+//     &__icons {
+//       gap: 15px;
+//     }
+//   }
+// }
+
+// @media screen and (max-width: 992px) {
+//   .header {
+//     &__nav {
+//       margin: 0 0 0 30px;
+//     }
+
+//     &__logo-image {
+//       width: 80%;
+//     }
+
+//     &__icon-image {
+//       width: 60%;
+//     }
+
+//     &__icons {
+//       gap: 10px;
+//     }
+
+//     &__nav-item {
+//       &:nth-child(n + 2) {
+//         margin: 0 0 0 40px;
+//       }
+//     }
+//   }
+// }
+
+// @media screen and (max-width: 768px) {
+//   .header {
+//     &__nav {
+//       margin: 0 0 0 10px;
+//     }
+
+//     &__logo-image {
+//       width: 70%;
+//     }
+
+//     a {
+//       font-size: 10px;
+//     }
+
+//     &__icon-image {
+//       width: 50%;
+//     }
+
+//     &__icons {
+//       gap: 5px;
+//     }
+
+//     &__nav-item {
+//       &:nth-child(n + 2) {
+//         margin: 0 0 0 20px;
+//       }
+//     }
+//   }
+// }
+
+// responsive.scss
+
+/* ========== Большие планшеты (1200px) ========== */
 @media screen and (max-width: 1200px) {
   .header {
+    padding: 15px 20px;
+
+    &__nav {
+      margin-left: 40px;
+    }
+
+    &__nav-item {
+      &:nth-child(n + 2) {
+        margin-left: 40px;
+      }
+    }
+
     &__logo-image {
-      width: 100%;
-    }
-
-    a {
-      font-size: 13px;
-    }
-
-    &__icon-image {
-      width: 60%;
+      width: 110%;
     }
 
     &__icons {
       gap: 15px;
     }
+
+    &__icon-image {
+      width: 65%;
+    }
   }
 }
 
+/* ========== Планшеты (ландшафт) (992px) ========== */
 @media screen and (max-width: 992px) {
   .header {
+    padding: 12px 15px;
+    justify-content: space-between;
+
     &__nav {
-      margin: 0 0 0 30px;
+      margin-left: 30px;
+    }
+
+    &__nav-item {
+      &:nth-child(n + 2) {
+        margin-left: 30px;
+      }
     }
 
     &__logo-image {
-      width: 80%;
+      width: 100%;
+    }
+
+    &__icons {
+      gap: 12px;
     }
 
     &__icon-image {
       width: 60%;
+    }
+  }
+}
+
+/* ========== Планшеты (портрет) и мобильные (768px) ========== */
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 10px 15px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+
+    &--sticky {
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    // Гамбургер-меню
+    &__burger {
+      display: block;
+      position: relative;
+      width: 30px;
+      height: 20px;
+      margin-left: 20px;
+      z-index: $zIndex15;
+
+      &::before,
+      &::after,
+      span {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #fff;
+        transition: all 0.3s ease;
+      }
+
+      &::before {
+        top: 0;
+      }
+
+      &::after {
+        bottom: 0;
+      }
+
+      span {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &.active::before {
+        top: 50%;
+        transform: rotate(45deg) translateY(-50%);
+      }
+
+      &.active::after {
+        bottom: 50%;
+        transform: rotate(-45deg) translateY(50%);
+      }
+
+      &.active span {
+        opacity: 0;
+      }
+    }
+
+    &__nav {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 70%;
+      height: 100vh;
+      margin: 0;
+      background-color: rgba(0, 0, 0, 0.95);
+      flex-direction: column;
+      padding: 80px 20px 30px;
+      transition: all 0.4s ease;
+      z-index: $zIndex10;
+
+      &.active {
+        left: 0;
+      }
+    }
+
+    &__list {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &__nav-item {
+      margin: 15px 0 !important;
+      width: 100%;
+
+      &:not(:first-child) {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 15px;
+      }
+    }
+
+    &__logo {
+      order: -1;
+      margin-right: auto;
+    }
+
+    &__icons {
+      flex-grow: 0;
+      margin-left: auto;
+    }
+
+    &__icon-image {
+      width: 55%;
+    }
+  }
+}
+
+/* ========== Мобильные (576px) ========== */
+@media screen and (max-width: 576px) {
+  .header {
+    padding: 8px 10px;
+
+    &__logo-image {
+      width: 90%;
+    }
+
+    &__burger {
+      width: 25px;
+      height: 18px;
+      margin-left: 15px;
+    }
+
+    &__nav {
+      width: 80%;
+      padding: 70px 15px 20px;
     }
 
     &__icons {
       gap: 10px;
     }
 
-    &__nav-item {
-      &:nth-child(n + 2) {
-        margin: 0 0 0 40px;
-      }
+    &__icon-image {
+      width: 50%;
     }
   }
 }
 
-@media screen and (max-width: 768px) {
+/* ========== Маленькие мобильные (380px) ========== */
+@media screen and (max-width: 380px) {
   .header {
-    &__nav {
-      margin: 0 0 0 10px;
-    }
-
     &__logo-image {
-      width: 70%;
+      width: 85%;
     }
 
-    a {
-      font-size: 10px;
-    }
-
-    &__icon-image {
-      width: 50%;
-    }
-
-    &__icons {
-      gap: 5px;
+    &__nav {
+      width: 85%;
+      padding: 60px 10px 15px;
     }
 
     &__nav-item {
-      &:nth-child(n + 2) {
-        margin: 0 0 0 20px;
+      margin: 12px 0 !important;
+
+      &:not(:first-child) {
+        padding-top: 12px;
       }
+    }
+
+    &__burger {
+      width: 22px;
+      height: 16px;
+    }
+
+    &__icons {
+      gap: 8px;
+    }
+
+    &__icon-image {
+      width: 45%;
     }
   }
 }

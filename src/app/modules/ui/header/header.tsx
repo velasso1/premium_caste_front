@@ -38,6 +38,7 @@ const Header: FC = () => {
       </div>
       <NavigationMenu />
       <NavigationIcons />
+      <div className="header__burger"></div>
     </header>
   );
 };

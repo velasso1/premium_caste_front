@@ -1,31 +1,131 @@
+// repsonsive
+
+/* ========== Десктоп (меньше 1200px) ========== */
 @media screen and (max-width: 1200px) {
   .our-works-page {
     &__work-items {
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
     }
 
-    &__work-item {
-      width: 200px;
-    }
-
+    &__work-item,
+    &__banner,
     &__image {
-      width: 200px;
+      width: 100%;
+      max-width: 220px;
     }
   }
 }
 
+/* ========== Планшет (ландшафт) ========== */
 @media screen and (max-width: 992px) {
   .our-works-page {
     &__work-items {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      padding-bottom: 30px;
+    }
+
+    &__work-item,
+    &__banner,
+    &__image {
+      max-width: 180px;
+    }
+
+    &__item-title {
+      font-size: 15px;
+    }
+
+    &__notice {
+      font-size: 13px;
     }
   }
 }
 
+/* ========== Планшет (портрет) ========== */
 @media screen and (max-width: 768px) {
+  .our-works-page {
+    &__content {
+      flex-direction: column;
+    }
+
+    &__work-items {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px 12px;
+      padding-bottom: 25px;
+    }
+
+    &__work-item {
+      width: 100%;
+      max-width: 160px;
+      margin: 0 auto;
+    }
+
+    &__banner,
+    &__image {
+      width: 100%;
+      max-width: 160px;
+    }
+
+    &__item-title {
+      font-size: 14px;
+      padding: 0 5px;
+    }
+
+    &__notice {
+      font-size: 12px;
+    }
+  }
+}
+
+/* ========== Мобильные (ландшафт) ========== */
+@media screen and (max-width: 576px) {
   .our-works-page {
     &__work-items {
       grid-template-columns: 1fr;
+      gap: 25px;
+      padding: 0 15px 20px;
+    }
+
+    &__work-item {
+      max-width: 220px;
+    }
+
+    &__banner,
+    &__image {
+      max-width: 220px;
+    }
+
+    &__notice {
+      top: 45%;
+      font-size: 13px;
+    }
+  }
+}
+
+/* ========== Маленькие мобильные ========== */
+@media screen and (max-width: 380px) {
+  .our-works-page {
+    &__work-items {
+      gap: 22px;
+    }
+
+    &__work-item {
+      max-width: 180px; // Минимальный размер
+    }
+
+    &__banner,
+    &__image {
+      max-width: 180px; // Синхронизация
+    }
+
+    &__item-title {
+      font-size: 13px;
+    }
+
+    &__notice {
+      font-size: 11px;
+      padding: 0 8px;
     }
   }
 }

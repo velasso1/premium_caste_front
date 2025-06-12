@@ -48,5 +48,114 @@
   }
 }
 
-@media screen and (max-width: 1800px) {
+// responsive.scss
+
+/* ========== Планшеты (ландшафт) (992px) ========== */
+@media screen and (max-width: 992px) {
+  .footer {
+    &__list {
+      padding: 35px 0;
+    }
+
+    &__nav-item {
+      &:not(:last-child) {
+        padding-right: 40px;
+      }
+    }
+
+    &__article {
+      padding: 0 10vw;
+    }
+
+    &__copyright {
+      padding: 35px 0;
+    }
+  }
+}
+
+/* ========== Планшеты (портрет) (768px) ========== */
+@media screen and (max-width: 768px) {
+  .footer {
+    &__list {
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 30px 0;
+      gap: 15px 30px;
+    }
+
+    &__nav-item {
+      &:not(:last-child) {
+        padding-right: 30px;
+      }
+    }
+
+    &__article {
+      padding: 0 8vw;
+      font-size: 14px;
+    }
+
+    &__copyright {
+      padding: 30px 0;
+      font-size: 14px;
+    }
+  }
+}
+
+/* ========== Мобильные (576px) ========== */
+@media screen and (max-width: 576px) {
+  .footer {
+    &__list {
+      flex-direction: column;
+      align-items: center;
+      padding: 25px 0;
+      gap: 20px;
+    }
+
+    &__nav-item {
+      padding-right: 0 !important;
+      text-align: center;
+      width: 100%;
+
+      &:not(:last-child) {
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(136, 136, 136, 0.2);
+      }
+    }
+
+    &__article {
+      padding: 0 5vw;
+      font-size: 13px;
+    }
+
+    &__copyright {
+      padding: 25px 10px;
+      font-size: 13px;
+    }
+  }
+}
+
+/* ========== Маленькие мобильные (380px) ========== */
+@media screen and (max-width: 380px) {
+  .footer {
+    &__list {
+      padding: 20px 0;
+      gap: 15px;
+    }
+
+    &__nav-item {
+      &:not(:last-child) {
+        padding-bottom: 12px;
+      }
+    }
+
+    &__article {
+      padding: 0 15px;
+      font-size: 12px;
+    }
+
+    &__copyright {
+      padding: 20px 10px;
+      font-size: 12px;
+    }
+  }
 }
