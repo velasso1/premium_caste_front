@@ -140,7 +140,9 @@ const PostInformation: FC = () => {
       <>{creatingStep === 2 && <AttachImages images={images?.data} userId={userId} />}</>
 
       <div className="create-blog-post-page__buttons">
-        {creatingStep === 1 && <Button buttonText="Далее" onClickAction={() => setCreatingStep(2)} />}
+        {creatingStep === 1 && (
+          <Button buttonText="Далее" disabled={!postInfo.featured_image_id} onClickAction={() => setCreatingStep(2)} />
+        )}
         {creatingStep === 2 && (
           <>
             <Button buttonText="Назад" onClickAction={() => setCreatingStep((prev) => prev - 1)} />
