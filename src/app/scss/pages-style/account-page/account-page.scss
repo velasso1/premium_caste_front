@@ -1,3 +1,89 @@
+// .account-page {
+//   @include defaultPageStyle;
+
+//   &__buttons {
+//     width: 100%;
+//     display: flex;
+//     align-items: center;
+//     justify-content: right;
+//     // grid-template-columns: 1fr auto;
+//     margin: 0 0 20px 0;
+//   }
+
+//   &__content {
+//     display: flex;
+//     gap: 20px;
+//   }
+
+//   &__applications {
+//     width: 100%;
+//   }
+
+//   &__applications {
+//     &--empty {
+//       font-size: 20px;
+//       text-align: center;
+//     }
+//   }
+// }
+
+// .account-info {
+//   display: flex;
+//   flex-direction: column;
+//   // justify-content: center;
+//   // align-items: center;
+//   margin: 0 auto;
+//   padding: 0 0 0 0;
+
+//   &__photo {
+//     margin: 0 auto;
+//     padding: 0 0 40px 0;
+//   }
+
+//   &__form {
+//     display: flex;
+//     flex-direction: column;
+//     text-align: center;
+//     // width: 500px;
+
+//     label {
+//       filter: $brightness;
+//     }
+
+//     input {
+//       @include defualtInputStyle;
+
+//       &:focus {
+//         border: 1px solid $mainColor;
+//       }
+//     }
+//   }
+
+//   &__image {
+//     width: 200px;
+//     border-radius: 50%;
+//   }
+
+//   &__name,
+//   &__surname,
+//   &__phone,
+//   &__email {
+//     @include defualtInputStyle;
+//     margin: 5px 0 25px 0;
+//   }
+
+//   // &__surname {
+//   // }
+
+//   // &__phone {
+//   // }
+
+//   // &__email {
+//   // }
+// }
+
+// @import "./responsive.scss";
+
 .account-page {
   @include defaultPageStyle;
 
@@ -5,8 +91,7 @@
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: right;
-    // grid-template-columns: 1fr auto;
+    justify-content: flex-end;
     margin: 0 0 20px 0;
   }
 
@@ -17,12 +102,56 @@
 
   &__applications {
     width: 100%;
-  }
 
-  &__applications {
     &--empty {
       font-size: 20px;
       text-align: center;
+    }
+  }
+
+  // Адаптивность
+  @media (max-width: 1199.98px) {
+    &__content {
+      gap: 15px;
+    }
+
+    &__applications--empty {
+      font-size: 18px;
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    &__content {
+      flex-direction: column;
+    }
+
+    &__buttons {
+      justify-content: center;
+    }
+
+    &__applications--empty {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    &__buttons {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &__applications--empty {
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    &__buttons {
+      padding: 0 10px;
+    }
+
+    &__applications--empty {
+      font-size: 14px;
     }
   }
 }
@@ -30,10 +159,8 @@
 .account-info {
   display: flex;
   flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
   margin: 0 auto;
-  padding: 0 0 0 0;
+  padding: 0;
 
   &__photo {
     margin: 0 auto;
@@ -44,7 +171,6 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    // width: 500px;
 
     label {
       filter: $brightness;
@@ -72,14 +198,54 @@
     margin: 5px 0 25px 0;
   }
 
-  // &__surname {
-  // }
+  // Адаптивность
+  @media (max-width: 1199.98px) {
+    &__image {
+      width: 180px;
+    }
+  }
 
-  // &__phone {
-  // }
+  @media (max-width: 991.98px) {
+    &__image {
+      width: 160px;
+    }
 
-  // &__email {
-  // }
+    &__form {
+      padding: 0 20px;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    &__image {
+      width: 140px;
+    }
+
+    &__form {
+      padding: 0 15px;
+    }
+
+    &__name,
+    &__surname,
+    &__phone,
+    &__email {
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    &__image {
+      width: 120px;
+    }
+
+    &__form {
+      padding: 0 10px;
+    }
+
+    &__name,
+    &__surname,
+    &__phone,
+    &__email {
+      font-size: 0.9rem;
+    }
+  }
 }
-
-@import "./responsive.scss";

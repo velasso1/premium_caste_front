@@ -15,13 +15,11 @@
     width: 100%;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
   }
 
-  &__images-upload {
-    width: 50%;
-    margin: 0 auto;
-  }
-
+  &__images-upload,
   &__post-info {
     width: 50%;
     margin: 0 auto;
@@ -46,14 +44,14 @@
     cursor: pointer;
     transition: all 0.3s ease;
     overflow: hidden;
-  }
 
-  &__custom-file-button:hover {
-    border-radius: 20px;
-  }
+    &:hover {
+      border-radius: 20px;
+    }
 
-  &__custom-file-button:active {
-    background-color: rgba(255, 80, 0, 0.15);
+    &:active {
+      background-color: rgba(255, 80, 0, 0.15);
+    }
   }
 
   &__preview-container {
@@ -106,10 +104,10 @@
     align-items: center;
     justify-content: center;
     transition: background 0.2s;
-  }
 
-  &__remove-button:hover {
-    background: #ff3000;
+    &:hover {
+      background: #ff3000;
+    }
   }
 
   &__file-description,
@@ -127,6 +125,57 @@
     display: flex;
     flex-direction: column;
   }
+
+  // Адаптивность
+
+  @media (max-width: 1199.98px) {
+    &__images-upload,
+    &__post-info {
+      width: 70%;
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    &__images-upload,
+    &__post-info {
+      width: 90%;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    &__buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__images-upload,
+    &__post-info {
+      width: 100%;
+      padding: 0 15px;
+    }
+
+    &__custom-file-button {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    &__preview-item {
+      width: 80px;
+      height: 80px;
+    }
+
+    &__custom-file-button {
+      font-size: 14px;
+      padding: 8px 20px;
+    }
+
+    &__remove-button {
+      width: 20px;
+      height: 20px;
+      font-size: 14px;
+    }
+  }
 }
 
 .visually-hidden {
@@ -140,5 +189,3 @@
   white-space: nowrap;
   border: 0;
 }
-
-@import "./responsive.scss";

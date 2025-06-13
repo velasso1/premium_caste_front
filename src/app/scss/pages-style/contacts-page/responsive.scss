@@ -1,0 +1,257 @@
+@media screen and (max-width: 1200px) {
+  .contacts-page {
+    &__information {
+      width: 90%; // Увеличиваем ширину блока
+      gap: 30px; // Уменьшаем промежуток
+    }
+
+    &__item,
+    &__item--contact {
+      font-size: 20px; // Уменьшаем размер шрифта
+      padding-top: 20px; // Уменьшаем отступ
+    }
+
+    &__item-telegram,
+    &__item-whatsapp {
+      width: 36px; // Уменьшаем иконки
+      margin-left: 15px; // Уменьшаем отступ
+    }
+
+    &__item-whatsapp {
+      width: 40px;
+    }
+
+    &__links-title {
+      margin-top: 50px; // Уменьшаем отступ
+      font-size: 22px; // Уменьшаем размер
+    }
+
+    .feedback-form {
+      &__title {
+        font-size: 22px; // Уменьшаем размер
+      }
+
+      &__name,
+      &__telegram,
+      &__message {
+        padding: 12px 0 12px 10px; // Уменьшаем отступы
+      }
+
+      &__submit {
+        font-size: 17px; // Уменьшаем размер
+        padding: 10px 22px; // Уменьшаем отступы
+      }
+    }
+  }
+}
+
+/* Большие планшеты (992px) */
+@media screen and (max-width: 992px) {
+  .contacts-page {
+    &__information {
+      width: 95%;
+      flex-direction: column; // Меняем направление на колонку
+    }
+
+    &__map {
+      height: 250px;
+      width: 100%; // Занимает всю ширину
+      order: 0; // Сброс порядка
+      margin-bottom: 30px;
+    }
+
+    &__right {
+      width: 100%;
+    }
+
+    &__item,
+    &__item--contact {
+      font-size: 18px;
+      padding-top: 18px;
+    }
+
+    &__item-telegram,
+    &__item-whatsapp {
+      width: 32px;
+      margin-left: 12px;
+    }
+
+    &__item-whatsapp {
+      width: 36px;
+    }
+
+    &__links-title {
+      margin-top: 40px;
+      font-size: 20px;
+    }
+
+    .feedback-form {
+      &__title {
+        font-size: 20px;
+        margin-top: 25px;
+      }
+
+      &__name,
+      &__telegram,
+      &__message {
+        padding: 10px 0 10px 8px;
+        margin-top: 12px;
+      }
+
+      &__submit {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+    }
+  }
+}
+
+/* Планшеты (768px) */
+@media screen and (max-width: 768px) {
+  .contacts-page {
+    &__information {
+      width: 100%;
+      gap: 30px 0 !important;
+    }
+
+    &__map {
+      height: 220px; // Дополнительное уменьшение
+    }
+
+    &__item,
+    &__item--contact {
+      font-size: 17px; // Дополнительное уменьшение
+      padding-top: 15px;
+    }
+
+    &__item-telegram,
+    &__item-whatsapp {
+      width: 30px; // Дополнительное уменьшение
+      margin-left: 10px;
+    }
+
+    &__item-whatsapp {
+      width: 33px;
+    }
+
+    &__links-title {
+      margin-top: 35px;
+      font-size: 19px;
+    }
+
+    .feedback-form {
+      &__title {
+        font-size: 19px;
+      }
+
+      &__name,
+      &__telegram,
+      &__message {
+        padding: 9px 0 9px 8px;
+      }
+    }
+  }
+}
+
+/* Мобильные (576px) */
+@media screen and (max-width: 576px) {
+  .contacts-page {
+    &__map {
+      height: 200px;
+    }
+
+    &__item,
+    &__item--contact {
+      font-size: 16px;
+      padding-top: 15px;
+      flex-wrap: wrap; // Разрешаем перенос
+    }
+
+    &__item-telegram,
+    &__item-whatsapp {
+      width: 28px;
+      margin-left: 10px;
+    }
+
+    &__item-whatsapp {
+      width: 31px;
+    }
+
+    &__links-title {
+      margin-top: 30px;
+      font-size: 18px;
+    }
+
+    .feedback-form {
+      &__title {
+        font-size: 18px;
+      }
+
+      &__name,
+      &__telegram,
+      &__message {
+        padding: 8px 0 8px 6px;
+        font-size: 14px;
+      }
+
+      &__message {
+        min-height: 80px;
+      }
+
+      &__submit {
+        font-size: 15px;
+        padding: 8px 16px;
+        width: 100%;
+        max-width: 200px;
+      }
+    }
+  }
+}
+
+/* Маленькие мобильные (380px) */
+@media screen and (max-width: 380px) {
+  .contacts-page {
+    &__item,
+    &__item--contact {
+      font-size: 14px;
+      padding-top: 12px;
+    }
+
+    &__item-telegram,
+    &__item-whatsapp {
+      width: 24px;
+      margin-left: 8px;
+    }
+
+    &__item-whatsapp {
+      width: 27px;
+    }
+
+    &__links-title {
+      margin-top: 25px;
+      font-size: 16px;
+    }
+
+    .feedback-form {
+      &__title {
+        font-size: 16px;
+      }
+
+      &__name,
+      &__telegram,
+      &__message {
+        padding: 6px 0 6px 5px;
+        font-size: 13px;
+      }
+
+      &__message {
+        min-height: 70px;
+      }
+
+      &__submit {
+        padding: 7px 14px;
+        font-size: 14px;
+      }
+    }
+  }
+}
