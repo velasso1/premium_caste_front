@@ -2,6 +2,7 @@ import { FC, useState, useEffect } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../../../store";
 import { useCreateNewPostMutation } from "../../../../store/api/posts-api";
+import { clearAttachedImages } from "../../../../store/slices/posts";
 import {
   useCreateMediaGroupMutation,
   useGetAllImagesQuery,
@@ -79,6 +80,12 @@ const PostInformation: FC = () => {
     }
   }, [creatingStatus.isSuccess, mediaGroupStatus.isSuccess]);
 
+  const IS_LOADING: boolean =
+    attachMediaToPostStatus.isLoading ||
+    attachImagesStatus.isLoading ||
+    mediaGroupStatus.isLoading ||
+    creatingStatus.isLoading;
+
   // создание поста и пустой медиа-группы
   const createPostHandler =
     (postStatus: "draft" | "published"): SubmitHandler<IPostInfoPayload> =>
@@ -91,13 +98,15 @@ const PostInformation: FC = () => {
       createNewPost({ ...data, author_id: userId, status: postStatus, featured_image_id: postInfo.featured_image_id });
       createMediaGroup({ owner_id: userId, description: "w/o_description" });
       setPreviewSelected(false);
+      setCreatingStep(1);
+      dispatch(clearAttachedImages());
       reset();
     };
 
   return (
     <ContentBlockLayout contentTitle="Содержание поста" customClassName="create-blog-post-page__post-info">
       <div className="create-blog-post-page__post-fields">
-        {creatingStatus.isLoading && <Loader />}
+        {IS_LOADING && <Loader />}
 
         {(errors.content || errors.title || errors.excerpt) && (
           <LineNotification text="Все поля должны быть заполнены" />

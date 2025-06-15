@@ -24,8 +24,12 @@ const postsSlice = createSlice({
       }
       state.attachedImages.push(action.payload);
     },
+
+    clearAttachedImages(state) {
+      state.attachedImages = [];
+    },
   },
 });
 
-export const { changePostStatus, selectImagesForPost } = postsSlice.actions;
+export const { changePostStatus, selectImagesForPost, clearAttachedImages } = postsSlice.actions;
 export default postsSlice.reducer;
