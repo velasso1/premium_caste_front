@@ -132,26 +132,229 @@
   }
 }
 
-@media screen and (max-width: 1200px) {
-  .slide-layout {
-    margin: 0 10px;
+/* ========== Адаптивные стили ========== */
 
-    &__image {
-      width: 90%;
+/* Большие планшеты (1200px) */
+@media screen and (max-width: 1200px) {
+  .swiper {
+    padding: 0 0 45px 0 !important;
+    margin-bottom: 35px;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 28px !important;
+    height: 28px !important;
+
+    &::after {
+      font-size: 28px !important;
     }
+  }
+
+  .slide-layout {
+    margin: 0 15px;
 
     &__title {
-      font-size: 15px;
+      font-size: 20px;
+    }
+  }
+
+  .autoplay-progress {
+    width: 34px;
+    height: 34px;
+
+    span {
+      font-size: 11px;
     }
   }
 }
 
+/* Планшеты (992px) */
 @media screen and (max-width: 992px) {
+  .swiper {
+    padding: 0 0 40px 0 !important;
+    margin-bottom: 30px;
+    width: 97vw !important;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 25px !important;
+    height: 25px !important;
+
+    &::after {
+      font-size: 25px !important;
+    }
+  }
+
+  .swiper-pagination-bullet,
+  .swiper-pagination-bullet-active {
+    padding: 7px;
+  }
+
+  .slide-layout {
+    margin: 0 12px;
+
+    &__title {
+      font-size: 18px;
+    }
+  }
+
+  .autoplay-progress {
+    width: 32px;
+    height: 32px;
+    right: -3px;
+
+    span {
+      font-size: 10px;
+    }
+  }
+}
+
+/* Планшеты (768px) */
+@media screen and (max-width: 768px) {
+  .swiper {
+    padding: 0 0 35px 0 !important;
+    margin-bottom: 25px;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none !important; // Скрываем стрелки на маленьких экранах
+  }
+
+  .swiper-pagination {
+    margin: 25px 0 0 0 !important;
+  }
+
+  .swiper-pagination-bullet,
+  .swiper-pagination-bullet-active {
+    padding: 6px;
+    width: 12px;
+    height: 12px;
+  }
+
   .slide-layout {
     margin: 0 10px;
 
-    &__image {
-      width: 80%;
+    &__title {
+      font-size: 16px;
+      padding: 15px; // Уменьшаем отступы
+    }
+  }
+
+  .autoplay-progress {
+    width: 28px;
+    height: 28px;
+    bottom: 5px;
+
+    svg {
+      stroke-width: 2.5px;
+    }
+
+    span {
+      margin: -7px 0 0 -5px;
+      font-size: 9px;
     }
   }
 }
+
+/* Мобильные (576px) */
+@media screen and (max-width: 576px) {
+  .swiper {
+    padding: 0 0 30px 0 !important;
+    margin-bottom: 20px;
+    width: 98vw !important;
+  }
+
+  .swiper-pagination {
+    margin: 20px 0 0 0 !important;
+  }
+
+  .swiper-pagination-bullet,
+  .swiper-pagination-bullet-active {
+    padding: 5px;
+    width: 10px;
+    height: 10px;
+  }
+
+  .slide-layout {
+    margin: 0 8px;
+
+    &__title {
+      font-size: 14px;
+      padding: 10px;
+    }
+  }
+
+  .autoplay-progress {
+    width: 24px;
+    height: 24px;
+
+    svg {
+      stroke-width: 2px;
+    }
+
+    span {
+      margin: -6px 0 0 -4px;
+      font-size: 8px;
+    }
+  }
+}
+
+/* Маленькие мобильные (380px) */
+@media screen and (max-width: 380px) {
+  .swiper {
+    padding: 0 0 25px 0 !important;
+  }
+
+  .swiper-pagination-bullet,
+  .swiper-pagination-bullet-active {
+    padding: 4px;
+    width: 8px;
+    height: 8px;
+  }
+
+  .slide-layout {
+    margin: 0 5px;
+
+    &__title {
+      font-size: 12px;
+      padding: 8px;
+    }
+  }
+
+  .autoplay-progress {
+    width: 22px;
+    height: 22px;
+
+    span {
+      margin: -5px 0 0 -3px;
+      font-size: 7px;
+    }
+  }
+}
+
+// @media screen and (max-width: 1200px) {
+//   .slide-layout {
+//     margin: 0 10px;
+
+//     &__image {
+//       width: 90%;
+//     }
+
+//     &__title {
+//       font-size: 15px;
+//     }
+//   }
+// }
+
+// @media screen and (max-width: 992px) {
+//   .slide-layout {
+//     margin: 0 10px;
+
+//     &__image {
+//       width: 80%;
+//     }
+//   }
+// }
