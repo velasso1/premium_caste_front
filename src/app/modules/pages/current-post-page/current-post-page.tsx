@@ -37,6 +37,8 @@ const CurrentPostPage: FC = () => {
   const currentPost = useGetCurrentPostQuery({ post_id: params?.id });
   const mediaGroups = useGetMediaGroupsOfPostQuery({ post_id: params?.id });
 
+  console.log(mediaGroups);
+
   useEffect(() => {
     if (publishStatus.isSuccess || archiveStatus.isSuccess || deletingStatus.isSuccess) {
       dispatch(setEffect({ status: "success", message: "Успешно" }));

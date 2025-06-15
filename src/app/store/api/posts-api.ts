@@ -20,6 +20,7 @@ export const postsApi = createApi({
         result ? [...result.posts.map(({ id }) => ({ type: "Posts" as const, id })), "Posts"] : ["Posts"],
     }),
 
+    // возвращает пост по id
     getCurrentPost: build.query<IPost, { post_id: string | undefined }>({
       query: (data) => ({
         url: import.meta.env.VITE_POST_ACTIONS + `/${data.post_id}`,
@@ -43,7 +44,7 @@ export const postsApi = createApi({
       }),
     }),
 
-    createNewPost: build.mutation<void, IPostInfoPayload>({
+    createNewPost: build.mutation<IPost, IPostInfoPayload>({
       query: (data) => ({
         url: import.meta.env.VITE_POST_ACTIONS,
         method: "POST",

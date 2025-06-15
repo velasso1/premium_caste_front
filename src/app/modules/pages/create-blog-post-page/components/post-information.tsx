@@ -2,7 +2,12 @@ import { FC, useState, useEffect } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../../../store";
 import { useCreateNewPostMutation } from "../../../../store/api/posts-api";
-import { useGetAllImagesQuery } from "../../../../store/api/media-api";
+import {
+  useCreateMediaGroupMutation,
+  useGetAllImagesQuery,
+  useAttachMediaToGroupMutation,
+  useAttachMediaGroupToPostMutation,
+} from "../../../../store/api/media-api";
 import { setEffect } from "../../../../store/slices/effects";
 
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -34,6 +39,9 @@ const PostInformation: FC = () => {
 
   const images = useGetAllImagesQuery();
   const [createNewPost, creatingStatus] = useCreateNewPostMutation();
+  const [createMediaGroup, mediaGroupStatus] = useCreateMediaGroupMutation();
+  const [attachImages, attachImagesStatus] = useAttachMediaToGroupMutation();
+  const [attachMediaToPost, attachMediaToPostStatus] = useAttachMediaGroupToPostMutation();
 
   const [postInfo, setPostInfo] = useState<IPostInfoPayload>(initialStatePost);
   const [previewSelected, setPreviewSelected] = useState<boolean>(false);
@@ -57,6 +65,21 @@ const PostInformation: FC = () => {
     }
   }, [creatingStatus]);
 
+  // соединение картинок в группу
+  useEffect(() => {
+    if (mediaGroupStatus.data) {
+      attachImages({ group_id: mediaGroupStatus.data.data, media_id: attachedImages });
+    }
+  }, [mediaGroupStatus.isSuccess]);
+
+  // соединение группы картинок с постом
+  useEffect(() => {
+    if (creatingStatus.isSuccess && mediaGroupStatus.isSuccess) {
+      attachMediaToPost({ post_id: creatingStatus.data.id, group_id: mediaGroupStatus.data.data });
+    }
+  }, [creatingStatus.isSuccess, mediaGroupStatus.isSuccess]);
+
+  // создание поста и пустой медиа-группы
   const createPostHandler =
     (postStatus: "draft" | "published"): SubmitHandler<IPostInfoPayload> =>
     (data) => {
@@ -66,6 +89,7 @@ const PostInformation: FC = () => {
       }
 
       createNewPost({ ...data, author_id: userId, status: postStatus, featured_image_id: postInfo.featured_image_id });
+      createMediaGroup({ owner_id: userId, description: "w/o_description" });
       setPreviewSelected(false);
       reset();
     };
