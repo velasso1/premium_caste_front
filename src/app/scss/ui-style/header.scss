@@ -1,7 +1,7 @@
 .header {
   color: #fff;
   position: fixed;
-  z-index: $zIndex15;
+  z-index: 2000;
   top: 0;
   width: 100%;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
@@ -72,82 +72,6 @@
     background-color: black;
   }
 }
-
-// @media screen and (max-width: 1200px) {
-//   .header {
-//     &__logo-image {
-//       width: 100%;
-//     }
-
-//     a {
-//       font-size: 13px;
-//     }
-
-//     &__icon-image {
-//       width: 60%;
-//     }
-
-//     &__icons {
-//       gap: 15px;
-//     }
-//   }
-// }
-
-// @media screen and (max-width: 992px) {
-//   .header {
-//     &__nav {
-//       margin: 0 0 0 30px;
-//     }
-
-//     &__logo-image {
-//       width: 80%;
-//     }
-
-//     &__icon-image {
-//       width: 60%;
-//     }
-
-//     &__icons {
-//       gap: 10px;
-//     }
-
-//     &__nav-item {
-//       &:nth-child(n + 2) {
-//         margin: 0 0 0 40px;
-//       }
-//     }
-//   }
-// }
-
-// @media screen and (max-width: 768px) {
-//   .header {
-//     &__nav {
-//       margin: 0 0 0 10px;
-//     }
-
-//     &__logo-image {
-//       width: 70%;
-//     }
-
-//     a {
-//       font-size: 10px;
-//     }
-
-//     &__icon-image {
-//       width: 50%;
-//     }
-
-//     &__icons {
-//       gap: 5px;
-//     }
-
-//     &__nav-item {
-//       &:nth-child(n + 2) {
-//         margin: 0 0 0 20px;
-//       }
-//     }
-//   }
-// }
 
 // responsive.scss
 
