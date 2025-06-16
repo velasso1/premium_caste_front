@@ -14,7 +14,7 @@ const BlogSecondNews: FC<IBlogMainNewsProps> = ({ postInfo }) => {
         <>
           <img
             className="blog-page__second-image"
-            src={"http://localhost:8080/uploads/" + postInfo.featured_image_path}
+            src={import.meta.env.VITE_UPLOADS_FILES + postInfo.featured_image_path}
             alt="second news image"
           />
           <div className="blog-page__shadow"></div>

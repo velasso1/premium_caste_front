@@ -66,7 +66,7 @@ const BlogItem: FC<IBlogItemProps> = ({ postInfo, postPreview, postLoader }) => 
         {refetchStatus.isLoading || publishStatus.isLoading || archiveStatus.isLoading ? (
           <Loader />
         ) : (
-          <img className="" src={"http://localhost:8080/uploads/" + postInfo.featured_image_path} alt="postImage" />
+          <img className="" src={import.meta.env.VITE_UPLOADS_FILES + postInfo.featured_image_path} alt="postImage" />
         )}
       </div>
 

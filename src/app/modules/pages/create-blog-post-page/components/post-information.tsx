@@ -142,7 +142,8 @@ const PostInformation: FC = () => {
             <div className="create-blog-post-page__preview-container">
               {images?.data?.data ? (
                 images?.data.data.map((item) => {
-                  const IMAGE_PATH = "http://localhost:8080/uploads/uploads/" + userId + "/" + item.original_filename;
+                  const IMAGE_PATH =
+                    import.meta.env.VITE_UPLOADS_FILES + "uploads/" + userId + "/" + item.original_filename;
 
                   return (
                     <div
