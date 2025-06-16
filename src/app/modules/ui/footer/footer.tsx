@@ -11,9 +11,9 @@ const Footer: FC = () => {
       <div className="container">
         <div className="footer__information">
           <ul className="footer__list">
-            {PAGES_NAVIGATION_LIST.map((item) => {
+            {PAGES_NAVIGATION_LIST.map((item, index) => {
               return (
-                <li className="footer__nav-item" key={crypto.randomUUID()}>
+                <li className="footer__nav-item" key={index}>
                   <NavLink className="footer__link" to={item.href}>
                     {item.pageName}
                   </NavLink>
