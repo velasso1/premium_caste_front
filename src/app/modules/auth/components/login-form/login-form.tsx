@@ -7,7 +7,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../store";
 import { setEffect } from "../../../../store/slices/effects";
 
-import { useLoginMutation } from "../../../../store/api/user-api";
+import { useLoginMutation, useLazyCheckUserStatusQuery } from "../../../../store/api/user-api";
 import { changeUserLoginStatus } from "../../../../store/slices/user";
 
 import { ILoginPayload } from "#types/api-payload-types.ts";
@@ -31,6 +31,7 @@ const LoginForm: FC = () => {
   const { userIsAuth, userId } = useAppSelector((state) => state.userSlice);
 
   const [login, { data, isLoading, isSuccess, error: responseError }] = useLoginMutation();
+  const [checkAdmin, { data: isAdminData }] = useLazyCheckUserStatusQuery();
 
   useEffect(() => {
     if (isSuccess) {
@@ -44,6 +45,12 @@ const LoginForm: FC = () => {
       dispatch(setEffect({ status: "error", message: "Произошла ошибка, попробуйте еще раз" }));
     }
   }, [responseError]);
+
+  useEffect(() => {
+    if (userId) {
+      checkAdmin({ userId: userId });
+    }
+  }, [userId]);
 
   const {
     register,
