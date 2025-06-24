@@ -42,7 +42,7 @@ const Slider: FC<ISliderProps> = ({ children, paginationInculde = true, navigati
         }}
         onAutoplayTimeLeft={(s, time, progress) => onAutoplayTimeLeft(s, time, progress)}
         breakpoints={{
-          400: {
+          370: {
             slidesPerView: 1,
           },
           768: {

@@ -21,9 +21,7 @@ const BlogSecondNews: FC<IBlogMainNewsProps> = ({ postInfo }) => {
           <p className="blog-page__second-news-title">{postInfo.excerpt}</p>
           <span className="blog-page__main-news-clue">подробнее</span>
         </>
-      ) : (
-        <Loader />
-      )}
+      ) : null}
     </div>
   );
 };
