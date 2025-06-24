@@ -194,9 +194,14 @@
     }
 
     &__nav {
+      &[data-opened="true"] {
+        right: 0;
+      }
+
       position: fixed;
       top: 0;
-      left: -100%;
+      text-align: right;
+      right: 100%;
       width: 70%;
       height: 100vh;
       margin: 0;

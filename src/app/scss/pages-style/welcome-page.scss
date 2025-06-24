@@ -51,3 +51,171 @@
     display: none;
   }
 }
+
+// RESPONSIVE
+
+.welcome-page {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  z-index: $zIndex15;
+  width: 100%;
+  height: 100%;
+  background-color: $lightSectionColor;
+
+  &__logo {
+    margin: 0 auto;
+    width: 650px; // Дефолтный размер для десктопа
+    max-width: 90%; // Защита от переполнения
+    transition: transform 0.5s ease; // Плавное масштабирование
+
+    // Планшеты (ландшафт)
+    @media screen and (max-width: 1200px) {
+      width: 550px;
+    }
+
+    // Планшеты (портрет)
+    @media screen and (max-width: 992px) {
+      width: 450px;
+    }
+
+    // Большие мобильные
+    @media screen and (max-width: 768px) {
+      width: 380px;
+    }
+
+    // Мобильные (ландшафт)
+    @media screen and (max-width: 576px) {
+      width: 300px;
+    }
+
+    // Маленькие мобильные
+    @media screen and (max-width: 380px) {
+      width: 260px;
+    }
+  }
+
+  &__start-button {
+    width: max-content;
+    margin: 0 auto;
+    border-radius: 20px;
+    border: 1px solid $mainColor;
+    background: rgba(197, 74, 33, 0.151);
+    color: #fff;
+    padding: 10px 50px;
+    margin-top: -50px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    font-size: 18px;
+    cursor: pointer;
+
+    // Планшеты (портрет)
+    @media screen and (max-width: 992px) {
+      padding: 10px 40px;
+      font-size: 16px;
+      margin-top: -40px;
+    }
+
+    // Большие мобильные
+    @media screen and (max-width: 768px) {
+      padding: 8px 35px;
+      font-size: 15px;
+      margin-top: -30px;
+      border-radius: 16px;
+    }
+
+    // Мобильные (ландшафт)
+    @media screen and (max-width: 576px) {
+      padding: 7px 30px;
+      font-size: 14px;
+      margin-top: -20px;
+      border-radius: 14px;
+    }
+
+    // Маленькие мобильные
+    @media screen and (max-width: 380px) {
+      padding: 6px 25px;
+      font-size: 13px;
+      margin-top: -15px;
+      border-radius: 12px;
+    }
+
+    &:hover {
+      background: $mainColor;
+      transform: scale(1.1);
+    }
+
+    // Отключение масштаба на мобильных
+    @media (hover: none) {
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+}
+
+.welcome__closed {
+  animation-name: closer;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  overflow: hidden;
+}
+
+@keyframes closer {
+  0% {
+    height: 100%;
+    opacity: 100%;
+  }
+  100% {
+    height: 0%;
+    opacity: 0%;
+    display: none;
+  }
+}
+
+// Адаптация вертикальной ориентации
+@media (orientation: portrait) and (max-width: 768px) {
+  .welcome-page {
+    &__logo {
+      width: 80%; // Более широкое лого в портрете
+      max-width: 350px;
+    }
+
+    &__start-button {
+      margin-top: 20px; // Больший отступ сверху
+    }
+  }
+}
+
+// Адаптация для очень высоких экранов
+@media (min-height: 1000px) {
+  .welcome-page {
+    &__logo {
+      transform: scale(1.2); // Увеличение на высоких экранах
+    }
+
+    &__start-button {
+      margin-top: 50px; // Больший отступ
+      padding: 15px 60px;
+      font-size: 22px;
+    }
+  }
+}
+
+// Адаптация для очень маленьких экранов
+@media (max-height: 500px) {
+  .welcome-page {
+    &__logo {
+      width: 200px; // Значительно уменьшаем лого
+      margin-bottom: 20px;
+    }
+
+    &__start-button {
+      margin-top: 0;
+      padding: 5px 20px;
+      font-size: 12px;
+    }
+  }
+}

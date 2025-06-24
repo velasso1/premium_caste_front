@@ -148,10 +148,15 @@
   @media (max-width: 575.98px) {
     &__buttons {
       padding: 0 10px;
+      align-items: flex-end;
     }
 
     &__applications--empty {
       font-size: 14px;
+    }
+
+    &__acc-info {
+      width: 100%;
     }
   }
 }

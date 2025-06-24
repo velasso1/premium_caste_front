@@ -3,9 +3,13 @@ import { FC } from "react";
 import { NavLink } from "react-router-dom";
 import { PAGES_NAVIGATION_LIST } from "../../../../utils/auxuliary/navigation-link-list";
 
-const NavigationMenu: FC = () => {
+interface INavigationMenuProps {
+  menuIsOpen?: boolean;
+}
+
+const NavigationMenu: FC<INavigationMenuProps> = ({ menuIsOpen }) => {
   return (
-    <nav className="header__nav">
+    <nav className="header__nav" data-opened={menuIsOpen}>
       <ul className="header__list">
         {PAGES_NAVIGATION_LIST.map((item, index) => {
           return (

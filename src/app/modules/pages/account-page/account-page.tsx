@@ -38,7 +38,7 @@ const AccountPage: FC = () => {
         <Button buttonText="Выход" buttonStyle="OUTLINED" onClickAction={() => logout()} />
       </div>
       <div className="account-page__content">
-        <ContentBlockLayout>
+        <ContentBlockLayout customClassName="account-page__acc-info">
           <div className="account-info">
             <div className="account-info__photo">
               <img className="account-info__image" src={user} alt="user-photo" />
