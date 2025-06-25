@@ -65,6 +65,20 @@ export interface IPost {
   status: string;
   title: string;
   updated_at: string;
+  media_groups: IMediaGroups;
+}
+
+export interface IMediaGroups {
+  content: IMediaGroupImage[];
+  gallery: IMediaGroupImage[];
+  attachment: IMediaGroupImage[];
+}
+
+export interface IMediaGroupImage {
+  id: string;
+  storage_path: string;
+  position: number;
+  group_id: string;
 }
 
 // ответ от сервера при получении картинок

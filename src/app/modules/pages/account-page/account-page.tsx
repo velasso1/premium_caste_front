@@ -2,7 +2,7 @@ import { FC, useEffect } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { logOut } from "../../../store/slices/user";
-import { useGetUserInfoMutation } from "../../../store/api/user-api";
+import { useGetUserInfoMutation, useLazyCheckUserStatusQuery } from "../../../store/api/user-api";
 
 import { useMaskito } from "@maskito/react";
 import { PHONE_MASK } from "#utils/fields-rules/phone-mask.ts";
@@ -19,10 +19,12 @@ const AccountPage: FC = () => {
   const { userId } = useAppSelector((state) => state.userSlice);
 
   const [getUserInfo, { data, isLoading, isSuccess, isError }] = useGetUserInfoMutation();
+  const [checkAdminRules, adminRulesStatus] = useLazyCheckUserStatusQuery();
 
   useEffect(() => {
     if (userId) {
       getUserInfo({ user_id: userId });
+      checkAdminRules({ user_id: userId });
     }
   }, [userId]);
 

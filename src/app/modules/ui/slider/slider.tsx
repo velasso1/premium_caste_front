@@ -13,7 +13,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 interface ISliderProps {
-  children: React.ReactElement[];
+  children: React.ReactElement[] | React.ReactNode;
   navigationInculde?: boolean;
   paginationInculde?: boolean;
 }
