@@ -1,80 +1,3 @@
-// // .login-form,
-// // .registration-form {
-// //   display: flex;
-// //   padding: 150px 0 150px 0;
-// //   width: 100%;
-
-// //   &__content-block {
-// //     display: flex;
-// //     margin: 0 auto;
-// //     flex-direction: column;
-// //   }
-
-// //   &__form {
-// //     display: flex;
-// //     position: relative;
-// //     flex-direction: column;
-// //     width: 350px;
-// //     justify-content: center;
-// //     margin: 0 auto;
-
-// //     input {
-// //       @include defualtInputStyle;
-
-// //       &:focus {
-// //         border: 1px solid $mainColor;
-// //       }
-
-// //       &:disabled {
-// //         background-color: #171717;
-// //       }
-// //     }
-// //   }
-
-// //   &__forget-pass,
-// //   &__registration {
-// //     text-decoration: underline;
-// //     margin: 0 auto 20px auto;
-
-// //     &:hover {
-// //       cursor: pointer;
-// //       text-decoration: underline;
-// //     }
-// //   }
-
-// //   //   registration link in login form
-// //   &__registration {
-// //     margin-top: 20px;
-// //     color: white;
-// //     text-decoration: underline;
-// //   }
-
-// //   //   styles for registratiom form
-
-// //   &__clue {
-// //     margin: 0 auto;
-// //     padding: 5px 0;
-// //     color: red;
-// //   }
-
-// //   &__auth {
-// //     margin: 20px auto;
-
-// //     a {
-// //       color: white;
-// //       text-decoration: underline;
-
-// //       &:hover {
-// //         cursor: pointer;
-// //       }
-// //     }
-// //   }
-// // }
-
-// // .field_error {
-// //   border: 1px solid red !important;
-// // }
-
 // .login-form,
 // .registration-form {
 //   display: flex;
@@ -85,13 +8,15 @@
 //     display: flex;
 //     margin: 0 auto;
 //     flex-direction: column;
+//     width: 100%;
+//     max-width: 600px; // ограничиваем контейнер, чтобы не растягивался чрезмерно
 //   }
 
 //   &__form {
 //     display: flex;
 //     position: relative;
 //     flex-direction: column;
-//     width: 350px;
+//     width: 100%; // на всю возможную ширину
 //     justify-content: center;
 //     margin: 0 auto;
 
@@ -115,14 +40,12 @@
 
 //     &:hover {
 //       cursor: pointer;
-//       text-decoration: underline;
 //     }
 //   }
 
 //   &__registration {
 //     margin-top: 20px;
 //     color: white;
-//     text-decoration: underline;
 //   }
 
 //   &__clue {
@@ -149,25 +72,22 @@
 //   @media (max-width: 991.98px) {
 //     padding: 100px 0;
 
-//     &__form {
-//       width: 300px;
+//     &__content-block {
+//       max-width: 500px;
 //     }
 //   }
 
 //   @media (max-width: 767.98px) {
 //     padding: 80px 0;
 
-//     &__form {
-//       width: 260px;
+//     &__content-block {
+//       max-width: 100%;
+//       padding: 0 20px;
 //     }
 //   }
 
 //   @media (max-width: 575.98px) {
 //     padding: 60px 15px;
-
-//     &__form {
-//       width: 100%;
-//     }
 
 //     &__forget-pass,
 //     &__registration,
@@ -185,7 +105,7 @@
 .login-form,
 .registration-form {
   display: flex;
-  padding: 150px 0;
+  // padding: 150px 0;
   width: 100%;
 
   &__content-block {
@@ -193,19 +113,20 @@
     margin: 0 auto;
     flex-direction: column;
     width: 100%;
-    max-width: 600px; // ограничиваем контейнер, чтобы не растягивался чрезмерно
+    max-width: 600px;
   }
 
   &__form {
     display: flex;
     position: relative;
     flex-direction: column;
-    width: 100%; // на всю возможную ширину
+    width: 100%;
     justify-content: center;
     margin: 0 auto;
 
     input {
       @include defualtInputStyle;
+      font-size: 16px; // Базовый размер увеличен
 
       &:focus {
         border: 1px solid $mainColor;
@@ -221,6 +142,7 @@
   &__registration {
     text-decoration: underline;
     margin: 0 auto 20px auto;
+    font-size: 16px; // Базовый размер увеличен
 
     &:hover {
       cursor: pointer;
@@ -236,14 +158,17 @@
     margin: 0 auto;
     padding: 5px 0;
     color: red;
+    font-size: 16px; // Базовый размер увеличен
   }
 
   &__auth {
     margin: 20px auto;
+    font-size: 16px; // Базовый размер увеличен
 
     a {
       color: white;
       text-decoration: underline;
+      font-size: 16px; // Размер для ссылок
 
       &:hover {
         cursor: pointer;
@@ -259,6 +184,19 @@
     &__content-block {
       max-width: 500px;
     }
+
+    // Увеличенные размеры для планшетов
+    input {
+      font-size: 16px;
+    }
+
+    &__forget-pass,
+    &__registration,
+    &__clue,
+    &__auth,
+    &__auth a {
+      font-size: 16px;
+    }
   }
 
   @media (max-width: 767.98px) {
@@ -268,20 +206,59 @@
       max-width: 100%;
       padding: 0 20px;
     }
+
+    // Дополнительное увеличение для мобильных
+    input {
+      font-size: 17px;
+      height: 50px; // Увеличенная высота для удобства касания
+      padding: 0 20px;
+    }
+
+    &__forget-pass,
+    &__registration,
+    &__clue,
+    &__auth,
+    &__auth a {
+      font-size: 16px;
+    }
   }
 
   @media (max-width: 575.98px) {
     padding: 60px 15px;
 
+    // Оптимальные размеры для маленьких мобильных
+    input {
+      font-size: 18px; // Увеличенный размер для предотвращения зума
+      height: 55px;
+      padding: 0 25px;
+    }
+
     &__forget-pass,
     &__registration,
     &__clue,
-    &__auth {
-      font-size: 14px;
+    &__auth,
+    &__auth a {
+      font-size: 17px; // Увеличенный размер
+    }
+
+    // Увеличение размеров кнопок
+    button {
+      font-size: 18px;
+      padding: 12px 25px;
+      height: 55px;
     }
   }
 }
 
 .field_error {
   border: 1px solid red !important;
+}
+
+// Дополнительная защита от зума для iOS
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
 }

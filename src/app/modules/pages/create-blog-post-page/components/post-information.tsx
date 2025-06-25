@@ -70,15 +70,16 @@ const PostInformation: FC = () => {
   useEffect(() => {
     if (mediaGroupStatus.data) {
       attachImages({ group_id: mediaGroupStatus.data.data, media_id: attachedImages });
+      dispatch(clearAttachedImages());
     }
-  }, [mediaGroupStatus.isSuccess]);
+  }, [mediaGroupStatus]);
 
   // соединение группы картинок с постом
   useEffect(() => {
     if (creatingStatus.isSuccess && mediaGroupStatus.isSuccess) {
       attachMediaToPost({ post_id: creatingStatus.data.id, group_id: mediaGroupStatus.data.data });
     }
-  }, [creatingStatus.isSuccess, mediaGroupStatus.isSuccess]);
+  }, [creatingStatus, mediaGroupStatus]);
 
   const IS_LOADING: boolean =
     attachMediaToPostStatus.isLoading ||
@@ -99,7 +100,6 @@ const PostInformation: FC = () => {
       createMediaGroup({ owner_id: userId, description: "w/o_description" });
       setPreviewSelected(false);
       setCreatingStep(1);
-      dispatch(clearAttachedImages());
       reset();
     };
 

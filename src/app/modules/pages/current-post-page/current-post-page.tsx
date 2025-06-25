@@ -23,6 +23,8 @@ import SlideLayout from "#ui/slider/components/slide-layout.tsx";
 import Button from "#ui/button/button.tsx";
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 
+import audi from "#images/audi.jpg";
+
 const CurrentPostPage: FC = () => {
   const params = useParams();
   const dispatch = useAppDispatch();
@@ -36,8 +38,6 @@ const CurrentPostPage: FC = () => {
 
   const currentPost = useGetCurrentPostQuery({ post_id: params?.id });
   const mediaGroups = useGetMediaGroupsOfPostQuery({ post_id: params?.id });
-
-  console.log(mediaGroups);
 
   useEffect(() => {
     if (publishStatus.isSuccess || archiveStatus.isSuccess || deletingStatus.isSuccess) {
@@ -99,25 +99,24 @@ const CurrentPostPage: FC = () => {
         <div className="current-post-page__post">{currentPost?.data?.content}</div>
 
         <div className="current-post-page__album">
-          {/* <Slider paginationInculde={false}>
-          <SwiperSlide>
-            <SlideLayout imageUrl={pic1} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <SlideLayout imageUrl={pic2} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <SlideLayout imageUrl={pic3} />
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <SlideLayout imageUrl={pic3} />
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <SlideLayout imageUrl={pic3} />
-          </SwiperSlide>
-        </Slider> */}
+          <Slider paginationInculde={false}>
+            <SwiperSlide>
+              <SlideLayout imageUrl={audi} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <SlideLayout imageUrl={audi} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <SlideLayout imageUrl={audi} />
+            </SwiperSlide>
+            {/* {currentPost.data?.media_groups.content.map((item, index) => {
+              return (
+                <SwiperSlide>
+                  <SlideLayout imageUrl={item.storage_path} />
+                </SwiperSlide>
+              );
+            })} */}
+          </Slider>
         </div>
       </ContentBlockLayout>
     </PageLayout>

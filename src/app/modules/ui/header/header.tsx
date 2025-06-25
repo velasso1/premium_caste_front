@@ -11,6 +11,8 @@ const Header: FC = () => {
   const [scrollValue, setScrollValue] = useState<number>(0);
   const [headerSticky, setHeaderSticky] = useState<boolean>(false);
 
+  const [burgerOpen, openBurger] = useState<boolean>(false);
+
   const handleScroll = () => {
     setScrollValue(window.scrollY);
   };
@@ -36,9 +38,10 @@ const Header: FC = () => {
       <div className="header__logo">
         <img src={logo} alt="logotype" className="header__logo-image" />
       </div>
-      <NavigationMenu />
+      <NavigationMenu menuIsOpen={burgerOpen} />
       <NavigationIcons />
-      <div className="header__burger"></div>
+
+      <div className={`header__burger ${burgerOpen && "active"}`} onClick={() => openBurger((prev) => !prev)}></div>
     </header>
   );
 };

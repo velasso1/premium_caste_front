@@ -8,3 +8,206 @@
     margin: 100px auto;
   }
 }
+
+.not-found-page {
+  @include defaultPageStyle;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 0 20px 20px; // Нулевой отступ сверху
+  box-sizing: border-box;
+  text-align: center;
+
+  &__banner {
+    width: 100%;
+    max-width: 600px; // Уменьшенный размер
+    margin: 10px auto 0; // Минимальный отступ сверху
+    transition: transform 0.3s ease;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+
+  &__title {
+    font-size: 2.2rem; // Уменьшенный размер
+    margin: 15px 0 10px; // Уменьшенные отступы
+    color: $mainColor;
+    font-weight: 700;
+  }
+
+  &__message {
+    font-size: 1.2rem; // Уменьшенный размер
+    margin-bottom: 25px; // Уменьшенный отступ
+    max-width: 500px;
+    line-height: 1.5;
+  }
+
+  &__home-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: $mainColor;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+
+    &:hover {
+      background-color: transparent;
+      color: $mainColor;
+      border-color: $mainColor;
+      transform: translateY(-3px);
+    }
+  }
+
+  // Адаптация для планшетов (ландшафт)
+  @media (max-width: 1199.98px) {
+    &__banner {
+      max-width: 500px;
+      margin-top: 8px;
+    }
+
+    &__title {
+      font-size: 2rem;
+      margin: 12px 0 8px;
+    }
+
+    &__message {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+  }
+
+  // Планшеты (портрет)
+  @media (max-width: 991.98px) {
+    padding: 0 15px 15px;
+
+    &__banner {
+      max-width: 400px;
+      margin-top: 5px;
+    }
+
+    &__title {
+      font-size: 1.8rem;
+      margin: 10px 0 6px;
+    }
+
+    &__message {
+      font-size: 1rem;
+      margin-bottom: 18px;
+    }
+
+    &__home-button {
+      padding: 10px 25px;
+      font-size: 1rem;
+    }
+  }
+
+  // Большие мобильные
+  @media (max-width: 767.98px) {
+    padding: 0 10px 10px;
+
+    &__banner {
+      max-width: 350px;
+      margin-top: 3px;
+    }
+
+    &__title {
+      font-size: 1.6rem;
+      margin: 8px 0 5px;
+    }
+
+    &__message {
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    &__home-button {
+      padding: 9px 22px;
+      font-size: 0.95rem;
+    }
+  }
+
+  // Мобильные
+  @media (max-width: 575.98px) {
+    &__banner {
+      max-width: 100%;
+    }
+
+    &__title {
+      font-size: 1.4rem;
+      margin: 6px 0 4px;
+    }
+
+    &__message {
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      padding: 0 10px;
+    }
+
+    &__home-button {
+      padding: 8px 20px;
+      font-size: 0.9rem;
+    }
+  }
+
+  // Маленькие мобильные
+  @media (max-width: 380px) {
+    &__title {
+      font-size: 1.3rem;
+    }
+
+    &__message {
+      font-size: 0.85rem;
+    }
+
+    &__home-button {
+      padding: 7px 18px;
+      font-size: 0.85rem;
+    }
+  }
+
+  // Вертикальная ориентация
+  @media (orientation: portrait) and (max-height: 700px) {
+    padding-top: 0;
+    min-height: 90vh;
+
+    &__banner {
+      max-width: 70%;
+      margin-top: 0;
+    }
+  }
+
+  // Очень маленькая высота экрана
+  @media (max-height: 500px) {
+    padding: 0 10px;
+    min-height: 500px;
+
+    &__banner {
+      max-width: 30%;
+      margin: 0;
+    }
+
+    &__content {
+      max-width: 60%;
+    }
+
+    &__title {
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+
+    &__message {
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+    }
+  }
+}

@@ -54,7 +54,7 @@ export const userApi = createApi({
 
     checkUserStatus: build.query<ICheckAdminResponse, ICheckAdminPayload>({
       query: (data) => ({
-        url: import.meta.env.VITE_USERS_URL + data.userId + import.meta.env.VITE_IS_ADMIN,
+        url: import.meta.env.VITE_USERS_URL + data.user_id + import.meta.env.VITE_IS_ADMIN,
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
@@ -81,14 +81,14 @@ export const userApi = createApi({
         body: JSON.stringify(data),
       }),
 
-      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
-        try {
-          const { data } = await queryFulfilled;
-          dispatch(setUserData(data.is_admin));
-        } catch (error) {
-          console.error(error);
-        }
-      },
+      // async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+      //   try {
+      //     const { data } = await queryFulfilled;
+      //     dispatch(setUserData(data.is_admin));
+      //   } catch (error) {
+      //     console.error(error);
+      //   }
+      // },
     }),
   }),
 });

@@ -13,7 +13,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 interface ISliderProps {
-  children: React.ReactElement[];
+  children: React.ReactElement[] | React.ReactNode;
   navigationInculde?: boolean;
   paginationInculde?: boolean;
 }
@@ -42,8 +42,8 @@ const Slider: FC<ISliderProps> = ({ children, paginationInculde = true, navigati
         }}
         onAutoplayTimeLeft={(s, time, progress) => onAutoplayTimeLeft(s, time, progress)}
         breakpoints={{
-          400: {
-            slidesPerView: 2,
+          370: {
+            slidesPerView: 1,
           },
           768: {
             slidesPerView: 2,

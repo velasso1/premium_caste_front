@@ -11,7 +11,7 @@ export interface IRegistrationPayload {
 }
 
 export interface ICheckAdminPayload {
-  userId: string;
+  user_id: string;
 }
 
 export interface IGetUserInfoPayload {

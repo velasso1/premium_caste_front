@@ -31,15 +31,19 @@ export const postsApi = createApi({
     // Возвращает список медиа-групп, привязанных к посту
     getMediaGroupsOfPost: build.query<void, { post_id: string | undefined }>({
       query: (data) => ({
-        url: import.meta.env.VITE_POST_ACTIONS + `/${data.post_id}` + import.meta.env.VITE_GET_MEDIA_GROUPS,
+        url:
+          import.meta.env.VITE_POST_ACTIONS +
+          `/${data.post_id}` +
+          import.meta.env.VITE_GET_MEDIA_GROUPS +
+          "?relation_type=content",
         credentials: "include",
       }),
     }),
 
     // Возвращает список всех медиафайлов в группе
-    getMediaGroup: build.query<void, { image_id: string | undefined }>({
+    getMediaGroup: build.query<void, { post_id: string | undefined }>({
       query: (data) => ({
-        url: import.meta.env.VITE_GET_MEDIA + data.image_id,
+        url: import.meta.env.VITE_GET_MEDIA + data.post_id,
         credentials: "include",
       }),
     }),
