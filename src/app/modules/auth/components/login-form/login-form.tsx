@@ -48,7 +48,7 @@ const LoginForm: FC = () => {
 
   useEffect(() => {
     if (userId) {
-      checkAdmin({ userId: userId });
+      checkAdmin({ user_id: userId });
     }
   }, [userId]);
 
