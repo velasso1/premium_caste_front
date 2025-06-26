@@ -64,7 +64,7 @@
 
     &__managing-buttons {
       gap: 30px;
-      flex-wrap: wrap; // Разрешаем перенос кнопок на маленьких экранах
+      flex-wrap: wrap;
     }
   }
 }
@@ -99,7 +99,7 @@
 
     &__managing-buttons {
       gap: 20px;
-      flex-direction: column; // Вертикальное расположение кнопок
+      flex-direction: column;
       align-items: flex-start;
     }
 

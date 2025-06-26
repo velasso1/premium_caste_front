@@ -17,14 +17,14 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 0 20px 20px; // Нулевой отступ сверху
+  padding: 0 20px 20px;
   box-sizing: border-box;
   text-align: center;
 
   &__banner {
     width: 100%;
-    max-width: 600px; // Уменьшенный размер
-    margin: 10px auto 0; // Минимальный отступ сверху
+    max-width: 600px;
+    margin: 10px auto 0;
     transition: transform 0.3s ease;
 
     img {
@@ -35,15 +35,15 @@
   }
 
   &__title {
-    font-size: 2.2rem; // Уменьшенный размер
-    margin: 15px 0 10px; // Уменьшенные отступы
+    font-size: 2.2rem;
+    margin: 15px 0 10px;
     color: $mainColor;
     font-weight: 700;
   }
 
   &__message {
-    font-size: 1.2rem; // Уменьшенный размер
-    margin-bottom: 25px; // Уменьшенный отступ
+    font-size: 1.2rem;
+    margin-bottom: 25px;
     max-width: 500px;
     line-height: 1.5;
   }

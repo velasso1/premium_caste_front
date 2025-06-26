@@ -66,9 +66,9 @@
 
   &__logo {
     margin: 0 auto;
-    width: 650px; // Дефолтный размер для десктопа
-    max-width: 90%; // Защита от переполнения
-    transition: transform 0.5s ease; // Плавное масштабирование
+    width: 650px;
+    max-width: 90%;
+    transition: transform 0.5s ease;
 
     // Планшеты (ландшафт)
     @media screen and (max-width: 1200px) {
@@ -179,12 +179,12 @@
 @media (orientation: portrait) and (max-width: 768px) {
   .welcome-page {
     &__logo {
-      width: 80%; // Более широкое лого в портрете
+      width: 80%;
       max-width: 350px;
     }
 
     &__start-button {
-      margin-top: 20px; // Больший отступ сверху
+      margin-top: 20px;
     }
   }
 }
@@ -193,11 +193,11 @@
 @media (min-height: 1000px) {
   .welcome-page {
     &__logo {
-      transform: scale(1.2); // Увеличение на высоких экранах
+      transform: scale(1.2);
     }
 
     &__start-button {
-      margin-top: 50px; // Больший отступ
+      margin-top: 50px;
       padding: 15px 60px;
       font-size: 22px;
     }
@@ -208,7 +208,7 @@
 @media (max-height: 500px) {
   .welcome-page {
     &__logo {
-      width: 200px; // Значительно уменьшаем лого
+      width: 200px;
       margin-bottom: 20px;
     }
 

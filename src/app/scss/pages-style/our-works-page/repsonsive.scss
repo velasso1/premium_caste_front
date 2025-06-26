@@ -1,135 +1,3 @@
-// // repsonsive
-
-// /* ========== Десктоп (меньше 1200px) ========== */
-// @media screen and (max-width: 1200px) {
-//   .our-works-page {
-//     &__work-items {
-//       grid-template-columns: repeat(3, 1fr);
-//       gap: 25px;
-//     }
-
-//     &__work-item,
-//     &__banner,
-//     &__image {
-//       width: 100%;
-//       max-width: 220px;
-//     }
-//   }
-// }
-
-// /* ========== Планшет (ландшафт) ========== */
-// @media screen and (max-width: 992px) {
-//   .our-works-page {
-//     &__work-items {
-//       grid-template-columns: repeat(3, 1fr);
-//       gap: 18px;
-//       padding-bottom: 30px;
-//     }
-
-//     &__work-item,
-//     &__banner,
-//     &__image {
-//       max-width: 180px;
-//     }
-
-//     &__item-title {
-//       font-size: 15px;
-//     }
-
-//     &__notice {
-//       font-size: 13px;
-//     }
-//   }
-// }
-
-// /* ========== Планшет (портрет) ========== */
-// @media screen and (max-width: 768px) {
-//   .our-works-page {
-//     &__content {
-//       flex-direction: column;
-//     }
-
-//     &__work-items {
-//       grid-template-columns: repeat(2, 1fr);
-//       gap: 20px 12px;
-//       padding-bottom: 25px;
-//     }
-
-//     &__work-item {
-//       width: 100%;
-//       max-width: 160px;
-//       margin: 0 auto;
-//     }
-
-//     &__banner,
-//     &__image {
-//       width: 100%;
-//       max-width: 160px;
-//     }
-
-//     &__item-title {
-//       font-size: 14px;
-//       padding: 0 5px;
-//     }
-
-//     &__notice {
-//       font-size: 12px;
-//     }
-//   }
-// }
-
-// /* ========== Мобильные (ландшафт) ========== */
-// @media screen and (max-width: 576px) {
-//   .our-works-page {
-//     &__work-items {
-//       grid-template-columns: 1fr;
-//       gap: 25px;
-//       padding: 0 15px 20px;
-//     }
-
-//     &__work-item {
-//       max-width: 220px;
-//     }
-
-//     &__banner,
-//     &__image {
-//       max-width: 220px;
-//     }
-
-//     &__notice {
-//       top: 45%;
-//       font-size: 13px;
-//     }
-//   }
-// }
-
-// /* ========== Маленькие мобильные ========== */
-// @media screen and (max-width: 380px) {
-//   .our-works-page {
-//     &__work-items {
-//       gap: 22px;
-//     }
-
-//     &__work-item {
-//       max-width: 180px; // Минимальный размер
-//     }
-
-//     &__banner,
-//     &__image {
-//       max-width: 180px; // Синхронизация
-//     }
-
-//     &__item-title {
-//       font-size: 13px;
-//     }
-
-//     &__notice {
-//       font-size: 11px;
-//       padding: 0 8px;
-//     }
-//   }
-// }
-
 /* ========== Десктоп (меньше 1200px) ========== */
 @media screen and (max-width: 1200px) {
   .our-works-page {
@@ -141,14 +9,14 @@
     &__work-item {
       width: 100%;
       max-width: 220px;
-      height: 290px; // Добавлена фиксированная высота
+      height: 290px;
     }
 
     &__banner,
     &__image {
       width: 100%;
-      height: 220px; // Фиксированная высота для изображения
-      object-fit: cover; // Гарантируем правильное заполнение
+      height: 220px;
+      object-fit: cover;
     }
   }
 }
@@ -164,22 +32,22 @@
 
     &__work-item {
       max-width: 180px;
-      height: 260px; // Сохраняем пропорции
+      height: 260px;
     }
 
     &__banner,
     &__image {
-      height: 180px; // Уменьшаем высоту изображения
+      height: 180px;
     }
 
     &__item-title {
       font-size: 15px;
-      padding-top: 10px; // Добавлен отступ сверху
+      padding-top: 10px;
     }
 
     &__notice {
       font-size: 13px;
-      top: 45%; // Корректировка позиции
+      top: 45%;
     }
   }
 }
@@ -193,30 +61,30 @@
 
     &__work-items {
       grid-template-columns: repeat(2, 1fr);
-      gap: 25px 15px; // Увеличен вертикальный промежуток
-      padding: 0 15px 30px; // Увеличен нижний отступ
+      gap: 25px 15px;
+      padding: 0 15px 30px;
     }
 
     &__work-item {
       max-width: 100%;
-      height: 220px; // Уменьшена высота контейнера
-      position: relative; // Для правильного позиционирования
+      height: 220px;
+      position: relative;
     }
 
     &__banner,
     &__image {
       max-width: 100%;
-      height: 160px; // Значительно уменьшена высота изображения
+      height: 160px;
       object-fit: cover;
-      transition: transform 0.3s ease; // Плавная анимация
+      transition: transform 0.3s ease;
     }
 
     &__item-title {
       font-size: 14px;
-      padding: 12px 5px 0; // Увеличен верхний отступ
+      padding: 12px 5px 0;
       text-align: center;
-      height: 40px; // Фиксированная высота для текста
-      overflow: hidden; // Защита от переполнения
+      height: 40px;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -224,27 +92,26 @@
 
     &__notice {
       font-size: 12px;
-      top: 40%; // Позиция по центру изображения
+      top: 40%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 90%; // Ширина внутри изображения
+      width: 90%;
       text-align: center;
-      padding: 8px 5px; // Увеличенные отступы
-      background: rgba(0, 0, 0, 0.7); // Фон для лучшей читаемости
-      opacity: 0; // Скрыт по умолчанию
-      transition: opacity 0.3s ease; // Плавное появление
+      padding: 8px 5px;
+      background: rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
-    // Анимация при наведении
     &__work-item:hover {
       .our-works-page__banner,
       .our-works-page__image {
-        filter: brightness(30%); // Затемнение изображения
-        transform: scale(1.03); // Легкое увеличение
+        filter: brightness(30%);
+        transform: scale(1.03);
       }
 
       .our-works-page__notice {
-        opacity: 1; // Показываем уведомление
+        opacity: 1;
       }
     }
   }
@@ -255,28 +122,28 @@
   .our-works-page {
     &__work-items {
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px 12px; // Увеличен вертикальный промежуток
-      padding: 0 10px 25px; // Увеличен нижний отступ
+      gap: 20px 12px;
+      padding: 0 10px 25px;
     }
 
     &__work-item {
-      height: 200px; // Оптимальная высота
+      height: 200px;
     }
 
     &__banner,
     &__image {
-      height: 140px; // Уменьшенная высота изображения
+      height: 140px;
     }
 
     &__item-title {
       font-size: 13px;
       padding-top: 10px;
-      height: 36px; // Фиксированная высота
+      height: 36px;
     }
 
     &__notice {
       font-size: 11px;
-      padding: 6px 4px; // Оптимизированные отступы
+      padding: 6px 4px;
     }
   }
 }
@@ -285,28 +152,28 @@
 @media screen and (max-width: 380px) {
   .our-works-page {
     &__work-items {
-      gap: 18px 10px; // Увеличен вертикальный промежуток
-      padding: 0 8px 20px; // Увеличен нижний отступ
+      gap: 18px 10px;
+      padding: 0 8px 20px;
     }
 
     &__work-item {
-      height: 180px; // Компактная высота
+      height: 180px;
     }
 
     &__banner,
     &__image {
-      height: 120px; // Минимальная высота изображения
+      height: 120px;
     }
 
     &__item-title {
       font-size: 12px;
       padding-top: 8px;
-      height: 32px; // Фиксированная высота
+      height: 32px;
     }
 
     &__notice {
       font-size: 10px;
-      padding: 5px 3px; // Компактные отступы
+      padding: 5px 3px;
     }
   }
 }
