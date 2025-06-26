@@ -60,10 +60,23 @@
     font-weight: 800;
   }
 
+  &__picture {
+    width: 440px;
+    height: 300px;
+    position: relative; // Добавляем для позиционирования
+    overflow: hidden;
+  }
+
   &__image {
     width: 100%;
+    object-fit: cover;
     filter: $brightness;
     transition: $transition;
+
+    height: 100%;
+    object-fit: cover; // Ключевое свойство - заполнение контейнера
+    object-position: center; // Центрируем изображение
+    display: block;
 
     @include animationOnHover;
     &:hover {

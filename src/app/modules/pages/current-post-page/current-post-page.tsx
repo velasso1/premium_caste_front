@@ -24,6 +24,7 @@ import Button from "#ui/button/button.tsx";
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 
 import audi from "#images/audi.jpg";
+import SliderBlock from "#pages/general-page/components/slider-block.tsx";
 
 const CurrentPostPage: FC = () => {
   const params = useParams();
@@ -95,30 +96,21 @@ const CurrentPostPage: FC = () => {
         )}
       </>
 
-      <ContentBlockLayout>
-        <div className="current-post-page__post">{currentPost?.data?.content}</div>
+      {/* <ContentBlockLayout> */}
+      <div className="current-post-page__post">{currentPost?.data?.content}</div>
 
-        <div className="current-post-page__album">
-          <Slider paginationInculde={false}>
-            <SwiperSlide>
-              <SlideLayout imageUrl={audi} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <SlideLayout imageUrl={audi} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <SlideLayout imageUrl={audi} />
-            </SwiperSlide>
-            {/* {currentPost.data?.media_groups.content.map((item, index) => {
-              return (
-                <SwiperSlide>
-                  <SlideLayout imageUrl={item.storage_path} />
-                </SwiperSlide>
-              );
-            })} */}
-          </Slider>
-        </div>
-      </ContentBlockLayout>
+      <div className="current-post-page__album">
+        <Slider paginationInculde={false}>
+          {currentPost.data?.media_groups.content.map((item, index) => {
+            return (
+              <SwiperSlide>
+                <SlideLayout imageUrl={import.meta.env.VITE_UPLOADS_FILES + item.storage_path} />
+              </SwiperSlide>
+            );
+          })}
+        </Slider>
+      </div>
+      {/* </ContentBlockLayout> */}
     </PageLayout>
   );
 };
