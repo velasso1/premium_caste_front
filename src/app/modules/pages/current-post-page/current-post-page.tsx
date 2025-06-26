@@ -101,7 +101,7 @@ const CurrentPostPage: FC = () => {
 
       <div className="current-post-page__album">
         <Slider paginationInculde={false}>
-          {currentPost.data?.media_groups.content.map((item, index) => {
+          {currentPost.data?.media_groups?.content?.map((item, index) => {
             return (
               <SwiperSlide>
                 <SlideLayout imageUrl={import.meta.env.VITE_UPLOADS_FILES + item.storage_path} />
