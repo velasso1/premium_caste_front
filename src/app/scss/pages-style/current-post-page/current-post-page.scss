@@ -16,3 +16,114 @@
     text-transform: uppercase;
   }
 }
+
+.current-post-page {
+  &__post {
+    font-size: 20px;
+    line-height: 35px;
+    padding-bottom: 40px;
+  }
+
+  &__managing-buttons {
+    display: flex;
+    gap: 40px;
+  }
+
+  &__back-button {
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+  }
+}
+
+/* ========== Адаптивные стили ========== */
+
+/* Большие планшеты (1200px) */
+@media screen and (max-width: 1200px) {
+  .current-post-page {
+    &__post {
+      font-size: 18px;
+      line-height: 32px;
+      padding-bottom: 35px;
+    }
+
+    &__managing-buttons {
+      gap: 35px;
+    }
+  }
+}
+
+/* Планшеты (992px) */
+@media screen and (max-width: 992px) {
+  .current-post-page {
+    &__post {
+      font-size: 17px;
+      line-height: 30px;
+      padding-bottom: 30px;
+    }
+
+    &__managing-buttons {
+      gap: 30px;
+      flex-wrap: wrap; // Разрешаем перенос кнопок на маленьких экранах
+    }
+  }
+}
+
+/* Планшеты (768px) */
+@media screen and (max-width: 768px) {
+  .current-post-page {
+    &__post {
+      font-size: 16px;
+      line-height: 28px;
+      padding-bottom: 25px;
+    }
+
+    &__managing-buttons {
+      gap: 25px;
+    }
+
+    &__back-button {
+      font-size: 14px;
+    }
+  }
+}
+
+/* Мобильные (576px) */
+@media screen and (max-width: 576px) {
+  .current-post-page {
+    &__post {
+      font-size: 15px;
+      line-height: 26px;
+      padding-bottom: 20px;
+    }
+
+    &__managing-buttons {
+      gap: 20px;
+      flex-direction: column; // Вертикальное расположение кнопок
+      align-items: flex-start;
+    }
+
+    &__back-button {
+      font-size: 13px;
+    }
+  }
+}
+
+/* Маленькие мобильные (380px) */
+@media screen and (max-width: 380px) {
+  .current-post-page {
+    &__post {
+      font-size: 14px;
+      line-height: 24px;
+      padding-bottom: 15px;
+    }
+
+    &__managing-buttons {
+      gap: 15px;
+    }
+
+    &__back-button {
+      font-size: 12px;
+    }
+  }
+}
