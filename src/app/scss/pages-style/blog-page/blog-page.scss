@@ -174,6 +174,29 @@
     text-transform: uppercase;
     pointer-events: auto;
   }
+
+  &__main-news-admin-clue {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    text-transform: uppercase;
+    color: $mainColor;
+  }
+
+  &__main-news-admin-clue-change,
+  &__main-news-admin-clue-delete {
+    width: 35px;
+    border-radius: 10px;
+    padding: 2px;
+    transition: 1s;
+    // pointer-events: fill;
+
+    &:hover {
+      cursor: pointer;
+      border: 2px solid $mainColor;
+      // right: 15%;
+    }
+  }
 }
 
 @import "./responsive.scss";

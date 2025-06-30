@@ -96,7 +96,11 @@ const BlogItem: FC<IBlogItemProps> = ({ postInfo, postPreview, postLoader }) => 
                 />
               )}
 
-              <Button buttonText="Изменить" buttonStyle="OUTLINED" onClickAction={() => alert("В разработке")} />
+              <Button
+                buttonText="Изменить"
+                buttonStyle="OUTLINED"
+                onClickAction={() => navigate("../" + routes.EDIT_POST_PAGE + `/item/${postInfo.id}`)}
+              />
               <Button
                 buttonText="Удалить"
                 buttonStyle="OUTLINED"
