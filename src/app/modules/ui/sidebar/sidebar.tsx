@@ -4,7 +4,7 @@ import SidebarItem from "./components/sidebar-item";
 import { ISidebarItem, ISidebarItemAdminMenu, ISidebarItemsPostsMenu } from "#utils/auxuliary/sidebar-items.ts";
 
 interface ISidebarProps {
-  sidebarItems: ISidebarItemsPostsMenu[] | ISidebarItemAdminMenu[] | ISidebarItem[];
+  readonly sidebarItems: readonly ISidebarItemsPostsMenu[] | readonly ISidebarItemAdminMenu[] | readonly ISidebarItem[];
   managementType: "dispatch" | "nav";
   itemsManagement?: () => void;
   activeElement?: string;
