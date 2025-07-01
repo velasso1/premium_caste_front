@@ -14,6 +14,7 @@ import safety from "#images/services-page-icons/safety-icon.png";
 import shumka from "#images/services-page-icons/shum-icon.png";
 import detailing from "#images/services-page-icons/detailing-icon.png";
 import dop from "#images/services-page-icons/dop-icon.png";
+import disk from "#images/disk.png";
 
 const ServicesPage: FC = () => {
   return (
@@ -29,6 +30,7 @@ const ServicesPage: FC = () => {
         <CategoryItem title="АВТОЗВУК И МУЛЬтИМЕДИя" icon={sound} />
         <CategoryItem title="ДЕТЕЙЛИНГ" icon={detailing} />
         <CategoryItem title="УСТАНОВКА ДОП ОБОРУДОВАНИЯ" icon={dop} />
+        <CategoryItem title="диски" icon={disk} />
       </div>
     </PageLayout>
   );
