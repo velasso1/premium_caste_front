@@ -38,7 +38,7 @@ const Header: FC = () => {
       <div className="header__logo">
         <img src={logo} alt="logotype" className="header__logo-image" />
       </div>
-      <NavigationMenu menuIsOpen={burgerOpen} />
+      <NavigationMenu menuIsOpen={burgerOpen} menuItemClick={() => openBurger(false)} />
       <NavigationIcons />
 
       <div className={`header__burger ${burgerOpen && "active"}`} onClick={() => openBurger((prev) => !prev)}></div>

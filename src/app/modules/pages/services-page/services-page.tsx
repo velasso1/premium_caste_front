@@ -12,8 +12,8 @@ const ServicesPage: FC = () => {
     <PageLayout pageClassName="services-page">
       <PageTitle pageName="Услуги" />
       <div className="services-page__content">
-        {SERVICES_ITEMS.map((item) => {
-          return <CategoryItem title={item.title} icon={item.iconPath} />;
+        {SERVICES_ITEMS.map((item, index) => {
+          return <CategoryItem title={item.title} icon={item.iconPath} key={index} />;
         })}
       </div>
     </PageLayout>
