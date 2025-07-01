@@ -2,6 +2,8 @@ import { FC } from "react";
 
 import { useNavigate } from "react-router-dom";
 
+import { useAppSelector } from "../../../../store";
+
 import { IPost } from "#types/api-response-types.ts";
 
 import Loader from "#ui/loader/loader.tsx";
@@ -10,7 +12,6 @@ import { routes } from "#utils/routes/main-routes/main-routes.ts";
 
 import deleteIcon from "#images/delete-icon.png";
 import changeIcon from "#images/change-icon.png";
-import { useAppSelector } from "../../../../store";
 
 export interface IBlogMainNewsProps {
   postInfo: IPost | undefined;

@@ -17,6 +17,7 @@ const postsSlice = createSlice({
       state.postStatus = action.payload;
     },
 
+    // for create post
     selectImagesForPost(state, action: PayloadAction<string>) {
       if (state.attachedImages.includes(action.payload)) {
         state.attachedImages = state.attachedImages.filter((arrayItem) => arrayItem !== action.payload);
@@ -25,11 +26,16 @@ const postsSlice = createSlice({
       state.attachedImages.push(action.payload);
     },
 
+    // for edit post
+    putAttachedImages(state, action: PayloadAction<string[]>) {
+      state.attachedImages = action.payload;
+    },
+
     clearAttachedImages(state) {
       state.attachedImages = [];
     },
   },
 });
 
-export const { changePostStatus, selectImagesForPost, clearAttachedImages } = postsSlice.actions;
+export const { changePostStatus, selectImagesForPost, clearAttachedImages, putAttachedImages } = postsSlice.actions;
 export default postsSlice.reducer;

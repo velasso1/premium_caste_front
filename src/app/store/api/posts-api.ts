@@ -24,19 +24,18 @@ export const postsApi = createApi({
     getCurrentPost: build.query<IPost, { post_id: string | undefined }>({
       query: (data) => ({
         url: import.meta.env.VITE_POST_ACTIONS + `/${data.post_id}`,
-        // credentials: "include",
+        keepUnusedDataFor: 0,
+        refetchOnMountOrArgChange: true,
+        invalidatesTags: ["Posts"],
       }),
     }),
 
     // Возвращает список медиа-групп, привязанных к посту
     getMediaGroupsOfPost: build.query<void, { post_id: string | undefined }>({
       query: (data) => ({
-        url:
-          import.meta.env.VITE_POST_ACTIONS +
-          `/${data.post_id}` +
-          import.meta.env.VITE_GET_MEDIA_GROUPS +
-          "?relation_type=content",
+        url: import.meta.env.VITE_POST_ACTIONS + `/${data.post_id}` + import.meta.env.VITE_GET_MEDIA_GROUPS,
         credentials: "include",
+        params: { relation_type: "content" },
       }),
     }),
 
@@ -97,6 +96,20 @@ export const postsApi = createApi({
         invalidatesTags: ["Posts"],
       }),
     }),
+
+    updatePost: build.mutation<IPost, IPostInfoPayload>({
+      query: (data) => ({
+        url: import.meta.env.VITE_POST_ACTIONS + `/${data.id}`,
+        method: "PUT",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+        keepUnusedDataFor: 0,
+        invalidatesTags: ["Posts"],
+      }),
+    }),
   }),
 });
 
@@ -110,4 +123,5 @@ export const {
   usePublishPostMutation,
   useArchivePostMutation,
   useDeletePostMutation,
+  useUpdatePostMutation,
 } = postsApi;

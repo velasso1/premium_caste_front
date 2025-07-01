@@ -1,14 +1,15 @@
 import { FC, useState, useEffect } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../../../store";
-import { useCreateNewPostMutation } from "../../../../store/api/posts-api";
-import { clearAttachedImages } from "../../../../store/slices/posts";
+import { useCreateNewPostMutation, useUpdatePostMutation } from "../../../../store/api/posts-api";
+import { clearAttachedImages, putAttachedImages } from "../../../../store/slices/posts";
 import {
   useCreateMediaGroupMutation,
   useGetAllImagesQuery,
   useAttachMediaToGroupMutation,
   useAttachMediaGroupToPostMutation,
 } from "../../../../store/api/media-api";
+
 import { setEffect } from "../../../../store/slices/effects";
 
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -22,6 +23,7 @@ import TextField from "#ui/fields/text-field.tsx";
 import Button from "#ui/button/button.tsx";
 import Loader from "#ui/loader/loader.tsx";
 import LineNotification from "#ui/notifications/line-notification.tsx";
+import { IPost } from "#types/api-response-types.ts";
 
 const initialStatePost: IPostInfoPayload = {
   author_id: "",
@@ -32,7 +34,11 @@ const initialStatePost: IPostInfoPayload = {
   title: "",
 };
 
-const PostInformation: FC = () => {
+interface IPostInformationProps {
+  postForEdit?: IPost;
+}
+
+const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
   const dispatch = useAppDispatch();
 
   const { userId } = useAppSelector((state) => state.userSlice);
@@ -43,6 +49,7 @@ const PostInformation: FC = () => {
   const [createMediaGroup, mediaGroupStatus] = useCreateMediaGroupMutation();
   const [attachImages, attachImagesStatus] = useAttachMediaToGroupMutation();
   const [attachMediaToPost, attachMediaToPostStatus] = useAttachMediaGroupToPostMutation();
+  const [updatePost, updatePostStatus] = useUpdatePostMutation();
 
   const [postInfo, setPostInfo] = useState<IPostInfoPayload>(initialStatePost);
   const [previewSelected, setPreviewSelected] = useState<boolean>(false);
@@ -52,19 +59,41 @@ const PostInformation: FC = () => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm<IPostInfoPayload>();
 
   useEffect(() => {
-    if (creatingStatus.isSuccess) {
+    if (postForEdit) {
+      const attachedImagesEdit: string[] = [];
+
+      setPostInfo({
+        author_id: postForEdit?.author_id,
+        content: postForEdit?.content,
+        excerpt: postForEdit?.excerpt,
+        featured_image_id: postForEdit?.featured_image_id,
+        status: postForEdit?.status,
+        title: postForEdit?.title,
+        id: postForEdit.id,
+      });
+
+      postForEdit.media_groups.content.map((item) => {
+        attachedImagesEdit.push(item.id);
+      });
+      dispatch(putAttachedImages(attachedImagesEdit));
+    }
+  }, [postForEdit]);
+
+  useEffect(() => {
+    if (creatingStatus.isSuccess || updatePostStatus.isSuccess) {
       setPostInfo(initialStatePost);
       dispatch(setEffect({ status: "success", message: "Пост успешно создан!" }));
     }
 
-    if (creatingStatus.isError) {
+    if (creatingStatus.isError || updatePostStatus.isError) {
       dispatch(setEffect({ status: "error", message: "Произошла ошибка при загрузке данных" }));
     }
-  }, [creatingStatus]);
+  }, [creatingStatus, updatePostStatus]);
 
   // соединение картинок в группу
   useEffect(() => {
@@ -103,6 +132,10 @@ const PostInformation: FC = () => {
       reset();
     };
 
+  const updatePostHandler = (): SubmitHandler<IPostInfoPayload> => (data) => {
+    updatePost({ ...data, id: postInfo.id });
+  };
+
   return (
     <ContentBlockLayout contentTitle="Содержание поста" customClassName="create-blog-post-page__post-info">
       <div className="create-blog-post-page__post-fields">
@@ -118,6 +151,7 @@ const PostInformation: FC = () => {
           className={`create-blog-post-page__post-title ${errors?.title && "field_error"}`}
           type="text"
           placeholder="Заголовок поста"
+          defaultValue={postInfo.title}
           {...register("title", { required: true })}
         />
 
@@ -125,12 +159,14 @@ const PostInformation: FC = () => {
           className={`create-blog-post-page__post-excerpt ${errors?.excerpt && "field_error"}`}
           type="text"
           placeholder="Краткое описание"
+          defaultValue={postInfo.excerpt}
           {...register("excerpt", { required: true })}
         />
 
         <textarea
           className={`create-blog-post-page__post-content ${errors?.content && "field_error"}`}
           placeholder="Основной текст поста"
+          defaultValue={postInfo.content}
           {...register("content", { required: true })}
         />
       </div>
@@ -180,16 +216,26 @@ const PostInformation: FC = () => {
         {creatingStep === 2 && (
           <>
             <Button buttonText="Назад" onClickAction={() => setCreatingStep((prev) => prev - 1)} />
-            <Button
-              buttonText="Создать пост"
-              disabled={attachedImages.length <= 1}
-              onClickAction={handleSubmit(createPostHandler("draft"))}
-            />
-            <Button
-              buttonText="Создать и опубликовать"
-              disabled={attachedImages.length <= 1}
-              onClickAction={handleSubmit(createPostHandler("published"))}
-            />
+            {postForEdit ? (
+              <Button
+                buttonText="Сохранить"
+                disabled={attachedImages.length <= 1}
+                onClickAction={handleSubmit(updatePostHandler())}
+              />
+            ) : (
+              <>
+                <Button
+                  buttonText="Создать пост"
+                  disabled={attachedImages.length <= 1}
+                  onClickAction={handleSubmit(createPostHandler("draft"))}
+                />
+                <Button
+                  buttonText="Создать и опубликовать"
+                  disabled={attachedImages.length <= 1}
+                  onClickAction={handleSubmit(createPostHandler("published"))}
+                />
+              </>
+            )}
           </>
         )}
       </div>

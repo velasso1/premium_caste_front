@@ -62,7 +62,7 @@ export interface IPost {
   id: string;
   published_at: string;
   slug: string;
-  status: string;
+  status: "draft" | "published" | "archived";
   title: string;
   updated_at: string;
   media_groups: IMediaGroups;
