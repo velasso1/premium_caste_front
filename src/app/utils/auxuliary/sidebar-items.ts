@@ -4,8 +4,6 @@ export interface ISidebarItem {
   itemName: string;
 }
 
-// type TLinkTo = ;
-
 export interface ISidebarItemAdminMenu extends ISidebarItem {
   linkTo: (typeof routes)[keyof typeof routes] | "undefined";
   action?: "NAV";
@@ -15,7 +13,7 @@ export interface ISidebarItemsPostsMenu extends ISidebarItem {
   dispatchAction: "draft" | "published" | "archived";
 }
 
-export const sidebarItemsWorks: ISidebarItem[] = [
+export const sidebarItemsWorks: readonly ISidebarItem[] = [
   { itemName: "Всё" },
   { itemName: "Оклейка защитными плёнками" },
   { itemName: "Оклейка цветными плёнками" },
@@ -30,14 +28,12 @@ export const sidebarItemsWorks: ISidebarItem[] = [
   { itemName: "Детейлинг" },
 ] as const;
 
-export const sidebarItemsAdminMenu: ISidebarItemAdminMenu[] = [
+export const sidebarItemsAdminMenu: readonly ISidebarItemAdminMenu[] = [
   { itemName: "Создать пост", linkTo: routes.CREATE_BLOG_POST_PAGE },
   { itemName: "Управление постами", linkTo: routes.BLOG_POST_MANAGING },
-  // { itemName: "Назначить модератора", linkTo: "undefined" },
-  // { itemName: "Добавить услугу", linkTo: "undefined" },
 ] as const;
 
-export const sidebarItemsPostsMenu: ISidebarItemsPostsMenu[] = [
+export const sidebarItemsPostsMenu: readonly ISidebarItemsPostsMenu[] = [
   { itemName: "Опубликованные", dispatchAction: "published" },
   { itemName: "Ждут публикации", dispatchAction: "draft" },
   { itemName: "В архиве", dispatchAction: "archived" },

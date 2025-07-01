@@ -5,7 +5,7 @@ import { IPagesNavigationItems } from "../../types/utils-types/pages-navigation-
 
 const MAIN_MODULE_ROUTE = "main/";
 
-export const PAGES_NAVIGATION_LIST: IPagesNavigationItems[] = [
+export const PAGES_NAVIGATION_LIST: readonly IPagesNavigationItems[] = [
   { pageName: "главная", href: routes.GENERAL_PAGE },
   { pageName: "услуги", href: MAIN_MODULE_ROUTE + routes.SERVICES_PAGE },
   { pageName: "наши работы", href: MAIN_MODULE_ROUTE + routes.OUR_WORKS_PAGE },
