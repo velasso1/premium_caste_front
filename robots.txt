@@ -1,0 +1,78 @@
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /admin/
+Disallow: /cgi-bin/
+Disallow: /*?
+Disallow: /search/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /account/
+Disallow: /*.pdf$
+Disallow: /*.docx$
+Disallow: /*.xlsx$
+Disallow: /*.pptx$
+
+# Оптимизация сканирования бюджета краулера
+Crawl-delay: 10
+
+# Очистка параметров URL (особенно важно для Yandex)
+Clean-param: ref /services/*
+Clean-param: utm_source /blog/*
+Clean-param: utm_medium /
+Clean-param: utm_campaign /
+Clean-param: fbclid /
+Clean-param: gclid /
+
+# Указание карт сайта
+Sitemap: https://premiumcaste.ru/sitemap.xml
+Sitemap: https://premiumcaste.ru/sitemap-images.xml
+Sitemap: https://premiumcaste.ru/sitemap-video.xml
+
+# Особые правила для Google
+User-agent: Googlebot
+Allow: /*.js$
+Allow: /*.css$
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-login.php
+Disallow: /wp-content/plugins/
+Disallow: /wp-content/themes/
+Crawl-delay: 5
+
+# Правила для изображений
+User-agent: Googlebot-Image
+Allow: /images/products/
+Allow: /images/gallery/
+Disallow: /images/temp/
+Disallow: /images/avatars/
+
+# Правила для видео
+User-agent: Googlebot-Video
+Allow: /videos/*
+Disallow: /videos/drafts/
+
+# Особые правила для Yandex
+User-agent: Yandex
+Allow: /$
+Allow: /services/
+Allow: /blog/
+Disallow: /*print=yes
+Disallow: /*back=
+Disallow: /*filter=
+Disallow: /*sort=
+Disallow: /*view=
+Clean-param: from /news/
+Clean-param: yclid /
+Host: premiumcaste.ru
+
+# Блокировка сканеров-спамеров
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Crawl-delay: 20
+
+User-agent: SemrushBot
+Crawl-delay: 15
