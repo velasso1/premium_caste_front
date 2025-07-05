@@ -23,6 +23,7 @@ import NotFoundPage from "#pages/not-found-page/not-found-page.tsx";
 import CreateBlogPostPage from "#pages/create-blog-post-page/create-blog-post-page.tsx";
 import BlogPostManagingPage from "#pages/blog-post-managing-page/blog-post-managing-page.tsx";
 import EditPostPage from "#pages/edit-post-page/edit-post-page.tsx";
+import CurrentServicePage from "#pages/current-service-page/current-service-page.tsx";
 
 // auth
 import LoginForm from "#auth/components/login-form/login-form.tsx";
@@ -71,8 +72,12 @@ const App: FC = () => {
             <Route path={routes.FAVORITES_PAGE} element={<FavoritesPage />} />
             <Route path={routes.ACCOUNT_PAGE} element={<PrivateRoute children={<AccountPage />} />} />
             <Route path={routes.NOT_EXIST_PAGE} element={<NotFoundPage />} />
+
             {/* SECONDARY PAGES */}
             <Route path={`${routes.BLOG_PAGE}/item/:id`} element={<CurrentPostPage />} />
+            <Route path={`${routes.CURRENT_SERVICE_PAGE}/:service`} element={<CurrentServicePage />} />
+
+            {/* ADMIN PAGES */}
             <Route path={routes.CREATE_BLOG_POST_PAGE} element={<AdminRoute children={<CreateBlogPostPage />} />} />
             <Route path={routes.BLOG_POST_MANAGING} element={<AdminRoute children={<BlogPostManagingPage />} />} />
             <Route path={`${routes.EDIT_POST_PAGE}/item/:id`} element={<AdminRoute children={<EditPostPage />} />} />
