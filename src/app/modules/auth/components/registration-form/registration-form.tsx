@@ -89,14 +89,14 @@ const RegistrationForm: FC = () => {
             type="text"
             placeholder="Телефон"
             {...register("phone", {
-              // required: REQUIRED_MESSAGE,
-              // minLength: { value: 18, message: "Неверный формат телефона" },
+              required: REQUIRED_MESSAGE,
+              minLength: { value: 18, message: "Неверный формат телефона" },
             })}
             // здесь проблема с Maskito
             // он через ref изменяет value у инпута и из-за этого не тригерится onChange
             // из-за этого не срабаывает валидация react-hook-form
             disabled={isLoading}
-            // ref={maskedInputRef}
+            ref={maskedInputRef}
           />
 
           {errors?.password && <LineNotification text={errors?.password?.message ?? "error"} />}
