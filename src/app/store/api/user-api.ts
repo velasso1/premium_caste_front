@@ -18,9 +18,14 @@ import { setUserData } from "../slices/user";
 
 export const userApi = createApi({
   reducerPath: "userApi",
-  baseQuery: <BaseQueryFn<string | FetchArgs, unknown, CustomizedFetchBaseQueryError, {}>>(
-    fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL })
-  ),
+  baseQuery: <BaseQueryFn<string | FetchArgs, unknown, CustomizedFetchBaseQueryError, {}>>fetchBaseQuery({
+    baseUrl: import.meta.env.VITE_BASE_URL,
+    prepareHeaders: (headers) => {
+      headers.set("Content-Type", "application/json");
+
+      return headers;
+    },
+  }),
   endpoints: (build) => ({
     createAccount: build.mutation<IRegistrationResponse, IRegistrationPayload>({
       query: (data) => ({
@@ -37,15 +42,13 @@ export const userApi = createApi({
         url: import.meta.env.VITE_LOGIN,
         credentials: "include",
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify(data),
       }),
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
           dispatch(setUserData(data.data.user_id));
+          localStorage.setItem("_pc_uid", data.data.user_id);
         } catch (error) {
           console.error(error);
         }
@@ -56,9 +59,6 @@ export const userApi = createApi({
       query: (data) => ({
         url: import.meta.env.VITE_USERS_URL + data.user_id + import.meta.env.VITE_IS_ADMIN,
         credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
       }),
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         try {
@@ -75,9 +75,6 @@ export const userApi = createApi({
         url: import.meta.env.VITE_GET_USER_INFO,
         method: "POST",
         credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify(data),
       }),
 

@@ -2,7 +2,12 @@ import { BaseQueryFn, createApi, fetchBaseQuery, FetchArgs, RootState } from "@r
 
 import { CustomizedFetchBaseQueryError, IGetAllImagesResponse } from "#types/api-response-types.ts";
 
-import { IUploadImagesPayload } from "#types/api-payload-types.ts";
+import {
+  IUploadImagesPayload,
+  IAttachMediaToGroupPayload,
+  IAttachMediaGroupToPostPayload,
+  ICreateMediaGroupPayload,
+} from "#types/api-payload-types.ts";
 
 export const mediaApi = createApi({
   reducerPath: "mediaApi",
@@ -34,7 +39,7 @@ export const mediaApi = createApi({
     }),
 
     // создает группу для картинок
-    createMediaGroup: build.mutation<{ data: string }, { owner_id: string; description: string }>({
+    createMediaGroup: build.mutation<{ data: string }, ICreateMediaGroupPayload>({
       query: (data) => ({
         url: import.meta.env.VITE_CREATE_MEDIA_GROUP,
         method: "POST",
@@ -47,7 +52,7 @@ export const mediaApi = createApi({
     }),
 
     // связывает несколько картинок в одну группу
-    attachMediaToGroup: build.mutation<void, { group_id: string; media_id: string[] }>({
+    attachMediaToGroup: build.mutation<void, IAttachMediaToGroupPayload>({
       query: (data) => ({
         url: import.meta.env.VITE_GET_MEDIA + "attach",
         method: "POST",
@@ -60,7 +65,7 @@ export const mediaApi = createApi({
     }),
 
     // связывает группу картинок с постом
-    attachMediaGroupToPost: build.mutation<void, { post_id: string; group_id: string; relation_type?: string }>({
+    attachMediaGroupToPost: build.mutation<void, IAttachMediaGroupToPostPayload>({
       query: (data) => ({
         url: import.meta.env.VITE_POST_ACTIONS + `/${data.post_id}` + import.meta.env.VITE_ATTACH_MEDIA_TO_POST,
         method: "POST",

@@ -27,3 +27,23 @@ export interface IUploadImagesPayload {
   height?: number;
   duration?: number;
 }
+
+export interface IAttachMediaToGroupPayload {
+  group_id: string;
+  media_id: string[];
+}
+
+export interface IAttachMediaGroupToPostPayload {
+  post_id: string;
+  group_id: string;
+  relation_type?: string;
+}
+
+export interface ICreateMediaGroupPayload {
+  owner_id: string;
+  description: string;
+}
+
+export interface IGetPostsPayload {
+  postStatus: "published" | "draft" | "archived";
+}

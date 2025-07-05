@@ -6,11 +6,6 @@ const initialState: IUserSliceState = {
   userIsAuth: false,
   userId: "",
   userIsAdmin: false,
-  // userData: {
-  // access_token: "",
-  // refresh_token: "",
-  //   user_id: "",
-  // },
 };
 
 const userSlice = createSlice({

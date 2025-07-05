@@ -1,6 +1,7 @@
 import { BaseQueryFn, createApi, fetchBaseQuery, FetchArgs, RootState } from "@reduxjs/toolkit/query/react";
 
 import { CustomizedFetchBaseQueryError, IAllPostsResponse, IPost } from "#types/api-response-types.ts";
+import { IGetPostsPayload } from "#types/api-payload-types.ts";
 import { IPostInfoPayload } from "#types/store-types/posts-initial-state-types.ts";
 
 export const postsApi = createApi({
@@ -10,10 +11,10 @@ export const postsApi = createApi({
   ),
   tagTypes: ["Posts"],
   endpoints: (build) => ({
-    getPosts: build.query<IAllPostsResponse, { postStatus: "published" | "draft" | "archived" }>({
+    getPosts: build.query<IAllPostsResponse, IGetPostsPayload>({
       query: (data) => ({
-        url: import.meta.env.VITE_POST_ACTIONS + `?status=${data.postStatus}`,
-        // credentials: "include",
+        url: import.meta.env.VITE_POST_ACTIONS,
+        params: { status: data.postStatus },
       }),
       keepUnusedDataFor: 0,
       providesTags: (result, error, arg) =>
@@ -61,6 +62,7 @@ export const postsApi = createApi({
       }),
     }),
 
+    // перевод поста в статус "опубликован"
     publishPost: build.mutation<void, { postId: string }>({
       query: (data) => ({
         url: import.meta.env.VITE_POST_ACTIONS + `/${data.postId}` + import.meta.env.VITE_PUBLISH_POST,
@@ -73,6 +75,7 @@ export const postsApi = createApi({
       }),
     }),
 
+    // перевод поста в статус "архивирован"
     archivePost: build.mutation<void, { postId: string }>({
       query: (data) => ({
         url: import.meta.env.VITE_POST_ACTIONS + `/${data.postId}` + import.meta.env.VITE_ARCHIVE_POST,
@@ -97,6 +100,7 @@ export const postsApi = createApi({
       }),
     }),
 
+    // изменение поста
     updatePost: build.mutation<IPost, IPostInfoPayload>({
       query: (data) => ({
         url: import.meta.env.VITE_POST_ACTIONS + `/${data.id}`,
