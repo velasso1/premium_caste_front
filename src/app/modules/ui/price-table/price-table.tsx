@@ -24,7 +24,7 @@ export interface ITableProps {
 
 const PriceTable: FC<ITableProps> = ({ tableData }) => {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} style={{ backgroundColor: "inherit" }}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           {tableData.headTitle ? (
@@ -32,7 +32,7 @@ const PriceTable: FC<ITableProps> = ({ tableData }) => {
               <TableCell
                 align="center"
                 colSpan={tableData.headCols.length}
-                style={{ fontSize: "17px", fontWeight: 700 }}
+                style={{ fontSize: "17px", fontWeight: 700, color: "#fff", borderBottomColor: "#ff5000" }}
               >
                 {tableData.headTitle}
               </TableCell>
@@ -42,7 +42,7 @@ const PriceTable: FC<ITableProps> = ({ tableData }) => {
           <TableRow>
             {tableData.headCols.map((item) => {
               return (
-                <TableCell align="left" style={{ fontWeight: 700 }}>
+                <TableCell align="left" style={{ fontWeight: 700, color: "#fff", borderBottomColor: "#ff5000" }}>
                   {item}
                 </TableCell>
               );
@@ -50,11 +50,21 @@ const PriceTable: FC<ITableProps> = ({ tableData }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {tableData.data.map((item) => {
+          {tableData.data.map((item, index) => {
             return (
               <TableRow>
                 {item.map((row) => {
-                  return <TableCell>{row.value}</TableCell>;
+                  return (
+                    <TableCell
+                      style={{
+                        color: "#fff",
+                        borderBottomColor: "#ff5000",
+                        backgroundColor: index % 2 === 0 ? "#0000003f" : "inherit",
+                      }}
+                    >
+                      {row.value}
+                    </TableCell>
+                  );
                 })}
               </TableRow>
             );
