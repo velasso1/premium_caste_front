@@ -7,23 +7,27 @@ import facebook from "#images/icon-park-outline_facebook.png";
 import vk from "#images/basil_vk-outline.png";
 
 const ContactIcons: FC = () => {
+  const contactIcons = [
+    { icon: d2, link: "https://www.drive2.ru/o/premiumcaste/" },
+    { icon: inst, link: "https://www.instagram.com/premiumcaste/" },
+    { icon: teleg, link: "https://t.me/premiumcaste_admin" },
+    { icon: facebook, link: "https://t.me/premiumcaste_admin" },
+    { icon: vk, link: "https://vk.com/premiumcaste" },
+  ];
   return (
     <div className="place-block__icons">
-      <div className="place-block__icon">
-        <img className="place-block__icon-image" src={d2} alt="drive2" />
-      </div>
-      <div className="place-block__icon">
-        <img className="place-block__icon-image" src={inst} alt="instagram" />
-      </div>
-      <div className="place-block__icon">
-        <img className="place-block__icon-image" src={teleg} alt="telegram" />
-      </div>
-      <div className="place-block__icon">
-        <img className="place-block__icon-image" src={facebook} alt="facebook" />
-      </div>
-      <div className="place-block__icon">
-        <img className="place-block__icon-image" src={vk} alt="vk" />
-      </div>
+      {contactIcons.map((item) => {
+        return (
+          <div className="place-block__icon">
+            <img
+              className="place-block__icon-image"
+              src={item.icon}
+              alt={item.icon}
+              onClick={() => window.open(item.link, "_blank")}
+            />
+          </div>
+        );
+      })}
     </div>
   );
 };
