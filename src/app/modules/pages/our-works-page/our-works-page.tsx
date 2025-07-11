@@ -15,7 +15,7 @@ const OurWorksPage: FC = () => {
       <PageTitle pageName="Наши работы" />
 
       <div className="our-works-page__content">
-        <Sidebar sidebarItems={sidebarItemsWorks} managementType="dispatch" />
+        <Sidebar sidebarItems={sidebarItemsWorks} managementType="dispatch" transformToSelect={true} />
         <div className="our-works-page__work-items">
           <WorkItem imageSource={tesla} itemTitle="Mazda CX-5 Focal Inside, шумоизоляция дверей" />
           <WorkItem imageSource={tesla} itemTitle="Mazda CX-5 Focal Inside, шумоизоляция дверей" />
