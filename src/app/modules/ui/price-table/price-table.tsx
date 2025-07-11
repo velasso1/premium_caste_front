@@ -10,6 +10,8 @@ import Paper from "@mui/material/Paper";
 
 interface IRows {
   value: string;
+  colSpan?: number;
+  rowSpan?: number;
 }
 
 export interface ITableData {
@@ -61,6 +63,8 @@ const PriceTable: FC<ITableProps> = ({ tableData }) => {
                         borderBottomColor: "#ff5000",
                         backgroundColor: index % 2 === 0 ? "#0000003f" : "inherit",
                       }}
+                      colSpan={row.colSpan}
+                      rowSpan={row.rowSpan}
                     >
                       {row.value}
                     </TableCell>
