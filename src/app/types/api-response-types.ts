@@ -1,3 +1,5 @@
+import { ICreateGalleryPayload } from "./api-payload-types";
+
 // Общие типы данных для ответов от сервера
 export interface IServerResponse {
   status: "success" | "error";
@@ -97,4 +99,17 @@ export interface IImageInfo {
   media_type: "photo" | "audio" | "video" | "document";
   original_filename: string;
   storage_path: string;
+}
+
+// GALLERIES API
+
+interface IGalleryResponse extends ICreateGalleryPayload {
+  id: string;
+  published_at: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface IGetAllGalleriesResponse {
+  galleries: IGalleryResponse[];
 }

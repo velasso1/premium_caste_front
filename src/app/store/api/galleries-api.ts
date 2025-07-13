@@ -1,6 +1,7 @@
 import { BaseQueryFn, createApi, fetchBaseQuery, FetchArgs, RootState } from "@reduxjs/toolkit/query/react";
 
 import { ICreateGalleryPayload } from "#types/api-payload-types.ts";
+import { IGetAllGalleriesResponse } from "#types/api-response-types.ts";
 
 import { CustomizedFetchBaseQueryError } from "#types/api-response-types.ts";
 
@@ -23,7 +24,19 @@ export const galleriesApi = createApi({
         credentials: "include",
       }),
     }),
+
+    getAllGalleries: build.query<IGetAllGalleriesResponse, { status: "published"; page: string; per_page: string }>({
+      query: (data) => ({
+        url: import.meta.env.VITE_GALLERIES_ACTION,
+        params: {
+          status: data.status,
+          page: data.page,
+          per_page: data.per_page,
+        },
+        credentials: "include",
+      }),
+    }),
   }),
 });
 
-export const { useCreateNewGalleryMutation } = galleriesApi;
+export const { useCreateNewGalleryMutation, useGetAllGalleriesQuery } = galleriesApi;

@@ -3,6 +3,8 @@ import { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setActiveTag } from "../../../store/slices/galleries";
 
+import { useGetAllGalleriesQuery } from "../../../store/api/galleries-api";
+
 import { useMediaQuery } from "react-responsive";
 
 import PageTitle from "../../ui/page-title/page-title";
@@ -13,12 +15,12 @@ import { sidebarItemsWorks } from "#utils/auxuliary/sidebar-items.ts";
 
 import WorkItem from "./components/work-item";
 
-import tesla from "#images/tesla.png";
-
 const OurWorksPage: FC = () => {
   const dispatch = useAppDispatch();
 
   const { activeTag } = useAppSelector((state) => state.galleriesSlice);
+
+  const getGalleries = useGetAllGalleriesQuery({ status: "published", page: "1", per_page: "100" });
 
   const isMobile = useMediaQuery({ maxWidth: 769 });
 
@@ -57,19 +59,9 @@ const OurWorksPage: FC = () => {
         )}
 
         <div className="our-works-page__work-items">
-          <WorkItem imageSource={tesla} itemTitle="Mazda CX-5 Focal Inside, шумоизоляция дверей" />
-          <WorkItem imageSource={tesla} itemTitle="Mazda CX-5 Focal Inside, шумоизоляция дверей" />
-          <WorkItem imageSource={tesla} itemTitle="Mazda CX-5 Focal Inside, шумоизоляция дверей" />
-          <WorkItem imageSource={tesla} itemTitle="Mazda CX-5 Focal Inside, шумоизоляция дверей" />
-          <WorkItem imageSource={tesla} itemTitle="Mazda CX-5 Focal Inside, шумоизоляция дверей" />
-          <WorkItem imageSource={tesla} itemTitle="Mazda CX-5 Focal Inside, шумоизоляция дверей" />
-          <WorkItem imageSource={tesla} itemTitle="Mazda CX-5 Focal Inside, шумоизоляция дверей" />
-          <WorkItem imageSource={tesla} itemTitle="Mazda CX-5 Focal Inside, шумоизоляция дверей" />
-          <WorkItem imageSource={tesla} itemTitle="Mazda CX-5 Focal Inside, шумоизоляция дверей" />
-          <WorkItem imageSource={tesla} itemTitle="Mazda CX-5 Focal Inside, шумоизоляция дверей" />
-          <WorkItem imageSource={tesla} itemTitle="Mazda CX-5 Focal Inside, шумоизоляция дверей" />
-          <WorkItem imageSource={tesla} itemTitle="Mazda CX-5 Focal Inside, шумоизоляция дверей" />
-          <WorkItem imageSource={tesla} itemTitle="Mazda CX-5 Focal Inside, шумоизоляция дверей" />
+          {getGalleries.data?.galleries.map((item) => {
+            return <WorkItem imageSource={item.images[item.cover_image_index]} itemTitle={item.title} />;
+          })}
         </div>
       </div>
     </PageLayout>
