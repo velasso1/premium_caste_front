@@ -19,6 +19,7 @@ export const routes = {
   LOGIN_PAGE: "login",
   REGISTRATION_PAGE: "registration",
   CREATE_BLOG_POST_PAGE: "create-blog-post",
+  CREATE_WORK_PAGE: "create-work",
   BLOG_POST_MANAGING: "posts-managing",
   EDIT_POST_PAGE: "edit-post",
   CURRENT_SERVICE_PAGE: "service",

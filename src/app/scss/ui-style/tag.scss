@@ -1,0 +1,44 @@
+@mixin tagStyle {
+  display: inline-block;
+  width: max-content;
+  padding: 10px 5px;
+  border-radius: 10px;
+  border: 1px solid $mainColor;
+  margin: 5px;
+  transition: 0.2s;
+
+  &:active {
+    transform: scale(1.07);
+  }
+}
+
+.tag {
+  @include tagStyle();
+  background-color: inherit;
+
+  &--selected {
+    @include tagStyle();
+    background-color: $mainColor;
+
+    .tag__title {
+      color: black;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &__title {
+    color: #fff;
+    text-transform: lowercase;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+}

@@ -2,10 +2,15 @@ import { FC, useState } from "react";
 
 import { useAppSelector } from "../../../../store";
 
+import { useNavigate } from "react-router-dom";
+
 import Sidebar from "#ui/sidebar/sidebar.tsx";
 import { sidebarItemsAdminMenu } from "#utils/auxuliary/sidebar-items.ts";
+import SidebarItem from "#ui/sidebar/components/sidebar-item.tsx";
 
 const AdminPanel: FC = () => {
+  const navigate = useNavigate();
+
   const [panelIsOpen, setPanelState] = useState<boolean>(false);
 
   const { userIsAdmin } = useAppSelector((state) => state.userSlice);
@@ -19,7 +24,13 @@ const AdminPanel: FC = () => {
             <span onClick={() => setPanelState((prev) => !prev)}>X</span>
           </div>
           <div className="admin-panel--open" onClick={() => setPanelState(false)}>
-            <Sidebar sidebarItems={sidebarItemsAdminMenu} managementType="nav" />
+            <Sidebar>
+              {sidebarItemsAdminMenu.map((item) => {
+                return (
+                  <SidebarItem onClick={() => navigate(`main/${item.linkTo}`)} itemInfo={item} activeElement={false} />
+                );
+              })}
+            </Sidebar>
           </div>
         </>
       ) : (

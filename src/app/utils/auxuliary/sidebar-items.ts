@@ -31,6 +31,7 @@ export const sidebarItemsWorks: readonly ISidebarItem[] = [
 export const sidebarItemsAdminMenu: readonly ISidebarItemAdminMenu[] = [
   { itemName: "Создать пост", linkTo: routes.CREATE_BLOG_POST_PAGE },
   { itemName: "Управление постами", linkTo: routes.BLOG_POST_MANAGING },
+  { itemName: "Создать работу", linkTo: routes.CREATE_WORK_PAGE },
 ] as const;
 
 export const sidebarItemsPostsMenu: readonly ISidebarItemsPostsMenu[] = [

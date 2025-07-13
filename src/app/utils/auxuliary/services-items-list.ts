@@ -16,52 +16,52 @@ export interface IServicesItem {
 
 export const SERVICES_ITEMS: readonly IServicesItem[] = [
   {
-    title: "оклейка винилом",
+    title: "Оклейка винилом",
     serviceName: "vinyl",
     iconPath: vinyl,
   },
   {
-    title: "ПОШИВ САЛОНОВ",
+    title: "Пошив салонов",
     serviceName: "sewing",
     iconPath: salon,
   },
   {
-    title: "ТОНИРОВАНИЕ СТЕКОЛ И ОПТИКИ",
+    title: "Тонирование стекол и оптики",
     serviceName: "tinting",
     iconPath: toner,
   },
   {
-    title: "СВЕТОВОЙ ТЮНИНГ",
+    title: "Световой тюнинг",
     serviceName: "light",
     iconPath: toner,
   },
   {
-    title: "ОКЛЕЙКА ЗАЩИТНЫМИ ПЛЕНКАМИ",
+    title: "Оклейка защитными пленками",
     serviceName: "safety",
     iconPath: safety,
   },
   {
-    title: "УСТАНОВКА ШУМОИЗОЛЯЦИИ",
+    title: "Установка шумоизоляции",
     serviceName: "soundproofing",
     iconPath: shumka,
   },
   {
-    title: "АВТОЗВУК И МУЛЬтИМЕДИя",
+    title: "Автозвук и мультимедия",
     serviceName: "sound",
     iconPath: sound,
   },
   {
-    title: "ДЕТЕЙЛИНГ",
+    title: "Детейлинг",
     serviceName: "detailing",
     iconPath: detailing,
   },
   {
-    title: "УСТАНОВКА ДОП ОБОРУДОВАНИЯ",
+    title: "Установка доп оборудования",
     serviceName: "equipment",
     iconPath: dop,
   },
   {
-    title: "ДИСКИ",
+    title: "Диски",
     serviceName: "disks",
     iconPath: disk,
   },

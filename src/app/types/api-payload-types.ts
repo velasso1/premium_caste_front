@@ -47,3 +47,19 @@ export interface ICreateMediaGroupPayload {
 export interface IGetPostsPayload {
   postStatus: "published" | "draft" | "archived";
 }
+
+// GALLEREIS API APYLOAD TYPES
+
+export interface ICreateGalleryPayload {
+  author_id: string;
+  title: string;
+  status: string;
+  description: string;
+  cover_image_index: number;
+  images: string[];
+  tags: string[];
+  slug: string;
+  metadata?: {
+    additionalProp1: {};
+  };
+}
