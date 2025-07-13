@@ -44,8 +44,10 @@ export interface ICreateMediaGroupPayload {
   description: string;
 }
 
+type TPostStatus = "published" | "draft" | "archived";
+
 export interface IGetPostsPayload {
-  postStatus: "published" | "draft" | "archived";
+  postStatus: TPostStatus;
 }
 
 // GALLEREIS API APYLOAD TYPES
@@ -53,7 +55,7 @@ export interface IGetPostsPayload {
 export interface ICreateGalleryPayload {
   author_id: string;
   title: string;
-  status: string;
+  status: TPostStatus;
   description: string;
   cover_image_index: number;
   images: string[];

@@ -12,7 +12,7 @@ export const galleriesApi = createApi({
   tagTypes: ["Images"],
   endpoints: (build) => ({
     // создание новой галереи
-    createNewGallery: build.mutation<void, ICreateGalleryPayload>({
+    createNewGallery: build.mutation<{ id: string }, ICreateGalleryPayload>({
       query: (data) => ({
         url: import.meta.env.VITE_GALLERIES_ACTION,
         method: "POST",
@@ -20,6 +20,7 @@ export const galleriesApi = createApi({
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
+        credentials: "include",
       }),
     }),
   }),

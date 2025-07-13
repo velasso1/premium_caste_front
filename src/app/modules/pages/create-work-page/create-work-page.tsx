@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState, useEffect } from "react";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 
@@ -25,9 +25,21 @@ const CreateWorkPage: FC = () => {
   const { userId } = useAppSelector((state) => state.userSlice);
   const { createGalleryTags } = useAppSelector((state) => state.galleriesSlice);
 
+  const images = useGetAllImagesQuery();
   const [createNewGallery, galleryStatus] = useCreateNewGalleryMutation();
 
-  const images = useGetAllImagesQuery();
+  const [attachedImages, setAttachedImages] = useState<string[]>([]);
+
+  const imageAttachHandler = (path: string): void => {
+    setAttachedImages((prev) => {
+      if (attachedImages.includes(path)) {
+        return prev.filter((imagePath) => imagePath !== path);
+      }
+      return [...prev, path];
+    });
+  };
+
+  console.log(attachedImages);
 
   const {
     register,
@@ -38,7 +50,15 @@ const CreateWorkPage: FC = () => {
   } = useForm<ICreateGalleryPayload>();
 
   const createGalleryHandler = (): SubmitHandler<ICreateGalleryPayload> => (data) => {
-    createNewGallery({ ...data, tags: createGalleryTags, author_id: userId, cover_image_index: 0, slug: "null" });
+    createNewGallery({
+      ...data,
+      tags: createGalleryTags,
+      author_id: userId,
+      status: "published",
+      cover_image_index: 0,
+      slug: data.title,
+      images: attachedImages,
+    });
   };
 
   return (
@@ -76,15 +96,19 @@ const CreateWorkPage: FC = () => {
                   import.meta.env.VITE_UPLOADS_FILES + "uploads/" + userId + "/" + item.original_filename;
 
                 return (
-                  <div className="create-blog-post-page__preview-item">
+                  <div
+                    className={`create-blog-post-page__preview-item ${
+                      attachedImages.includes(item.storage_path)
+                        ? "create-blog-post-page__preview-item--selected"
+                        : null
+                    }`}
+                    onClick={() => imageAttachHandler(item.storage_path)}
+                  >
                     <img
                       className="create-blog-post-page__preview-image"
                       key={item.id}
                       src={IMAGE_PATH}
                       alt={item.original_filename}
-                      onClick={() => {
-                        // setPostInfo((prev) => ({ ...prev, featured_image_id: item.id }));
-                      }}
                     />
                   </div>
                 );
@@ -96,8 +120,7 @@ const CreateWorkPage: FC = () => {
           <div className="create-blog-post-page__buttons">
             <Button
               buttonText="Создать"
-              // disabled={attachedImages.length <= 1}
-              // onClickAction={handleSubmit(updatePostHandler())}
+              disabled={attachedImages.length <= 1}
               onClickAction={handleSubmit(createGalleryHandler())}
             />
           </div>

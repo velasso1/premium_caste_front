@@ -27,7 +27,12 @@ const AdminPanel: FC = () => {
             <Sidebar>
               {sidebarItemsAdminMenu.map((item) => {
                 return (
-                  <SidebarItem onClick={() => navigate(`main/${item.linkTo}`)} itemInfo={item} activeElement={false} />
+                  <SidebarItem
+                    key={item.itemName}
+                    onClick={() => navigate(`main/${item.linkTo}`)}
+                    itemInfo={item}
+                    activeElement={false}
+                  />
                 );
               })}
             </Sidebar>
