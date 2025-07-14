@@ -49,7 +49,6 @@ const BlogMainNews: FC<IBlogMainNewsProps> = ({ postInfo }) => {
                 src={deleteIcon}
                 onClick={(e) => {
                   e.stopPropagation();
-                  console.log("DELETE");
                 }}
               />
             </div>

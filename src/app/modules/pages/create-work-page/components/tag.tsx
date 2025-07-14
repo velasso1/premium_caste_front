@@ -1,6 +1,6 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 
-import { useAppDispatch } from "../../../../store";
+import { useAppDispatch, useAppSelector } from "../../../../store";
 import { selectTags } from "../../../../store/slices/galleries";
 
 interface ITagProps {
@@ -10,13 +10,12 @@ interface ITagProps {
 const Tag: FC<ITagProps> = ({ title }) => {
   const dispatch = useAppDispatch();
 
-  const [tagSelected, selectTag] = useState<boolean>(false);
+  const { createGalleryTags } = useAppSelector((state) => state.galleriesSlice);
 
   return (
     <div
-      className={`tag${tagSelected ? "--selected" : ""}`}
+      className={`tag${createGalleryTags.includes(title) ? "--selected" : ""}`}
       onClick={() => {
-        selectTag((prev) => !prev);
         dispatch(selectTags(title));
       }}
     >

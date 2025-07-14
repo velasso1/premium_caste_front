@@ -2,9 +2,11 @@ import { FC, useState, useEffect } from "react";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 
-import { useAppSelector } from "../../../store";
+import { useAppDispatch, useAppSelector } from "../../../store";
 import { useGetAllImagesQuery } from "../../../store/api/media-api";
 import { useCreateNewGalleryMutation } from "../../../store/api/galleries-api";
+import { setEffect } from "../../../store/slices/effects";
+import { clearSelectedTags } from "../../../store/slices/galleries";
 
 import PostImages from "#pages/create-blog-post-page/components/post-images.tsx";
 import PostInformation from "#pages/create-blog-post-page/components/post-information.tsx";
@@ -22,6 +24,8 @@ import { SERVICES_ITEMS } from "#utils/auxuliary/services-items-list.ts";
 import { ICreateGalleryPayload } from "#types/api-payload-types.ts";
 
 const CreateWorkPage: FC = () => {
+  const dispatch = useAppDispatch();
+
   const { userId } = useAppSelector((state) => state.userSlice);
   const { createGalleryTags } = useAppSelector((state) => state.galleriesSlice);
 
@@ -29,6 +33,26 @@ const CreateWorkPage: FC = () => {
   const [createNewGallery, galleryStatus] = useCreateNewGalleryMutation();
 
   const [attachedImages, setAttachedImages] = useState<string[]>([]);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm<ICreateGalleryPayload>();
+
+  useEffect(() => {
+    if (galleryStatus.isSuccess) {
+      dispatch(setEffect({ status: "success", message: "Галерея успешно создана" }));
+      dispatch(clearSelectedTags());
+      setAttachedImages([]);
+      reset();
+      return;
+    }
+
+    dispatch(setEffect({ status: "error", message: "Произошла ошибка, повторите позже" }));
+  }, [galleryStatus]);
 
   const imageAttachHandler = (path: string): void => {
     setAttachedImages((prev) => {
@@ -38,16 +62,6 @@ const CreateWorkPage: FC = () => {
       return [...prev, path];
     });
   };
-
-  console.log(attachedImages);
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    watch,
-    formState: { errors },
-  } = useForm<ICreateGalleryPayload>();
 
   const createGalleryHandler = (): SubmitHandler<ICreateGalleryPayload> => (data) => {
     createNewGallery({
