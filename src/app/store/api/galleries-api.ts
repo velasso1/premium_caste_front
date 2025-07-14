@@ -36,7 +36,14 @@ export const galleriesApi = createApi({
         credentials: "include",
       }),
     }),
+
+    // возвращает галерею по id
+    getCurrentGallery: build.query<void, { id: string }>({
+      query: (data) => ({
+        url: import.meta.env.VITE_GALLERIES_ACTION + `${data.id}`,
+      }),
+    }),
   }),
 });
 
-export const { useCreateNewGalleryMutation, useGetAllGalleriesQuery } = galleriesApi;
+export const { useCreateNewGalleryMutation, useGetAllGalleriesQuery, useGetCurrentGalleryQuery } = galleriesApi;

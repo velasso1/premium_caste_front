@@ -26,6 +26,7 @@ import EditPostPage from "#pages/edit-post-page/edit-post-page.tsx";
 import CurrentServicePage from "#pages/current-service-page/current-service-page.tsx";
 import CurrentPostPage from "#pages/current-post-page/current-post-page.tsx";
 import CreateWorkPage from "#pages/create-work-page/create-work-page.tsx";
+import CurrentWorkPage from "#pages/current-work-page/current-work-page.tsx";
 
 // auth
 import LoginForm from "#auth/components/login-form/login-form.tsx";
@@ -73,6 +74,7 @@ const App: FC = () => {
             <Route path={routes.FAVORITES_PAGE} element={<FavoritesPage />} />
             <Route path={routes.ACCOUNT_PAGE} element={<PrivateRoute children={<AccountPage />} />} />
             <Route path={routes.NOT_EXIST_PAGE} element={<NotFoundPage />} />
+            <Route path={routes.CURRENT_GALLERY_PAGE + "/:id"} element={<CurrentWorkPage />} />
 
             {/* SECONDARY PAGES */}
             <Route path={`${routes.BLOG_PAGE}/item/:id`} element={<CurrentPostPage />} />

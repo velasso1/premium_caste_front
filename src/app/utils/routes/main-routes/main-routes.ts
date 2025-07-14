@@ -23,4 +23,5 @@ export const routes = {
   BLOG_POST_MANAGING: "posts-managing",
   EDIT_POST_PAGE: "edit-post",
   CURRENT_SERVICE_PAGE: "service",
+  CURRENT_GALLERY_PAGE: "work",
 } as const;

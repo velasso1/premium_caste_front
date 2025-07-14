@@ -61,7 +61,9 @@ const OurWorksPage: FC = () => {
         <div className="our-works-page__work-items">
           {getGalleries.data?.galleries
             ? getGalleries.data?.galleries.map((item) => {
-                return <WorkItem imageSource={item.images[item.cover_image_index]} itemTitle={item.title} />;
+                return (
+                  <WorkItem itemId={item.id} imageSource={item.images[item.cover_image_index]} itemTitle={item.title} />
+                );
               })
             : "Работ пока нет"}
         </div>
