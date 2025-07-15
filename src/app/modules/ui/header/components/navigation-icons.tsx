@@ -21,15 +21,15 @@ const NavigationIcons: FC = () => {
 
   return (
     <div className="header__icons">
-      <NavLink className="header__icon" to={"main/" + routes.CART_PAGE}>
+      {/* <NavLink className="header__icon" to={"main/" + routes.CART_PAGE}>
         <img src={cart} alt="cart" className="header__icon-image" />
-      </NavLink>
-      <NavLink className="header__icon" to="/not-exist">
+      </NavLink> */}
+      {/* <NavLink className="header__icon" to="/not-exist">
         <img src={stats} alt="stats" className="header__icon-image" />
-      </NavLink>
-      <NavLink className="header__icon" to={"main/" + routes.FAVORITES_PAGE}>
+      </NavLink> */}
+      {/* <NavLink className="header__icon" to={"main/" + routes.FAVORITES_PAGE}>
         <img src={heart} alt="heart" className="header__icon-image" />
-      </NavLink>
+      </NavLink> */}
       <NavLink className="header__icon" to={userIsAuth ? accountPath.account : accountPath.login}>
         <img src={human} alt="human" className="header__icon-image" />
       </NavLink>

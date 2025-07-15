@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useLayoutEffect, useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +21,7 @@ const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumP
   const [zoom, setZoom] = useState<boolean>(false);
 
   const toggleZoom = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation(); // Предотвращаем переход на страницу галереи
+    e.stopPropagation();
     setZoom((prev) => !prev);
   };
 
@@ -40,7 +40,7 @@ const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumP
           src={import.meta.env.VITE_UPLOADS_FILES + imageSource}
           style={{ opacity: imageLoaded ? 1 : 0 }}
           onLoad={() => setImageLoaded(true)}
-          onClick={toggleZoom}
+          onClick={(e) => (isAlbumPhoto ? toggleZoom(e) : null)}
           alt={itemTitle}
         />
         {!isAlbumPhoto && <span className="our-works-page__notice">подробнее</span>}
