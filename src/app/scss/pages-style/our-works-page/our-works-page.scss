@@ -37,6 +37,27 @@
     object-position: center;
     transition: 0.3s;
 
+    &[data-zoom="true"] {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: contain;
+      z-index: 10000;
+      background: rgba(0, 0, 0, 0.9);
+      cursor: zoom-out;
+      padding: 2rem;
+      box-sizing: border-box;
+      transform: none !important;
+      filter: none !important;
+
+      &:hover {
+        transform: scale(1.2);
+        filter: brightness(20%);
+      }
+    }
+
     &:hover {
       transform: scale(1.2);
       filter: brightness(20%);

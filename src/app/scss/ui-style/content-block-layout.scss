@@ -2,7 +2,7 @@
   background-color: #1b1b1b;
   position: relative;
   border-radius: 15px;
-  padding: 30px;
+  padding: 20px;
   margin: 0 auto 40px auto;
 
   &__title {
@@ -11,10 +11,15 @@
     border-bottom: 1px solid $mainColor;
     width: max-content;
     margin: 0 auto 20px auto;
-    padding: 20px 0 0 0;
+    padding: 10px 0 0 0;
+    text-transform: lowercase;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
   }
 
   &__content {
-    padding: 0 0 20px 0;
+    padding: 0 0 0 0;
   }
 }

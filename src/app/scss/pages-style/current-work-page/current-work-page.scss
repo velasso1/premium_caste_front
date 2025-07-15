@@ -1,0 +1,17 @@
+.current-work-page {
+  &__block {
+    width: 100%;
+  }
+  &__album {
+    // width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    flex-direction: row;
+  }
+
+  &__description {
+    width: 100%;
+  }
+}

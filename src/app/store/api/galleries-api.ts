@@ -1,7 +1,7 @@
 import { BaseQueryFn, createApi, fetchBaseQuery, FetchArgs, RootState } from "@reduxjs/toolkit/query/react";
 
 import { ICreateGalleryPayload } from "#types/api-payload-types.ts";
-import { IGetAllGalleriesResponse } from "#types/api-response-types.ts";
+import { IGetAllGalleriesResponse, IGalleryResponse } from "#types/api-response-types.ts";
 
 import { CustomizedFetchBaseQueryError } from "#types/api-response-types.ts";
 
@@ -44,9 +44,9 @@ export const galleriesApi = createApi({
     }),
 
     // возвращает галерею по id
-    getCurrentGallery: build.query<void, { id: string }>({
+    getGalleryById: build.query<IGalleryResponse, { id: string }>({
       query: (payload) => ({
-        url: import.meta.env.VITE_GALLERIES_ACTION + `${payload.id}`,
+        url: import.meta.env.VITE_GALLERIES_ACTION + `/${payload.id}`,
       }),
     }),
     // возвращает галерею по тегу
@@ -65,6 +65,6 @@ export const galleriesApi = createApi({
 export const {
   useCreateNewGalleryMutation,
   useGetAllGalleriesQuery,
-  useGetCurrentGalleryQuery,
+  useGetGalleryByIdQuery,
   useLazyGetGalleryByTagQuery,
 } = galleriesApi;

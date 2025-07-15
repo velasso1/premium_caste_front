@@ -103,7 +103,7 @@ export interface IImageInfo {
 
 // GALLERIES API
 
-interface IGalleryResponse extends ICreateGalleryPayload {
+export interface IGalleryResponse extends ICreateGalleryPayload {
   id: string;
   published_at: string;
   created_at: string;
