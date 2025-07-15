@@ -10,40 +10,61 @@ export const galleriesApi = createApi({
   baseQuery: <BaseQueryFn<string | FetchArgs, unknown, CustomizedFetchBaseQueryError, {}>>(
     fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL })
   ),
-  tagTypes: ["Images"],
+  tagTypes: ["Galleries"],
   endpoints: (build) => ({
+    getAllGalleries: build.query<IGetAllGalleriesResponse, { status: "published"; page: string; per_page: string }>({
+      query: (payload) => ({
+        url: import.meta.env.VITE_GALLERIES_ACTION,
+        params: {
+          status: payload.status,
+          page: payload.page,
+          per_page: payload.per_page,
+        },
+        credentials: "include",
+      }),
+      keepUnusedDataFor: 0,
+      providesTags: (result, error, arg) =>
+        result
+          ? [...result.galleries.map(({ id }) => ({ type: "Galleries" as const, id })), "Galleries"]
+          : ["Galleries"],
+    }),
+
     // создание новой галереи
     createNewGallery: build.mutation<{ id: string }, ICreateGalleryPayload>({
-      query: (data) => ({
+      query: (payload) => ({
         url: import.meta.env.VITE_GALLERIES_ACTION,
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
         credentials: "include",
       }),
-    }),
-
-    getAllGalleries: build.query<IGetAllGalleriesResponse, { status: "published"; page: string; per_page: string }>({
-      query: (data) => ({
-        url: import.meta.env.VITE_GALLERIES_ACTION,
-        params: {
-          status: data.status,
-          page: data.page,
-          per_page: data.per_page,
-        },
-        credentials: "include",
-      }),
+      invalidatesTags: ["Galleries"],
     }),
 
     // возвращает галерею по id
     getCurrentGallery: build.query<void, { id: string }>({
-      query: (data) => ({
-        url: import.meta.env.VITE_GALLERIES_ACTION + `${data.id}`,
+      query: (payload) => ({
+        url: import.meta.env.VITE_GALLERIES_ACTION + `${payload.id}`,
+      }),
+    }),
+    // возвращает галерею по тегу
+    getGalleryByTag: build.query<IGetAllGalleriesResponse, { tag: string }>({
+      query: (payload) => ({
+        url: import.meta.env.VITE_GALLERIES_ACTION + "/by-tags",
+        params: {
+          tags: [payload.tag],
+          // match_all: true,
+        },
       }),
     }),
   }),
 });
 
-export const { useCreateNewGalleryMutation, useGetAllGalleriesQuery, useGetCurrentGalleryQuery } = galleriesApi;
+export const {
+  useCreateNewGalleryMutation,
+  useGetAllGalleriesQuery,
+  useGetCurrentGalleryQuery,
+  useLazyGetGalleryByTagQuery,
+} = galleriesApi;

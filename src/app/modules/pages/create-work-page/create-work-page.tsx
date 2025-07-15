@@ -19,7 +19,8 @@ import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 import TextField from "#ui/fields/text-field.tsx";
 import Button from "#ui/button/button.tsx";
 
-import { SERVICES_ITEMS } from "#utils/auxuliary/services-items-list.ts";
+// import { SERVICES_ITEMS } from "#utils/auxuliary/services-items-list.ts";
+import { sidebarItemsWorks } from "#utils/auxuliary/sidebar-items.ts";
 
 import { ICreateGalleryPayload } from "#types/api-payload-types.ts";
 
@@ -51,7 +52,9 @@ const CreateWorkPage: FC = () => {
       return;
     }
 
-    dispatch(setEffect({ status: "error", message: "Произошла ошибка, повторите позже" }));
+    if (galleryStatus.isError) {
+      dispatch(setEffect({ status: "error", message: "Произошла ошибка, повторите позже" }));
+    }
   }, [galleryStatus]);
 
   const imageAttachHandler = (path: string): void => {
@@ -95,8 +98,8 @@ const CreateWorkPage: FC = () => {
           />
           Выберите тег:
           <div className="create-work-page__tags">
-            {SERVICES_ITEMS.map((item, index) => {
-              return <Tag title={item.title} key={index} />;
+            {sidebarItemsWorks.map((item, index) => {
+              return <Tag title={item.itemName} key={index} />;
             })}
           </div>
         </div>

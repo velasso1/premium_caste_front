@@ -1,14 +1,402 @@
+// /* ========== Десктоп (меньше 1200px) ========== */
+// @media screen and (max-width: 1200px) {
+//   .our-works-page {
+//     &__work-items {
+//       grid-template-columns: repeat(3, 1fr);
+//       gap: 25px;
+//     }
+
+//     &__work-item {
+//       width: 100%;
+//       max-width: 220px;
+//       height: 290px;
+//     }
+
+//     &__banner,
+//     &__image {
+//       width: 100%;
+//       height: 220px;
+//       object-fit: cover;
+//     }
+//   }
+// }
+
+// /* ========== Планшет (ландшафт) ========== */
+// @media screen and (max-width: 992px) {
+//   .our-works-page {
+//     &__work-items {
+//       grid-template-columns: repeat(3, 1fr);
+//       gap: 18px;
+//       padding-bottom: 30px;
+//     }
+
+//     &__work-item {
+//       max-width: 180px;
+//       height: 260px;
+//     }
+
+//     &__banner,
+//     &__image {
+//       height: 180px;
+//     }
+
+//     &__item-title {
+//       font-size: 15px;
+//       padding-top: 10px;
+//     }
+
+//     &__notice {
+//       font-size: 13px;
+//       top: 45%;
+//     }
+//   }
+// }
+
+// /* ========== Планшет (портрет) ========== */
+// @media screen and (max-width: 768px) {
+//   .our-works-page {
+//     &__content {
+//       flex-direction: column;
+//     }
+
+//     &__work-items {
+//       grid-template-columns: repeat(2, 1fr);
+//       gap: 25px 15px;
+//       padding: 0 15px 30px;
+//     }
+
+//     &__work-item {
+//       max-width: 100%;
+//       height: 220px;
+//       position: relative;
+//     }
+
+//     &__banner,
+//     &__image {
+//       max-width: 100%;
+//       height: 160px;
+//       object-fit: cover;
+//       transition: transform 0.3s ease;
+//     }
+
+//     &__item-title {
+//       font-size: 14px;
+//       padding: 12px 5px 0;
+//       text-align: center;
+//       height: 40px;
+//       overflow: hidden;
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+//     }
+
+//     &__notice {
+//       font-size: 12px;
+//       top: 40%;
+//       left: 50%;
+//       transform: translate(-50%, -50%);
+//       width: 90%;
+//       text-align: center;
+//       padding: 8px 5px;
+//       background: rgba(0, 0, 0, 0.7);
+//       opacity: 0;
+//       transition: opacity 0.3s ease;
+//     }
+
+//     &__work-item:hover {
+//       .our-works-page__banner,
+//       .our-works-page__image {
+//         filter: brightness(30%);
+//         transform: scale(1.03);
+//       }
+
+//       .our-works-page__notice {
+//         opacity: 1;
+//       }
+//     }
+//   }
+// }
+
+// /* ========== Мобильные (ландшафт) ========== */
+// @media screen and (max-width: 576px) {
+//   .our-works-page {
+//     &__work-items {
+//       grid-template-columns: repeat(2, 1fr);
+//       gap: 20px 12px;
+//       padding: 0 10px 25px;
+//     }
+
+//     &__work-item {
+//       height: 200px;
+//     }
+
+//     &__banner,
+//     &__image {
+//       height: 140px;
+//     }
+
+//     &__item-title {
+//       font-size: 13px;
+//       padding-top: 10px;
+//       height: 36px;
+//     }
+
+//     &__notice {
+//       font-size: 11px;
+//       padding: 6px 4px;
+//     }
+//   }
+// }
+
+// /* ========== Маленькие мобильные ========== */
+// @media screen and (max-width: 380px) {
+//   .our-works-page {
+//     &__work-items {
+//       gap: 18px 10px;
+//       padding: 0 8px 20px;
+//     }
+
+//     &__work-item {
+//       height: 180px;
+//     }
+
+//     &__banner,
+//     &__image {
+//       height: 120px;
+//     }
+
+//     &__item-title {
+//       font-size: 12px;
+//       padding-top: 8px;
+//       height: 32px;
+//     }
+
+//     &__notice {
+//       font-size: 10px;
+//       padding: 5px 3px;
+//     }
+//   }
+// }
+
+/* ========== Десктоп (меньше 1200px) ========== */
+// @media screen and (max-width: 1200px) {
+//   .our-works-page {
+//     &__work-items {
+//       grid-template-columns: repeat(3, 1fr);
+//       gap: 25px;
+//       justify-items: center; // Центрирование элементов
+//     }
+
+//     &__work-item {
+//       width: 100%;
+//       max-width: 220px; // Фиксированная максимальная ширина
+//       height: 290px;
+//     }
+
+//     &__banner {
+//       width: 100%;
+//       height: 220px;
+//     }
+
+//     &__image {
+//       width: 100%;
+//       height: 100%;
+//       object-fit: cover;
+//     }
+//   }
+// }
+
+// /* ========== Планшет (ландшафт) ========== */
+// @media screen and (max-width: 992px) {
+//   .our-works-page {
+//     &__work-items {
+//       grid-template-columns: repeat(3, 1fr);
+//       gap: 18px;
+//       padding-bottom: 30px;
+//     }
+
+//     &__work-item {
+//       max-width: 180px; // Фиксированная ширина
+//       height: 260px;
+//     }
+
+//     &__banner {
+//       height: 180px;
+//     }
+
+//     &__item-title {
+//       font-size: 15px;
+//       padding-top: 10px;
+//       // Гарантированное обрезание текста:
+//       white-space: nowrap;
+//       overflow: hidden;
+//       text-overflow: ellipsis;
+//     }
+
+//     &__notice {
+//       font-size: 13px;
+//       top: 45%;
+//     }
+//   }
+// }
+
+// /* ========== Планшет (портрет) и мобильные ========== */
+// @media screen and (max-width: 768px) {
+//   .our-works-page {
+//     &__content {
+//       flex-direction: column;
+//     }
+
+//     &__work-items {
+//       grid-template-columns: repeat(2, minmax(160px, 1fr)); // Гибкая адаптация
+//       gap: 20px 15px;
+//       padding: 0 15px 30px;
+//       justify-content: center; // Центрирование
+//     }
+
+//     &__work-item {
+//       max-width: 180px; // Ограничение ширины
+//       height: auto; // Автоматическая высота
+//       margin: 0 auto; // Центрирование
+//     }
+
+//     &__banner {
+//       max-width: 100%;
+//       height: 160px;
+//     }
+
+//     &__image {
+//       max-width: 100%;
+//       height: 100%;
+//       object-fit: cover;
+//       transition: transform 0.3s ease;
+//     }
+
+//     &__item-title {
+//       font-size: 14px;
+//       padding: 12px 5px 0;
+//       text-align: center;
+//       min-height: 40px;
+//       // Единый стиль обрезания текста:
+//       display: block;
+//       white-space: nowrap;
+//       overflow: hidden;
+//       text-overflow: ellipsis;
+//     }
+
+//     &__notice {
+//       font-size: 12px;
+//       top: 40%;
+//       left: 50%;
+//       transform: translate(-50%, -50%);
+//       width: 90%;
+//       text-align: center;
+//       padding: 8px 5px;
+//       background: rgba(0, 0, 0, 0.7);
+//       opacity: 0;
+//       transition: opacity 0.3s ease;
+//     }
+
+//     &__work-item:hover {
+//       .our-works-page__banner,
+//       .our-works-page__image {
+//         filter: brightness(30%);
+//         transform: scale(1.03);
+//       }
+
+//       .our-works-page__notice {
+//         opacity: 1;
+//       }
+//     }
+//   }
+// }
+
+// /* ========== Мобильные (ландшафт) ========== */
+// @media screen and (max-width: 576px) {
+//   .our-works-page {
+//     &__work-items {
+//       grid-template-columns: repeat(2, minmax(140px, 160px)); // Жесткое ограничение ширины
+//       justify-content: space-around; // Равномерное распределение
+//       gap: 15px 10px;
+//       padding: 0 10px 25px;
+//     }
+
+//     &__work-item {
+//       max-width: 160px; // Фиксированный размер
+//       width: 100%;
+//     }
+
+//     &__banner {
+//       height: 140px;
+//     }
+
+//     &__item-title {
+//       font-size: 13px;
+//       padding-top: 10px;
+//     }
+
+//     &__notice {
+//       font-size: 11px;
+//       padding: 6px 4px;
+//     }
+//   }
+// }
+
+// /* ========== Маленькие мобильные ========== */
+// @media screen and (max-width: 480px) {
+//   .our-works-page {
+//     &__work-items {
+//       grid-template-columns: repeat(2, minmax(120px, 140px)); // Уменьшенный размер
+//       gap: 15px 8px;
+//     }
+
+//     &__work-item {
+//       max-width: 140px;
+//     }
+
+//     &__banner {
+//       height: 120px;
+//     }
+
+//     &__item-title {
+//       font-size: 12px;
+//       padding-top: 8px;
+//     }
+
+//     &__notice {
+//       font-size: 10px;
+//       padding: 5px 3px;
+//     }
+//   }
+// }
+
+// /* ========== Очень маленькие мобильные ========== */
+// @media screen and (max-width: 360px) {
+//   .our-works-page {
+//     &__work-items {
+//       grid-template-columns: 1fr; // Одна колонка на очень узких экранах
+//       max-width: 260px;
+//       margin: 0 auto;
+//     }
+
+//     &__work-item {
+//       max-width: 140px;
+//     }
+//   }
+// }
+
 /* ========== Десктоп (меньше 1200px) ========== */
 @media screen and (max-width: 1200px) {
   .our-works-page {
     &__work-items {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, 220px);
+      justify-content: space-evenly; // Равномерное распределение
+      width: 100%;
       gap: 25px;
     }
 
     &__work-item {
-      width: 100%;
-      max-width: 220px;
+      width: 220px;
       height: 290px;
     }
 
@@ -25,13 +413,14 @@
 @media screen and (max-width: 992px) {
   .our-works-page {
     &__work-items {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, 180px);
+      // justify-content: space-between; // Равномерное распределение
       gap: 18px;
       padding-bottom: 30px;
     }
 
     &__work-item {
-      max-width: 180px;
+      width: 180px;
       height: 260px;
     }
 
@@ -43,6 +432,9 @@
     &__item-title {
       font-size: 15px;
       padding-top: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     &__notice {
@@ -60,20 +452,21 @@
     }
 
     &__work-items {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 160px);
+      // justify-content: space-between; // Равномерное распределение
       gap: 25px 15px;
       padding: 0 15px 30px;
     }
 
     &__work-item {
-      max-width: 100%;
+      width: 160px;
       height: 220px;
       position: relative;
     }
 
     &__banner,
     &__image {
-      max-width: 100%;
+      width: 100%;
       height: 160px;
       object-fit: cover;
       transition: transform 0.3s ease;
@@ -84,10 +477,9 @@
       padding: 12px 5px 0;
       text-align: center;
       height: 40px;
+      white-space: nowrap;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      text-overflow: ellipsis;
     }
 
     &__notice {
@@ -121,12 +513,14 @@
 @media screen and (max-width: 576px) {
   .our-works-page {
     &__work-items {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 140px);
+      // justify-content: space-between; // Равномерное распределение
       gap: 20px 12px;
       padding: 0 10px 25px;
     }
 
     &__work-item {
+      width: 140px;
       height: 200px;
     }
 
@@ -149,14 +543,17 @@
 }
 
 /* ========== Маленькие мобильные ========== */
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 480px) {
   .our-works-page {
     &__work-items {
+      grid-template-columns: repeat(2, 120px);
+      // justify-content: space-around; // Центрирование при недостатке места
       gap: 18px 10px;
       padding: 0 8px 20px;
     }
 
     &__work-item {
+      width: 120px;
       height: 180px;
     }
 
@@ -174,6 +571,35 @@
     &__notice {
       font-size: 10px;
       padding: 5px 3px;
+    }
+  }
+}
+
+/* ========== Очень маленькие мобильные ========== */
+@media screen and (max-width: 360px) {
+  .our-works-page {
+    &__work-items {
+      grid-template-columns: repeat(2, minmax(110px, 1fr)); // Гибкие размеры
+      justify-content: space-between;
+      gap: 15px 8px;
+      padding: 0 5px 15px;
+    }
+
+    &__work-item {
+      width: 100%; // Занимает всю доступную ширину
+      max-width: 130px; // Но не более этого значения
+      height: 170px;
+    }
+
+    &__banner,
+    &__image {
+      height: 110px;
+    }
+
+    &__item-title {
+      font-size: 11px;
+      padding-top: 6px;
+      height: 30px;
     }
   }
 }

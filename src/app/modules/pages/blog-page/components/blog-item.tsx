@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 
 import { useLazyGetPostsQuery, usePublishPostMutation } from "../../../../store/api/posts-api";
 import { useArchivePostMutation } from "../../../../store/api/posts-api";
@@ -33,6 +33,8 @@ const BlogItem: FC<IBlogItemProps> = ({ postInfo, postPreview, postLoader }) => 
   const [archive, archiveStatus] = useArchivePostMutation();
   const [deletePost, deletingStatus] = useDeletePostMutation();
 
+  const [imageLoaded, setImageLoaded] = useState<boolean>(false);
+
   const [refetchPosts, refetchStatus] = useLazyGetPostsQuery();
 
   useEffect(() => {
@@ -63,11 +65,14 @@ const BlogItem: FC<IBlogItemProps> = ({ postInfo, postPreview, postLoader }) => 
       onClick={() => (isManagingPage ? null : navigate(`../blog/item/${postInfo.id}`))}
     >
       <div className="blog-page__item-preview">
-        {refetchStatus.isLoading || publishStatus.isLoading || archiveStatus.isLoading ? (
-          <Loader />
-        ) : (
-          <img className="" src={import.meta.env.VITE_UPLOADS_FILES + postInfo.featured_image_path} alt="postImage" />
-        )}
+        {!imageLoaded && <Loader />}
+        <img
+          className=""
+          src={import.meta.env.VITE_UPLOADS_FILES + postInfo.featured_image_path}
+          alt="postImage"
+          onLoad={() => setImageLoaded(true)}
+          style={{ opacity: imageLoaded ? 1 : 0 }}
+        />
       </div>
 
       <div className="blog-page__item-description">{postInfo.excerpt}</div>
