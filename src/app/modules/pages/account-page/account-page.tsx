@@ -4,18 +4,16 @@ import { useAppDispatch, useAppSelector } from "../../../store";
 import { logOut } from "../../../store/slices/user";
 import { useGetUserInfoMutation, useLazyCheckUserStatusQuery } from "../../../store/api/user-api";
 
-import { useMaskito } from "@maskito/react";
-import { PHONE_MASK } from "#utils/fields-rules/phone-mask.ts";
-
 import PageLayout from "#ui/page-layout/page-layout.tsx";
 import Button from "#ui/button/button.tsx";
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 import AdminPanel from "#ui/admin-ui/admin-panel/admin-panel.tsx";
 
+import { phoneFormatter } from "#utils/helpers/phone-normalizer.ts";
+
 import user from "#images/user-without-photo.jpg";
 
 const AccountPage: FC = () => {
-  const maskedInputRef = useMaskito({ options: PHONE_MASK });
   const dispatch = useAppDispatch();
   const { userId } = useAppSelector((state) => state.userSlice);
 
@@ -49,7 +47,7 @@ const AccountPage: FC = () => {
             </div>
             <div className="account-info__form1">
               <div className="account-info__name">{data?.name}</div>
-              <div className="account-info__phone">{data?.phone}</div>
+              <div className="account-info__phone">{phoneFormatter(data?.phone ?? "+79999999999")}</div>
               <div className="account-info__email">{data?.email}</div>
             </div>
           </div>

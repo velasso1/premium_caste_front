@@ -3,13 +3,11 @@ import { FC, useEffect } from "react";
 import { useCreateAccountMutation } from "../../../../store/api/user-api";
 
 import { useForm, SubmitHandler } from "react-hook-form";
-
+import { InputMask } from "@react-input/mask";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import { useAppDispatch } from "../../../../store";
 import { setEffect } from "../../../../store/slices/effects";
-
-import { useMaskito } from "@maskito/react";
 
 import { IRegistrationPayload } from "#types/api-payload-types.ts";
 
@@ -25,18 +23,17 @@ import PasswordField from "#ui/fields/password-field.tsx";
 import LineNotification from "#ui/notifications/line-notification.tsx";
 
 import { routes } from "#utils/routes/main-routes/main-routes.ts";
-import { PHONE_MASK } from "#utils/fields-rules/phone-mask.ts";
 import {
   EMAIL_FIELD_PATTERN,
   NAME_FIELD_PATTERN,
   PASSWORD_FIELD_PATTERN,
   REQUIRED_MESSAGE,
 } from "#utils/fields-rules/field-patterns.ts";
+import { phoneNormalizer } from "#utils/helpers/phone-normalizer.ts";
 
 const RegistrationForm: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const maskedInputRef = useMaskito({ options: PHONE_MASK });
   const [createAccount, { data: createAccData, isLoading, isSuccess, error }] = useCreateAccountMutation();
 
   useEffect(() => {
@@ -55,7 +52,7 @@ const RegistrationForm: FC = () => {
   } = useForm<IRegistrationPayload>();
 
   const registration: SubmitHandler<IRegistrationPayload> = (data, event) => {
-    createAccount(data);
+    createAccount({ ...data, phone: phoneNormalizer(data.phone) });
   };
 
   return (
@@ -84,19 +81,17 @@ const RegistrationForm: FC = () => {
             disabled={isLoading}
           />
           {errors?.phone && <LineNotification text={errors?.phone?.message ?? "error"} />}
-          <TextField
+          <InputMask
             className={`registration-form__phone ${errors?.phone && "field_error"}`}
             type="text"
-            placeholder="Телефон"
+            placeholder="Телефон*"
             {...register("phone", {
               required: REQUIRED_MESSAGE,
               minLength: { value: 18, message: "Неверный формат телефона" },
             })}
-            // здесь проблема с Maskito
-            // он через ref изменяет value у инпута и из-за этого не тригерится onChange
-            // из-за этого не срабаывает валидация react-hook-form
-            disabled={isLoading}
-            ref={maskedInputRef}
+            mask="+7 (___) ___-__-__"
+            replacement={{ _: /\d/ }}
+            onChange={(e) => console.log(e.target.value)}
           />
 
           {errors?.password && <LineNotification text={errors?.password?.message ?? "error"} />}
