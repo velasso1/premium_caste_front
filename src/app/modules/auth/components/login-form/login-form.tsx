@@ -52,6 +52,12 @@ const LoginForm: FC = () => {
     }
   }, [userId]);
 
+  useEffect(() => {
+    if (userIsAuth) {
+      navigate("/main/" + routes.ACCOUNT_PAGE);
+    }
+  }, [userIsAuth]);
+
   const {
     register,
     handleSubmit,

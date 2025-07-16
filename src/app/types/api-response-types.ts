@@ -26,6 +26,10 @@ export interface ILoginResponse extends IServerResponse {
     access_token: string;
     refresh_token: string;
     user_id: string;
+    session: {
+      expires_at: string;
+      expires_in: number;
+    };
   };
 }
 

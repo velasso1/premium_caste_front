@@ -1,36 +1,94 @@
+// .admin-panel {
+//   // position: fixed;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   bottom: 20px;
+//   right: 20px;
+//   padding: 15px;
+//   z-index: $zIndex10;
+//   border: 1px solid $mainColor;
+//   border-radius: 15px;
+//   transition: $transition;
+
+//   &:hover {
+//     cursor: pointer;
+//     border-radius: 20px;
+//   }
+
+//   &:active {
+//     background-color: rgba(255, 80, 0, 0.15);
+//   }
+
+//   &__title {
+//     text-align: center;
+//     color: $mainColor;
+//     font-size: 15px;
+//     font-weight: 700;
+
+//     &--open {
+//       padding-bottom: 15px;
+//       font-weight: 700;
+//       color: $mainColor;
+//     }
+//   }
+// }
+
 .admin-panel {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  bottom: 20px;
-  right: 20px;
-  padding: 15px;
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  margin-right: 20px;
   z-index: $zIndex10;
-  border: 1px solid $mainColor;
-  border-radius: 15px;
-  transition: $transition;
 
-  &:hover {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background-color: inherit;
+    border: 1px solid $mainColor;
+    border-radius: 8px;
     cursor: pointer;
-    border-radius: 20px;
-  }
-
-  &:active {
-    background-color: rgba(255, 80, 0, 0.15);
-  }
-
-  &__title {
-    text-align: center;
-    color: $mainColor;
-    font-size: 15px;
+    transition: all 0.3s ease;
     font-weight: 700;
+    color: $mainColor;
 
-    &--open {
-      padding-bottom: 15px;
-      font-weight: 700;
-      color: $mainColor;
+    &:hover {
+      background-color: rgba(255, 80, 0, 0.1);
+      border-radius: 10px;
     }
+  }
+
+  &__arrow {
+    font-size: 12px;
+    margin-left: 8px;
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 5px;
+    background: inherit;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

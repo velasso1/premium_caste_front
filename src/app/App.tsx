@@ -2,7 +2,8 @@ import { FC, useEffect, useState } from "react";
 
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
-import { useAppSelector } from "./store";
+import { useAppDispatch, useAppSelector } from "./store";
+import { checkExpiresSession } from "./store/slices/user";
 
 // modules
 import MainModule from "./modules/main/main-module";
@@ -36,7 +37,7 @@ import RegistrationForm from "#auth/components/registration-form/registration-fo
 import Header from "#ui/header/header.tsx";
 import Footer from "#ui/footer/footer.tsx";
 import Notification from "#ui/notifications/notification.tsx";
-import AdminPanel from "#ui/admin-ui/admin-panel/admin-panel.tsx";
+// import AdminPanel from "#ui/admin-ui/admin-panel/admin-panel.tsx";
 
 // utils
 import { routes } from "#utils/routes/main-routes/main-routes.ts";
@@ -45,8 +46,13 @@ import AdminRoute from "#utils/routes/private-routes/admin-route.tsx";
 
 const App: FC = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const { effectData } = useAppSelector((state) => state.effectsSlice);
+
+  useEffect(() => {
+    dispatch(checkExpiresSession());
+  }, []);
 
   return (
     <div className="main">
@@ -54,7 +60,7 @@ const App: FC = () => {
         <Notification notifMessage={effectData.message} notifType={effectData.status ? effectData?.status : "error"} />
       )}
 
-      <AdminPanel />
+      {/* <AdminPanel /> */}
 
       {/* <WelcomePage preloadingMode={false} /> */}
       <Header />

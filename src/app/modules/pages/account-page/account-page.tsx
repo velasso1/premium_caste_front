@@ -10,6 +10,7 @@ import { PHONE_MASK } from "#utils/fields-rules/phone-mask.ts";
 import PageLayout from "#ui/page-layout/page-layout.tsx";
 import Button from "#ui/button/button.tsx";
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
+import AdminPanel from "#ui/admin-ui/admin-panel/admin-panel.tsx";
 
 import user from "#images/user-without-photo.jpg";
 
@@ -35,6 +36,7 @@ const AccountPage: FC = () => {
   return (
     <PageLayout pageClassName="account-page">
       <div className="account-page__buttons">
+        <AdminPanel />
         {/* <PageTitle pageName="Личный кабинет" /> */}
         {/* <Button buttonText="Редактировать профиль" buttonStyle="OUTLINED" onClickAction={() => alert("IN DRAFT")} /> */}
         <Button buttonText="Выход" buttonStyle="OUTLINED" onClickAction={() => logout()} />

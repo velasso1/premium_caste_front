@@ -14,7 +14,10 @@ import {
   IGetUserInfoResponse,
   CustomizedFetchBaseQueryError,
 } from "#types/api-response-types.ts";
-import { setUserData } from "../slices/user";
+
+import { setUserData, setExpiresSession } from "../slices/user";
+
+import { EXPIRES_SESSION_TIME, USER_ID } from "#utils/constants.ts";
 
 export const userApi = createApi({
   reducerPath: "userApi",
@@ -48,7 +51,9 @@ export const userApi = createApi({
         try {
           const { data } = await queryFulfilled;
           dispatch(setUserData(data.data.user_id));
-          localStorage.setItem("_pc_uid", data.data.user_id);
+          dispatch(setExpiresSession(data.data.session.expires_at));
+          localStorage.setItem(USER_ID, data.data.user_id);
+          localStorage.setItem(EXPIRES_SESSION_TIME, data.data.session.expires_at);
         } catch (error) {
           console.error(error);
         }

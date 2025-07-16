@@ -28,6 +28,7 @@
 @media screen and (max-width: 992px) {
   .services-page {
     &__content {
+      display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 15px;
     }

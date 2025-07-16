@@ -8,5 +8,6 @@ export interface IUserSliceState {
   userIsAuth: boolean;
   userId: string;
   userIsAdmin: boolean;
+  sessionExpiresAt: Date | string;
   // userData: IUserData;
 }
