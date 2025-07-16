@@ -22,13 +22,7 @@ const CurrentWorkPage: FC = () => {
       <ContentBlockLayout customClassName="current-work-page__block" customContentClass="current-work-page__album">
         {getGallery.data ? (
           getGallery.data.images.map((imageSrc) => {
-            return (
-              <>
-                <WorkItem imageSource={imageSrc} itemId="" itemTitle="" isAlbumPhoto={true} />
-                <WorkItem imageSource={imageSrc} itemId="" itemTitle="" isAlbumPhoto={true} />
-                <WorkItem imageSource={imageSrc} itemId="" itemTitle="" isAlbumPhoto={true} />
-              </>
-            );
+            return <WorkItem imageSource={imageSrc} itemId="" itemTitle="" isAlbumPhoto={true} />;
           })
         ) : (
           <Loader />

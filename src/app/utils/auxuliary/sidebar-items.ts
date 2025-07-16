@@ -15,17 +15,18 @@ export interface ISidebarItemsPostsMenu extends ISidebarItem {
 
 export const sidebarItemsWorks: readonly ISidebarItem[] = [
   { itemName: "Всё" },
-  { itemName: "Оклейка защитными плёнками" },
-  { itemName: "Оклейка цветными плёнками" },
-  { itemName: "Дизайнерская оклейка" },
-  { itemName: "Шумоизоляция" },
-  { itemName: "Аудиосистема и мультимедиа" },
-  { itemName: "Установка линз, ремонт и тюнинг фар" },
-  { itemName: "Дополнительное оборудование" },
-  { itemName: "Цветные ремни безопасности" },
-  { itemName: "Автоковры" },
-  { itemName: "Пошив" },
+  { itemName: "Оклейка винилом" },
+  { itemName: "Пошив салонов" },
+  { itemName: "Тонирование стекол и оптики" },
+  { itemName: "Световой тюнинг" },
+  { itemName: "Оклейка защитными пленками" },
+  { itemName: "Установка шумоизоляции" },
+  { itemName: "Автозвук и мультимедия" },
   { itemName: "Детейлинг" },
+  { itemName: "Установка доп оборудования" },
+  { itemName: "Диски" },
+  // { itemName: "Дизайнерская оклейка" },
+  // { itemName: "Автоковры" },
 ] as const;
 
 export const sidebarItemsAdminMenu: readonly ISidebarItemAdminMenu[] = [
