@@ -1,12 +1,14 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
 import { useAppSelector } from "../../../../store";
+import { useDeletePostMutation } from "../../../../store/api/posts-api";
 
 import { IPost } from "#types/api-response-types.ts";
 
 import Loader from "#ui/loader/loader.tsx";
+import Popup from "#ui/popup/popup.tsx";
 
 import { routes } from "#utils/routes/main-routes/main-routes.ts";
 
@@ -22,8 +24,22 @@ const BlogMainNews: FC<IBlogMainNewsProps> = ({ postInfo }) => {
 
   const { userIsAdmin } = useAppSelector((state) => state.userSlice);
 
+  const [deletePost, deletingPostStatus] = useDeletePostMutation();
+
+  const [popupIsOpen, popupHandler] = useState<boolean>(false);
+  const [idPostToDelete, selectPostId] = useState<string>("");
+
+  const deletePostHandler = (id: string) => {
+    deletePost({ postId: id });
+  };
+
   return (
     <div className="blog-page__main-news" onClick={() => (postInfo ? navigate(`../blog/item/${postInfo.id}`) : null)}>
+      <Popup
+        isOpen={popupIsOpen}
+        action={() => deletePostHandler(idPostToDelete)}
+        onClose={() => popupHandler(false)}
+      />
       {postInfo ? (
         <>
           <img
@@ -34,7 +50,7 @@ const BlogMainNews: FC<IBlogMainNewsProps> = ({ postInfo }) => {
           <div className="blog-page__shadow"></div>
           <p className="blog-page__main-news-title">{postInfo.excerpt}</p>
           <span className="blog-page__main-news-clue">подробнее</span>
-          {userIsAdmin ? (
+          {userIsAdmin && (
             <div className="blog-page__main-news-admin-clue">
               <img
                 className="blog-page__main-news-admin-clue-change"
@@ -49,10 +65,12 @@ const BlogMainNews: FC<IBlogMainNewsProps> = ({ postInfo }) => {
                 src={deleteIcon}
                 onClick={(e) => {
                   e.stopPropagation();
+                  selectPostId(postInfo.id);
+                  popupHandler(true);
                 }}
               />
             </div>
-          ) : null}
+          )}
         </>
       ) : (
         <Loader />

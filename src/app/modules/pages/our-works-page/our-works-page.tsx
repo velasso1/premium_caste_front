@@ -46,7 +46,7 @@ const OurWorksPage: FC = () => {
           <select className="sidebar-select-menu" onChange={(e) => changeTagHandler(e.target.value)}>
             {sidebarItemsWorks.map((item) => {
               return (
-                <option className="sidebar-select-menu__option" onClick={() => console.log("change")}>
+                <option className="sidebar-select-menu__option" onClick={() => null}>
                   <SidebarItem itemInfo={item} activeElement={activeTag === item.itemName} onClick={() => null} />
                 </option>
               );

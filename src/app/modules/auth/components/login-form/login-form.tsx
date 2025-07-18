@@ -42,7 +42,7 @@ const LoginForm: FC = () => {
 
   useEffect(() => {
     if (responseError && "status" in responseError) {
-      dispatch(setEffect({ status: "error", message: "Произошла ошибка, попробуйте еще раз" }));
+      dispatch(setEffect({ status: "error", message: RESPONSE_ERRORS[`${responseError.data.error}`] }));
     }
   }, [responseError]);
 
@@ -73,8 +73,8 @@ const LoginForm: FC = () => {
     <PageLayout pageClassName="login-form" includePreloader={false}>
       <PageTitle pageName=" " />
       <ContentBlockLayout contentTitle="Вход в аккаунт" customClassName="login-form__content-block">
+        <>{isLoading && <Loader />}</>
         <form className="login-form__form" onSubmit={handleSubmit(onSubmit)}>
-          {isLoading && <Loader />}
           <NavLink className="login-form__registration" to={`../${routes.REGISTRATION_PAGE}`}>
             Регистрация
           </NavLink>

@@ -98,6 +98,26 @@
     font-weight: 500;
     text-transform: uppercase;
   }
+
+  &__delete-button,
+  &__change-button {
+    position: absolute;
+    width: 30px;
+    right: 5px;
+    top: 5px;
+    z-index: 10;
+
+    transition: 0.5s;
+
+    &:hover {
+      border: 1px solid $mainColor;
+      border-radius: 5px;
+    }
+  }
+
+  &__change-button {
+    right: 35px;
+  }
 }
 
 // .sidebar-select-menu {

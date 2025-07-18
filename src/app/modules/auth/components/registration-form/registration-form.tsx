@@ -91,7 +91,6 @@ const RegistrationForm: FC = () => {
             })}
             mask="+7 (___) ___-__-__"
             replacement={{ _: /\d/ }}
-            onChange={(e) => console.log(e.target.value)}
           />
 
           {errors?.password && <LineNotification text={errors?.password?.message ?? "error"} />}

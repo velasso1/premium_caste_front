@@ -27,7 +27,7 @@ export const postsApi = createApi({
         url: import.meta.env.VITE_POST_ACTIONS + `/${data.post_id}`,
         keepUnusedDataFor: 0,
         refetchOnMountOrArgChange: true,
-        invalidatesTags: ["Posts"],
+        // invalidatesTags: ["Posts"],
       }),
     }),
 
@@ -56,10 +56,9 @@ export const postsApi = createApi({
         headers: {
           "Content-Type": "application/json",
         },
-
         body: JSON.stringify(data),
-        invalidatesTags: ["Posts"],
       }),
+      invalidatesTags: ["Posts"],
     }),
 
     // перевод поста в статус "опубликован"
@@ -71,8 +70,8 @@ export const postsApi = createApi({
         headers: {
           "Content-Type": "application/json",
         },
-        invalidatesTags: ["Posts"],
       }),
+      invalidatesTags: ["Posts"],
     }),
 
     // перевод поста в статус "архивирован"
@@ -84,8 +83,8 @@ export const postsApi = createApi({
         headers: {
           "Content-Type": "application/json",
         },
-        invalidatesTags: ["Posts"],
       }),
+      invalidatesTags: ["Posts"],
     }),
 
     deletePost: build.mutation<void, { postId: string }>({
@@ -96,8 +95,8 @@ export const postsApi = createApi({
         headers: {
           "Content-Type": "application/json",
         },
-        invalidatesTags: ["Posts"],
       }),
+      invalidatesTags: ["Posts"],
     }),
 
     // изменение поста
@@ -110,9 +109,10 @@ export const postsApi = createApi({
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-        keepUnusedDataFor: 0,
-        invalidatesTags: ["Posts"],
+        // keepUnusedDataFor: 0,
       }),
+
+      invalidatesTags: ["Posts"],
     }),
   }),
 });

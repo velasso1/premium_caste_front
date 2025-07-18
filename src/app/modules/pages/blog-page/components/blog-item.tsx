@@ -11,10 +11,15 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { IPost } from "#types/api-response-types.ts";
 
+import Popup from "#ui/popup/popup.tsx";
 import Loader from "#ui/loader/loader.tsx";
 
-import { routes } from "#utils/routes/main-routes/main-routes.ts";
 import Button from "#ui/button/button.tsx";
+
+import { routes } from "#utils/routes/main-routes/main-routes.ts";
+
+import deleteIcon from "#images/delete-icon.png";
+import changeIcon from "#images/change-icon.png";
 
 interface IBlogItemProps {
   postInfo: IPost;
@@ -28,12 +33,15 @@ const BlogItem: FC<IBlogItemProps> = ({ postInfo, postPreview, postLoader }) => 
   const dispatch = useAppDispatch();
 
   const { postStatus } = useAppSelector((state) => state.postsSlice);
+  const { userIsAdmin } = useAppSelector((state) => state.userSlice);
 
   const [publish, publishStatus] = usePublishPostMutation();
   const [archive, archiveStatus] = useArchivePostMutation();
   const [deletePost, deletingStatus] = useDeletePostMutation();
 
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
+  const [popupIsOpen, popupHandler] = useState<boolean>(false);
+  const [idPostToDelete, selectPostId] = useState<string>("");
 
   const [refetchPosts, refetchStatus] = useLazyGetPostsQuery();
 
@@ -54,6 +62,10 @@ const BlogItem: FC<IBlogItemProps> = ({ postInfo, postPreview, postLoader }) => 
     }
   }, [publishStatus, archiveStatus, deletingStatus]);
 
+  const deletePostHandler = (id: string) => {
+    deletePost({ postId: id });
+  };
+
   const isManagingPage = params["*"] === routes.BLOG_POST_MANAGING;
 
   const createdDate = new Date(postInfo.created_at).toLocaleDateString();
@@ -64,6 +76,32 @@ const BlogItem: FC<IBlogItemProps> = ({ postInfo, postPreview, postLoader }) => 
       data-managing={isManagingPage}
       onClick={() => (isManagingPage ? null : navigate(`../blog/item/${postInfo.id}`))}
     >
+      <Popup
+        isOpen={popupIsOpen}
+        action={() => deletePostHandler(idPostToDelete)}
+        onClose={() => popupHandler(false)}
+      />
+      {userIsAdmin && (
+        <div className="blog-page__main-news-admin-clue" style={{ zIndex: 10 }}>
+          <img
+            className="blog-page__main-news-admin-clue-change"
+            src={changeIcon}
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate("../" + `${routes.EDIT_POST_PAGE}/item/${postInfo.id}`);
+            }}
+          />
+          <img
+            className="blog-page__main-news-admin-clue-delete"
+            src={deleteIcon}
+            onClick={(e) => {
+              e.stopPropagation();
+              selectPostId(postInfo.id);
+              popupHandler(true);
+            }}
+          />
+        </div>
+      )}
       <div className="blog-page__item-preview">
         {!imageLoaded && <Loader />}
         <img
@@ -90,7 +128,6 @@ const BlogItem: FC<IBlogItemProps> = ({ postInfo, postPreview, postLoader }) => 
                   }}
                 />
               )}
-
               {postStatus !== "archived" && (
                 <Button
                   buttonText="Архивировать"
@@ -100,7 +137,6 @@ const BlogItem: FC<IBlogItemProps> = ({ postInfo, postPreview, postLoader }) => 
                   }}
                 />
               )}
-
               <Button
                 buttonText="Изменить"
                 buttonStyle="OUTLINED"

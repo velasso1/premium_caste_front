@@ -23,10 +23,14 @@ export const galleriesApi = createApi({
         credentials: "include",
       }),
       keepUnusedDataFor: 0,
-      providesTags: (result, error, arg) =>
+      providesTags: (result) =>
         result
-          ? [...result.galleries.map(({ id }) => ({ type: "Galleries" as const, id })), "Galleries"]
-          : ["Galleries"],
+          ? // Добавляем теги для каждой галереи + общий тег
+            [
+              ...result.galleries.map(({ id }) => ({ type: "Galleries" as const, id })),
+              { type: "Galleries", id: "LIST" },
+            ]
+          : [{ type: "Galleries", id: "LIST" }],
     }),
 
     // создание новой галереи
@@ -59,6 +63,18 @@ export const galleriesApi = createApi({
         },
       }),
     }),
+    // удаление галерии по id
+    deleteGallery: build.mutation<void, { id: string }>({
+      query: (payload) => ({
+        url: import.meta.env.VITE_GALLERIES_ACTION + `/${payload.id}`,
+        method: "DELETE",
+        credentials: "include",
+      }),
+      invalidatesTags: (result, error, arg) => [
+        { type: "Galleries", id: arg.id }, // Инвалидируем конкретную галерею
+        { type: "Galleries", id: "LIST" }, // Инвалидируем весь список
+      ],
+    }),
   }),
 });
 
@@ -67,4 +83,5 @@ export const {
   useGetAllGalleriesQuery,
   useGetGalleryByIdQuery,
   useLazyGetGalleryByTagQuery,
+  useDeleteGalleryMutation,
 } = galleriesApi;
