@@ -64,4 +64,5 @@ export interface ICreateGalleryPayload {
   metadata?: {
     additionalProp1: {};
   };
+  id?: string;
 }

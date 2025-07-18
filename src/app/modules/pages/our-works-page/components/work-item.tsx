@@ -19,6 +19,7 @@ interface IWorkItemProps {
   imageSource: string;
   itemId: string;
   isAlbumPhoto?: boolean;
+  isEdit?: boolean;
 }
 
 const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumPhoto }) => {
@@ -57,7 +58,7 @@ const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumP
       >
         <div className="our-works-page__banner">
           {!imageLoaded && <Loader />}
-          {userIsAdmin && (
+          {userIsAdmin && !isAlbumPhoto && (
             <>
               <img
                 className="our-works-page__delete-button"
@@ -75,6 +76,7 @@ const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumP
                 alt="change"
                 onClick={(e) => {
                   e.stopPropagation();
+                  navigate("../" + routes.EDIT_WORK_PAGE + `/${itemId}`);
                 }}
               />
             </>

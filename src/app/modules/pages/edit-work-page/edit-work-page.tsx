@@ -4,46 +4,57 @@ import { useParams } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 import { useAppDispatch, useAppSelector } from "../../../store";
+import { useGetGalleryByIdQuery, useEditGalleryMutation } from "../../../store/api/galleries-api";
 import { useGetAllImagesQuery } from "../../../store/api/media-api";
-import { useCreateNewGalleryMutation } from "../../../store/api/galleries-api";
 import { setEffect } from "../../../store/slices/effects";
 import { clearSelectedTags } from "../../../store/slices/galleries";
 
-import PostImages from "#pages/create-blog-post-page/components/post-images.tsx";
-import PostInformation from "#pages/create-blog-post-page/components/post-information.tsx";
-
-import Tag from "./components/tag";
-
-import { IGalleryResponse } from "#types/api-response-types.ts";
-
-import PageLayout from "#ui/page-layout/page-layout.tsx";
-import PageTitle from "#ui/page-title/page-title.tsx";
-import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
-import TextField from "#ui/fields/text-field.tsx";
-import Button from "#ui/button/button.tsx";
-
-// import { SERVICES_ITEMS } from "#utils/auxuliary/services-items-list.ts";
-import { sidebarItemsWorks } from "#utils/auxuliary/sidebar-items.ts";
-
 import { ICreateGalleryPayload } from "#types/api-payload-types.ts";
 
-interface ICreaateWorkPageProps {
-  workInfo?: IGalleryResponse;
-}
+import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
+import TextField from "#ui/fields/text-field.tsx";
 
-const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
+import Tag from "#pages/create-work-page/components/tag.tsx";
+import Button from "#ui/button/button.tsx";
+import PageLayout from "#ui/page-layout/page-layout.tsx";
+import PageTitle from "#ui/page-title/page-title.tsx";
+
+import { sidebarItemsWorks } from "#utils/auxuliary/sidebar-items.ts";
+
+const EditWorkPage: FC = () => {
+  const { id } = useParams<string>();
   const dispatch = useAppDispatch();
-  const params = useParams();
-
-  console.log(workInfo);
 
   const { userId } = useAppSelector((state) => state.userSlice);
   const { createGalleryTags } = useAppSelector((state) => state.galleriesSlice);
 
+  const getGallery = useGetGalleryByIdQuery({ id: id || "" });
   const images = useGetAllImagesQuery();
-  const [createNewGallery, galleryStatus] = useCreateNewGalleryMutation();
+  const [editGallery, editGalleryStatus] = useEditGalleryMutation();
 
   const [attachedImages, setAttachedImages] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (getGallery.isSuccess) {
+      setAttachedImages(() => {
+        return getGallery.data.images;
+      });
+    }
+  }, [getGallery]);
+
+  useEffect(() => {
+    if (editGalleryStatus.isSuccess) {
+      dispatch(setEffect({ status: "success", message: "Галерея успешно создана" }));
+      dispatch(clearSelectedTags());
+      setAttachedImages([]);
+      reset();
+      return;
+    }
+
+    if (editGalleryStatus.isError) {
+      dispatch(setEffect({ status: "error", message: "Произошла ошибка, повторите позже" }));
+    }
+  }, [editGalleryStatus]);
 
   const {
     register,
@@ -52,20 +63,6 @@ const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
     watch,
     formState: { errors },
   } = useForm<ICreateGalleryPayload>();
-
-  useEffect(() => {
-    if (galleryStatus.isSuccess) {
-      dispatch(setEffect({ status: "success", message: "Галерея успешно создана" }));
-      dispatch(clearSelectedTags());
-      setAttachedImages([]);
-      reset();
-      return;
-    }
-
-    if (galleryStatus.isError) {
-      dispatch(setEffect({ status: "error", message: "Произошла ошибка, повторите позже" }));
-    }
-  }, [galleryStatus]);
 
   const imageAttachHandler = (path: string): void => {
     setAttachedImages((prev) => {
@@ -76,8 +73,8 @@ const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
     });
   };
 
-  const createGalleryHandler = (): SubmitHandler<ICreateGalleryPayload> => (data) => {
-    createNewGallery({
+  const workChangeHandler = (): SubmitHandler<ICreateGalleryPayload> => (data) => {
+    editGallery({
       ...data,
       tags: createGalleryTags,
       author_id: userId,
@@ -85,25 +82,38 @@ const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
       cover_image_index: 0,
       slug: data.title,
       images: attachedImages,
+      id: id,
     });
+    console.log(
+      JSON.stringify({
+        ...data,
+        tags: createGalleryTags,
+        author_id: userId,
+        status: "published",
+        cover_image_index: 0,
+        slug: data.title,
+        images: attachedImages,
+        id: id,
+      })
+    );
   };
 
   return (
-    <PageLayout pageClassName="create-work-page">
-      <PageTitle pageName="Создание работы" />
-      <PostImages />
-
+    <PageLayout pageClassName="edit-work-page">
+      <PageTitle pageName="Редактирование галереи" />
       <ContentBlockLayout customClassName="create-work-page__gallery-info" contentTitle="Информация о работе">
         <div className="create-blog-post-page__post-fields">
           <TextField
             className={`create-blog-post-page__post-title ${errors?.title && "field_error"}`}
             type="text"
             placeholder="Заголовок работы"
+            defaultValue={getGallery.data?.title}
             {...register("title", { required: true })}
           />
           <textarea
             className={`create-blog-post-page__post-content`}
             placeholder="Описание работы"
+            defaultValue={getGallery.data?.description}
             {...register("description", { required: true })}
           />
           Выберите тег:
@@ -146,9 +156,9 @@ const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
           </div>
           <div className="create-blog-post-page__buttons">
             <Button
-              buttonText="Создать"
+              buttonText="Сохранить"
               disabled={attachedImages.length <= 1}
-              onClickAction={handleSubmit(createGalleryHandler())}
+              onClickAction={handleSubmit(workChangeHandler())}
             />
           </div>
         </div>
@@ -157,4 +167,4 @@ const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
   );
 };
 
-export default CreateWorkPage;
+export default EditWorkPage;

@@ -20,7 +20,7 @@ import { ImageList } from "@mui/material";
 const SliderBlock: FC = () => {
   const navigate = useNavigate();
 
-  const getGalleries = useGetAllGalleriesQuery({ status: "published", page: "1", per_page: "3" });
+  const getGalleries = useGetAllGalleriesQuery({ status: "published", page: "1", per_page: "6" });
 
   return (
     <div className="general-page__slider-block">
@@ -29,13 +29,14 @@ const SliderBlock: FC = () => {
       <Slider>
         {getGalleries.data?.galleries ? (
           getGalleries.data?.galleries.map((gallery, index) => {
-            return gallery.images.map((image, index) => {
-              return (
-                <SwiperSlide key={index} onClick={() => navigate(`../main/work/${gallery.id}`)}>
-                  <SlideLayout imageUrl={import.meta.env.VITE_UPLOADS_FILES + image} slideText={gallery.title} />
-                </SwiperSlide>
-              );
-            });
+            return (
+              <SwiperSlide key={index} onClick={() => navigate(`../main/work/${gallery.id}`)}>
+                <SlideLayout
+                  imageUrl={import.meta.env.VITE_UPLOADS_FILES + gallery.images[0]}
+                  slideText={gallery.title}
+                />
+              </SwiperSlide>
+            );
           })
         ) : (
           <>

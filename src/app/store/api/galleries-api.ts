@@ -75,6 +75,16 @@ export const galleriesApi = createApi({
         { type: "Galleries", id: "LIST" }, // Инвалидируем весь список
       ],
     }),
+
+    editGallery: build.mutation<void, ICreateGalleryPayload>({
+      query: (data) => ({
+        url: import.meta.env.VITE_GALLERIES_ACTION + `/${data.id}`,
+        method: "PUT",
+        credentials: "include",
+        body: JSON.stringify(data),
+      }),
+      invalidatesTags: ["Galleries"],
+    }),
   }),
 });
 
@@ -84,4 +94,5 @@ export const {
   useGetGalleryByIdQuery,
   useLazyGetGalleryByTagQuery,
   useDeleteGalleryMutation,
+  useEditGalleryMutation,
 } = galleriesApi;

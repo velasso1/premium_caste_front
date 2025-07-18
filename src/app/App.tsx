@@ -28,6 +28,7 @@ import CurrentServicePage from "#pages/current-service-page/current-service-page
 import CurrentPostPage from "#pages/current-post-page/current-post-page.tsx";
 import CreateWorkPage from "#pages/create-work-page/create-work-page.tsx";
 import CurrentWorkPage from "#pages/current-work-page/current-work-page.tsx";
+import EditWorkPage from "#pages/edit-work-page/edit-work-page.tsx";
 
 // auth
 import LoginForm from "#auth/components/login-form/login-form.tsx";
@@ -93,6 +94,7 @@ const App: FC = () => {
             <Route path={routes.BLOG_POST_MANAGING} element={<AdminRoute children={<BlogPostManagingPage />} />} />
             <Route path={`${routes.EDIT_POST_PAGE}/item/:id`} element={<AdminRoute children={<EditPostPage />} />} />
             <Route path={routes.CREATE_WORK_PAGE} element={<AdminRoute children={<CreateWorkPage />} />} />
+            <Route path={routes.EDIT_WORK_PAGE + "/:id"} element={<AdminRoute children={<EditWorkPage />} />} />
           </Route>
           <Route />
           <Route path={routes.NOT_EXIST_PAGE} element={<NotFoundPage />} />
