@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { IUserSliceState, IUserData } from "#types/store-types/user-initial-state-types.ts";
 
-import { EXPIRES_SESSION_TIME, USER_ID } from "#utils/constants.ts";
+import { EXPIRES_SESSION_TIME, REFRESH_TOKEN, USER_ID } from "#utils/constants.ts";
 
 const initialState: IUserSliceState = {
   userIsAuth: false,
@@ -35,6 +35,7 @@ const userSlice = createSlice({
     logOut() {
       localStorage.removeItem(EXPIRES_SESSION_TIME);
       localStorage.removeItem(USER_ID);
+      localStorage.removeItem(REFRESH_TOKEN);
       return initialState;
     },
 

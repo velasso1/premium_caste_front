@@ -1,4 +1,13 @@
-import { BaseQueryFn, createApi, fetchBaseQuery, FetchArgs, RootState } from "@reduxjs/toolkit/query/react";
+import {
+  BaseQueryFn,
+  createApi,
+  fetchBaseQuery,
+  FetchArgs,
+  RootState,
+  FetchBaseQueryError,
+} from "@reduxjs/toolkit/query/react";
+
+import { logOut } from "../slices/user";
 
 import {
   ILoginPayload,
@@ -17,18 +26,66 @@ import {
 
 import { setUserData, setExpiresSession } from "../slices/user";
 
-import { EXPIRES_SESSION_TIME, USER_ID } from "#utils/constants.ts";
+import { EXPIRES_SESSION_TIME, USER_ID, REFRESH_TOKEN } from "#utils/constants.ts";
+
+//  TESTING
+
+const baseQuery = fetchBaseQuery({
+  baseUrl: import.meta.env.VITE_BASE_URL,
+  credentials: "include",
+  prepareHeaders: (headers, { getState }) => {
+    headers.set("Content-Type", "application/json");
+    return headers;
+  },
+});
+
+export const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (
+  args,
+  api,
+  extraOptions
+) => {
+  let result = await baseQuery(args, api, extraOptions);
+
+  if (result.error?.status === 401) {
+    // Попытка обновить токен
+    const refreshResult: { data: { user_id: string; access_token: string; refresh_token: string } } = await baseQuery(
+      {
+        url: import.meta.env.VITE_REFRESH_TOKEN,
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify({ refresh_token: localStorage.getItem(REFRESH_TOKEN) }),
+      },
+      api,
+      extraOptions
+    );
+
+    if (refreshResult.data) {
+      // Сохраняем новые токены
+      localStorage.setItem(REFRESH_TOKEN, refreshResult.data.refresh_token);
+      // Повторяем оригинальный запрос с новым токеном
+      result = await baseQuery(args, api, extraOptions);
+    } else {
+      // Если обновление не удалось - разлогиниваем
+      api.dispatch(logOut());
+    }
+  }
+
+  return result;
+};
+
+// TESTING
 
 export const userApi = createApi({
   reducerPath: "userApi",
-  baseQuery: <BaseQueryFn<string | FetchArgs, unknown, CustomizedFetchBaseQueryError, {}>>fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_BASE_URL,
-    prepareHeaders: (headers) => {
-      headers.set("Content-Type", "application/json");
+  // baseQuery: <BaseQueryFn<string | FetchArgs, unknown, CustomizedFetchBaseQueryError, {}>>fetchBaseQuery({
+  //   baseUrl: import.meta.env.VITE_BASE_URL,
+  //   prepareHeaders: (headers) => {
+  //     headers.set("Content-Type", "application/json");
 
-      return headers;
-    },
-  }),
+  //     return headers;
+  //   },
+  // }),
+  baseQuery: baseQueryWithReauth,
   endpoints: (build) => ({
     createAccount: build.mutation<IRegistrationResponse, IRegistrationPayload>({
       query: (data) => ({
@@ -54,6 +111,7 @@ export const userApi = createApi({
           dispatch(setExpiresSession(data.data.session.expires_at));
           localStorage.setItem(USER_ID, data.data.user_id);
           localStorage.setItem(EXPIRES_SESSION_TIME, data.data.session.expires_at);
+          localStorage.setItem(REFRESH_TOKEN, data.data.refresh_token);
         } catch (error) {
           console.error(error);
         }
@@ -92,8 +150,20 @@ export const userApi = createApi({
       //   }
       // },
     }),
+    refreshToken: build.mutation<void, void>({
+      query: (data) => ({
+        url: import.meta.env.VITE_REFRESH_TOKEN,
+        method: "POST",
+        credentials: "include",
+      }),
+    }),
   }),
 });
 
-export const { useCreateAccountMutation, useLoginMutation, useLazyCheckUserStatusQuery, useGetUserInfoMutation } =
-  userApi;
+export const {
+  useCreateAccountMutation,
+  useLoginMutation,
+  useLazyCheckUserStatusQuery,
+  useGetUserInfoMutation,
+  useRefreshTokenMutation,
+} = userApi;

@@ -50,6 +50,8 @@ const App: FC = () => {
 
   const { effectData } = useAppSelector((state) => state.effectsSlice);
 
+  // const {} = useAppSelector((state) => state.mediaApi)
+
   useEffect(() => {
     dispatch(checkExpiresSession());
   }, []);

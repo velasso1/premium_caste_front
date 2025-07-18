@@ -9,3 +9,4 @@ export const RESPONSE_ERRORS: IResponseErrors = {
 
 export const EXPIRES_SESSION_TIME = "_pc_seAt";
 export const USER_ID = "_pc_uid";
+export const REFRESH_TOKEN = "_pc_rt";
