@@ -48,7 +48,7 @@ export const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, Fetch
 
   if (result.error?.status === 401) {
     // Попытка обновить токен
-    const refreshResult: { data: { user_id: string; access_token: string; refresh_token: string } } = await baseQuery(
+    const refreshResult = await baseQuery(
       {
         url: import.meta.env.VITE_REFRESH_TOKEN,
         method: "POST",
@@ -60,8 +60,13 @@ export const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, Fetch
     );
 
     if (refreshResult.data) {
+      const responseData = refreshResult.data as {
+        user_id: string;
+        access_token: string;
+        refresh_token: string;
+      };
       // Сохраняем новые токены
-      localStorage.setItem(REFRESH_TOKEN, refreshResult.data.refresh_token);
+      localStorage.setItem(REFRESH_TOKEN, responseData.refresh_token);
       // Повторяем оригинальный запрос с новым токеном
       result = await baseQuery(args, api, extraOptions);
     } else {

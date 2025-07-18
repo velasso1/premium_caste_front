@@ -42,7 +42,7 @@ const LoginForm: FC = () => {
 
   useEffect(() => {
     if (responseError && "status" in responseError) {
-      dispatch(setEffect({ status: "error", message: RESPONSE_ERRORS[`${responseError.data.error}`] }));
+      dispatch(setEffect({ status: "error", message: "Ошибка, попробуйте еще раз" }));
     }
   }, [responseError]);
 
@@ -96,9 +96,7 @@ const LoginForm: FC = () => {
           <span className="login-form__forget-pass">Забыли пароль?</span>
           <Button buttonText="войти" onClickAction={handleSubmit(onSubmit)} disabled={isLoading} />
 
-          {responseError && "data" in responseError && (
-            <LineNotification text={RESPONSE_ERRORS[responseError?.data?.error]} />
-          )}
+          {responseError && "data" in responseError && <LineNotification text="Проверьте правильность данных" />}
         </form>
       </ContentBlockLayout>
     </PageLayout>
