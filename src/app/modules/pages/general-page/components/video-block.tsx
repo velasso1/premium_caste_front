@@ -7,7 +7,11 @@ import poster from "#images/poster.png";
 
 import arrow from "#images/arrow-down.png";
 
-const VideoBlock: FC = () => {
+interface IVideoBlockProps {
+  scrollHandler?: () => void;
+}
+
+const VideoBlock: FC<IVideoBlockProps> = ({ scrollHandler }) => {
   return (
     <div className="general-page__video">
       <img className="general-page__banner" src={premium} alt="premium caste" />
@@ -21,8 +25,13 @@ const VideoBlock: FC = () => {
         poster={poster}
         src={video}
       ></video>
-      <span className="general-page__clue" onClick={() => window.scrollTo({ top: 900, behavior: "smooth" })}>
-        <img className="general-page__arrow" src={arrow} alt="" />
+      <span className="general-page__clue">
+        <img
+          className="general-page__arrow"
+          src={arrow}
+          alt=""
+          onClick={() => (scrollHandler ? scrollHandler() : null)}
+        />
       </span>
     </div>
   );

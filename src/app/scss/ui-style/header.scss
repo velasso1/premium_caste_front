@@ -22,6 +22,12 @@
     margin: 0 0 0 63px;
   }
 
+  &__logo {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   &__logo-image {
     width: 120%;
   }

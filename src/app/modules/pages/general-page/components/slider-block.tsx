@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, LegacyRef } from "react";
 
 import { SwiperSlide } from "swiper/react";
 
@@ -17,13 +17,17 @@ import pic2 from "#images/audi.jpg";
 import pic3 from "#images/toyota.jpg";
 import { ImageList } from "@mui/material";
 
-const SliderBlock: FC = () => {
+interface ISlideBlockProps {
+  ref: LegacyRef<HTMLDivElement>;
+}
+
+const SliderBlock: FC<ISlideBlockProps> = ({ ref }) => {
   const navigate = useNavigate();
 
   const getGalleries = useGetAllGalleriesQuery({ status: "published", page: "1", per_page: "6" });
 
   return (
-    <div className="general-page__slider-block">
+    <div className="general-page__slider-block" ref={ref}>
       {/* <div className="block-container"> */}
       <PageTitle pageName="Наши работы" isLink={true} linkHref={"../main/" + routes.OUR_WORKS_PAGE} />
       <Slider>

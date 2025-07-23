@@ -78,9 +78,12 @@ export const galleriesApi = createApi({
 
     editGallery: build.mutation<void, ICreateGalleryPayload>({
       query: (data) => ({
-        url: import.meta.env.VITE_GALLERIES_ACTION + `/${data.id}`,
+        url: import.meta.env.VITE_GALLERIES_ACTION,
         method: "PUT",
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(data),
       }),
       invalidatesTags: ["Galleries"],

@@ -30,12 +30,8 @@ const PriceTable: FC<ITableProps> = ({ tableData }) => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           {tableData.headTitle ? (
-            <TableRow>
-              <TableCell
-                align="center"
-                colSpan={tableData.headCols.length}
-                style={{ fontSize: "17px", fontWeight: 700, color: "#fff", borderBottomColor: "#ff5000" }}
-              >
+            <TableRow className="price-table__row">
+              <TableCell className="price-table__cell" align="center" colSpan={tableData.headCols.length}>
                 {tableData.headTitle}
               </TableCell>
             </TableRow>
@@ -54,18 +50,10 @@ const PriceTable: FC<ITableProps> = ({ tableData }) => {
         <TableBody>
           {tableData.data.map((item, index) => {
             return (
-              <TableRow>
+              <TableRow className="price-table__row">
                 {item.map((row) => {
                   return (
-                    <TableCell
-                      style={{
-                        color: "#fff",
-                        borderBottomColor: "#ff5000",
-                        backgroundColor: index % 2 === 0 ? "#0000003f" : "inherit",
-                      }}
-                      colSpan={row.colSpan}
-                      rowSpan={row.rowSpan}
-                    >
+                    <TableCell className="price-table__cell--xs" colSpan={row.colSpan} rowSpan={row.rowSpan}>
                       {row.value}
                     </TableCell>
                   );

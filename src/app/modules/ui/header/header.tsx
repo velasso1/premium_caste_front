@@ -1,13 +1,17 @@
 import { FC, useEffect, useState } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import NavigationMenu from "./components/navigation-menu";
 import NavigationIcons from "./components/navigation-icons";
 
 import { throttle } from "#utils/throttle.ts";
+import { routes } from "#utils/routes/main-routes/main-routes.ts";
 
 import logo from "#images/logo.png";
 
 const Header: FC = () => {
+  const navigate = useNavigate();
   const [scrollValue, setScrollValue] = useState<number>(0);
   const [headerSticky, setHeaderSticky] = useState<boolean>(false);
 
@@ -35,7 +39,7 @@ const Header: FC = () => {
 
   return (
     <header className={`header ${headerSticky && "header--sticky"}`}>
-      <div className="header__logo">
+      <div className="header__logo" onClick={() => navigate(routes.GENERAL_PAGE)}>
         <img src={logo} alt="logotype" className="header__logo-image" />
       </div>
       <NavigationMenu menuIsOpen={burgerOpen} menuItemClick={() => openBurger(false)} />

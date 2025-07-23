@@ -19,6 +19,7 @@
     }
 
     .expand-overlay {
+      // width: 50px;
       position: absolute;
       bottom: 0;
       left: 0;
@@ -31,18 +32,22 @@
       padding-bottom: 20px;
       cursor: pointer;
 
+      &__arrow {
+        width: 50px;
+      }
+
       span {
-        background: #fff;
-        padding: 5px 15px;
-        border-radius: 15px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        color: $mainColor;
-        font-weight: 500;
-        transition: all 0.3s ease;
+        // background: #fff;
+        // padding: 5px 15px;
+        // border-radius: 15px;
+        // box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        // color: $mainColor;
+        // font-weight: 500;
+        // transition: all 0.3s ease;
 
         &:hover {
-          background: #f0f0f0;
-          transform: translateY(-2px);
+          // background: #f0f0f0;
+          // transform: translateY(-2px);
         }
       }
     }
@@ -52,17 +57,20 @@
 .collapse-button {
   display: block;
   margin: 15px auto 0;
+  width: 100%;
   padding: 8px 20px;
-  background: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  // background: #f5f5f5;
   border: none;
   border-radius: 15px;
   color: $mainColor;
   cursor: pointer;
   font-weight: 500;
   transition: all 0.3s ease;
+  transform: rotate(180deg);
 
-  &:hover {
-    background: #e0e0e0;
-    transform: translateY(-2px);
+  &__arrow {
+    width: 50px;
   }
 }

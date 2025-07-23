@@ -1,0 +1,24 @@
+.price-table {
+  &__row {
+    transition: 0.3s;
+    &:hover {
+      cursor: pointer !important;
+      background-color: #cccccc25 !important;
+    }
+  }
+
+  &__cell {
+    font-weight: 700 !important;
+    font-size: 17px !important;
+    color: #fff !important;
+    border-bottom-color: #ff5000 !important;
+  }
+
+  &__cell--xs {
+    font-weight: 700 !important;
+    font-size: 17px !important;
+    color: #fff !important;
+    border-bottom-color: #ff5000 !important;
+    font-size: 0.875rem !important;
+  }
+}

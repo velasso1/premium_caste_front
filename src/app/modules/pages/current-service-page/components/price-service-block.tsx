@@ -3,6 +3,8 @@ import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 import PriceTable from "#ui/price-table/price-table.tsx";
 import { ITableProps } from "#ui/price-table/price-table.tsx";
 
+import arrow from "#images/arrow-down.png";
+
 const PriceServiceBlock: FC<ITableProps> = ({ tableData }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -34,16 +36,16 @@ const PriceServiceBlock: FC<ITableProps> = ({ tableData }) => {
 
         {!isExpanded && tableData && (
           <div className="expand-overlay" onClick={toggleExpand}>
-            <span>Развернуть</span>
+            <img className="expand-overlay__arrow" src={arrow} alt="arrow" />
           </div>
         )}
       </div>
 
       <>
         {isExpanded && tableData && (
-          <button className="collapse-button" onClick={toggleExpand}>
-            Свернуть
-          </button>
+          <div className="collapse-button" onClick={toggleExpand}>
+            <img className="collapse-button__arrow" src={arrow} alt="arrow" />
+          </div>
         )}
       </>
     </ContentBlockLayout>

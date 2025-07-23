@@ -53,6 +53,7 @@ export interface IGetPostsPayload {
 // GALLEREIS API APYLOAD TYPES
 
 export interface ICreateGalleryPayload {
+  id?: string;
   author_id: string;
   title: string;
   status: TPostStatus;
@@ -64,5 +65,4 @@ export interface ICreateGalleryPayload {
   metadata?: {
     additionalProp1: {};
   };
-  id?: string;
 }
