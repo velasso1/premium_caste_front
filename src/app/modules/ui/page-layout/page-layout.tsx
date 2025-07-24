@@ -16,10 +16,21 @@ const PageLayout: FC<IPageLayoutProps> = ({ pageClassName, children, includePrel
   }, []);
 
   useEffect(() => {
-    setTimeout(() => {
+    if (showPreloader) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    const timer = setTimeout(() => {
       setShowPreloader(false);
     }, 2500);
-  }, []);
+
+    return () => {
+      clearTimeout(timer);
+      document.body.style.overflow = "";
+    };
+  }, [showPreloader]);
 
   return (
     <div className={`${pageClassName} page-layout`}>
