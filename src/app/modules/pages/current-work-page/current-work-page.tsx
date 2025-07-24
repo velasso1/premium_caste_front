@@ -10,6 +10,8 @@ import PageLayout from "#ui/page-layout/page-layout.tsx";
 import PageTitle from "#ui/page-title/page-title.tsx";
 import Loader from "#ui/loader/loader.tsx";
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
+import Slider from "#ui/slider/slider.tsx";
+import { SwiperSlide } from "swiper/react";
 
 const CurrentWorkPage: FC = () => {
   const { id } = useParams<string>();
@@ -20,13 +22,19 @@ const CurrentWorkPage: FC = () => {
     <PageLayout pageClassName="current-work-page">
       <PageTitle pageName={getGallery.data?.title || "Наша работа"} />
       <ContentBlockLayout customClassName="current-work-page__block" customContentClass="current-work-page__album">
-        {getGallery.data ? (
-          getGallery.data.images.map((imageSrc) => {
-            return <WorkItem imageSource={imageSrc} itemId="" itemTitle="" isAlbumPhoto={true} />;
-          })
-        ) : (
-          <Loader />
-        )}
+        <Slider paginationInculde={false}>
+          {getGallery.data ? (
+            getGallery.data.images.map((imageSrc) => {
+              return (
+                <SwiperSlide>
+                  <WorkItem imageSource={imageSrc} itemId="" itemTitle="" isAlbumPhoto={true} />
+                </SwiperSlide>
+              );
+            })
+          ) : (
+            <Loader />
+          )}
+        </Slider>
       </ContentBlockLayout>
 
       <ContentBlockLayout customClassName="current-work-page__description" contentTitle="описание работы">

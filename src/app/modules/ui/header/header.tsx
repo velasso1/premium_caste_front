@@ -39,7 +39,13 @@ const Header: FC = () => {
 
   return (
     <header className={`header ${headerSticky && "header--sticky"}`}>
-      <div className="header__logo" onClick={() => navigate(routes.GENERAL_PAGE)}>
+      <div
+        className="header__logo"
+        onClick={() => {
+          navigate(routes.GENERAL_PAGE);
+          window.scroll({ top: 0, behavior: "smooth" });
+        }}
+      >
         <img src={logo} alt="logotype" className="header__logo-image" />
       </div>
       <NavigationMenu menuIsOpen={burgerOpen} menuItemClick={() => openBurger(false)} />

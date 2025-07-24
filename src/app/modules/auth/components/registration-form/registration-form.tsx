@@ -34,15 +34,20 @@ import { phoneNormalizer } from "#utils/helpers/phone-normalizer.ts";
 const RegistrationForm: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [createAccount, { data: createAccData, isLoading, isSuccess, error }] = useCreateAccountMutation();
+  const [createAccount, { data: createAccData, isLoading, isSuccess, error, isError }] = useCreateAccountMutation();
 
   useEffect(() => {
     if (isSuccess) {
       reset();
       navigate("/auth/" + routes.LOGIN_PAGE);
       dispatch(setEffect({ status: "success", message: "Регистрация прошла успешно" }));
+      return;
     }
-  }, [createAccData, isSuccess]);
+
+    if (isError) {
+      dispatch(setEffect({ status: "error", message: "Произошла ошибка, повторите позже" }));
+    }
+  }, [createAccData, isSuccess, isError]);
 
   const {
     register,

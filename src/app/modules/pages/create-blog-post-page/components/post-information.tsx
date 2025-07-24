@@ -134,6 +134,7 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
 
   const updatePostHandler = (): SubmitHandler<IPostInfoPayload> => (data) => {
     updatePost({ ...data, id: postInfo.id });
+    setCreatingStep(1);
   };
 
   return (

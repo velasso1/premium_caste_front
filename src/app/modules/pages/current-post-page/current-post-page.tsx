@@ -20,6 +20,8 @@ import PageLayout from "#ui/page-layout/page-layout.tsx";
 import PageTitle from "#ui/page-title/page-title.tsx";
 import Slider from "#ui/slider/slider.tsx";
 import SlideLayout from "#ui/slider/components/slide-layout.tsx";
+import Loader from "#ui/loader/loader.tsx";
+import WorkItem from "#pages/our-works-page/components/work-item.tsx";
 import Button from "#ui/button/button.tsx";
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 
@@ -57,7 +59,7 @@ const CurrentPostPage: FC = () => {
 
   return (
     <PageLayout pageClassName="current-post-page">
-      <PageTitle pageName={currentPost?.data?.title ?? "Загрузка.."} />
+      {/* <PageTitle pageName={currentPost?.data?.title ?? "Загрузка.."} /> */}
       <>
         {userIsAdmin && (
           <div className="current-post-page__managing-buttons">
@@ -96,21 +98,41 @@ const CurrentPostPage: FC = () => {
         )}
       </>
 
-      {/* <ContentBlockLayout> */}
-      <div className="current-post-page__post">{currentPost?.data?.content}</div>
-
-      <div className="current-post-page__album">
+      {/* <ContentBlockLayout customClassName="current-post-page__post-wrapper">
+        <div className="current-post-page__album">
+          <Slider paginationInculde={false}>
+            {currentPost.data?.media_groups?.content?.map((item, index) => {
+              return (
+                <SwiperSlide>
+                  <SlideLayout imageUrl={import.meta.env.VITE_UPLOADS_FILES + item.storage_path} />
+                </SwiperSlide>
+              );
+            })}
+          </Slider>
+        </div>
+      </ContentBlockLayout> */}
+      <ContentBlockLayout customClassName="current-work-page__block" customContentClass="current-work-page__album">
         <Slider paginationInculde={false}>
-          {currentPost.data?.media_groups?.content?.map((item, index) => {
-            return (
-              <SwiperSlide>
-                <SlideLayout imageUrl={import.meta.env.VITE_UPLOADS_FILES + item.storage_path} />
-              </SwiperSlide>
-            );
-          })}
+          {currentPost.data ? (
+            currentPost.data?.media_groups?.content?.map((item) => {
+              return (
+                <SwiperSlide>
+                  <WorkItem imageSource={item.storage_path} itemId="" itemTitle="" isAlbumPhoto={true} />
+                </SwiperSlide>
+              );
+            })
+          ) : (
+            <Loader />
+          )}
         </Slider>
-      </div>
-      {/* </ContentBlockLayout> */}
+      </ContentBlockLayout>
+
+      <ContentBlockLayout
+        contentTitle={`${currentPost?.data?.title ?? "Загрузка.."}`}
+        customClassName="current-post-page__post-wrapper"
+      >
+        <div className="current-post-page__post">{currentPost?.data?.content}</div>
+      </ContentBlockLayout>
     </PageLayout>
   );
 };
