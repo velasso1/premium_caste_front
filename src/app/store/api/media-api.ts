@@ -38,17 +38,40 @@ export const mediaApi = createApi({
       invalidatesTags: ["Images"],
     }),
 
+    // загрузка множества картинок
+    uploadMultipleMedia: build.mutation<
+      void,
+      // { files: File[]; uploader_id: string; media_type: string; is_public: boolean }
+      FormData
+    >({
+      query: (data) => {
+        return {
+          url: import.meta.env.VITE_UPLOAD_MULTIPLE,
+          method: "POST",
+          credentials: "include",
+          // headers: {
+          //   "Content-Type": "application/json",
+          // },
+          // body: JSON.stringify(data),
+          body: data,
+        };
+      },
+      invalidatesTags: ["Images"],
+    }),
+
     // создает группу для картинок
     createMediaGroup: build.mutation<{ data: string }, ICreateMediaGroupPayload>({
-      query: (data) => ({
-        url: import.meta.env.VITE_CREATE_MEDIA_GROUP,
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }),
+      query: (data) => {
+        return {
+          url: import.meta.env.VITE_CREATE_MEDIA_GROUP,
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        };
+      },
     }),
 
     // связывает несколько картинок в одну группу
@@ -82,6 +105,7 @@ export const mediaApi = createApi({
 export const {
   useGetAllImagesQuery,
   useUploadMediaMutation,
+  useUploadMultipleMediaMutation,
   useCreateMediaGroupMutation,
   useAttachMediaToGroupMutation,
   useAttachMediaGroupToPostMutation,

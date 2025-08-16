@@ -2,7 +2,7 @@ import { FC, useState, useRef, useEffect } from "react";
 
 import { useAppSelector, useAppDispatch } from "../../../../store";
 import { setEffect } from "../../../../store/slices/effects";
-import { useUploadMediaMutation } from "../../../../store/api/media-api";
+import { useUploadMediaMutation, useUploadMultipleMediaMutation } from "../../../../store/api/media-api";
 
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 import Button from "#ui/button/button.tsx";
@@ -15,19 +15,21 @@ const PostImages: FC = () => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
   const [uploadImages, { data, isSuccess, isLoading, isError }] = useUploadMediaMutation();
+  const [uploadMultipleFiles, { data: multiData, isSuccess: multiIsSuccess, isLoading: multiIsLoading }] =
+    useUploadMultipleMediaMutation();
 
   const { userId } = useAppSelector((state) => state.userSlice);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (isSuccess) {
+    if (multiIsSuccess) {
       dispatch(setEffect({ status: "success", message: "Изображение успешно загружено" }));
 
       setPreviews(() => []);
       setSelectedFiles(() => []);
     }
-  }, [isSuccess]);
+  }, [multiIsSuccess]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -56,22 +58,23 @@ const PostImages: FC = () => {
 
     const formData = new FormData();
 
-    selectedFiles.forEach((file, index) => {
-      formData.append(`file`, file);
-    });
+    for (let file of selectedFiles) {
+      formData.append("files", file);
+    }
 
     formData.append("uploader_id", userId);
     formData.append("media_type", "photo");
+    formData.append("is_public", "true");
     formData.append("width", "100");
     formData.append("height", "100");
 
-    uploadImages(formData);
+    uploadMultipleFiles(formData);
   };
 
   return (
     <ContentBlockLayout contentTitle="Загрузка изображений" customClassName="create-blog-post-page__images-upload">
       <div className="create-blog-post-page__upload-container">
-        {isLoading && <Loader />}
+        {multiIsLoading && <Loader />}
         <label className="create-blog-post-page__custom-file-button">
           <input
             className="visually-hidden"
