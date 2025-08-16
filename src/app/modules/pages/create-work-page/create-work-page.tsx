@@ -35,8 +35,6 @@ const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
   const dispatch = useAppDispatch();
   const params = useParams();
 
-  console.log(workInfo);
-
   const { userId } = useAppSelector((state) => state.userSlice);
   const { createGalleryTags } = useAppSelector((state) => state.galleriesSlice);
 
@@ -79,7 +77,7 @@ const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
   const createGalleryHandler = (): SubmitHandler<ICreateGalleryPayload> => (data) => {
     createNewGallery({
       ...data,
-      tags: createGalleryTags,
+      tags: ["Всё", ...createGalleryTags],
       author_id: userId,
       status: "published",
       cover_image_index: 0,
@@ -109,6 +107,7 @@ const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
           Выберите тег:
           <div className="create-work-page__tags">
             {sidebarItemsWorks.map((item, index) => {
+              if (item.itemName === "Всё") return;
               return <Tag title={item.itemName} key={index} />;
             })}
           </div>
