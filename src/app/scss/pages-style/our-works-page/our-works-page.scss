@@ -8,16 +8,20 @@
 
   &__work-item {
     height: max-content;
-    width: 250px;
+    width: 230px;
 
     &:hover {
       cursor: pointer;
     }
+
+    &[data-album="true"] {
+      // width: 290px;
+    }
   }
 
   &__banner {
-    width: 250px;
-    height: 250px;
+    width: 230px;
+    height: 230px;
     position: relative;
     overflow: hidden;
     transition: 0.3s;
@@ -55,6 +59,13 @@
       &:hover {
         transform: scale(1.2);
         filter: brightness(20%);
+      }
+    }
+
+    &[data-album="true"] {
+      &:hover {
+        transform: scale(1.2);
+        filter: brightness(100%);
       }
     }
 

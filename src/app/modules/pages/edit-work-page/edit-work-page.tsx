@@ -1,13 +1,13 @@
 import { FC, useState, useEffect } from "react";
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { useGetGalleryByIdQuery, useEditGalleryMutation } from "../../../store/api/galleries-api";
 import { useGetAllImagesQuery } from "../../../store/api/media-api";
 import { setEffect } from "../../../store/slices/effects";
-import { clearSelectedTags } from "../../../store/slices/galleries";
+import { clearSelectedTags, editGalleryTags } from "../../../store/slices/galleries";
 
 import { ICreateGalleryPayload } from "#types/api-payload-types.ts";
 
@@ -20,34 +20,39 @@ import PageLayout from "#ui/page-layout/page-layout.tsx";
 import PageTitle from "#ui/page-title/page-title.tsx";
 
 import { sidebarItemsWorks } from "#utils/auxuliary/sidebar-items.ts";
+import { routes } from "#utils/routes/main-routes/main-routes.ts";
 
 const EditWorkPage: FC = () => {
   const { id } = useParams<string>();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const { userId } = useAppSelector((state) => state.userSlice);
   const { createGalleryTags } = useAppSelector((state) => state.galleriesSlice);
 
+  const [editGallery, editGalleryStatus] = useEditGalleryMutation();
+  const [attachedImages, setAttachedImages] = useState<string[]>([]);
+
   const getGallery = useGetGalleryByIdQuery({ id: id || "" });
   const images = useGetAllImagesQuery();
-  const [editGallery, editGalleryStatus] = useEditGalleryMutation();
-
-  const [attachedImages, setAttachedImages] = useState<string[]>([]);
 
   useEffect(() => {
     if (getGallery.isSuccess) {
       setAttachedImages(() => {
         return getGallery.data.images;
       });
+
+      dispatch(editGalleryTags(getGallery.data.tags));
     }
   }, [getGallery]);
 
   useEffect(() => {
     if (editGalleryStatus.isSuccess) {
-      dispatch(setEffect({ status: "success", message: "Галерея успешно создана" }));
+      dispatch(setEffect({ status: "success", message: "Данные изменены" }));
       dispatch(clearSelectedTags());
       setAttachedImages([]);
       reset();
+      navigate("../" + routes.OUR_WORKS_PAGE);
       return;
     }
 
@@ -87,7 +92,7 @@ const EditWorkPage: FC = () => {
     console.log(
       JSON.stringify({
         ...data,
-        tags: createGalleryTags,
+        tags: ["Всё", ...createGalleryTags],
         author_id: userId,
         status: "published",
         cover_image_index: 0,
@@ -119,6 +124,7 @@ const EditWorkPage: FC = () => {
           Выберите тег:
           <div className="create-work-page__tags">
             {sidebarItemsWorks.map((item, index) => {
+              if (item.itemName === "Всё") return;
               return <Tag title={item.itemName} key={index} />;
             })}
           </div>

@@ -27,11 +27,15 @@ const galleriesSlice = createSlice({
       state.activeTag = action.payload;
     },
 
+    editGalleryTags(state, action: PayloadAction<string[]>) {
+      state.createGalleryTags = action.payload;
+    },
+
     clearSelectedTags(state) {
       state.createGalleryTags = [];
     },
   },
 });
 
-export const { selectTags, setActiveTag, clearSelectedTags } = galleriesSlice.actions;
+export const { selectTags, setActiveTag, clearSelectedTags, editGalleryTags } = galleriesSlice.actions;
 export default galleriesSlice.reducer;

@@ -51,6 +51,7 @@ const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumP
         onClose={() => popupHandler(false)}
       />
       <div
+        data-album={isAlbumPhoto}
         className="our-works-page__work-item"
         onClick={(e) => {
           navigate("../" + routes.CURRENT_GALLERY_PAGE + `/${itemId}`);
@@ -85,6 +86,7 @@ const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumP
           <img
             className="our-works-page__image"
             data-zoom={zoom}
+            data-album={isAlbumPhoto}
             src={import.meta.env.VITE_UPLOADS_FILES + imageSource}
             style={{ opacity: imageLoaded ? 1 : 0 }}
             onLoad={() => setImageLoaded(true)}
