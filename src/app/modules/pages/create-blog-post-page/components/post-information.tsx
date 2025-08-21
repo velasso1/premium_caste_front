@@ -25,6 +25,8 @@ import Loader from "#ui/loader/loader.tsx";
 import LineNotification from "#ui/notifications/line-notification.tsx";
 import { IPost } from "#types/api-response-types.ts";
 
+import imageNotFound from "#images/not-found.webp";
+
 const initialStatePost: IPostInfoPayload = {
   author_id: "",
   content: "",
@@ -54,6 +56,7 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
   const [postInfo, setPostInfo] = useState<IPostInfoPayload>(initialStatePost);
   const [previewSelected, setPreviewSelected] = useState<boolean>(false);
   const [creatingStep, setCreatingStep] = useState<number>(1);
+  const [imageIsError, setImageIsError] = useState<boolean>(false);
 
   const {
     register,
@@ -191,11 +194,12 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
                       <img
                         className="create-blog-post-page__preview-image"
                         key={item.id}
-                        src={IMAGE_PATH}
+                        src={imageIsError ? imageNotFound : IMAGE_PATH}
                         alt={item.original_filename}
                         onClick={() => {
                           setPostInfo((prev) => ({ ...prev, featured_image_id: item.id }));
                         }}
+                        onError={() => setImageIsError(true)}
                       />
                     </div>
                   );

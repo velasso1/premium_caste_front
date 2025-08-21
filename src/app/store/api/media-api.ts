@@ -2,6 +2,8 @@ import { BaseQueryFn, createApi, fetchBaseQuery, FetchArgs, RootState } from "@r
 
 import { CustomizedFetchBaseQueryError, IGetAllImagesResponse } from "#types/api-response-types.ts";
 
+import { baseQueryWithReauth } from "./user-api";
+
 import {
   IUploadImagesPayload,
   IAttachMediaToGroupPayload,
@@ -11,9 +13,10 @@ import {
 
 export const mediaApi = createApi({
   reducerPath: "mediaApi",
-  baseQuery: <BaseQueryFn<string | FetchArgs, unknown, CustomizedFetchBaseQueryError, {}>>(
-    fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL })
-  ),
+  baseQuery: baseQueryWithReauth,
+  // baseQuery: <BaseQueryFn<string | FetchArgs, unknown, CustomizedFetchBaseQueryError, {}>>(
+  //   fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL })
+  // ),
   tagTypes: ["Images"],
   endpoints: (build) => ({
     // получение всех загруженных картинок

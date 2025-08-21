@@ -10,10 +10,11 @@ import { IBlogMainNewsProps } from "./blog-main-news";
 import Loader from "#ui/loader/loader.tsx";
 import Popup from "#ui/popup/popup.tsx";
 
+import { routes } from "#utils/routes/main-routes/main-routes.ts";
+
 import deleteIcon from "#images/delete-icon.png";
 import changeIcon from "#images/change-icon.png";
-
-import { routes } from "#utils/routes/main-routes/main-routes.ts";
+import imageNotFound from "#images/not-found.webp";
 
 const BlogSecondNews: FC<IBlogMainNewsProps> = ({ postInfo }) => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const BlogSecondNews: FC<IBlogMainNewsProps> = ({ postInfo }) => {
 
   const [popupIsOpen, popupHandler] = useState<boolean>(false);
   const [idPostToDelete, selectPostId] = useState<string>("");
+  const [imageIsLoaded, setImageLoaded] = useState<boolean>(true);
 
   const deletePostHandler = (id: string) => {
     deletePost({ postId: id });
@@ -40,8 +42,9 @@ const BlogSecondNews: FC<IBlogMainNewsProps> = ({ postInfo }) => {
         <>
           <img
             className="blog-page__second-image"
-            src={import.meta.env.VITE_UPLOADS_FILES + postInfo.featured_image_path}
+            src={imageIsLoaded ? import.meta.env.VITE_UPLOADS_FILES + postInfo.featured_image_path : imageNotFound}
             alt="second news image"
+            onError={() => setImageLoaded(false)}
           />
           {userIsAdmin && (
             <div className="blog-page__main-news-admin-clue">

@@ -13,6 +13,7 @@ import { routes } from "#utils/routes/main-routes/main-routes.ts";
 
 import deleteIcon from "#images/delete-icon.png";
 import changeIcon from "#images/change-icon.png";
+import imageNotFound from "#images/not-found.webp";
 
 interface IWorkItemProps {
   itemTitle: string;
@@ -28,6 +29,11 @@ const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumP
   const { userIsAdmin } = useAppSelector((state) => state.userSlice);
 
   const [deleteGallery, deletingGalleryStatus] = useDeleteGalleryMutation();
+
+  const [imageState, setImageState] = useState<{ isLoaded: boolean; isError: boolean }>({
+    isLoaded: false,
+    isError: false,
+  });
 
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
   const [zoom, setZoom] = useState<boolean>(false);
@@ -58,7 +64,7 @@ const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumP
         }}
       >
         <div className="our-works-page__banner">
-          {!imageLoaded && <Loader />}
+          {!imageState.isLoaded && <Loader />}
           {userIsAdmin && !isAlbumPhoto && (
             <>
               <img
@@ -87,10 +93,11 @@ const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumP
             className="our-works-page__image"
             data-zoom={zoom}
             data-album={isAlbumPhoto}
-            src={import.meta.env.VITE_UPLOADS_FILES + imageSource}
-            style={{ opacity: imageLoaded ? 1 : 0 }}
-            onLoad={() => setImageLoaded(true)}
+            src={imageState.isError ? imageNotFound : import.meta.env.VITE_UPLOADS_FILES + imageSource}
+            style={{ opacity: imageState.isLoaded ? 1 : 0 }}
+            onLoad={() => setImageState({ ...imageState, isLoaded: true })}
             onClick={(e) => (isAlbumPhoto ? toggleZoom(e) : null)}
+            onError={() => setImageState({ ...imageState, isError: true })}
             alt={itemTitle}
           />
 

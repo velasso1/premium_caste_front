@@ -5,11 +5,14 @@ import { IGetAllGalleriesResponse, IGalleryResponse } from "#types/api-response-
 
 import { CustomizedFetchBaseQueryError } from "#types/api-response-types.ts";
 
+import { baseQueryWithReauth } from "./user-api";
+
 export const galleriesApi = createApi({
   reducerPath: "galleriesApi",
-  baseQuery: <BaseQueryFn<string | FetchArgs, unknown, CustomizedFetchBaseQueryError, {}>>(
-    fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL })
-  ),
+  baseQuery: baseQueryWithReauth,
+  // baseQuery: <BaseQueryFn<string | FetchArgs, unknown, CustomizedFetchBaseQueryError, {}>>(
+  //   fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL })
+  // ),
   tagTypes: ["Galleries"],
   endpoints: (build) => ({
     getAllGalleries: build.query<IGetAllGalleriesResponse, { status: "published"; page: string; per_page: string }>({

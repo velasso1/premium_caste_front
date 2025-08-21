@@ -111,6 +111,12 @@ const CurrentPostPage: FC = () => {
           </Slider>
         </div>
       </ContentBlockLayout> */}
+      <ContentBlockLayout
+        contentTitle={`${currentPost?.data?.title ?? "Загрузка.."}`}
+        customClassName="current-post-page__post-wrapper"
+      >
+        <div className="current-post-page__post">{currentPost?.data?.content}</div>
+      </ContentBlockLayout>
       <ContentBlockLayout customClassName="current-work-page__block" customContentClass="current-work-page__album">
         <Slider paginationInculde={false}>
           {currentPost.data ? (
@@ -125,13 +131,6 @@ const CurrentPostPage: FC = () => {
             <Loader />
           )}
         </Slider>
-      </ContentBlockLayout>
-
-      <ContentBlockLayout
-        contentTitle={`${currentPost?.data?.title ?? "Загрузка.."}`}
-        customClassName="current-post-page__post-wrapper"
-      >
-        <div className="current-post-page__post">{currentPost?.data?.content}</div>
       </ContentBlockLayout>
     </PageLayout>
   );

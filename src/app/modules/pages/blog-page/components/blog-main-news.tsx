@@ -14,6 +14,7 @@ import { routes } from "#utils/routes/main-routes/main-routes.ts";
 
 import deleteIcon from "#images/delete-icon.png";
 import changeIcon from "#images/change-icon.png";
+import imageNotFound from "#images/not-found.webp";
 
 export interface IBlogMainNewsProps {
   postInfo: IPost | undefined;
@@ -28,6 +29,7 @@ const BlogMainNews: FC<IBlogMainNewsProps> = ({ postInfo }) => {
 
   const [popupIsOpen, popupHandler] = useState<boolean>(false);
   const [idPostToDelete, selectPostId] = useState<string>("");
+  const [imageIsLoaded, setImageLoaded] = useState<boolean>(true);
 
   const deletePostHandler = (id: string) => {
     deletePost({ postId: id });
@@ -44,8 +46,9 @@ const BlogMainNews: FC<IBlogMainNewsProps> = ({ postInfo }) => {
         <>
           <img
             className="blog-page__main-image"
-            src={import.meta.env.VITE_UPLOADS_FILES + postInfo.featured_image_path}
+            src={imageIsLoaded ? import.meta.env.VITE_UPLOADS_FILES + postInfo.featured_image_path : imageNotFound}
             alt="news-image"
+            onError={() => setImageLoaded(false)}
           />
           <div className="blog-page__shadow"></div>
           <p className="blog-page__main-news-title">{postInfo.excerpt}</p>

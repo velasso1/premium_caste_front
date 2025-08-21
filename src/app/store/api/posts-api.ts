@@ -4,11 +4,14 @@ import { CustomizedFetchBaseQueryError, IAllPostsResponse, IPost } from "#types/
 import { IGetPostsPayload } from "#types/api-payload-types.ts";
 import { IPostInfoPayload } from "#types/store-types/posts-initial-state-types.ts";
 
+import { baseQueryWithReauth } from "./user-api";
+
 export const postsApi = createApi({
   reducerPath: "postsApi",
-  baseQuery: <BaseQueryFn<string | FetchArgs, unknown, CustomizedFetchBaseQueryError, {}>>(
-    fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL })
-  ),
+  baseQuery: baseQueryWithReauth,
+  // baseQuery: <BaseQueryFn<string | FetchArgs, unknown, CustomizedFetchBaseQueryError, {}>>(
+  //   fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL })
+  // ),
   tagTypes: ["Posts"],
   endpoints: (build) => ({
     getPosts: build.query<IAllPostsResponse, IGetPostsPayload>({
