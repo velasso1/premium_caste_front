@@ -37,8 +37,8 @@
     justify-content: center;
     position: relative;
     padding: 10px 24px;
-    border: 2px solid #ff5000;
-    border-radius: 15px;
+    border: 1px solid #ff5000;
+    border-radius: 8px;
     background-color: transparent;
     color: #ffffff;
     font-family: inherit;
@@ -46,14 +46,15 @@
     cursor: pointer;
     transition: all 0.3s ease;
     overflow: hidden;
-  }
 
-  &__custom-file-button:hover {
-    border-radius: 20px;
-  }
+    &:hover {
+      background-color: rgba(255, 80, 0, 0.1);
+      border-radius: 8px;
+    }
 
-  &__custom-file-button:active {
-    background-color: rgba(255, 80, 0, 0.15);
+    &:active {
+      background-color: rgba(255, 80, 0, 0.15);
+    }
   }
 
   &__preview-container {
