@@ -16,9 +16,9 @@ const ContactIcons: FC = () => {
   ];
   return (
     <div className="place-block__icons">
-      {contactIcons.map((item) => {
+      {contactIcons.map((item, index) => {
         return (
-          <div className="place-block__icon">
+          <div className="place-block__icon" key={index}>
             <img
               className="place-block__icon-image"
               src={item.icon}

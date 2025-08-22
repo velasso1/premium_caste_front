@@ -47,7 +47,7 @@ const AccountPage: FC = () => {
             </div>
             <div className="account-info__form1">
               <div className="account-info__name">{data?.name}</div>
-              <div className="account-info__phone">{phoneFormatter(data?.phone ?? "+79999999999")}</div>
+              <div className="account-info__phone">{phoneFormatter(data?.phone ?? "")}</div>
               <div className="account-info__email">{data?.email}</div>
             </div>
           </div>

@@ -14,13 +14,14 @@ import "swiper/css/pagination";
 
 interface ISliderProps {
   children: React.ReactElement[] | React.ReactNode;
-  navigationInculde?: boolean;
-  paginationInculde?: boolean;
+  navigationInclude?: boolean;
+  paginationInclude?: boolean;
 }
 
-const Slider: FC<ISliderProps> = ({ children, paginationInculde = true, navigationInculde = true }) => {
+const Slider: FC<ISliderProps> = ({ children, paginationInclude = true, navigationInclude = true }) => {
   const progressCircle = useRef<SVGSVGElement>(null);
   const progressContent = useRef<HTMLSpanElement>(null);
+
   const onAutoplayTimeLeft = (s: SwiperType, time: number, progress: number) => {
     if (progressCircle.current && progressContent.current) {
       progressCircle.current.style.setProperty("--progress", `${1 - progress}`);
@@ -33,8 +34,8 @@ const Slider: FC<ISliderProps> = ({ children, paginationInculde = true, navigati
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         slidesPerView={4}
-        pagination={paginationInculde}
-        navigation={navigationInculde}
+        pagination={paginationInclude}
+        navigation={navigationInclude}
         loop={true}
         autoplay={{
           delay: 5000,
@@ -51,13 +52,6 @@ const Slider: FC<ISliderProps> = ({ children, paginationInculde = true, navigati
           992: {
             slidesPerView: 3,
           },
-          1024: {
-            slidesPerView: 3,
-          },
-          1640: {
-            slidesPerView: 3,
-          },
-
           1920: {
             slidesPerView: 4,
           },

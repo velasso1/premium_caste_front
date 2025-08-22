@@ -14,7 +14,7 @@ interface IWorksAlbumProps {
 const WorksAlbum: FC<IWorksAlbumProps> = ({ galleries }) => {
   return (
     <div className="current-post-page__album">
-      <Slider paginationInculde={false}>
+      <Slider paginationInclude={false}>
         {galleries
           ? galleries.map((galleries, index) => {
               return galleries.images.map((image) => {

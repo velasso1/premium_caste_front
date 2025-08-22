@@ -1,4 +1,6 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
+
+import imageNotFound from "#images/not-found.webp";
 
 interface ISlideLayoutProps {
   imageUrl: string;
@@ -7,13 +9,20 @@ interface ISlideLayoutProps {
 }
 
 const SlideLayout: FC<ISlideLayoutProps> = ({ imageUrl, slideText, children }) => {
+  const [imageLoaded, setImageState] = useState<boolean>(true);
+
   return (
     <div className="slide-layout">
       {children ? (
         children
       ) : (
         <div className="slide-layout__picture">
-          <img src={imageUrl} alt="" className="slide-layout__image" />
+          <img
+            src={imageNotFound ? imageNotFound : imageUrl}
+            alt=""
+            className="slide-layout__image"
+            onError={() => setImageState(false)}
+          />
           <span className="slide-layout__title">{slideText}</span>
         </div>
       )}

@@ -38,9 +38,13 @@ const PriceTable: FC<ITableProps> = ({ tableData }) => {
           ) : null}
 
           <TableRow>
-            {tableData.headCols.map((item) => {
+            {tableData.headCols.map((item, index) => {
               return (
-                <TableCell align="left" style={{ fontWeight: 700, color: "#fff", borderBottomColor: "#ff5000" }}>
+                <TableCell
+                  key={index}
+                  align="left"
+                  style={{ fontWeight: 700, color: "#fff", borderBottomColor: "#ff5000" }}
+                >
                   {item}
                 </TableCell>
               );
@@ -50,7 +54,7 @@ const PriceTable: FC<ITableProps> = ({ tableData }) => {
         <TableBody>
           {tableData.data.map((item, index) => {
             return (
-              <TableRow className="price-table__row">
+              <TableRow className="price-table__row" key={index}>
                 {item.map((row) => {
                   return (
                     <TableCell className="price-table__cell--xs" colSpan={row.colSpan} rowSpan={row.rowSpan}>
