@@ -14,9 +14,9 @@
       cursor: pointer;
     }
 
-    &[data-album="true"] {
-      // width: 290px;
-    }
+    // &[data-album="true"] {
+    // width: 290px;
+    // }
   }
 
   &__banner {
@@ -124,7 +124,6 @@
 
     &:hover {
       top: 0px;
-      cursor: \\;
     }
   }
 
