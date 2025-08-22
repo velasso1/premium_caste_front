@@ -11,8 +11,6 @@ import Popup from "#ui/popup/popup.tsx";
 
 import { routes } from "#utils/routes/main-routes/main-routes.ts";
 
-import deleteIcon from "#images/delete-icon.png";
-import changeIcon from "#images/change-icon.png";
 import imageNotFound from "#images/not-found.webp";
 
 interface IWorkItemProps {
@@ -64,29 +62,6 @@ const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumP
       >
         <div className="our-works-page__banner">
           {!imageState.isLoaded && <Loader />}
-          {userIsAdmin && !isAlbumPhoto && (
-            <>
-              <img
-                className="our-works-page__delete-button"
-                src={deleteIcon}
-                alt="delete"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  selectGalleryId(itemId);
-                  popupHandler(true);
-                }}
-              />
-              <img
-                className="our-works-page__change-button"
-                src={changeIcon}
-                alt="change"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  navigate("../" + routes.EDIT_WORK_PAGE + `/${itemId}`);
-                }}
-              />
-            </>
-          )}
 
           <img
             className="our-works-page__image"
@@ -99,6 +74,30 @@ const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumP
             onError={() => setImageState({ ...imageState, isError: true })}
             alt={itemTitle}
           />
+
+          {userIsAdmin && !isAlbumPhoto && (
+            <div className="our-works-page__manage-buttons">
+              <span
+                className="our-works-page__change-button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigate("../" + routes.EDIT_WORK_PAGE + `/${itemId}`);
+                }}
+              >
+                Изменить
+              </span>
+              <span
+                className="our-works-page__delete-button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  selectGalleryId(itemId);
+                  popupHandler(true);
+                }}
+              >
+                Удалить
+              </span>
+            </div>
+          )}
 
           {!isAlbumPhoto && <span className="our-works-page__notice">подробнее</span>}
         </div>

@@ -110,24 +110,37 @@
     text-transform: uppercase;
   }
 
-  &__delete-button,
-  &__change-button {
+  &__manage-buttons {
     position: absolute;
-    width: 30px;
-    right: 5px;
-    top: 5px;
-    z-index: 10;
-
-    transition: 0.5s;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 5px;
+    top: -100px;
+    background-color: #000000b7;
+    width: 100%;
+    transition: 0.3s ease;
 
     &:hover {
-      border: 1px solid $mainColor;
-      border-radius: 5px;
+      top: 0px;
+      cursor: \\;
     }
   }
 
+  &__image:hover + &__manage-buttons {
+    top: 0px;
+  }
+
+  &__delete-button,
   &__change-button {
-    right: 35px;
+    display: inline-block;
+    z-index: 10;
+    transition: 0.5s;
+
+    &:hover {
+      color: red;
+    }
   }
 }
 
