@@ -42,8 +42,8 @@ const CurrentWorkPage: FC = () => {
         contentTitle="Галерея"
       >
         {getGallery.data ? (
-          getGallery.data.images.map((imageSrc) => {
-            return <WorkItem imageSource={imageSrc} itemId="" itemTitle="" isAlbumPhoto={true} />;
+          getGallery.data.images.map((imageSrc, index) => {
+            return <WorkItem key={index} imageSource={imageSrc} itemId="" itemTitle="" isAlbumPhoto={true} />;
           })
         ) : (
           <Loader />

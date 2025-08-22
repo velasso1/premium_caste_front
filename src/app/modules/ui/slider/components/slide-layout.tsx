@@ -9,7 +9,7 @@ interface ISlideLayoutProps {
 }
 
 const SlideLayout: FC<ISlideLayoutProps> = ({ imageUrl, slideText, children }) => {
-  const [imageLoaded, setImageState] = useState<boolean>(true);
+  const [imageLoaded, setImageState] = useState<boolean>(false);
 
   return (
     <div className="slide-layout">
@@ -18,10 +18,10 @@ const SlideLayout: FC<ISlideLayoutProps> = ({ imageUrl, slideText, children }) =
       ) : (
         <div className="slide-layout__picture">
           <img
-            src={imageNotFound ? imageNotFound : imageUrl}
+            src={imageLoaded ? imageNotFound : imageUrl}
             alt=""
             className="slide-layout__image"
-            onError={() => setImageState(false)}
+            onError={() => setImageState(true)}
           />
           <span className="slide-layout__title">{slideText}</span>
         </div>

@@ -55,9 +55,14 @@ const PriceTable: FC<ITableProps> = ({ tableData }) => {
           {tableData.data.map((item, index) => {
             return (
               <TableRow className="price-table__row" key={index}>
-                {item.map((row) => {
+                {item.map((row, rowIdx) => {
                   return (
-                    <TableCell className="price-table__cell--xs" colSpan={row.colSpan} rowSpan={row.rowSpan}>
+                    <TableCell
+                      className="price-table__cell--xs"
+                      key={rowIdx}
+                      colSpan={row.colSpan}
+                      rowSpan={row.rowSpan}
+                    >
                       {row.value}
                     </TableCell>
                   );

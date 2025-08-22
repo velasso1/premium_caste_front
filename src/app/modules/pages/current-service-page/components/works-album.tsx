@@ -17,15 +17,17 @@ const WorksAlbum: FC<IWorksAlbumProps> = ({ galleries }) => {
       <Slider paginationInclude={false}>
         {galleries
           ? galleries.map((galleries, index) => {
-              return galleries.images.map((image) => {
-                return (
-                  <SwiperSlide>
-                    <SlideLayout imageUrl="none">
-                      <WorkItem itemTitle={galleries.title} itemId={galleries.id} imageSource={image} />
-                    </SlideLayout>
-                  </SwiperSlide>
-                );
-              });
+              return (
+                <SwiperSlide>
+                  <SlideLayout imageUrl="none">
+                    <WorkItem
+                      itemTitle={galleries.title}
+                      itemId={galleries.id}
+                      imageSource={galleries.images[galleries.cover_image_index]}
+                    />
+                  </SlideLayout>
+                </SwiperSlide>
+              );
             })
           : "Пока что таких работ нет"}
       </Slider>

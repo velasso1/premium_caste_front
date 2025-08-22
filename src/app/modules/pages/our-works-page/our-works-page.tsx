@@ -2,20 +2,19 @@ import { FC, useEffect } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setActiveTag } from "../../../store/slices/galleries";
-
-import { useGetAllGalleriesQuery } from "../../../store/api/galleries-api";
-import { useLazyGetGalleryByTagQuery } from "../../../store/api/galleries-api";
+import { useGetAllGalleriesQuery, useLazyGetGalleryByTagQuery } from "../../../store/api/galleries-api";
 
 import { useMediaQuery } from "react-responsive";
 
-import PageTitle from "../../ui/page-title/page-title";
-import PageLayout from "../../ui/page-layout/page-layout";
+import WorkItem from "./components/work-item";
 
+import PageTitle from "#ui/page-title/page-title.tsx";
+import PageLayout from "#ui/page-layout/page-layout.tsx";
 import Sidebar from "#ui/sidebar/sidebar.tsx";
 import SidebarItem from "#ui/sidebar/components/sidebar-item.tsx";
-import { sidebarItemsWorks } from "#utils/auxuliary/sidebar-items.ts";
+import Loader from "#ui/loader/loader.tsx";
 
-import WorkItem from "./components/work-item";
+import { sidebarItemsWorks } from "#utils/auxuliary/sidebar-items.ts";
 
 const OurWorksPage: FC = () => {
   const dispatch = useAppDispatch();
@@ -36,6 +35,8 @@ const OurWorksPage: FC = () => {
       getGalleryByTag({ tag: activeTag });
     }
   }, [activeTag]);
+
+  // return <Loader />;
 
   return (
     <PageLayout pageClassName="our-works-page">

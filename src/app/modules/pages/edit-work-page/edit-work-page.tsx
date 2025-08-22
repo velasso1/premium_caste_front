@@ -89,18 +89,6 @@ const EditWorkPage: FC = () => {
       images: attachedImages,
       id: id,
     });
-    console.log(
-      JSON.stringify({
-        ...data,
-        tags: ["Всё", ...createGalleryTags],
-        author_id: userId,
-        status: "published",
-        cover_image_index: 0,
-        slug: data.title,
-        images: attachedImages,
-        id: id,
-      })
-    );
   };
 
   return (

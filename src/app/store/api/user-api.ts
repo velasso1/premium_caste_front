@@ -34,7 +34,7 @@ const baseQuery = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_BASE_URL,
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
-    headers.set("Content-Type", "application/json");
+    // headers.set("Content-Type", "application/json");
     return headers;
   },
 });
@@ -106,6 +106,9 @@ export const userApi = createApi({
       query: (data) => ({
         url: import.meta.env.VITE_LOGIN,
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
         method: "POST",
         body: JSON.stringify(data),
       }),
@@ -143,6 +146,9 @@ export const userApi = createApi({
         url: import.meta.env.VITE_GET_USER_INFO,
         method: "POST",
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(data),
       }),
 

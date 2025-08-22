@@ -35,7 +35,6 @@ const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumP
     isError: false,
   });
 
-  const [imageLoaded, setImageLoaded] = useState<boolean>(false);
   const [zoom, setZoom] = useState<boolean>(false);
   const [popupIsOpen, popupHandler] = useState<boolean>(false);
   const [idGalleryToDelete, selectGalleryId] = useState<string>("");

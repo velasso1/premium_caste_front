@@ -1,5 +1,7 @@
 import { FC, useState, useEffect } from "react";
 
+import { useForm, SubmitHandler } from "react-hook-form";
+
 import { useAppDispatch, useAppSelector } from "../../../../store";
 import { useCreateNewPostMutation, useUpdatePostMutation } from "../../../../store/api/posts-api";
 import { clearAttachedImages, putAttachedImages } from "../../../../store/slices/posts";
@@ -12,20 +14,18 @@ import {
 
 import { setEffect } from "../../../../store/slices/effects";
 
-import { useForm, SubmitHandler } from "react-hook-form";
-
 import { IPostInfoPayload } from "#types/store-types/posts-initial-state-types.ts";
+import { IPost } from "#types/api-response-types.ts";
 
 import AttachImages from "./attach-images";
+
+import PreviewItem from "./preview-item";
 
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 import TextField from "#ui/fields/text-field.tsx";
 import Button from "#ui/button/button.tsx";
 import Loader from "#ui/loader/loader.tsx";
 import LineNotification from "#ui/notifications/line-notification.tsx";
-import { IPost } from "#types/api-response-types.ts";
-
-import imageNotFound from "#images/not-found.webp";
 
 const initialStatePost: IPostInfoPayload = {
   author_id: "",
@@ -56,7 +56,6 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
   const [postInfo, setPostInfo] = useState<IPostInfoPayload>(initialStatePost);
   const [previewSelected, setPreviewSelected] = useState<boolean>(false);
   const [creatingStep, setCreatingStep] = useState<number>(1);
-  const [imageIsError, setImageIsError] = useState<boolean>(false);
 
   const {
     register,
@@ -182,27 +181,7 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
             <div className="create-blog-post-page__preview-container">
               {images?.data?.data ? (
                 images?.data.data.map((item) => {
-                  const IMAGE_PATH =
-                    import.meta.env.VITE_UPLOADS_FILES + "uploads/" + userId + "/" + item.original_filename;
-
-                  return (
-                    <div
-                      className={`create-blog-post-page__preview-item ${
-                        item.id === postInfo.featured_image_id ? "create-blog-post-page__preview-item--selected" : null
-                      }`}
-                    >
-                      <img
-                        className="create-blog-post-page__preview-image"
-                        key={item.id}
-                        src={imageIsError ? imageNotFound : IMAGE_PATH}
-                        alt={item.original_filename}
-                        onClick={() => {
-                          setPostInfo((prev) => ({ ...prev, featured_image_id: item.id }));
-                        }}
-                        onError={() => setImageIsError(true)}
-                      />
-                    </div>
-                  );
+                  return <PreviewItem item={item} postInfo={postInfo} setPostInfo={setPostInfo} userId={userId} />;
                 })
               ) : (
                 <div>Пока что картинок нет</div>
