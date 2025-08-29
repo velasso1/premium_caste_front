@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useState, useEffect } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setActiveTag } from "../../../store/slices/galleries";
@@ -13,6 +13,7 @@ import PageLayout from "#ui/page-layout/page-layout.tsx";
 import Sidebar from "#ui/sidebar/sidebar.tsx";
 import SidebarItem from "#ui/sidebar/components/sidebar-item.tsx";
 import Loader from "#ui/loader/loader.tsx";
+import Button from "#ui/button/button.tsx";
 
 import { sidebarItemsWorks } from "#utils/auxuliary/sidebar-items.ts";
 
@@ -21,8 +22,10 @@ const OurWorksPage: FC = () => {
 
   const { activeTag } = useAppSelector((state) => state.galleriesSlice);
 
+  const [page, setPage] = useState<string>("1");
+
   const [getGalleryByTag, galleryByTagStatus] = useLazyGetGalleryByTagQuery();
-  const getGalleries = useGetAllGalleriesQuery({ status: "published", page: "1", per_page: "100" });
+  const getGalleries = useGetAllGalleriesQuery({ status: "published", page: page, per_page: "100" });
 
   const isMobile = useMediaQuery({ maxWidth: 769 });
 
@@ -35,6 +38,11 @@ const OurWorksPage: FC = () => {
       getGalleryByTag({ tag: activeTag });
     }
   }, [activeTag]);
+
+  useEffect(() => {
+    console.log(page);
+    // ЕСЛИ ЗАПРОС С ОШИБКОЙ, НЕОБХОДИМО ВЕРНУТЬ ПРЕДУДЫЩЕЕ ЗНАЧЕНИЕ В PAGE
+  }, [page]);
 
   // return <Loader />;
 
@@ -88,6 +96,14 @@ const OurWorksPage: FC = () => {
                 );
               })
             : "Пока нет таких работ"}
+
+          <Button
+            buttonText="Загрузить еще"
+            onClickAction={() => setPage((prev) => `${+prev + 1}`)}
+            buttonStyle="OUTLINED"
+            buttonType={getGalleries.isLoading ? "LOADING" : undefined}
+            disabled={getGalleries.isLoading}
+          />
         </div>
       </div>
     </PageLayout>
