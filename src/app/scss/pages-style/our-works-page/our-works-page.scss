@@ -90,13 +90,25 @@
     }
   }
 
+  &__work-items-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
   &__work-items {
     display: grid;
-
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 20px;
     margin: 0 auto;
     padding: 0 0 40px 0;
+  }
+
+  &__work-items-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // flex-direction: row;
   }
 
   &__notice {

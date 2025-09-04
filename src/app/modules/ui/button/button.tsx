@@ -1,5 +1,7 @@
 import { FC } from "react";
 
+import Loader from "#ui/loader/loader.tsx";
+
 interface IButtonProps {
   buttonText: string;
   buttonType?: "DEFAULT" | "LOADING";
@@ -16,13 +18,15 @@ const Button: FC<IButtonProps> = ({
   disabled = false,
 }) => {
   return (
-    <button
-      className={`${buttonStyle === "PRIMARY" ? "button" : "button--outlined"}`}
-      onClick={(e) => onClickAction(e)}
-      disabled={disabled}
-    >
-      {buttonText}
-    </button>
+    <>
+      <button
+        className={`${buttonStyle === "PRIMARY" ? "button" : "button--outlined"}`}
+        onClick={(e) => onClickAction(e)}
+        disabled={disabled}
+      >
+        {buttonType === "DEFAULT" ? buttonText : <Loader buttonLoader={true} />}
+      </button>
+    </>
   );
 };
 

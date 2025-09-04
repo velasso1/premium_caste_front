@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, useRef } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setActiveTag } from "../../../store/slices/galleries";
@@ -15,19 +15,30 @@ import SidebarItem from "#ui/sidebar/components/sidebar-item.tsx";
 import Loader from "#ui/loader/loader.tsx";
 import Button from "#ui/button/button.tsx";
 
+// ///////////////////////
+
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
+
+// //////////////////////
+
 import { sidebarItemsWorks } from "#utils/auxuliary/sidebar-items.ts";
 
 const OurWorksPage: FC = () => {
   const dispatch = useAppDispatch();
+  const targetRef = useRef<HTMLDivElement>(null);
+  const isMobile = useMediaQuery({ maxWidth: 769 });
 
   const { activeTag } = useAppSelector((state) => state.galleriesSlice);
 
-  const [page, setPage] = useState<string>("1");
+  const [pagination, setPagination] = useState<{ page: number; perPage: number }>({ page: 1, perPage: 25 });
 
   const [getGalleryByTag, galleryByTagStatus] = useLazyGetGalleryByTagQuery();
-  const getGalleries = useGetAllGalleriesQuery({ status: "published", page: page, per_page: "100" });
-
-  const isMobile = useMediaQuery({ maxWidth: 769 });
+  const getGalleries = useGetAllGalleriesQuery({
+    status: "published",
+    page: `${pagination.page}`,
+    per_page: `${pagination.perPage}`,
+  });
 
   const changeTagHandler = (tagName: string): void => {
     dispatch(setActiveTag(tagName));
@@ -39,16 +50,22 @@ const OurWorksPage: FC = () => {
     }
   }, [activeTag]);
 
-  useEffect(() => {
-    console.log(page);
-    // ЕСЛИ ЗАПРОС С ОШИБКОЙ, НЕОБХОДИМО ВЕРНУТЬ ПРЕДУДЫЩЕЕ ЗНАЧЕНИЕ В PAGE
-  }, [page]);
+  // useEffect(() => {
 
-  // return <Loader />;
+  // }, [getGalleries]);
+
+  const handleScroll = () => {
+    if (!targetRef.current) return;
+
+    targetRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  };
 
   return (
     <PageLayout pageClassName="our-works-page">
-      <PageTitle pageName="Наши работы" />
+      <PageTitle pageName="Наши работы" ref={targetRef} />
 
       <div className="our-works-page__content">
         {isMobile ? (
@@ -75,11 +92,23 @@ const OurWorksPage: FC = () => {
             })}
           </Sidebar>
         )}
-
-        <div className="our-works-page__work-items">
-          {activeTag === "Всё"
-            ? getGalleries.data?.galleries
-              ? getGalleries.data?.galleries.map((item) => {
+        <div className="our-works-page__work-items-wrapper">
+          <div className="our-works-page__work-items">
+            {activeTag === "Всё"
+              ? getGalleries.data?.galleries
+                ? getGalleries.data?.galleries.map((item) => {
+                    return (
+                      <WorkItem
+                        key={item.id}
+                        itemId={item.id}
+                        imageSource={item.images[item.cover_image_index]}
+                        itemTitle={item.title}
+                      />
+                    );
+                  })
+                : "Работ пока нет"
+              : galleryByTagStatus.data?.galleries.length
+              ? galleryByTagStatus.data?.galleries.map((item) => {
                   return (
                     <WorkItem
                       itemId={item.id}
@@ -88,22 +117,44 @@ const OurWorksPage: FC = () => {
                     />
                   );
                 })
-              : "Работ пока нет"
-            : galleryByTagStatus.data?.galleries.length
-            ? galleryByTagStatus.data?.galleries.map((item) => {
-                return (
-                  <WorkItem itemId={item.id} imageSource={item.images[item.cover_image_index]} itemTitle={item.title} />
-                );
-              })
-            : "Пока нет таких работ"}
+              : "Пока нет таких работ"}
+          </div>
+          <div className="our-works-page__work-items-pagination">
+            <Stack spacing={2}>
+              <Pagination
+                count={5}
+                variant="outlined"
+                shape="rounded"
+                size="large"
+                sx={{
+                  "& .MuiPaginationItem-root": {
+                    color: "white", // светлые цифры
+                    borderColor: "#ff5100ff", // светлая обводка
+                    borderRadius: "8px",
+                    transition: "0.3s",
+                    "&:hover": {
+                      backgroundColor: "#ff510028",
+                      borderRadius: "10px",
+                    },
+                    "&.Mui-selected": {
+                      backgroundColor: "#ff510059",
+                      color: "white",
+                    },
+                  },
+                }}
+              />
+            </Stack>
 
-          <Button
-            buttonText="Загрузить еще"
-            onClickAction={() => setPage((prev) => `${+prev + 1}`)}
-            buttonStyle="OUTLINED"
-            buttonType={getGalleries.isLoading ? "LOADING" : undefined}
-            disabled={getGalleries.isLoading}
-          />
+            <Button
+              buttonText="Загрузить еще"
+              onClickAction={() => setPagination({ ...pagination, perPage: pagination.perPage + 25 })}
+              buttonStyle="OUTLINED"
+              buttonType={getGalleries.status === "pending" ? "LOADING" : undefined}
+              disabled={getGalleries.status === "pending" || pagination.perPage === 100}
+            />
+
+            <Button buttonText="Наверх" onClickAction={() => handleScroll()} buttonStyle="OUTLINED" />
+          </div>
         </div>
       </div>
     </PageLayout>

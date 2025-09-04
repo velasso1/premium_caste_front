@@ -1,11 +1,20 @@
 import { FC } from "react";
 
-import { ScaleLoader } from "react-spinners";
+import { ScaleLoader, PulseLoader } from "react-spinners";
 
-const Loader: FC = () => {
+interface ILoaderProps {
+  loaderType?: "circle" | "primary";
+  buttonLoader?: boolean;
+}
+
+const Loader: FC<ILoaderProps> = ({ loaderType = "primary", buttonLoader }) => {
+  if (buttonLoader) {
+    return <PulseLoader color={`#fff`} size={8} />;
+  }
+
   return (
     <div className="loader">
-      <ScaleLoader color={"#fff"} />
+      {loaderType === "primary" ? <ScaleLoader color={"#fff"} /> : <PulseLoader color={`#fff`} />}
     </div>
   );
 };

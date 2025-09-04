@@ -1,15 +1,16 @@
-import { FC } from "react";
+import { FC, LegacyRef } from "react";
 import { NavLink } from "react-router-dom";
 
 interface IPageTitleProps {
   pageName: string;
   isLink?: boolean;
   linkHref?: string;
+  ref?: LegacyRef<HTMLDivElement>;
 }
 
-const PageTitle: FC<IPageTitleProps> = ({ pageName, isLink, linkHref = "/" }) => {
+const PageTitle: FC<IPageTitleProps> = ({ pageName, isLink, linkHref = "/", ref }) => {
   return (
-    <div className="page-title">
+    <div className="page-title" ref={ref}>
       {isLink ? (
         <NavLink to={linkHref} className="page-title__text">
           {pageName}
