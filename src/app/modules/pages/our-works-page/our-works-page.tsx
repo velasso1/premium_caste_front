@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, useRef } from "react";
+import { FC, useState, useEffect, useRef, ChangeEvent } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setActiveTag } from "../../../store/slices/galleries";
@@ -63,6 +63,8 @@ const OurWorksPage: FC = () => {
     });
   };
 
+  console.log(getGalleries.status);
+
   return (
     <PageLayout pageClassName="our-works-page">
       <PageTitle pageName="Наши работы" ref={targetRef} />
@@ -92,7 +94,9 @@ const OurWorksPage: FC = () => {
             })}
           </Sidebar>
         )}
+
         <div className="our-works-page__work-items-wrapper">
+          {getGalleries.status === "pending" && <Loader loaderType="circle" />}
           <div className="our-works-page__work-items">
             {activeTag === "Всё"
               ? getGalleries.data?.galleries
@@ -122,7 +126,12 @@ const OurWorksPage: FC = () => {
           <div className="our-works-page__work-items-pagination">
             <Stack spacing={2}>
               <Pagination
-                count={5}
+                page={pagination.page}
+                onChange={(e: ChangeEvent<unknown>, value: number) => {
+                  setPagination({ perPage: 25, page: value });
+                  handleScroll();
+                }}
+                count={10}
                 variant="outlined"
                 shape="rounded"
                 size="large"
