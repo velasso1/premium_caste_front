@@ -93,7 +93,7 @@ const LoginForm: FC = () => {
             {...register("password", { required: REQUIRED_MESSAGE })}
             disabled={isLoading}
           />
-          <span className="login-form__forget-pass">Забыли пароль?</span>
+          {/* <span className="login-form__forget-pass">Забыли пароль?</span> */}
           <Button buttonText="войти" onClickAction={handleSubmit(onSubmit)} disabled={isLoading} />
 
           {responseError && "data" in responseError && <LineNotification text="Проверьте правильность данных" />}

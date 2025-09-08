@@ -26,6 +26,7 @@ import TextField from "#ui/fields/text-field.tsx";
 import Button from "#ui/button/button.tsx";
 import Loader from "#ui/loader/loader.tsx";
 import LineNotification from "#ui/notifications/line-notification.tsx";
+import TextEditor from "#ui/text-editor/text-editor.tsx";
 
 const initialStatePost: IPostInfoPayload = {
   author_id: "",
@@ -172,6 +173,8 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
           defaultValue={postInfo.content}
           {...register("content", { required: true })}
         />
+
+        <TextEditor />
       </div>
 
       <>

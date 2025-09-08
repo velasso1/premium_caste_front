@@ -63,8 +63,6 @@ const OurWorksPage: FC = () => {
     });
   };
 
-  console.log(getGalleries.status);
-
   return (
     <PageLayout pageClassName="our-works-page">
       <PageTitle pageName="Наши работы" ref={targetRef} />
@@ -123,7 +121,15 @@ const OurWorksPage: FC = () => {
                 })
               : "Пока нет таких работ"}
           </div>
+
           <div className="our-works-page__work-items-pagination">
+            <Button
+              buttonText="Загрузить еще"
+              onClickAction={() => setPagination({ ...pagination, perPage: pagination.perPage + 25 })}
+              buttonStyle="OUTLINED"
+              buttonType={getGalleries.status === "pending" ? "LOADING" : undefined}
+              disabled={getGalleries.status === "pending" || pagination.perPage === 100}
+            />
             <Stack spacing={2}>
               <Pagination
                 page={pagination.page}
@@ -131,7 +137,7 @@ const OurWorksPage: FC = () => {
                   setPagination({ perPage: 25, page: value });
                   handleScroll();
                 }}
-                count={10}
+                count={getGalleries.data?.total ? Math.round(getGalleries.data?.total / 100) : 0}
                 variant="outlined"
                 shape="rounded"
                 size="large"
@@ -141,6 +147,7 @@ const OurWorksPage: FC = () => {
                     borderColor: "#ff5100ff", // светлая обводка
                     borderRadius: "8px",
                     transition: "0.3s",
+                    marginTop: "40px",
                     "&:hover": {
                       backgroundColor: "#ff510028",
                       borderRadius: "10px",
@@ -153,19 +160,10 @@ const OurWorksPage: FC = () => {
                 }}
               />
             </Stack>
-
-            <Button
-              buttonText="Загрузить еще"
-              onClickAction={() => setPagination({ ...pagination, perPage: pagination.perPage + 25 })}
-              buttonStyle="OUTLINED"
-              buttonType={getGalleries.status === "pending" ? "LOADING" : undefined}
-              disabled={getGalleries.status === "pending" || pagination.perPage === 100}
-            />
-
-            <Button buttonText="Наверх" onClickAction={() => handleScroll()} buttonStyle="OUTLINED" />
           </div>
         </div>
       </div>
+      {/* <Button buttonText="Наверх" onClickAction={() => handleScroll()} buttonStyle="OUTLINED" /> */}
     </PageLayout>
   );
 };

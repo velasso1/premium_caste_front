@@ -116,4 +116,5 @@ export interface IGalleryResponse extends ICreateGalleryPayload {
 
 export interface IGetAllGalleriesResponse {
   galleries: IGalleryResponse[];
+  total: number;
 }
