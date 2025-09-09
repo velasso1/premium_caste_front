@@ -167,12 +167,12 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
           {...register("excerpt", { required: true })}
         />
 
-        <textarea
+        {/* <textarea
           className={`create-blog-post-page__post-content ${errors?.content && "field_error"}`}
           placeholder="Основной текст поста"
           defaultValue={postInfo.content}
           {...register("content", { required: true })}
-        />
+        /> */}
 
         <TextEditor />
       </div>

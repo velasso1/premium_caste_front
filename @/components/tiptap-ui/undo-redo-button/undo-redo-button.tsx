@@ -7,98 +7,86 @@ import { parseShortcutKeys } from "../../../lib/tiptap-utils";
 import { useTiptapEditor } from "../../../hooks/use-tiptap-editor";
 
 // --- Tiptap UI ---
-import type { TextAlign, UseTextAlignConfig } from "../../../components/tiptap-ui/text-align-button";
-import { TEXT_ALIGN_SHORTCUT_KEYS, useTextAlign } from "../../../components/tiptap-ui/text-align-button";
+import type { UndoRedoAction, UseUndoRedoConfig } from "../../../components/tiptap-ui/undo-redo-button";
+import { UNDO_REDO_SHORTCUT_KEYS, useUndoRedo } from "../../../components/tiptap-ui/undo-redo-button";
 
 // --- UI Primitives ---
 import type { ButtonProps } from "../../../components/tiptap-ui-primitive/button";
 import { Button } from "../../../components/tiptap-ui-primitive/button";
 import { Badge } from "../../../components/tiptap-ui-primitive/badge";
 
-type IconProps = React.SVGProps<SVGSVGElement>;
-type IconComponent = ({ className, ...props }: IconProps) => React.ReactElement;
-
-export interface TextAlignButtonProps extends Omit<ButtonProps, "type">, UseTextAlignConfig {
+export interface UndoRedoButtonProps extends Omit<ButtonProps, "type">, UseUndoRedoConfig {
   /**
    * Optional text to display alongside the icon.
    */
   text?: string;
   /**
    * Optional show shortcut keys in the button.
-   * ../../../default false
+   * ../../..default false
    */
   showShortcut?: boolean;
-  /**
-   * Optional custom icon component to render instead of the default.
-   */
-  icon?: React.MemoExoticComponent<IconComponent> | React.FC<IconProps>;
 }
 
-export function TextAlignShortcutBadge({
-  align,
-  shortcutKeys = TEXT_ALIGN_SHORTCUT_KEYS[align],
+export function HistoryShortcutBadge({
+  action,
+  shortcutKeys = UNDO_REDO_SHORTCUT_KEYS[action],
 }: {
-  align: TextAlign;
+  action: UndoRedoAction;
   shortcutKeys?: string;
 }) {
   return <Badge>{parseShortcutKeys({ shortcutKeys })}</Badge>;
 }
 
 /**
- * Button component for setting text alignment in a Tiptap editor.
+ * Button component for triggering undo/redo actions in a Tiptap editor.
  *
- * For custom button implementations, use the `useTextAlign` hook instead.
+ * For custom button implementations, use the `useHistory` hook instead.
  */
-export const TextAlignButton = React.forwardRef<HTMLButtonElement, TextAlignButtonProps>(
+export const UndoRedoButton = React.forwardRef<HTMLButtonElement, UndoRedoButtonProps>(
   (
     {
       editor: providedEditor,
-      align,
+      action,
       text,
       hideWhenUnavailable = false,
-      onAligned,
+      onExecuted,
       showShortcut = false,
       onClick,
-      icon: CustomIcon,
       children,
       ...buttonProps
     },
     ref
   ) => {
     const { editor } = useTiptapEditor(providedEditor);
-    const { isVisible, handleTextAlign, label, canAlign, isActive, Icon, shortcutKeys } = useTextAlign({
+    const { isVisible, handleAction, label, canExecute, Icon, shortcutKeys } = useUndoRedo({
       editor,
-      align,
+      action,
       hideWhenUnavailable,
-      onAligned,
+      onExecuted,
     });
 
     const handleClick = React.useCallback(
       (event: React.MouseEvent<HTMLButtonElement>) => {
         onClick?.(event);
         if (event.defaultPrevented) return;
-        handleTextAlign();
+        handleAction();
       },
-      [handleTextAlign, onClick]
+      [handleAction, onClick]
     );
 
     if (!isVisible) {
       return null;
     }
 
-    const RenderIcon = CustomIcon ?? Icon;
-
     return (
       <Button
         type="button"
-        disabled={!canAlign}
+        disabled={!canExecute}
         data-style="ghost"
-        data-active-state={isActive ? "on" : "off"}
-        data-disabled={!canAlign}
+        data-disabled={!canExecute}
         role="button"
         tabIndex={-1}
         aria-label={label}
-        aria-pressed={isActive}
         tooltip={label}
         onClick={handleClick}
         {...buttonProps}
@@ -106,9 +94,9 @@ export const TextAlignButton = React.forwardRef<HTMLButtonElement, TextAlignButt
       >
         {children ?? (
           <>
-            <RenderIcon className="tiptap-button-icon" />
+            <Icon className="tiptap-button-icon" />
             {text && <span className="tiptap-button-text">{text}</span>}
-            {showShortcut && <TextAlignShortcutBadge align={align} shortcutKeys={shortcutKeys} />}
+            {showShortcut && <HistoryShortcutBadge action={action} shortcutKeys={shortcutKeys} />}
           </>
         )}
       </Button>
@@ -116,4 +104,4 @@ export const TextAlignButton = React.forwardRef<HTMLButtonElement, TextAlignButt
   }
 );
 
-TextAlignButton.displayName = "TextAlignButton";
+UndoRedoButton.displayName = "UndoRedoButton";

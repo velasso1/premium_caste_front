@@ -1,0 +1,23 @@
+.text-editor {
+  background-color: grey;
+  min-height: 100px;
+  background-color: #0f0f0f;
+  color: #fff;
+  border-radius: 15px;
+  //   padding: 15px 0 15px 10px;
+  margin: 5px 0 25px 0;
+  border: 1px solid #1b1b1b;
+  transition: $transition;
+
+  &__buttons-menu {
+    display: flex;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin-bottom: 10px;
+    background-color: rgb(66, 66, 66);
+  }
+
+  &__content-zone {
+    padding: 0 10px;
+  }
+}

@@ -2,101 +2,90 @@ import * as React from "react";
 
 // --- Lib ---
 import { parseShortcutKeys } from "../../../lib/tiptap-utils";
-
-// --- Hooks ---
-import { useTiptapEditor } from "../../../hooks/use-tiptap-editor";
+// import { parseShortcutKeys } from "../../../lib/tiptap-utils"
 
 // --- Tiptap UI ---
-import type { TextAlign, UseTextAlignConfig } from "../../../components/tiptap-ui/text-align-button";
-import { TEXT_ALIGN_SHORTCUT_KEYS, useTextAlign } from "../../../components/tiptap-ui/text-align-button";
+import type { Level, UseHeadingConfig } from "../../../components/tiptap-ui/heading-button";
+import { HEADING_SHORTCUT_KEYS, useHeading } from "../../../components/tiptap-ui/heading-button";
 
 // --- UI Primitives ---
 import type { ButtonProps } from "../../../components/tiptap-ui-primitive/button";
 import { Button } from "../../../components/tiptap-ui-primitive/button";
 import { Badge } from "../../../components/tiptap-ui-primitive/badge";
+import { useTiptapEditor } from "../../../hooks/use-tiptap-editor";
 
-type IconProps = React.SVGProps<SVGSVGElement>;
-type IconComponent = ({ className, ...props }: IconProps) => React.ReactElement;
-
-export interface TextAlignButtonProps extends Omit<ButtonProps, "type">, UseTextAlignConfig {
+export interface HeadingButtonProps extends Omit<ButtonProps, "type">, UseHeadingConfig {
   /**
    * Optional text to display alongside the icon.
    */
   text?: string;
   /**
    * Optional show shortcut keys in the button.
-   * ../../../default false
+   * ../../..default false
    */
   showShortcut?: boolean;
-  /**
-   * Optional custom icon component to render instead of the default.
-   */
-  icon?: React.MemoExoticComponent<IconComponent> | React.FC<IconProps>;
 }
 
-export function TextAlignShortcutBadge({
-  align,
-  shortcutKeys = TEXT_ALIGN_SHORTCUT_KEYS[align],
+export function HeadingShortcutBadge({
+  level,
+  shortcutKeys = HEADING_SHORTCUT_KEYS[level],
 }: {
-  align: TextAlign;
+  level: Level;
   shortcutKeys?: string;
 }) {
   return <Badge>{parseShortcutKeys({ shortcutKeys })}</Badge>;
 }
 
 /**
- * Button component for setting text alignment in a Tiptap editor.
+ * Button component for toggling heading in a Tiptap editor.
  *
- * For custom button implementations, use the `useTextAlign` hook instead.
+ * For custom button implementations, use the `useHeading` hook instead.
  */
-export const TextAlignButton = React.forwardRef<HTMLButtonElement, TextAlignButtonProps>(
+export const HeadingButton = React.forwardRef<HTMLButtonElement, HeadingButtonProps>(
   (
     {
       editor: providedEditor,
-      align,
+      level,
       text,
       hideWhenUnavailable = false,
-      onAligned,
+      onToggled,
       showShortcut = false,
       onClick,
-      icon: CustomIcon,
       children,
       ...buttonProps
     },
     ref
   ) => {
     const { editor } = useTiptapEditor(providedEditor);
-    const { isVisible, handleTextAlign, label, canAlign, isActive, Icon, shortcutKeys } = useTextAlign({
+    const { isVisible, canToggle, isActive, handleToggle, label, Icon, shortcutKeys } = useHeading({
       editor,
-      align,
+      level,
       hideWhenUnavailable,
-      onAligned,
+      onToggled,
     });
 
     const handleClick = React.useCallback(
       (event: React.MouseEvent<HTMLButtonElement>) => {
         onClick?.(event);
         if (event.defaultPrevented) return;
-        handleTextAlign();
+        handleToggle();
       },
-      [handleTextAlign, onClick]
+      [handleToggle, onClick]
     );
 
     if (!isVisible) {
       return null;
     }
 
-    const RenderIcon = CustomIcon ?? Icon;
-
     return (
       <Button
         type="button"
-        disabled={!canAlign}
         data-style="ghost"
         data-active-state={isActive ? "on" : "off"}
-        data-disabled={!canAlign}
         role="button"
         tabIndex={-1}
+        disabled={!canToggle}
+        data-disabled={!canToggle}
         aria-label={label}
         aria-pressed={isActive}
         tooltip={label}
@@ -106,9 +95,9 @@ export const TextAlignButton = React.forwardRef<HTMLButtonElement, TextAlignButt
       >
         {children ?? (
           <>
-            <RenderIcon className="tiptap-button-icon" />
+            <Icon className="tiptap-button-icon" />
             {text && <span className="tiptap-button-text">{text}</span>}
-            {showShortcut && <TextAlignShortcutBadge align={align} shortcutKeys={shortcutKeys} />}
+            {showShortcut && <HeadingShortcutBadge level={level} shortcutKeys={shortcutKeys} />}
           </>
         )}
       </Button>
@@ -116,4 +105,4 @@ export const TextAlignButton = React.forwardRef<HTMLButtonElement, TextAlignButt
   }
 );
 
-TextAlignButton.displayName = "TextAlignButton";
+HeadingButton.displayName = "HeadingButton";

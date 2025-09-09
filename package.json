@@ -9,7 +9,8 @@
     "#ui/*": "./src/app/modules/ui/*",
     "#images/*": "./src/app/assets/images/*",
     "#utils/*": "./src/app/utils/*",
-    "#types/*": "./src/app/types/*"
+    "#types/*": "./src/app/types/*",
+    "#tiptap-ui/*": "./@/components/tiptap-ui/*"
   },
   "scripts": {
     "dev": "vite",
@@ -35,8 +36,8 @@
     "@tiptap/extension-text-align": "^3.4.1",
     "@tiptap/extension-typography": "^3.4.1",
     "@tiptap/extensions": "^3.4.1",
-    "@tiptap/pm": "^3.4.1",
-    "@tiptap/react": "^3.4.1",
+    "@tiptap/pm": "^3.4.2",
+    "@tiptap/react": "^3.4.2",
     "@tiptap/starter-kit": "^3.4.1",
     "lodash.throttle": "^4.1.1",
     "react": "^19.1.0",
