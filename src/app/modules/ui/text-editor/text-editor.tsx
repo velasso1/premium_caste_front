@@ -45,8 +45,6 @@ const TextEditor: FC = () => {
         <ButtonsGroup editor={editor} />
         <EditorContent className="text-editor__content-zone" editor={editor} />
       </EditorContext.Provider>
-
-      <div dangerouslySetInnerHTML={editorState} />
     </div>
   );
 };

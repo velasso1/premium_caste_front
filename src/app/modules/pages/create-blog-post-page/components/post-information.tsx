@@ -19,14 +19,16 @@ import { IPost } from "#types/api-types/api-response-types.ts";
 
 import AttachImages from "./attach-images";
 
-import PreviewItem from "./preview-item";
-
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 import TextField from "#ui/fields/text-field.tsx";
 import Button from "#ui/button/button.tsx";
 import Loader from "#ui/loader/loader.tsx";
 import LineNotification from "#ui/notifications/line-notification.tsx";
 import TextEditor from "#ui/text-editor/text-editor.tsx";
+import PreviewContainer from "./preview-container";
+
+import { STEPS } from "#utils/constants.ts";
+import ControlButtons from "./control-buttons";
 
 const initialStatePost: IPostInfoPayload = {
   author_id: "",
@@ -56,7 +58,7 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
 
   const [postInfo, setPostInfo] = useState<IPostInfoPayload>(initialStatePost);
   const [previewSelected, setPreviewSelected] = useState<boolean>(false);
-  const [creatingStep, setCreatingStep] = useState<number>(1);
+  const [creatingStep, setCreatingStep] = useState<STEPS>(1);
 
   const {
     register,
@@ -131,13 +133,13 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
       createNewPost({ ...data, author_id: userId, status: postStatus, featured_image_id: postInfo.featured_image_id });
       createMediaGroup({ owner_id: userId, description: "w/o_description" });
       setPreviewSelected(false);
-      setCreatingStep(1);
+      setCreatingStep(STEPS.FIRST);
       reset();
     };
 
   const updatePostHandler = (): SubmitHandler<IPostInfoPayload> => (data) => {
     updatePost({ ...data, id: postInfo.id });
-    setCreatingStep(1);
+    setCreatingStep(STEPS.FIRST);
   };
 
   return (
@@ -177,55 +179,25 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
         <TextEditor />
       </div>
 
-      <>
-        {creatingStep === 1 && (
-          <div className="create-blog-post-page__upload-container">
-            Выберите превью для поста
-            <div className="create-blog-post-page__preview-container">
-              {images?.data?.data ? (
-                images?.data.data.map((item) => {
-                  return <PreviewItem item={item} postInfo={postInfo} setPostInfo={setPostInfo} userId={userId} />;
-                })
-              ) : (
-                <div>Пока что картинок нет</div>
-              )}
-            </div>
-          </div>
-        )}
-      </>
+      <PreviewContainer
+        creatingStep={creatingStep}
+        images={images.data}
+        postInfo={postInfo}
+        setPostInfo={setPostInfo}
+        userId={userId}
+      />
 
-      <>{creatingStep === 2 && <AttachImages images={images?.data} userId={userId} />}</>
+      <>{creatingStep === STEPS.SECOND && <AttachImages images={images?.data} userId={userId} />}</>
 
-      <div className="create-blog-post-page__buttons">
-        {creatingStep === 1 && (
-          <Button buttonText="Далее" disabled={!postInfo.featured_image_id} onClickAction={() => setCreatingStep(2)} />
-        )}
-        {creatingStep === 2 && (
-          <>
-            <Button buttonText="Назад" onClickAction={() => setCreatingStep((prev) => prev - 1)} />
-            {postForEdit ? (
-              <Button
-                buttonText="Сохранить"
-                disabled={attachedImages.length <= 1}
-                onClickAction={handleSubmit(updatePostHandler())}
-              />
-            ) : (
-              <>
-                <Button
-                  buttonText="Создать пост"
-                  disabled={attachedImages.length <= 1}
-                  onClickAction={handleSubmit(createPostHandler("draft"))}
-                />
-                <Button
-                  buttonText="Создать и опубликовать"
-                  disabled={attachedImages.length <= 1}
-                  onClickAction={handleSubmit(createPostHandler("published"))}
-                />
-              </>
-            )}
-          </>
-        )}
-      </div>
+      <ControlButtons
+        creatingStep={creatingStep}
+        setCreatingStep={setCreatingStep}
+        postInfo={postInfo}
+        postForEdit={postForEdit}
+        handleSubmit={handleSubmit}
+        updateHandler={updatePostHandler}
+        createHandler={createPostHandler}
+      />
     </ContentBlockLayout>
   );
 };

@@ -23,7 +23,7 @@ const AttachImages: FC<IAttachImagesProps> = ({ images, userId }) => {
             const IMAGE_PATH = import.meta.env.VITE_UPLOADS_FILES + "uploads/" + userId + "/" + item.original_filename;
 
             return (
-              <div className={`create-blog-post-page__preview-item`}>
+              <div className={`create-blog-post-page__preview-item`} key={item.id}>
                 <img
                   className="create-blog-post-page__preview-image"
                   key={item.id}
