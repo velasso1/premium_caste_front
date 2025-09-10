@@ -96,7 +96,7 @@ const App: FC = () => {
             <Route path={routes.CREATE_WORK_PAGE} element={<AdminRoute children={<CreateWorkPage />} />} />
             <Route path={routes.EDIT_WORK_PAGE + "/:id"} element={<AdminRoute children={<EditWorkPage />} />} />
           </Route>
-          <Route />
+          {/* <Route /> */}
           <Route path={routes.NOT_EXIST_PAGE} element={<NotFoundPage />} />
           <Route path={routes.AUTH_MODULE} element={<AuthModule />}>
             <Route path={routes.LOGIN_PAGE} element={<LoginForm />} />
