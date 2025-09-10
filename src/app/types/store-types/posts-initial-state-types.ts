@@ -1,6 +1,6 @@
 // payload for create post
 
-import { IPost } from "#types/api-response-types.ts";
+import { IPost } from "#types/api-types/api-response-types.ts";
 
 export interface IPostsInitialState {
   postStatus: "published" | "archived" | "draft";

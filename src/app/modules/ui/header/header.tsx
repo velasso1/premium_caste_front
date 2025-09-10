@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import NavigationMenu from "./components/navigation-menu";
 import NavigationIcons from "./components/navigation-icons";
 
-import { throttle } from "#utils/throttle.ts";
+import { throttle } from "#utils/helpers/throttle.ts";
 import { routes } from "#utils/routes/main-routes/main-routes.ts";
 
 import logo from "#images/logo.png";

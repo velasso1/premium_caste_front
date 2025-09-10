@@ -9,7 +9,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../../store";
 import { setEffect } from "../../../../store/slices/effects";
 
-import { IRegistrationPayload } from "#types/api-payload-types.ts";
+import { IRegistrationPayload } from "#types/api-types/api-payload-types.ts";
 
 import PageLayout from "#ui/page-layout/page-layout.tsx";
 import PageTitle from "#ui/page-title/page-title.tsx";

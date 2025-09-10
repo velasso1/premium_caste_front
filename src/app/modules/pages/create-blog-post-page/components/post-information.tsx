@@ -15,7 +15,7 @@ import {
 import { setEffect } from "../../../../store/slices/effects";
 
 import { IPostInfoPayload } from "#types/store-types/posts-initial-state-types.ts";
-import { IPost } from "#types/api-response-types.ts";
+import { IPost } from "#types/api-types/api-response-types.ts";
 
 import AttachImages from "./attach-images";
 

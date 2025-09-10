@@ -14,7 +14,7 @@ import {
   ICheckAdminPayload,
   IRegistrationPayload,
   IGetUserInfoPayload,
-} from "#types/api-payload-types.ts";
+} from "#types/api-types/api-payload-types.ts";
 
 import {
   IRegistrationResponse,
@@ -22,7 +22,7 @@ import {
   ICheckAdminResponse,
   IGetUserInfoResponse,
   CustomizedFetchBaseQueryError,
-} from "#types/api-response-types.ts";
+} from "#types/api-types/api-response-types.ts";
 
 import { setUserData, setExpiresSession } from "../slices/user";
 

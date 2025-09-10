@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { IGalleryResponse } from "#types/api-response-types.ts";
+import { IGalleryResponse } from "#types/api-types/api-response-types.ts";
 
 import WorkItem from "#pages/our-works-page/components/work-item.tsx";
 import Slider from "#ui/slider/slider.tsx";

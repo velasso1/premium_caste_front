@@ -1,4 +1,4 @@
-import { ICreateGalleryPayload } from "./api-payload-types";
+import { ICreateGalleryPayload } from "#types/api-types/api-payload-types.ts";
 
 // Общие типы данных для ответов от сервера
 export interface IServerResponse {

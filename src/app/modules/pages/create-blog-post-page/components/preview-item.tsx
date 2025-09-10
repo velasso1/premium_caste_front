@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 
-import { IImageInfo } from "#types/api-response-types.ts";
+import { IImageInfo } from "#types/api-types/api-response-types.ts";
 import { IPostInfoPayload } from "#types/store-types/posts-initial-state-types.ts";
 
 import imageNotFound from "#images/not-found.webp";

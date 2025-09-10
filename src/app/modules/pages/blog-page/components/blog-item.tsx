@@ -9,7 +9,7 @@ import { setEffect } from "../../../../store/slices/effects";
 
 import { useNavigate, useParams } from "react-router-dom";
 
-import { IPost } from "#types/api-response-types.ts";
+import { IPost } from "#types/api-types/api-response-types.ts";
 
 import Popup from "#ui/popup/popup.tsx";
 import Loader from "#ui/loader/loader.tsx";

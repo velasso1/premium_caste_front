@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { IGetAllImagesResponse } from "#types/api-response-types.ts";
+import { IGetAllImagesResponse } from "#types/api-types/api-response-types.ts";
 import { useAppDispatch, useAppSelector } from "../../../../store";
 import { selectImagesForPost } from "../../../../store/slices/posts";
 

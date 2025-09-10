@@ -10,7 +10,7 @@ import { setEffect } from "../../../../store/slices/effects";
 import { useLoginMutation, useLazyCheckUserStatusQuery } from "../../../../store/api/user-api";
 import { changeUserLoginStatus } from "../../../../store/slices/user";
 
-import { ILoginPayload } from "#types/api-payload-types.ts";
+import { ILoginPayload } from "#types/api-types/api-payload-types.ts";
 
 import PageLayout from "#ui/page-layout/page-layout.tsx";
 import PageTitle from "#ui/page-title/page-title.tsx";

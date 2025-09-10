@@ -14,7 +14,7 @@ import PostInformation from "#pages/create-blog-post-page/components/post-inform
 
 import Tag from "./components/tag";
 
-import { IGalleryResponse } from "#types/api-response-types.ts";
+import { IGalleryResponse } from "#types/api-types/api-response-types.ts";
 
 import PageLayout from "#ui/page-layout/page-layout.tsx";
 import PageTitle from "#ui/page-title/page-title.tsx";
@@ -25,7 +25,7 @@ import Button from "#ui/button/button.tsx";
 // import { SERVICES_ITEMS } from "#utils/auxuliary/services-items-list.ts";
 import { sidebarItemsWorks } from "#utils/auxuliary/sidebar-items.ts";
 
-import { ICreateGalleryPayload } from "#types/api-payload-types.ts";
+import { ICreateGalleryPayload } from "#types/api-types/api-payload-types.ts";
 
 interface ICreaateWorkPageProps {
   workInfo?: IGalleryResponse;

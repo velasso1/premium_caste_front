@@ -9,7 +9,7 @@ import { useGetAllImagesQuery } from "../../../store/api/media-api";
 import { setEffect } from "../../../store/slices/effects";
 import { clearSelectedTags, editGalleryTags } from "../../../store/slices/galleries";
 
-import { ICreateGalleryPayload } from "#types/api-payload-types.ts";
+import { ICreateGalleryPayload } from "#types/api-types/api-payload-types.ts";
 
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 import TextField from "#ui/fields/text-field.tsx";

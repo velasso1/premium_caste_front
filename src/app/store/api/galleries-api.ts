@@ -1,9 +1,9 @@
 import { BaseQueryFn, createApi, fetchBaseQuery, FetchArgs, RootState } from "@reduxjs/toolkit/query/react";
 
-import { ICreateGalleryPayload } from "#types/api-payload-types.ts";
-import { IGetAllGalleriesResponse, IGalleryResponse } from "#types/api-response-types.ts";
+import { ICreateGalleryPayload } from "#types/api-types/api-payload-types.ts";
+import { IGetAllGalleriesResponse, IGalleryResponse } from "#types/api-types/api-response-types.ts";
 
-import { CustomizedFetchBaseQueryError } from "#types/api-response-types.ts";
+import { CustomizedFetchBaseQueryError } from "#types/api-types/api-response-types.ts";
 
 import { baseQueryWithReauth } from "./user-api";
 

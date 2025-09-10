@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../../../store";
 import { useDeletePostMutation } from "../../../../store/api/posts-api";
 
-import { IPost } from "#types/api-response-types.ts";
+import { IPost } from "#types/api-types/api-response-types.ts";
 
 import Loader from "#ui/loader/loader.tsx";
 import Popup from "#ui/popup/popup.tsx";

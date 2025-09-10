@@ -1,7 +1,7 @@
 import { BaseQueryFn, createApi, fetchBaseQuery, FetchArgs, RootState } from "@reduxjs/toolkit/query/react";
 
-import { CustomizedFetchBaseQueryError, IAllPostsResponse, IPost } from "#types/api-response-types.ts";
-import { IGetPostsPayload } from "#types/api-payload-types.ts";
+import { CustomizedFetchBaseQueryError, IAllPostsResponse, IPost } from "#types/api-types/api-response-types.ts";
+import { IGetPostsPayload } from "#types/api-types/api-payload-types.ts";
 import { IPostInfoPayload } from "#types/store-types/posts-initial-state-types.ts";
 
 import { baseQueryWithReauth } from "./user-api";
