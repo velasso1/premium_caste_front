@@ -17,12 +17,6 @@ import {
   Redo,
 } from "lucide-react";
 
-import { TextAlignButton } from "#tiptap-ui/text-align-button/text-align-button.tsx";
-import { HeadingButton } from "#tiptap-ui/heading-button/heading-button.tsx";
-import { UndoRedoButton } from "#tiptap-ui/undo-redo-button/undo-redo-button.tsx";
-
-import Button from "#ui/button/button.tsx";
-
 interface IButtonsGroup {
   editor: Editor;
 }
