@@ -9,15 +9,42 @@
   border: 1px solid #1b1b1b;
   transition: $transition;
 
-  &__buttons-menu {
-    display: flex;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    margin-bottom: 10px;
-    background-color: rgb(66, 66, 66);
-  }
-
   &__content-zone {
     padding: 0 10px;
+  }
+}
+
+.toolbar {
+  display: flex;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  margin-bottom: 10px;
+  background-color: rgb(66, 66, 66);
+
+  &__item {
+    color: white;
+    border-radius: 10px;
+    transition: 0.3s;
+    width: 20px;
+
+    margin: 0 2px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: black;
+      border-radius: 5px;
+    }
+  }
+
+  &__text-size {
+    margin: 0 10px;
+  }
+
+  &__text-align {
+    margin: 0 10px;
+  }
+
+  &__text-style {
+    // margin: 0 10px;
   }
 }

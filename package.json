@@ -41,6 +41,7 @@
     "@tiptap/starter-kit": "^3.4.1",
     "dompurify": "^3.2.6",
     "lodash.throttle": "^4.1.1",
+    "lucide-react": "^0.544.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.56.0",

@@ -7,6 +7,7 @@ interface IButtonProps {
   buttonType?: "DEFAULT" | "LOADING";
   buttonStyle?: "PRIMARY" | "OUTLINED";
   disabled?: boolean;
+  Icon?: string;
   onClickAction: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -16,6 +17,7 @@ const Button: FC<IButtonProps> = ({
   onClickAction,
   buttonStyle = "PRIMARY",
   disabled = false,
+  Icon,
 }) => {
   return (
     <>

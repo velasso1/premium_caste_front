@@ -1,20 +1,16 @@
 import { FC, useMemo, useState } from "react";
 
-import { useEditor, EditorContent, EditorContext, extensions } from "@tiptap/react";
-import { FloatingMenu, BubbleMenu } from "@tiptap/react/menus";
+import { useEditor, EditorContent, EditorContext, extensions, type Editor } from "@tiptap/react";
+import { IPostInfoPayload } from "#types/store-types/posts-initial-state-types.ts";
+
 import StarterKit from "@tiptap/starter-kit";
-import { HTMLContent } from "@tiptap/react";
 
 import TextAlign from "@tiptap/extension-text-align";
 
-import ButtonsGroup from "./components/buttons-group";
+import Toolbar from "./components/toolbar";
 
 import htmlViewer from "#utils/helpers/html-sanitize.ts";
-
 import { debounce } from "#utils/helpers/debounce.ts";
-import { type Editor } from "@tiptap/react";
-
-import { IPostInfoPayload } from "#types/store-types/posts-initial-state-types.ts";
 
 interface ITextEditorProps {
   editorState: IPostInfoPayload;
@@ -54,7 +50,7 @@ const TextEditor: FC<ITextEditorProps> = ({ editorState, setEditorState }) => {
   return (
     <div className="text-editor">
       <EditorContext.Provider value={providerValue}>
-        <ButtonsGroup editor={editor} />
+        <Toolbar editor={editor} />
         <EditorContent className="text-editor__content-zone" editor={editor} />
       </EditorContext.Provider>
     </div>
