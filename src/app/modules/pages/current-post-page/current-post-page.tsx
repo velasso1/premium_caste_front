@@ -115,7 +115,10 @@ const CurrentPostPage: FC = () => {
         contentTitle={`${currentPost?.data?.title ?? "Загрузка.."}`}
         customClassName="current-post-page__post-wrapper"
       >
-        <div className="current-post-page__post">{currentPost?.data?.content}</div>
+        <div
+          className="current-post-page__post"
+          dangerouslySetInnerHTML={{ __html: currentPost?.data?.content ? currentPost?.data?.content : "" }}
+        ></div>
       </ContentBlockLayout>
       <ContentBlockLayout customClassName="current-work-page__block" customContentClass="current-work-page__album">
         <Slider paginationInclude={false}>

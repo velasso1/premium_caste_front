@@ -14,8 +14,15 @@ import htmlViewer from "#utils/helpers/html-sanitize.ts";
 import { debounce } from "#utils/helpers/debounce.ts";
 import { type Editor } from "@tiptap/react";
 
-const TextEditor: FC = () => {
-  const [editorState, setEditorState] = useState<{ __html: HTMLContent }>({ __html: "" });
+import { IPostInfoPayload } from "#types/store-types/posts-initial-state-types.ts";
+
+interface ITextEditorProps {
+  editorState: IPostInfoPayload;
+  setEditorState: (arg: IPostInfoPayload) => void;
+}
+
+const TextEditor: FC<ITextEditorProps> = ({ editorState, setEditorState }) => {
+  // const [editorState, setEditorState] = useState<string>("");
 
   const editor = useEditor({
     extensions: [
@@ -32,10 +39,15 @@ const TextEditor: FC = () => {
     },
   });
 
-  const textEditorHandler = debounce((editor: Editor): void => {
-    const cleanHTML = htmlViewer({ html: editor.getHTML() });
-    setEditorState(cleanHTML);
-  }, 400);
+  // const textEditorHandler = debounce((editor: Editor): void => {
+  //   const cleanHTML = htmlViewer(editor.getHTML());
+  //   setEditorState({ ...editorState, content: cleanHTML });
+  // }, 400);
+
+  const textEditorHandler = (editor: Editor): void => {
+    const cleanHTML = htmlViewer(editor.getHTML());
+    setEditorState({ ...editorState, content: cleanHTML });
+  };
 
   const providerValue = useMemo(() => ({ editor }), [editor]);
 

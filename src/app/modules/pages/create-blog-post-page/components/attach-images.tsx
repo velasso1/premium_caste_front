@@ -19,8 +19,10 @@ const AttachImages: FC<IAttachImagesProps> = ({ images, userId }) => {
       Прикрепите набор картинок к посту
       <div className="create-blog-post-page__preview-container">
         {images?.data ? (
-          images?.data.map((item) => {
+          images?.data.map((item, index) => {
             const IMAGE_PATH = import.meta.env.VITE_UPLOADS_FILES + "uploads/" + userId + "/" + item.original_filename;
+
+            if (index > 100) return;
 
             return (
               <div className={`create-blog-post-page__preview-item`} key={item.id}>

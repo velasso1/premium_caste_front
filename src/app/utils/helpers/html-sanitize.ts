@@ -1,9 +1,9 @@
 import DOMPurify from "dompurify";
 
-const htmlViewer = ({ html }: { html: string }) => {
+const htmlViewer = (html: string) => {
   const cleanHtml = DOMPurify.sanitize(html);
 
-  return { __html: cleanHtml };
+  return cleanHtml;
 };
 
 export default htmlViewer;
