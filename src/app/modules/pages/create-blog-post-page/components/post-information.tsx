@@ -56,6 +56,7 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
   const [updatePost, updatePostStatus] = useUpdatePostMutation();
 
   const [postInfo, setPostInfo] = useState<IPostInfoPayload>(initialStatePost);
+  const [editorContent, setEditorContent] = useState<string>("");
   const [previewSelected, setPreviewSelected] = useState<boolean>(false);
   const [creatingStep, setCreatingStep] = useState<STEPS>(1);
 
@@ -134,7 +135,7 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
         author_id: userId,
         status: postStatus,
         featured_image_id: postInfo.featured_image_id,
-        content: postInfo.content,
+        content: editorContent,
       });
       createMediaGroup({ owner_id: userId, description: "w/o_description" });
       setPreviewSelected(false);
@@ -146,8 +147,6 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
     updatePost({ ...data, id: postInfo.id });
     setCreatingStep(STEPS.FIRST);
   };
-
-  console.log(postInfo);
 
   return (
     <ContentBlockLayout contentTitle="Содержание поста" customClassName="create-blog-post-page__post-info">
@@ -183,7 +182,7 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
           {...register("content", { required: true })}
         /> */}
 
-        <TextEditor setEditorState={setPostInfo} editorState={postInfo} />
+        <TextEditor editorState={editorContent} setEditorState={setEditorContent} />
       </div>
 
       <PreviewContainer

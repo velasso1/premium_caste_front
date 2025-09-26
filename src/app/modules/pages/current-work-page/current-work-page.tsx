@@ -28,12 +28,10 @@ const CurrentWorkPage: FC = () => {
       <PageTitle pageName={getGallery.data?.title || "Наша работа"} />
 
       <ContentBlockLayout customClassName="current-work-page__description" contentTitle="описание работы">
-        <>
-          <p>{getGallery.data?.description}</p>
-          {/* <div style={{ fontSize: "15px" }}>
-            Теги: <Tag title="tag1" />
-          </div> */}
-        </>
+        <div
+          className="current-post-page__post"
+          dangerouslySetInnerHTML={{ __html: getGallery.data?.description ? getGallery.data?.description : "" }}
+        ></div>
       </ContentBlockLayout>
 
       <ContentBlockLayout

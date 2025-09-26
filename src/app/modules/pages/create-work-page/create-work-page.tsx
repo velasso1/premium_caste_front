@@ -26,6 +26,7 @@ import Button from "#ui/button/button.tsx";
 import { sidebarItemsWorks } from "#utils/auxuliary/sidebar-items.ts";
 
 import { ICreateGalleryPayload } from "#types/api-types/api-payload-types.ts";
+import TextEditor from "#ui/text-editor/text-editor.tsx";
 
 interface ICreaateWorkPageProps {
   workInfo?: IGalleryResponse;
@@ -42,6 +43,7 @@ const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
   const [createNewGallery, galleryStatus] = useCreateNewGalleryMutation();
 
   const [attachedImages, setAttachedImages] = useState<string[]>([]);
+  const [editorContent, setEditorContent] = useState<string>("");
 
   const {
     register,
@@ -77,6 +79,7 @@ const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
   const createGalleryHandler = (): SubmitHandler<ICreateGalleryPayload> => (data) => {
     createNewGallery({
       ...data,
+      description: editorContent,
       tags: ["Всё", ...createGalleryTags],
       author_id: userId,
       status: "published",
@@ -99,11 +102,12 @@ const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
             placeholder="Заголовок работы"
             {...register("title", { required: true })}
           />
-          <textarea
+          {/* <textarea
             className={`create-blog-post-page__post-content`}
             placeholder="Описание работы"
             {...register("description", { required: true })}
-          />
+          /> */}
+          <TextEditor editorState={editorContent} setEditorState={setEditorContent} />
           Выберите тег:
           <div className="create-work-page__tags">
             {sidebarItemsWorks.map((item, index) => {

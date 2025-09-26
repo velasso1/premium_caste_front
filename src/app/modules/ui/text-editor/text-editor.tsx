@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from "react";
+import { FC, SetStateAction, useMemo, useState, Dispatch } from "react";
 
 import { useEditor, EditorContent, EditorContext, extensions, type Editor } from "@tiptap/react";
 import { IPostInfoPayload } from "#types/store-types/posts-initial-state-types.ts";
@@ -12,13 +12,15 @@ import Toolbar from "./components/toolbar";
 import htmlViewer from "#utils/helpers/html-sanitize.ts";
 import { debounce } from "#utils/helpers/debounce.ts";
 
+type EditorState = string | IPostInfoPayload;
+
 interface ITextEditorProps {
-  editorState: IPostInfoPayload;
-  setEditorState: (arg: IPostInfoPayload) => void;
+  editorState: EditorState;
+  setEditorState: Dispatch<SetStateAction<string>>;
 }
 
 const TextEditor: FC<ITextEditorProps> = ({ editorState, setEditorState }) => {
-  // const [editorState, setEditorState] = useState<string>("");
+  // const [editorFocus, setEditorFocus] = useState<boolean>(false);
 
   const editor = useEditor({
     extensions: [
@@ -42,7 +44,15 @@ const TextEditor: FC<ITextEditorProps> = ({ editorState, setEditorState }) => {
 
   const textEditorHandler = (editor: Editor): void => {
     const cleanHTML = htmlViewer(editor.getHTML());
-    setEditorState({ ...editorState, content: cleanHTML });
+
+    setEditorState(cleanHTML);
+
+    // setEditorState({ ...editorState, content: cleanHTML });
+
+    // if (typeof editorState !== "string") {
+    //   // setEditorState({ ...editorState, content: cleanHTML });
+    //   // return;
+    // }
   };
 
   const providerValue = useMemo(() => ({ editor }), [editor]);
