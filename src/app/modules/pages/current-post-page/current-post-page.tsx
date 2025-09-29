@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 
 import {
   useGetCurrentPostQuery,
@@ -24,9 +24,11 @@ import Loader from "#ui/loader/loader.tsx";
 import WorkItem from "#pages/our-works-page/components/work-item.tsx";
 import Button from "#ui/button/button.tsx";
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
+import Album from "#ui/album/album.tsx";
 
 import audi from "#images/audi.jpg";
 import SliderBlock from "#pages/general-page/components/slider-block.tsx";
+import { IMediaGroupImage } from "#types/api-types/api-response-types.ts";
 
 const CurrentPostPage: FC = () => {
   const params = useParams();
@@ -41,6 +43,18 @@ const CurrentPostPage: FC = () => {
 
   const currentPost = useGetCurrentPostQuery({ post_id: params?.id });
   const mediaGroups = useGetMediaGroupsOfPostQuery({ post_id: params?.id });
+
+  const [albumRender, toggleAlbumRender] = useState<boolean>(false);
+  const [currentAlbum, setCurrentAlbum] = useState<string[]>([]);
+  const [photoZoomIndex, setZoomIndex] = useState<number>();
+
+  useEffect(() => {
+    const savedImages: string[] = currentPost.data?.media_groups?.content.map((item) => item.storage_path) || [];
+
+    if (savedImages.length !== 0) {
+      setCurrentAlbum(savedImages);
+    }
+  }, [currentPost]);
 
   useEffect(() => {
     if (publishStatus.isSuccess || archiveStatus.isSuccess || deletingStatus.isSuccess) {
@@ -98,19 +112,6 @@ const CurrentPostPage: FC = () => {
         )}
       </>
 
-      {/* <ContentBlockLayout customClassName="current-post-page__post-wrapper">
-        <div className="current-post-page__album">
-          <Slider paginationInculde={false}>
-            {currentPost.data?.media_groups?.content?.map((item, index) => {
-              return (
-                <SwiperSlide>
-                  <SlideLayout imageUrl={import.meta.env.VITE_UPLOADS_FILES + item.storage_path} />
-                </SwiperSlide>
-              );
-            })}
-          </Slider>
-        </div>
-      </ContentBlockLayout> */}
       <ContentBlockLayout
         contentTitle={`${currentPost?.data?.title ?? "Загрузка.."}`}
         customClassName="current-post-page__post-wrapper"
@@ -123,10 +124,19 @@ const CurrentPostPage: FC = () => {
       <ContentBlockLayout customClassName="current-work-page__block" customContentClass="current-work-page__album">
         <Slider paginationInclude={false}>
           {currentPost.data ? (
-            currentPost.data?.media_groups?.content?.map((item) => {
+            currentPost.data?.media_groups?.content?.map((item, index) => {
               return (
                 <SwiperSlide>
-                  <WorkItem imageSource={item.storage_path} itemId="" itemTitle="" isAlbumPhoto={true} />
+                  <WorkItem
+                    imageSource={item.storage_path}
+                    itemId=""
+                    itemTitle=""
+                    isAlbumPhoto={true}
+                    toggleZoom={() => {
+                      toggleAlbumRender(true);
+                      setZoomIndex(index);
+                    }}
+                  />
                 </SwiperSlide>
               );
             })
@@ -135,6 +145,15 @@ const CurrentPostPage: FC = () => {
           )}
         </Slider>
       </ContentBlockLayout>
+      <>
+        {albumRender && (
+          <Album
+            photos={currentAlbum}
+            toggleZoom={() => toggleAlbumRender((prev) => !prev)}
+            zoomPhotoIndex={photoZoomIndex ?? 0}
+          />
+        )}
+      </>
     </PageLayout>
   );
 };

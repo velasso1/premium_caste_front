@@ -1,6 +1,6 @@
 import { FC, useLayoutEffect, useEffect, useState } from "react";
 
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../../../store";
 
@@ -17,11 +17,12 @@ interface IWorkItemProps {
   itemTitle: string;
   imageSource: string;
   itemId: string;
+  toggleZoom: () => void;
   isAlbumPhoto?: boolean;
   isEdit?: boolean;
 }
 
-const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumPhoto }) => {
+const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumPhoto, toggleZoom }) => {
   const navigate = useNavigate();
 
   const { userIsAdmin } = useAppSelector((state) => state.userSlice);
@@ -33,14 +34,14 @@ const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumP
     isError: false,
   });
 
-  const [zoom, setZoom] = useState<boolean>(false);
+  // const [zoom, setZoom] = useState<boolean>(false);
   const [popupIsOpen, popupHandler] = useState<boolean>(false);
   const [idGalleryToDelete, selectGalleryId] = useState<string>("");
 
-  const toggleZoom = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
-    setZoom((prev) => !prev);
-  };
+  // const toggleZoom = (e: React.MouseEvent<HTMLDivElement>) => {
+  // e.stopPropagation();
+  // setZoom((prev) => !prev);
+  // };
 
   const deleteGalelryHandler = (id: string): void => {
     deleteGallery({ id: id });
@@ -65,12 +66,17 @@ const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumP
 
           <img
             className="our-works-page__image"
-            data-zoom={zoom}
+            // data-zoom={zoom}
             data-album={isAlbumPhoto}
             src={imageState.isError ? imageNotFound : import.meta.env.VITE_UPLOADS_FILES + imageSource}
             style={{ opacity: imageState.isLoaded ? 1 : 0 }}
             onLoad={() => setImageState({ ...imageState, isLoaded: true })}
-            onClick={(e) => (isAlbumPhoto ? toggleZoom(e) : null)}
+            onClick={(e) => {
+              if (isAlbumPhoto) {
+                e.stopPropagation();
+                toggleZoom();
+              }
+            }}
             onError={() => setImageState({ ...imageState, isError: true })}
             alt={itemTitle}
           />

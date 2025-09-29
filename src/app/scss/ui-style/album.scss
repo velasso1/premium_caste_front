@@ -1,0 +1,59 @@
+.album {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.9);
+  cursor: zoom-out;
+  padding: 2rem;
+  box-sizing: border-box;
+  transform: none !important;
+  filter: none !important;
+
+  &:hover {
+    transform: scale(1.2);
+    filter: brightness(20%);
+  }
+
+  &__photo {
+    // display: block;
+    // width: 500px;
+    // height: 500px;
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__prev-arrow,
+  &__next-arrow {
+    img {
+      width: 40px;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__prev-arrow {
+    // transform: rotateZ(90deg);
+    img {
+      transform: rotateZ(90deg);
+    }
+  }
+
+  &__next-arrow {
+    // transform: rotateZ(90deg);
+    img {
+      transform: rotateZ(-90deg);
+    }
+  }
+}
