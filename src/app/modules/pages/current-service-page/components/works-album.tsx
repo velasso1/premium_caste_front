@@ -24,6 +24,7 @@ const WorksAlbum: FC<IWorksAlbumProps> = ({ galleries }) => {
                       itemTitle={galleries.title}
                       itemId={galleries.id}
                       imageSource={galleries.images[galleries.cover_image_index]}
+                      toggleZoom={() => null}
                     />
                   </SlideLayout>
                 </SwiperSlide>
