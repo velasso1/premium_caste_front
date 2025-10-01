@@ -15,7 +15,6 @@ import { routes } from "#utils/routes/main-routes/main-routes.ts";
 import pic1 from "#images/alfa-romeo.jpg";
 import pic2 from "#images/audi.jpg";
 import pic3 from "#images/toyota.jpg";
-import { ImageList } from "@mui/material";
 
 interface ISlideBlockProps {
   ref: LegacyRef<HTMLDivElement>;

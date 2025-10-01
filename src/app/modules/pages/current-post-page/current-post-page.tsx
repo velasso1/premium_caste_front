@@ -26,10 +26,6 @@ import Button from "#ui/button/button.tsx";
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 import Album from "#ui/album/album.tsx";
 
-import audi from "#images/audi.jpg";
-import SliderBlock from "#pages/general-page/components/slider-block.tsx";
-import { IMediaGroupImage } from "#types/api-types/api-response-types.ts";
-
 const CurrentPostPage: FC = () => {
   const params = useParams();
   const dispatch = useAppDispatch();
