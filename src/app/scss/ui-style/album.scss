@@ -30,7 +30,23 @@
     height: 80%;
     object-fit: contain;
     object-position: center;
-    animation: fadeIn 0.6s ease forwards;
+
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    animation: elegantAppear 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  &__photo:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent 45%, rgba(255, 255, 255, 0.1) 50%, transparent 55%);
+    background-size: 200% 100%;
+    animation: neuralPulse 2s ease-in-out infinite;
+    opacity: 0;
   }
 
   &__prev-arrow,
@@ -59,13 +75,17 @@
   }
 }
 
-@keyframes fadeInScale {
-  from {
-    opacity: 90%;
-    transform: scale(0.9);
+@keyframes elegantAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
   }
-  to {
-    opacity: 100%;
-    transform: scale(1);
+  70% {
+    opacity: 0.8;
+    transform: translateY(-5px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }

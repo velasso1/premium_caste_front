@@ -22,9 +22,6 @@ const PreviewContainer: FC<IPreviewContainerProps> = ({ creatingStep, images, po
           <div className="create-blog-post-page__preview-container">
             {images?.data ? (
               images?.data.map((item, index) => {
-                if (index > 100) {
-                  return;
-                }
                 return (
                   <PreviewItem key={index} item={item} postInfo={postInfo} setPostInfo={setPostInfo} userId={userId} />
                 );
