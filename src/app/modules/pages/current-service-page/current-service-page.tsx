@@ -33,8 +33,9 @@ const CurrentServicePage: FC = () => {
     <PageLayout pageClassName="curent-service-page">
       <PageTitle pageName={service ? serviceNames[`${service}`].title : "Неизвестная ошибка"} />
       <WorksAlbum galleries={galleryTagStatus.data?.galleries} />
-      <AboutServiceBlock serviceDescription={service ? serviceNames[`${service}`].description : "Неизвестная ошибка"} />
       <PriceServiceBlock tableData={PRICES[`${service}`]} />
+      <AboutServiceBlock serviceDescription={service ? serviceNames[`${service}`].description : "Неизвестная ошибка"} />
+
       <Button buttonText="Вернуться к списку услуг" onClickAction={() => navigate(`../${routes.SERVICES_PAGE}`)} />
     </PageLayout>
   );

@@ -30,9 +30,14 @@ const NavigationIcons: FC = () => {
       {/* <NavLink className="header__icon" to={"main/" + routes.FAVORITES_PAGE}>
         <img src={heart} alt="heart" className="header__icon-image" />
       </NavLink> */}
-      <NavLink className="header__icon" to={userIsAuth ? accountPath.account : accountPath.login}>
-        <img src={human} alt="human" className="header__icon-image" />
-      </NavLink>
+
+      {/* CONDITION RENDER IN HEADER ICON NEEDED TO HIDE THIS ICON FOR USERS */}
+
+      {userIsAuth ? (
+        <NavLink className="header__icon" to={userIsAuth ? accountPath.account : accountPath.login}>
+          <img src={human} alt="human" className="header__icon-image" />
+        </NavLink>
+      ) : null}
     </div>
   );
 };

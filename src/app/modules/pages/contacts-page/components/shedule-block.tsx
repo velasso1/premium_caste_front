@@ -11,12 +11,12 @@ const Shedule: FC = () => {
             <span className="contacts-page__day">Понедельник - Пятница: </span>
             <span className="contacts-page__highlight">11:00 - 21:00</span>
           </li>
-          <li className="contacts-page__item">
-            <span className="contacts-page__day">Суббота: </span>
+          {/* <li className="contacts-page__item">
+            <span className="contacts-page__day">Суббота </span>
             <span className="contacts-page__highlight">12:00 - 20:00</span>
-          </li>
+          </li> */}
           <li className="contacts-page__item">
-            <span className="contacts-page__day">Воскресенье: </span>
+            <span className="contacts-page__day">Суббота, Воскресенье: </span>
             <span className="contacts-page__highlight">Выходной</span>
           </li>
         </ul>

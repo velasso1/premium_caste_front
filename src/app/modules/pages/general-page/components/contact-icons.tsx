@@ -10,8 +10,8 @@ const ContactIcons: FC = () => {
   const contactIcons = [
     { icon: d2, link: "https://www.drive2.ru/o/premiumcaste/" },
     { icon: inst, link: "https://www.instagram.com/premiumcaste/" },
-    { icon: teleg, link: "https://t.me/premiumcaste_admin" },
-    { icon: facebook, link: "https://t.me/premiumcaste_admin" },
+    { icon: teleg, link: "https://t.me/premiumcaste" },
+    // { icon: facebook, link: "https://t.me/premiumcaste_admin" },
     { icon: vk, link: "https://vk.com/premiumcaste" },
   ];
   return (

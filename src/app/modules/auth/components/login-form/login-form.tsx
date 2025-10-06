@@ -75,9 +75,11 @@ const LoginForm: FC = () => {
       <ContentBlockLayout contentTitle="Вход в аккаунт" customClassName="login-form__content-block">
         <>{isLoading && <Loader />}</>
         <form className="login-form__form" onSubmit={handleSubmit(onSubmit)}>
-          <NavLink className="login-form__registration" to={`../${routes.REGISTRATION_PAGE}`}>
+          {/* REGISTRATION LINK IS HIDE FOR USERS */}
+
+          {/* <NavLink className="login-form__registration" to={`../${routes.REGISTRATION_PAGE}`}>
             Регистрация
-          </NavLink>
+          </NavLink> */}
           {errors?.identifier && <LineNotification text={errors?.identifier?.message ?? "error"} />}
           <TextField
             className={`login-form__username ${errors?.identifier && "field_error"}`}
