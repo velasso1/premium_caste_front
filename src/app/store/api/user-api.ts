@@ -52,8 +52,11 @@ export const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, Fetch
       {
         url: import.meta.env.VITE_REFRESH_TOKEN,
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         credentials: "include",
-        body: JSON.stringify({ refresh_token: localStorage.getItem(REFRESH_TOKEN) }),
+        body: { refresh_token: localStorage.getItem(REFRESH_TOKEN) },
       },
       api,
       extraOptions
