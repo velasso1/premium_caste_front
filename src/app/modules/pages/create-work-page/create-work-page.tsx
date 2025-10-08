@@ -113,7 +113,7 @@ const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
           <div className="create-work-page__tags">
             {sidebarItemsWorks.map((item, index) => {
               if (item.itemName === "Всё") return;
-              return <Tag title={item.itemName} key={index} />;
+              return <Tag title={item.itemName} key={item.itemName} />;
             })}
           </div>
         </div>

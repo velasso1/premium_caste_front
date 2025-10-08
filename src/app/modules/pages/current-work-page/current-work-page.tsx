@@ -56,7 +56,7 @@ const CurrentWorkPage: FC = () => {
           getGallery.data.images.map((imageSrc, index) => {
             return (
               <WorkItem
-                key={index}
+                key={imageSrc}
                 imageSource={imageSrc}
                 itemId=""
                 itemTitle=""

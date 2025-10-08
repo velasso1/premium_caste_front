@@ -149,8 +149,6 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
     setCreatingStep(STEPS.FIRST);
   };
 
-  console.log("CONTENT:", postInfo.content, "no-content");
-
   return (
     <ContentBlockLayout contentTitle="Содержание поста" customClassName="create-blog-post-page__post-info">
       <div className="create-blog-post-page__post-fields">

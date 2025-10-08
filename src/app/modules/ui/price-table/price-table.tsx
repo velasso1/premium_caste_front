@@ -41,7 +41,7 @@ const PriceTable: FC<ITableProps> = ({ tableData }) => {
             {tableData.headCols.map((item, index) => {
               return (
                 <TableCell
-                  key={index}
+                  key={item}
                   align="left"
                   style={{ fontWeight: 700, color: "#fff", borderBottomColor: "#ff5000" }}
                 >

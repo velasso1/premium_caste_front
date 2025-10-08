@@ -30,7 +30,7 @@ const ContactsBlock: FC = () => {
           Напишите нам:
           {contactIcons.map((item, index) => {
             return (
-              <Link key={index} to={item.linkTo} target="_blank" rel="noopener noreferrer">
+              <Link key={item.linkTo} to={item.linkTo} target="_blank" rel="noopener noreferrer">
                 <img className={`contacts-page__${item.className}`} src={item.iconSrc} alt={item.alt} />
               </Link>
             );

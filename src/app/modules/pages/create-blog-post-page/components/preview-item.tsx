@@ -30,7 +30,6 @@ const PreviewItem: FC<IPreviewItemProps> = ({ item, postInfo, setPostInfo, userI
         }}
         onError={() => {
           setImageIsError(true);
-          //   console.log("error");
         }}
       />
     </div>
