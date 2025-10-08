@@ -18,6 +18,7 @@ import Tag from "#pages/create-work-page/components/tag.tsx";
 import Button from "#ui/button/button.tsx";
 import PageLayout from "#ui/page-layout/page-layout.tsx";
 import PageTitle from "#ui/page-title/page-title.tsx";
+import TextEditor from "#ui/text-editor/text-editor.tsx";
 
 import { sidebarItemsWorks } from "#utils/auxuliary/sidebar-items.ts";
 import { routes } from "#utils/routes/main-routes/main-routes.ts";
@@ -30,10 +31,11 @@ const EditWorkPage: FC = () => {
   const { userId } = useAppSelector((state) => state.userSlice);
   const { createGalleryTags } = useAppSelector((state) => state.galleriesSlice);
 
-  const [editGallery, editGalleryStatus] = useEditGalleryMutation();
   const [attachedImages, setAttachedImages] = useState<string[]>([]);
   const [imagesLimit, setImagesLimit] = useState<number>(50);
+  const [editorState, setEditorState] = useState<string>("");
 
+  const [editGallery, editGalleryStatus] = useEditGalleryMutation();
   const getGallery = useGetGalleryByIdQuery({ id: id || "" });
   const images = useGetAllImagesQuery({ limit: imagesLimit });
 
@@ -80,8 +82,11 @@ const EditWorkPage: FC = () => {
   };
 
   const workChangeHandler = (): SubmitHandler<ICreateGalleryPayload> => (data) => {
+    if (!editorState) return;
+
     editGallery({
       ...data,
+      description: editorState,
       tags: createGalleryTags,
       author_id: userId,
       status: "published",
@@ -104,12 +109,17 @@ const EditWorkPage: FC = () => {
             defaultValue={getGallery.data?.title}
             {...register("title", { required: true })}
           />
-          <textarea
+          <TextEditor
+            editorState={editorState}
+            setEditorState={setEditorState}
+            content={getGallery.data?.description}
+          />
+          {/* <textarea
             className={`create-blog-post-page__post-content`}
             placeholder="Описание работы"
             defaultValue={getGallery.data?.description}
             {...register("description", { required: true })}
-          />
+          /> */}
           Выберите тег:
           <div className="create-work-page__tags">
             {sidebarItemsWorks.map((item, index) => {

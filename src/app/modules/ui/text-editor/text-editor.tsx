@@ -1,4 +1,4 @@
-import { FC, SetStateAction, useMemo, useState, Dispatch } from "react";
+import { FC, SetStateAction, useMemo, useState, Dispatch, useEffect } from "react";
 
 import { useEditor, EditorContent, EditorContext, extensions, type Editor } from "@tiptap/react";
 import { IPostInfoPayload } from "#types/store-types/posts-initial-state-types.ts";
@@ -17,9 +17,10 @@ type EditorState = string | IPostInfoPayload;
 interface ITextEditorProps {
   editorState: EditorState;
   setEditorState: Dispatch<SetStateAction<string>>;
+  content?: string;
 }
 
-const TextEditor: FC<ITextEditorProps> = ({ editorState, setEditorState }) => {
+const TextEditor: FC<ITextEditorProps> = ({ editorState, setEditorState, content = "" }) => {
   // const [editorFocus, setEditorFocus] = useState<boolean>(false);
 
   const editor = useEditor({
@@ -31,11 +32,15 @@ const TextEditor: FC<ITextEditorProps> = ({ editorState, setEditorState }) => {
       }),
       TextAlign.configure({ types: ["heading", "paragraph"] }),
     ],
-    content: "",
+    content: content,
     onUpdate({ editor }) {
       textEditorHandler(editor);
     },
   });
+
+  useEffect(() => {
+    editor.commands.setContent(content);
+  }, [content]);
 
   // const textEditorHandler = debounce((editor: Editor): void => {
   //   const cleanHTML = htmlViewer(editor.getHTML());
