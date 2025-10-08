@@ -39,11 +39,12 @@ const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
   const { userId } = useAppSelector((state) => state.userSlice);
   const { createGalleryTags } = useAppSelector((state) => state.galleriesSlice);
 
-  const images = useGetAllImagesQuery();
-  const [createNewGallery, galleryStatus] = useCreateNewGalleryMutation();
-
   const [attachedImages, setAttachedImages] = useState<string[]>([]);
   const [editorContent, setEditorContent] = useState<string>("");
+  const [imagesLimit, setImagesLimit] = useState<number>(50);
+
+  const images = useGetAllImagesQuery({ limit: imagesLimit });
+  const [createNewGallery, galleryStatus] = useCreateNewGalleryMutation();
 
   const {
     register,

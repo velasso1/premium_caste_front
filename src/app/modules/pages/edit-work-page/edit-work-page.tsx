@@ -32,9 +32,10 @@ const EditWorkPage: FC = () => {
 
   const [editGallery, editGalleryStatus] = useEditGalleryMutation();
   const [attachedImages, setAttachedImages] = useState<string[]>([]);
+  const [imagesLimit, setImagesLimit] = useState<number>(50);
 
   const getGallery = useGetGalleryByIdQuery({ id: id || "" });
-  const images = useGetAllImagesQuery();
+  const images = useGetAllImagesQuery({ limit: imagesLimit });
 
   useEffect(() => {
     if (getGallery.isSuccess) {

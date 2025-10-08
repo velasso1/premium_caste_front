@@ -20,10 +20,13 @@ export const mediaApi = createApi({
   tagTypes: ["Images"],
   endpoints: (build) => ({
     // получение всех загруженных картинок
-    getAllImages: build.query<IGetAllImagesResponse, void>({
-      query: () => ({
+    getAllImages: build.query<IGetAllImagesResponse, { limit: number }>({
+      query: (data) => ({
         url: import.meta.env.VITE_GET_IMAGES,
         credentials: "include",
+        params: {
+          limit: data.limit,
+        },
       }),
       keepUnusedDataFor: 0,
       providesTags: (result, error, arg) =>
