@@ -19,7 +19,7 @@ import { PRICES } from "#utils/fake-api/service-prices.ts";
 
 const CurrentServicePage: FC = () => {
   const navigate = useNavigate();
-  const { service } = useParams<{ service: keyof typeof serviceNames }>();
+  const { service } = useParams<{ service: string }>();
 
   const [getGalleryByTag, galleryTagStatus] = useLazyGetGalleryByTagQuery();
 

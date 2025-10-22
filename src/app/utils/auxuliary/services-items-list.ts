@@ -16,7 +16,7 @@ export interface IServicesItem {
   iconPath: string;
 }
 
-interface IServiceNames {
+export interface IServiceNames {
   readonly [key: string]: {
     readonly title: string;
     readonly description: string;
