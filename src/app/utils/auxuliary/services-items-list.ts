@@ -6,7 +6,9 @@ import safety from "#images/services-page-icons/safety-icon.png";
 import shumka from "#images/services-page-icons/shum-icon.png";
 import detailing from "#images/services-page-icons/detailing-icon.png";
 import dop from "#images/services-page-icons/dop-icon.png";
-import disk from "#images/disk.png";
+import lenses from "#images/services-page-icons/lenses-icon.png";
+import disk from "#images/services-page-icons/disk.png";
+import belts from "#images/services-page-icons/colored-belts.png";
 
 export interface IServicesItem {
   title: string;
@@ -16,32 +18,17 @@ export interface IServicesItem {
 
 export const SERVICES_ITEMS: readonly IServicesItem[] = [
   {
-    title: "Оклейка винилом",
-    serviceName: "vinyl",
-    iconPath: vinyl,
-  },
-  {
-    title: "Пошив салонов",
-    serviceName: "sewing",
-    iconPath: salon,
-  },
-  {
-    title: "Тонирование стекол и оптики",
-    serviceName: "tinting",
-    iconPath: toner,
-  },
-  {
-    title: "Световой тюнинг",
-    serviceName: "light",
-    iconPath: toner,
-  },
-  {
-    title: "Оклейка защитными пленками",
+    title: "Оклейка защитной плёнкой",
     serviceName: "safety",
     iconPath: safety,
   },
   {
-    title: "Установка шумоизоляции",
+    title: "Оклейка цветными плёнками и дизайн",
+    serviceName: "vinyl",
+    iconPath: vinyl,
+  },
+  {
+    title: "Шумоизоляция",
     serviceName: "soundproofing",
     iconPath: shumka,
   },
@@ -51,17 +38,38 @@ export const SERVICES_ITEMS: readonly IServicesItem[] = [
     iconPath: sound,
   },
   {
+    title: "Дополнительное оборудование",
+    serviceName: "equipment",
+    iconPath: dop,
+  },
+  {
+    title: "Замена линз, ремонт фар",
+    serviceName: "light",
+    iconPath: lenses,
+  },
+  {
+    title: "Цветные ремни и кровы",
+    serviceName: "belts",
+    iconPath: belts,
+  },
+  {
+    title: "Пошив салонов",
+    serviceName: "sewing",
+    iconPath: salon,
+  },
+  {
     title: "Детейлинг",
     serviceName: "detailing",
     iconPath: detailing,
   },
   {
-    title: "Установка доп оборудования",
-    serviceName: "equipment",
-    iconPath: dop,
+    title: "Тонирование",
+    serviceName: "tinting",
+    iconPath: toner,
   },
+
   {
-    title: "Диски",
+    title: "Кованные диски на заказ",
     serviceName: "disks",
     iconPath: disk,
   },
@@ -136,4 +144,5 @@ export const serviceNames = {
  \n Мы работаем только с продуктами высокого качества от проверенных поставщиков. Это дает нам возможность предоставлять гарантию на компоненты и выполненные работы. Мы уверены в качестве производимых нами работ.`,
   },
   disks: { title: "Диски", description: "" },
+  belts: { title: "Цветные ремни и ковры", description: "" },
 } as const;
