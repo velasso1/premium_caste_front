@@ -17,7 +17,7 @@ const CategoryItem: FC<IServicesItem> = ({ title, iconPath, serviceName }) => {
       onClick={() => navigate(`../${routes.CURRENT_SERVICE_PAGE}/` + serviceName)}
     >
       <div className="services-page__image">
-        <img src={substrate} alt="substrate" />
+        {/* <img src={substrate} alt="substrate" /> */}
         <img className="services-page__icon" src={iconPath} alt="icon" />
       </div>
 
