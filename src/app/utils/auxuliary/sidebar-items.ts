@@ -15,17 +15,17 @@ export interface ISidebarItemsPostsMenu extends ISidebarItem {
 
 export const sidebarItemsWorks: readonly ISidebarItem[] = [
   { itemName: "Всё" },
-  { itemName: "Оклейка винилом" },
+  { itemName: "Оклейка защитной плёнкой" },
+  { itemName: "Оклейка цветными плёнками и дизайн" },
+  { itemName: "Шумоизоляция" },
+  { itemName: "Автозвук и мультимедиа" },
+  { itemName: "Дополнительное оборудование" },
+  { itemName: "Замена линз, ремонт фар" },
+  { itemName: "Цветные ремни и ковры" },
   { itemName: "Пошив салонов" },
-  { itemName: "Тонирование стекол и оптики" },
-  { itemName: "Световой тюнинг" },
-  { itemName: "Оклейка защитными пленками" },
-  { itemName: "Установка шумоизоляции" },
-  { itemName: "Автозвук и мультимедия" },
   { itemName: "Детейлинг" },
-  { itemName: "Установка доп оборудования" },
-  { itemName: "Диски" },
-  // { itemName: "Дизайнерская оклейка" },
+  { itemName: "Тонирование" },
+  { itemName: "Кованные диски на заказ" },
   // { itemName: "Автоковры" },
 ] as const;
 
