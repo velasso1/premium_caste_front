@@ -6,8 +6,6 @@ import { routes } from "#utils/routes/main-routes/main-routes.ts";
 
 import { IServicesItem } from "#utils/auxuliary/services-items-list.ts";
 
-import substrate from "#images/substrate.png";
-
 const CategoryItem: FC<IServicesItem> = ({ title, iconPath, serviceName }) => {
   const navigate = useNavigate();
 
@@ -17,7 +15,6 @@ const CategoryItem: FC<IServicesItem> = ({ title, iconPath, serviceName }) => {
       onClick={() => navigate(`../${routes.CURRENT_SERVICE_PAGE}/` + serviceName)}
     >
       <div className="services-page__image">
-        {/* <img src={substrate} alt="substrate" /> */}
         <img className="services-page__icon" src={iconPath} alt="icon" />
       </div>
 
