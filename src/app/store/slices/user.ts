@@ -9,6 +9,7 @@ const initialState: IUserSliceState = {
   userId: "",
   userIsAdmin: false,
   sessionExpiresAt: "",
+  imagesLimit: 50,
 };
 
 const userSlice = createSlice({
@@ -57,8 +58,13 @@ const userSlice = createSlice({
         state.userId = uid;
       }
     },
+
+    setImagesLimit(state, action: PayloadAction<number>) {
+      state.imagesLimit = action.payload;
+    },
   },
 });
 
-export const { changeUserLoginStatus, setUserData, setExpiresSession, checkExpiresSession, logOut } = userSlice.actions;
+export const { changeUserLoginStatus, setUserData, setExpiresSession, checkExpiresSession, logOut, setImagesLimit } =
+  userSlice.actions;
 export default userSlice.reducer;

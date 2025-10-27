@@ -47,12 +47,12 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
 
   const { userId } = useAppSelector((state) => state.userSlice);
   const { attachedImages } = useAppSelector((state) => state.postsSlice);
+  const { imagesLimit } = useAppSelector((state) => state.userSlice);
 
   const [postInfo, setPostInfo] = useState<IPostInfoPayload>(initialStatePost);
   const [editorContent, setEditorContent] = useState<string>("");
   const [previewSelected, setPreviewSelected] = useState<boolean>(false);
   const [creatingStep, setCreatingStep] = useState<STEPS>(1);
-  const [imagesLimit, setImagesLimit] = useState<number>(50);
 
   const images = useGetAllImagesQuery({ limit: imagesLimit });
   const [createNewPost, creatingStatus] = useCreateNewPostMutation();

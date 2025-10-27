@@ -9,5 +9,6 @@ export interface IUserSliceState {
   userId: string;
   userIsAdmin: boolean;
   sessionExpiresAt: Date | string;
+  imagesLimit: number;
   // userData: IUserData;
 }
