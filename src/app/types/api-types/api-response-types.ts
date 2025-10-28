@@ -90,6 +90,9 @@ export interface IMediaGroupImage {
 // ответ от сервера при получении картинок
 export interface IGetAllImagesResponse {
   data: IImageInfo[];
+  meta: {
+    count: number;
+  };
 }
 
 export interface IImageInfo {

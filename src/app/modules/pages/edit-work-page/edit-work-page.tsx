@@ -8,6 +8,7 @@ import { useGetGalleryByIdQuery, useEditGalleryMutation } from "../../../store/a
 import { useGetAllImagesQuery } from "../../../store/api/media-api";
 import { setEffect } from "../../../store/slices/effects";
 import { clearSelectedTags, editGalleryTags } from "../../../store/slices/galleries";
+import { putAttachedImages } from "../../../store/slices/posts";
 
 import { ICreateGalleryPayload } from "#types/api-types/api-payload-types.ts";
 
@@ -20,19 +21,21 @@ import PageLayout from "#ui/page-layout/page-layout.tsx";
 import PageTitle from "#ui/page-title/page-title.tsx";
 import TextEditor from "#ui/text-editor/text-editor.tsx";
 
+import AttachImages from "#pages/create-blog-post-page/components/attach-images.tsx";
+
 import { sidebarItemsWorks } from "#utils/auxuliary/sidebar-items.ts";
 import { routes } from "#utils/routes/main-routes/main-routes.ts";
+import { clearAttachedImages } from "../../../store/slices/posts";
 
 const EditWorkPage: FC = () => {
   const { id } = useParams<string>();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { userId } = useAppSelector((state) => state.userSlice);
+  const { userId, imagesLimit } = useAppSelector((state) => state.userSlice);
   const { createGalleryTags } = useAppSelector((state) => state.galleriesSlice);
+  const { attachedImages } = useAppSelector((state) => state.postsSlice);
 
-  const [attachedImages, setAttachedImages] = useState<string[]>([]);
-  const [imagesLimit, setImagesLimit] = useState<number>(50);
   const [editorState, setEditorState] = useState<string>("");
 
   const [editGallery, editGalleryStatus] = useEditGalleryMutation();
@@ -41,10 +44,7 @@ const EditWorkPage: FC = () => {
 
   useEffect(() => {
     if (getGallery.isSuccess) {
-      setAttachedImages(() => {
-        return getGallery.data.images;
-      });
-
+      dispatch(putAttachedImages(getGallery.data.images));
       dispatch(editGalleryTags(getGallery.data.tags));
     }
   }, [getGallery]);
@@ -53,7 +53,7 @@ const EditWorkPage: FC = () => {
     if (editGalleryStatus.isSuccess) {
       dispatch(setEffect({ status: "success", message: "Данные изменены" }));
       dispatch(clearSelectedTags());
-      setAttachedImages([]);
+      dispatch(clearAttachedImages());
       reset();
       navigate("../" + routes.OUR_WORKS_PAGE);
       return;
@@ -71,15 +71,6 @@ const EditWorkPage: FC = () => {
     watch,
     formState: { errors },
   } = useForm<ICreateGalleryPayload>();
-
-  const imageAttachHandler = (path: string): void => {
-    setAttachedImages((prev) => {
-      if (attachedImages.includes(path)) {
-        return prev.filter((imagePath) => imagePath !== path);
-      }
-      return [...prev, path];
-    });
-  };
 
   const workChangeHandler = (): SubmitHandler<ICreateGalleryPayload> => (data) => {
     if (!editorState) return;
@@ -114,12 +105,6 @@ const EditWorkPage: FC = () => {
             setEditorState={setEditorState}
             content={getGallery.data?.description}
           />
-          {/* <textarea
-            className={`create-blog-post-page__post-content`}
-            placeholder="Описание работы"
-            defaultValue={getGallery.data?.description}
-            {...register("description", { required: true })}
-          /> */}
           Выберите тег:
           <div className="create-work-page__tags">
             {sidebarItemsWorks.map((item, index) => {
@@ -129,43 +114,14 @@ const EditWorkPage: FC = () => {
           </div>
         </div>
 
-        <div className="create-blog-post-page__upload-container">
-          Выберите изображения
-          <div className="create-blog-post-page__preview-container">
-            {images?.data?.data ? (
-              images?.data.data.map((item) => {
-                const IMAGE_PATH =
-                  import.meta.env.VITE_UPLOADS_FILES + "uploads/" + userId + "/" + item.original_filename;
+        <AttachImages images={images.data} userId={userId} saveTarget="storage_path" />
 
-                return (
-                  <div
-                    className={`create-blog-post-page__preview-item ${
-                      attachedImages.includes(item.storage_path)
-                        ? "create-blog-post-page__preview-item--selected"
-                        : null
-                    }`}
-                    onClick={() => imageAttachHandler(item.storage_path)}
-                  >
-                    <img
-                      className="create-blog-post-page__preview-image"
-                      key={item.id}
-                      src={IMAGE_PATH}
-                      alt={item.original_filename}
-                    />
-                  </div>
-                );
-              })
-            ) : (
-              <div>Пока что картинок нет</div>
-            )}
-          </div>
-          <div className="create-blog-post-page__buttons">
-            <Button
-              buttonText="Сохранить"
-              disabled={attachedImages.length <= 1}
-              onClickAction={handleSubmit(workChangeHandler())}
-            />
-          </div>
+        <div className="create-blog-post-page__buttons">
+          <Button
+            buttonText="Сохранить"
+            disabled={attachedImages.length <= 1}
+            onClickAction={handleSubmit(workChangeHandler())}
+          />
         </div>
       </ContentBlockLayout>
     </PageLayout>

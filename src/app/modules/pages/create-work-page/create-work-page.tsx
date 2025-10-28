@@ -1,6 +1,5 @@
 import { FC, useState, useEffect } from "react";
 
-import { useParams } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 import { useAppDispatch, useAppSelector } from "../../../store";
@@ -8,9 +7,9 @@ import { useGetAllImagesQuery } from "../../../store/api/media-api";
 import { useCreateNewGalleryMutation } from "../../../store/api/galleries-api";
 import { setEffect } from "../../../store/slices/effects";
 import { clearSelectedTags } from "../../../store/slices/galleries";
+import { clearAttachedImages } from "../../../store/slices/posts";
 
 import PostImages from "#pages/create-blog-post-page/components/post-images.tsx";
-import PostInformation from "#pages/create-blog-post-page/components/post-information.tsx";
 
 import Tag from "./components/tag";
 
@@ -22,11 +21,12 @@ import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 import TextField from "#ui/fields/text-field.tsx";
 import Button from "#ui/button/button.tsx";
 
-// import { SERVICES_ITEMS } from "#utils/auxuliary/services-items-list.ts";
 import { sidebarItemsWorks } from "#utils/auxuliary/sidebar-items.ts";
 
 import { ICreateGalleryPayload } from "#types/api-types/api-payload-types.ts";
 import TextEditor from "#ui/text-editor/text-editor.tsx";
+
+import AttachImages from "#pages/create-blog-post-page/components/attach-images.tsx";
 
 interface ICreaateWorkPageProps {
   workInfo?: IGalleryResponse;
@@ -34,14 +34,12 @@ interface ICreaateWorkPageProps {
 
 const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
   const dispatch = useAppDispatch();
-  const params = useParams();
 
-  const { userId } = useAppSelector((state) => state.userSlice);
+  const { userId, imagesLimit } = useAppSelector((state) => state.userSlice);
   const { createGalleryTags } = useAppSelector((state) => state.galleriesSlice);
+  const { attachedImages } = useAppSelector((state) => state.postsSlice);
 
-  const [attachedImages, setAttachedImages] = useState<string[]>([]);
   const [editorContent, setEditorContent] = useState<string>("");
-  const [imagesLimit, setImagesLimit] = useState<number>(50);
 
   const images = useGetAllImagesQuery({ limit: imagesLimit });
   const [createNewGallery, galleryStatus] = useCreateNewGalleryMutation();
@@ -50,7 +48,6 @@ const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
     register,
     handleSubmit,
     reset,
-    watch,
     formState: { errors },
   } = useForm<ICreateGalleryPayload>();
 
@@ -58,7 +55,7 @@ const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
     if (galleryStatus.isSuccess) {
       dispatch(setEffect({ status: "success", message: "Галерея успешно создана" }));
       dispatch(clearSelectedTags());
-      setAttachedImages([]);
+      dispatch(clearAttachedImages());
       reset();
       return;
     }
@@ -67,15 +64,6 @@ const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
       dispatch(setEffect({ status: "error", message: "Произошла ошибка, повторите позже" }));
     }
   }, [galleryStatus]);
-
-  const imageAttachHandler = (path: string): void => {
-    setAttachedImages((prev) => {
-      if (attachedImages.includes(path)) {
-        return prev.filter((imagePath) => imagePath !== path);
-      }
-      return [...prev, path];
-    });
-  };
 
   const createGalleryHandler = (): SubmitHandler<ICreateGalleryPayload> => (data) => {
     createNewGallery({
@@ -103,11 +91,6 @@ const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
             placeholder="Заголовок работы"
             {...register("title", { required: true })}
           />
-          {/* <textarea
-            className={`create-blog-post-page__post-content`}
-            placeholder="Описание работы"
-            {...register("description", { required: true })}
-          /> */}
           <TextEditor editorState={editorContent} setEditorState={setEditorContent} />
           Выберите тег:
           <div className="create-work-page__tags">
@@ -118,43 +101,14 @@ const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
           </div>
         </div>
 
-        <div className="create-blog-post-page__upload-container">
-          Выберите изображения
-          <div className="create-blog-post-page__preview-container">
-            {images?.data?.data ? (
-              images?.data.data.map((item) => {
-                const IMAGE_PATH =
-                  import.meta.env.VITE_UPLOADS_FILES + "uploads/" + userId + "/" + item.original_filename;
+        <AttachImages images={images?.data} userId={userId} saveTarget="storage_path" />
 
-                return (
-                  <div
-                    className={`create-blog-post-page__preview-item ${
-                      attachedImages.includes(item.storage_path)
-                        ? "create-blog-post-page__preview-item--selected"
-                        : null
-                    }`}
-                    onClick={() => imageAttachHandler(item.storage_path)}
-                  >
-                    <img
-                      className="create-blog-post-page__preview-image"
-                      key={item.id}
-                      src={IMAGE_PATH}
-                      alt={item.original_filename}
-                    />
-                  </div>
-                );
-              })
-            ) : (
-              <div>Пока что картинок нет</div>
-            )}
-          </div>
-          <div className="create-blog-post-page__buttons">
-            <Button
-              buttonText="Создать"
-              disabled={attachedImages.length <= 1}
-              onClickAction={handleSubmit(createGalleryHandler())}
-            />
-          </div>
+        <div className="create-blog-post-page__buttons">
+          <Button
+            buttonText="Создать"
+            disabled={attachedImages.length <= 1}
+            onClickAction={handleSubmit(createGalleryHandler())}
+          />
         </div>
       </ContentBlockLayout>
     </PageLayout>

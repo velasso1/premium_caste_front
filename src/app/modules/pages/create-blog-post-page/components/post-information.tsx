@@ -13,6 +13,7 @@ import {
 } from "../../../../store/api/media-api";
 
 import { setEffect } from "../../../../store/slices/effects";
+import { setImagesLimit } from "../../../../store/slices/user";
 
 import { IPostInfoPayload } from "#types/store-types/posts-initial-state-types.ts";
 import { IPost } from "#types/api-types/api-response-types.ts";
@@ -116,6 +117,13 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
     }
   }, [creatingStatus, mediaGroupStatus]);
 
+  // при размонтировании postInformation вернем изначальное значение лимита;
+  useEffect(() => {
+    return () => {
+      dispatch(setImagesLimit(50));
+    };
+  }, []);
+
   const IS_LOADING: boolean =
     attachMediaToPostStatus.isLoading ||
     attachImagesStatus.isLoading ||
@@ -176,13 +184,6 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
           {...register("excerpt", { required: true })}
         />
 
-        {/* <textarea
-          className={`create-blog-post-page__post-content ${errors?.content && "field_error"}`}
-          placeholder="Основной текст поста"
-          defaultValue={postInfo.content}
-          {...register("content", { required: true })}
-        /> */}
-
         <TextEditor
           editorState={editorContent}
           setEditorState={setEditorContent}
@@ -198,7 +199,7 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
         userId={userId}
       />
 
-      <>{creatingStep === STEPS.SECOND && <AttachImages images={images?.data} userId={userId} />}</>
+      <>{creatingStep === STEPS.SECOND && <AttachImages images={images?.data} userId={userId} saveTarget="id" />}</>
 
       <ControlButtons
         creatingStep={creatingStep}

@@ -1,50 +1,95 @@
-import { FC } from "react";
+import { FC, useState, useEffect, useRef, useCallback } from "react";
 
 import { IGetAllImagesResponse } from "#types/api-types/api-response-types.ts";
 import { useAppDispatch, useAppSelector } from "../../../../store";
 import { selectImagesForPost } from "../../../../store/slices/posts";
+import { setImagesLimit } from "../../../../store/slices/user";
+
+import PreviewItem from "./preview-item";
 
 interface IAttachImagesProps {
   images: IGetAllImagesResponse | undefined;
   userId: string;
+  saveTarget: "id" | "storage_path";
 }
 
-const AttachImages: FC<IAttachImagesProps> = ({ images, userId }) => {
+const AttachImages: FC<IAttachImagesProps> = ({ images, userId, saveTarget = "id" }) => {
   const dispatch = useAppDispatch();
 
+  const containerRef = useRef<HTMLDivElement>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
   const { attachedImages } = useAppSelector((state) => state.postsSlice);
+  const { imagesLimit } = useAppSelector((state) => state.userSlice);
+
+  const [hasIntersectedOnce, setHasIntersectedOnce] = useState(false);
+
+  const handleObserver = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      const [entry] = entries;
+
+      if (entry.isIntersecting) {
+        // пропускаем первый вызов при монтировании
+        if (!hasIntersectedOnce) {
+          setHasIntersectedOnce(true);
+          return;
+        }
+
+        // если уже был один вызов — увеличиваем лимит
+        if (images?.meta.count && images?.meta.count < imagesLimit) return;
+
+        dispatch(setImagesLimit(imagesLimit + 50));
+        setHasIntersectedOnce(false); // сбрасываем, чтобы можно было подгрузить снова
+      }
+    },
+    [dispatch, imagesLimit, hasIntersectedOnce]
+  );
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const options = {
+      root: containerRef.current,
+      rootMargin: "20px",
+      threshold: 1.0,
+    };
+
+    const observer = new IntersectionObserver(handleObserver, options);
+    observerRef.current = observer;
+
+    const lastChild = containerRef.current.lastElementChild;
+    if (lastChild) observer.observe(lastChild);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [handleObserver, images]);
+
+  useEffect(() => {
+    // сбрасываем флаг при подгрузке новых изображений
+    setHasIntersectedOnce(false);
+  }, [images]);
+
+  // сбрасываем limitImages до 50
+  useEffect(() => {
+    return () => {
+      dispatch(setImagesLimit(50));
+    };
+  }, []);
 
   return (
     <div className="create-blog-post-page__upload-container">
-      Прикрепите набор картинок к посту
-      <div className="create-blog-post-page__preview-container">
+      Прикрепите набор картинок
+      <div className="create-blog-post-page__preview-container" ref={containerRef}>
         {images?.data ? (
-          images?.data.map((item, index) => {
-            const IMAGE_PATH = import.meta.env.VITE_UPLOADS_FILES + "uploads/" + userId + "/" + item.original_filename;
-
-            if (index > 100) return;
-
+          images?.data.map((item) => {
             return (
-              <div className={`create-blog-post-page__preview-item`} key={item.id}>
-                <img
-                  className="create-blog-post-page__preview-image"
-                  key={item.id}
-                  src={IMAGE_PATH}
-                  alt={item.original_filename}
-                  onClick={() => {
-                    dispatch(selectImagesForPost(item.id));
-                  }}
-                />
-                {attachedImages.includes(item.id) && (
-                  <button
-                    type="button"
-                    className="create-blog-post-page__remove-button"
-                    aria-label="Удалить изображение"
-                  >
-                    {attachedImages.indexOf(item.id) + 1}
-                  </button>
-                )}
-              </div>
+              <PreviewItem
+                onClick={() => dispatch(selectImagesForPost(item[`${saveTarget}`]))}
+                item={item}
+                userId={userId}
+                isSelected={attachedImages.includes(item[`${saveTarget}`])}
+              />
             );
           })
         ) : (
