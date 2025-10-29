@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /private/
+Disallow: /auth/
 Disallow: /tmp/
 Disallow: /admin/
 Disallow: /cgi-bin/
