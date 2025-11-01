@@ -26,6 +26,8 @@ const AttachImages: FC<IAttachImagesProps> = ({ images, userId, saveTarget = "id
 
   const handleObserver = useCallback(
     (entries: IntersectionObserverEntry[]) => {
+      if (!images) return;
+
       const [entry] = entries;
 
       if (entry.isIntersecting) {
@@ -36,13 +38,13 @@ const AttachImages: FC<IAttachImagesProps> = ({ images, userId, saveTarget = "id
         }
 
         // если уже был один вызов — увеличиваем лимит
-        if (images?.meta.count && images?.meta.count < imagesLimit) return;
+        if (images?.meta.count && imagesLimit >= images.meta.count) return;
 
         dispatch(setImagesLimit(imagesLimit + 50));
         setHasIntersectedOnce(false); // сбрасываем, чтобы можно было подгрузить снова
       }
     },
-    [dispatch, imagesLimit, hasIntersectedOnce]
+    [dispatch, hasIntersectedOnce]
   );
 
   useEffect(() => {
@@ -81,7 +83,7 @@ const AttachImages: FC<IAttachImagesProps> = ({ images, userId, saveTarget = "id
     <div className="create-blog-post-page__upload-container">
       Прикрепите набор картинок
       <div className="create-blog-post-page__preview-container" ref={containerRef}>
-        {images?.data ? (
+        {images && images?.data.length ? (
           images?.data.map((item) => {
             return (
               <PreviewItem
@@ -89,6 +91,7 @@ const AttachImages: FC<IAttachImagesProps> = ({ images, userId, saveTarget = "id
                 item={item}
                 userId={userId}
                 isSelected={attachedImages.includes(item[`${saveTarget}`])}
+                key={item.id}
               />
             );
           })
