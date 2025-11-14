@@ -8,7 +8,8 @@
       margin: 15px 0;
     }
   }
-  &__prices-table {
+  &__prices-table,
+  &__about-block {
     position: relative;
     max-height: 400px;
     overflow: hidden;

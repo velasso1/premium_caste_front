@@ -105,8 +105,7 @@ const OurWorksPage: FC = () => {
                         itemId={item.id}
                         imageSource={item.images[item.cover_image_index]}
                         itemTitle={item.title}
-                      toggleZoom={() => null}
-
+                        toggleZoom={() => null}
                       />
                     );
                   })

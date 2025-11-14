@@ -513,9 +513,12 @@
 @media screen and (max-width: 576px) {
   .our-works-page {
     &__work-items {
+      // display: flex;
+      // justify-content: space-between;
+      // flex-direction: column;
       grid-template-columns: repeat(2, 140px);
       // justify-content: space-between; // Равномерное распределение
-      gap: 20px 12px;
+      // gap: 100%;
       padding: 0 10px 25px;
     }
 
