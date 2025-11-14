@@ -4,6 +4,8 @@ import { IUserSliceState, IUserData } from "#types/store-types/user-initial-stat
 
 import { EXPIRES_SESSION_TIME, REFRESH_TOKEN, USER_ID } from "#utils/constants.ts";
 
+import { useLazyCheckUserStatusQuery } from "../api/user-api";
+
 const initialState: IUserSliceState = {
   userIsAuth: false,
   userId: "",
@@ -56,6 +58,7 @@ const userSlice = createSlice({
       } else {
         state.userIsAuth = true;
         state.userId = uid;
+        // useLazyCheckUserStatusQuery();
       }
     },
 
