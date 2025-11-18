@@ -12,6 +12,7 @@
     width: 800px;
     height: 450px;
     overflow: hidden;
+    border-radius: 15px;
 
     &:hover {
       cursor: pointer;
@@ -26,6 +27,7 @@
 
   &__main-image,
   &__second-image {
+    border-radius: 15px;
     width: 100%;
     height: 100%;
     max-width: 100%;
@@ -35,6 +37,7 @@
 
     &:hover {
       filter: brightness(20%);
+      transform: scale(1.2);
     }
   }
 
@@ -88,11 +91,18 @@
   }
 
   &__lower-side {
+    padding: 40px 0 0 0;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
     overflow: hidden;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 60px 100px;
-    padding: 60px 0;
+    // display: grid;
+    // grid-template-columns: repeat(3, minmax(0, 1fr));
+    // gap: ;
+    // padding: 60px;
   }
 
   &__managing-buttons {
@@ -103,6 +113,9 @@
   }
 
   &__blog-item {
+    border-radius: 15px;
+    margin: 0 0 20px 0;
+
     &[data-managing="true"] {
       &:hover {
         .blog-page__item-preview {
@@ -134,11 +147,20 @@
     width: 400px;
     height: 250px;
     transition: $transition;
+    overflow: hidden;
+    // border: 1px solid red;
+    border-radius: 15px;
 
     img {
       object-fit: cover;
+      transition: $transition;
       min-width: 100%;
       max-height: 100%;
+      border-radius: 15px;
+
+      &:hover {
+        transform: scale(1.2);
+      }
     }
 
     &:hover {

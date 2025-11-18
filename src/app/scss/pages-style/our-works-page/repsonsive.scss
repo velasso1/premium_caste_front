@@ -512,29 +512,30 @@
 /* ========== Мобильные (ландшафт) ========== */
 @media screen and (max-width: 576px) {
   .our-works-page {
+    &__work-items-wrapper {
+      width: 100%;
+    }
+
     &__work-items {
-      // display: flex;
-      // justify-content: space-between;
-      // flex-direction: column;
-      grid-template-columns: repeat(2, 140px);
-      // justify-content: space-between; // Равномерное распределение
-      // gap: 100%;
-      padding: 0 10px 25px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 0 0 0 0;
     }
 
     &__work-item {
-      width: 140px;
-      height: 200px;
+      width: 100%;
+      height: 100%;
     }
 
     &__banner,
     &__image {
-      height: 140px;
+      width: 100%;
     }
 
     &__item-title {
       font-size: 13px;
-      padding-top: 10px;
+      padding-top: 3px;
       height: 36px;
     }
 
@@ -546,63 +547,63 @@
 }
 
 /* ========== Маленькие мобильные ========== */
-@media screen and (max-width: 480px) {
-  .our-works-page {
-    &__work-items {
-      grid-template-columns: repeat(2, 120px);
-      // justify-content: space-around; // Центрирование при недостатке места
-      gap: 18px 10px;
-      padding: 0 8px 20px;
-    }
+// @media screen and (max-width: 480px) {
+//   .our-works-page {
+//     &__work-items {
+//       grid-template-columns: repeat(2, 120px);
+//       // justify-content: space-around; // Центрирование при недостатке места
+//       gap: 18px 10px;
+//       padding: 0 8px 20px;
+//     }
 
-    &__work-item {
-      width: 120px;
-      height: 180px;
-    }
+//     &__work-item {
+//       width: 120px;
+//       height: 180px;
+//     }
 
-    &__banner,
-    &__image {
-      height: 120px;
-    }
+//     &__banner,
+//     &__image {
+//       height: 120px;
+//     }
 
-    &__item-title {
-      font-size: 12px;
-      padding-top: 8px;
-      height: 32px;
-    }
+//     &__item-title {
+//       font-size: 12px;
+//       padding-top: 8px;
+//       height: 32px;
+//     }
 
-    &__notice {
-      font-size: 10px;
-      padding: 5px 3px;
-    }
-  }
-}
+//     &__notice {
+//       font-size: 10px;
+//       padding: 5px 3px;
+//     }
+//   }
+// }
 
-/* ========== Очень маленькие мобильные ========== */
-@media screen and (max-width: 360px) {
-  .our-works-page {
-    &__work-items {
-      grid-template-columns: repeat(2, minmax(110px, 1fr)); // Гибкие размеры
-      justify-content: space-between;
-      gap: 15px 8px;
-      padding: 0 5px 15px;
-    }
+// /* ========== Очень маленькие мобильные ========== */
+// @media screen and (max-width: 360px) {
+//   .our-works-page {
+//     &__work-items {
+//       grid-template-columns: repeat(2, minmax(110px, 1fr)); // Гибкие размеры
+//       justify-content: space-between;
+//       gap: 15px 8px;
+//       padding: 0 5px 15px;
+//     }
 
-    &__work-item {
-      width: 100%; // Занимает всю доступную ширину
-      max-width: 130px; // Но не более этого значения
-      height: 170px;
-    }
+//     &__work-item {
+//       width: 100%; // Занимает всю доступную ширину
+//       max-width: 130px; // Но не более этого значения
+//       height: 170px;
+//     }
 
-    &__banner,
-    &__image {
-      height: 110px;
-    }
+//     &__banner,
+//     &__image {
+//       height: 110px;
+//     }
 
-    &__item-title {
-      font-size: 11px;
-      padding-top: 6px;
-      height: 30px;
-    }
-  }
-}
+//     &__item-title {
+//       font-size: 11px;
+//       padding-top: 6px;
+//       height: 30px;
+//     }
+//   }
+// }

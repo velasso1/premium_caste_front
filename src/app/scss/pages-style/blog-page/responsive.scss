@@ -163,11 +163,11 @@
   }
 
   &__lower-side {
-    overflow: hidden;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 60px 100px;
-    padding: 60px 0;
+    // overflow: hidden;
+    // display: grid;
+    // grid-template-columns: repeat(3, minmax(0, 1fr));
+    // gap: 60px 70px;
+    // padding: 60px 0;
 
     // Большие планшеты
     @media screen and (max-width: 1200px) {
