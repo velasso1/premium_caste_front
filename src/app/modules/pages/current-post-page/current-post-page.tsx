@@ -17,14 +17,15 @@ import { useNavigate, useParams } from "react-router-dom";
 import { SwiperSlide } from "swiper/react";
 
 import PageLayout from "#ui/page-layout/page-layout.tsx";
-import PageTitle from "#ui/page-title/page-title.tsx";
 import Slider from "#ui/slider/slider.tsx";
-import SlideLayout from "#ui/slider/components/slide-layout.tsx";
 import Loader from "#ui/loader/loader.tsx";
 import WorkItem from "#pages/our-works-page/components/work-item.tsx";
 import Button from "#ui/button/button.tsx";
 import ContentBlockLayout from "#ui/page-layout/content-block-layout.tsx";
 import Album from "#ui/album/album.tsx";
+import Popup from "#ui/popup/popup.tsx";
+
+import { routes } from "#utils/routes/main-routes/main-routes.ts";
 
 const CurrentPostPage: FC = () => {
   const params = useParams();
@@ -43,6 +44,7 @@ const CurrentPostPage: FC = () => {
   const [albumRender, toggleAlbumRender] = useState<boolean>(false);
   const [currentAlbum, setCurrentAlbum] = useState<string[]>([]);
   const [photoZoomIndex, setZoomIndex] = useState<number>();
+  const [popupIsOpen, popupHandler] = useState<boolean>(false);
 
   useEffect(() => {
     const savedImages: string[] = currentPost.data?.media_groups?.content.map((item) => item.storage_path) || [];
@@ -70,42 +72,54 @@ const CurrentPostPage: FC = () => {
   return (
     <PageLayout pageClassName="current-post-page">
       {/* <PageTitle pageName={currentPost?.data?.title ?? "Загрузка.."} /> */}
+      <Popup
+        isOpen={popupIsOpen}
+        action={() => {
+          if (params.id) {
+            deletePost({ postId: params?.id });
+            navigate(-1);
+          }
+        }}
+        onClose={() => popupHandler(false)}
+      />
       <>
         {userIsAdmin && (
           <div className="current-post-page__managing-buttons">
-            <Button
-              buttonStyle="OUTLINED"
-              buttonText="Опубликовать"
-              onClickAction={() => {
-                if (params?.id) {
-                  publish({ postId: params?.id });
-                }
-              }}
-            />
+            {currentPost.data?.status !== "published" && (
+              <Button
+                buttonStyle="OUTLINED"
+                buttonText="Опубликовать"
+                onClickAction={() => {
+                  if (params?.id) {
+                    publish({ postId: params?.id });
+                    currentPost.refetch();
+                  }
+                }}
+              />
+            )}
+
+            {currentPost.currentData?.status !== "archived" && (
+              <Button
+                buttonStyle="OUTLINED"
+                buttonText="Архивировать"
+                onClickAction={() => {
+                  if (params.id) {
+                    archive({ postId: params?.id });
+                    currentPost.refetch();
+                  }
+                }}
+              />
+            )}
 
             <Button
               buttonStyle="OUTLINED"
-              buttonText="Архивировать"
-              onClickAction={() => {
-                if (params.id) {
-                  archive({ postId: params?.id });
-                }
-              }}
+              buttonText="Редактировать"
+              onClickAction={() => navigate("../" + `${routes.EDIT_POST_PAGE}/item/${currentPost?.data?.id}`)}
             />
-
-            <Button buttonStyle="OUTLINED" buttonText="Редактировать" onClickAction={() => undefined} />
-            <Button
-              buttonStyle="OUTLINED"
-              buttonText="Удалить пост"
-              onClickAction={() => {
-                if (params.id) {
-                  deletePost({ postId: params?.id });
-                  navigate(-1);
-                }
-              }}
-            />
+            <Button buttonStyle="OUTLINED" buttonText="Удалить пост" onClickAction={() => popupHandler(true)} />
           </div>
         )}
+        <> {currentPost.data?.status === "archived" && <span>Пост в архиве</span>}</>
       </>
 
       <ContentBlockLayout

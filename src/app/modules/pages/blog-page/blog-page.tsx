@@ -30,7 +30,7 @@ const BlogPage: FC = () => {
       <div className="blog-page__lower-side">
         {posts?.posts.map((item, index) => {
           if (index <= 1) return;
-          return <BlogItem postInfo={item} postPreview={item.featured_image_id} />;
+          return <BlogItem key={item.id} postInfo={item} postPreview={item.featured_image_id} />;
         })}
       </div>
     </PageLayout>
