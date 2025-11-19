@@ -24,7 +24,7 @@ const BlogPage: FC = () => {
             <BlogSecondNews postInfo={SECOND_POST} />
           </>
         ) : (
-          "Постов пока что нет"
+          <span className="blog-page__empty-posts">Постов пока что нет</span>
         )}
       </div>
       <div className="blog-page__lower-side">

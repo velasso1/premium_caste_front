@@ -7,6 +7,11 @@
     justify-content: space-between;
   }
 
+  &__empty-posts {
+    margin: 0 auto;
+    font-size: 20px;
+  }
+
   &__main-news {
     position: relative;
     width: 800px;

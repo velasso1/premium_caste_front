@@ -85,15 +85,15 @@ export const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, Fetch
 
 export const userApi = createApi({
   reducerPath: "userApi",
-  baseQuery: <BaseQueryFn<string | FetchArgs, unknown, CustomizedFetchBaseQueryError, {}>>fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_BASE_URL,
-    prepareHeaders: (headers) => {
-      headers.set("Content-Type", "application/json");
+  // baseQuery: <BaseQueryFn<string | FetchArgs, unknown, CustomizedFetchBaseQueryError, {}>>fetchBaseQuery({
+  //   baseUrl: import.meta.env.VITE_BASE_URL,
+  //   prepareHeaders: (headers) => {
+  //     headers.set("Content-Type", "application/json");
 
-      return headers;
-    },
-  }),
-  // baseQuery: baseQueryWithReauth,
+  //     return headers;
+  //   },
+  // }),
+  baseQuery: baseQueryWithReauth,
   endpoints: (build) => ({
     createAccount: build.mutation<IRegistrationResponse, IRegistrationPayload>({
       query: (data) => ({
