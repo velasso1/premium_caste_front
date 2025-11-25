@@ -93,6 +93,7 @@ export interface IGetAllImagesResponse {
   meta: {
     count: number;
   };
+  total: number;
 }
 
 export interface IImageInfo {
