@@ -372,6 +372,61 @@ export const PRICES: IPrices = {
   //
 } as const;
 
+//
+interface INewPricesItem {
+  title: string;
+  subtitles: string[];
+  rows: string[][];
+  cells: string[];
+  table_data: [];
+}
+
+interface INewPrices {
+  [key: string]: INewPricesItem;
+}
+
+export const NEW_PRICES: INewPrices = {
+  safety: {
+    // title - заголовок таблицы
+    title:
+      "ЗАЩИТНЫЕ ПЛЁНКИ (прозрачный полиуретан), зоны риска, 'под ключ' - оклейка, разбор/сбор, плёнка, прочие материалы",
+    // subtitles - подзаголовки таблицы
+    subtitles: [
+      "ФРОНТ - бампер, капот, крылья, фары (и ПТФ, если есть)",
+      "ФРОНТ+ - 'фронт' + стойки лобового стекла, полоса на крышу, зеркала, зоны под ручками, погрузочная зона багажника/бампера",
+    ],
+    table_data: [],
+    // cells - ячейки оглавления столбцов
+    cells: ["Оклейка", "Класс 1", "Класс 2", "Класс 3", "Класс 4"],
+
+    // rows - каждый массив - новая строка, каждый вложенный массив - ячейки в данной строке
+    rows: [
+      ["Фронт, Union PPF 190", "64,000 ₽", "71,000 ₽", "82,000 ₽", "89,000 ₽"],
+      ["Фронт+, Union PPF 190", "91,000 ₽", "98,000 ₽", "109,000 ₽", "116,000 ₽"],
+      [
+        "some cell17",
+        "some cell18",
+        "some cell19",
+        "some cell20",
+        "some cell21",
+        "some cell22",
+        "some cell23",
+        "some cell24",
+      ],
+      [
+        "some cell17",
+        "some cell18",
+        "some cell19",
+        "some cell20",
+        "some cell21",
+        "some cell22",
+        "some cell23",
+        "some cell24",
+      ],
+    ],
+  },
+};
+
 async function getServicePrice(serviceName: keyof typeof serviceNames): Promise<ITableData> {
   return new Promise((resolve) => {
     setTimeout(() => {

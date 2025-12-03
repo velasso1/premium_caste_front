@@ -4,6 +4,7 @@ import PriceTable from "#ui/price-table/price-table.tsx";
 import { ITableProps } from "#ui/price-table/price-table.tsx";
 
 import arrow from "#images/arrow-down.png";
+import NewPriceTable from "#ui/price-table/new-price-table.tsx";
 
 const PriceServiceBlock: FC<ITableProps> = ({ tableData }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -25,7 +26,8 @@ const PriceServiceBlock: FC<ITableProps> = ({ tableData }) => {
         style={{ maxHeight: isExpanded ? `${contentHeight}px` : "400px" }}
       >
         <div ref={contentRef}>
-          {tableData ? <PriceTable tableData={tableData} /> : "Информации о ценах пока что нет"}
+          <NewPriceTable />
+          {/* {tableData ? <PriceTable tableData={tableData} /> : "Информации о ценах пока что нет"} */}
           <p>
             *Указана ориентировочная стоимость работ и материалов европейских производителей, «от». Просим вас иметь
             ввиду, что каждая работа индивидуальна и просчитывается индивидуально. Конечная стоимость зависит от

@@ -29,7 +29,7 @@
   }
 
   &__logo-image {
-    width: 120%;
+    width: 120px;
   }
 
   &__list {
@@ -97,7 +97,7 @@
     }
 
     &__logo-image {
-      width: 110%;
+      width: 80px;
     }
 
     &__icons {
@@ -124,10 +124,6 @@
       &:nth-child(n + 2) {
         margin-left: 30px;
       }
-    }
-
-    &__logo-image {
-      width: 100%;
     }
 
     &__icons {
@@ -258,9 +254,9 @@
   .header {
     padding: 8px 10px;
 
-    &__logo-image {
-      width: 90%;
-    }
+    // &__logo-image {
+    //   width: 70px;
+    // }
 
     &__burger {
       width: 25px;
