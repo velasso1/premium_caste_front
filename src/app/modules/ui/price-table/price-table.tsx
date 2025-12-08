@@ -26,24 +26,49 @@ export interface ITableProps {
 
 const PriceTable: FC<ITableProps> = ({ tableData }) => {
   return (
-    <TableContainer component={Paper} style={{ backgroundColor: "inherit" }}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <TableContainer
+      component={Paper}
+      sx={{ backgroundColor: "#0f1014", borderRadius: 2 }}
+    >
+      <Table
+        sx={{
+          minWidth: 650,
+          backgroundColor: "#0f1014",
+          "& th, & td": { borderBottom: "1px solid #1f222b" },
+        }}
+        aria-label="simple table"
+      >
         <TableHead>
           {tableData.headTitle ? (
             <TableRow className="price-table__row">
-              <TableCell className="price-table__cell" align="center" colSpan={tableData.headCols.length}>
+              <TableCell
+                className="price-table__cell"
+                align="center"
+                colSpan={tableData.headCols.length}
+                sx={{
+                  color: "#fff",
+                  backgroundColor: "#16181f",
+                  borderBottomColor: "#ff5000",
+                  fontWeight: 700,
+                }}
+              >
                 {tableData.headTitle}
               </TableCell>
             </TableRow>
           ) : null}
 
           <TableRow>
-            {tableData.headCols.map((item, index) => {
+            {tableData.headCols.map((item) => {
               return (
                 <TableCell
                   key={item}
                   align="left"
-                  style={{ fontWeight: 700, color: "#fff", borderBottomColor: "#ff5000" }}
+                  sx={{
+                    fontWeight: 700,
+                    color: "#fff",
+                    borderBottomColor: "#ff5000",
+                    backgroundColor: "#16181f",
+                  }}
                 >
                   {item}
                 </TableCell>
@@ -54,7 +79,18 @@ const PriceTable: FC<ITableProps> = ({ tableData }) => {
         <TableBody>
           {tableData.data.map((item, index) => {
             return (
-              <TableRow className="price-table__row" key={index}>
+              <TableRow
+                className="price-table__row"
+                key={index}
+                sx={{
+                  "&:hover": { backgroundColor: "#15171f" },
+                  "& td": { color: "#fff", borderBottomColor: "#1f222b" },
+                  "&:hover td": {
+                    borderBottomColor: "#ff5000",
+                    backgroundColor: "#15171f",
+                  },
+                }}
+              >
                 {item.map((row, rowIdx) => {
                   return (
                     <TableCell
