@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 import arrow from "#images/arrow-down.png";
 
@@ -10,6 +10,24 @@ interface IAlbumProps {
 
 const Album: FC<IAlbumProps> = ({ photos, toggleZoom, zoomPhotoIndex = 0 }) => {
   const [zoomIndex, setZoomIndex] = useState<number>(zoomPhotoIndex);
+
+  useEffect(() => {
+    const keydownHandler = (event: KeyboardEvent) => {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        setZoomIndex((prev) => (prev === 0 ? photos.length - 1 : prev - 1));
+      }
+
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        setZoomIndex((prev) => (prev === photos.length - 1 ? 0 : prev + 1));
+      }
+    };
+
+    window.addEventListener("keydown", keydownHandler);
+
+    return () => window.removeEventListener("keydown", keydownHandler);
+  }, [photos.length]);
 
   const zoomHandler = (dir: "prev" | "next", event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
