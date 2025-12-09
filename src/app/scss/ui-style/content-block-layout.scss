@@ -1,18 +1,21 @@
 .content-block-layout {
-  background-color: #1b1b1b;
+  background-color: #151515;
   position: relative;
-  border-radius: 15px;
-  padding: 20px;
-  margin: 0 auto 40px auto;
+  border-radius: 18px;
+  padding: 24px 28px;
+  margin: 0 auto 32px auto;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 
   &__title {
-    font-size: 25px;
-    text-align: center;
-    border-bottom: 1px solid $mainColor;
-    width: max-content;
-    margin: 0 auto 20px auto;
-    padding: 10px 0 0 0;
-    text-transform: lowercase;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 128, 64, 0.35);
+    width: 100%;
+    margin: 0 0 16px 0;
+    padding: 0 0 12px 0;
+    text-transform: none;
 
     &::first-letter {
       text-transform: uppercase;
@@ -20,6 +23,19 @@
   }
 
   &__content {
-    padding: 0 0 0 0;
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-block-layout {
+    padding: 18px 16px;
+    border-radius: 14px;
+    margin-bottom: 24px;
+
+    &__title {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
   }
 }

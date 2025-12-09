@@ -10,26 +10,22 @@
   height: 100%;
   object-fit: contain;
   z-index: 10000;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.92);
   cursor: zoom-out;
   padding: 2rem;
   box-sizing: border-box;
   transform: none !important;
   filter: none !important;
-
-  &:hover {
-    transform: scale(1.2);
-    filter: brightness(20%);
-  }
+  backdrop-filter: blur(2px);
 
   &__photo {
-    // display: block;
-    // width: 500px;
-    // height: 500px;
-    width: 80%;
-    height: 80%;
+    width: min(90vw, 1100px);
+    height: min(80vh, 700px);
     object-fit: contain;
     object-position: center;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    background: #0f0f0f;
 
     opacity: 0;
     transform: translateY(30px) scale(0.95);
@@ -51,24 +47,52 @@
 
   &__prev-arrow,
   &__next-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    cursor: pointer;
+    outline: none;
+
     img {
-      width: 40px;
+      width: 20px;
+      height: 20px;
+      filter: invert(1);
+      opacity: 0.85;
     }
 
     &:hover {
-      cursor: pointer;
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.24);
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    &:active {
+      transform: translateY(-50%) scale(0.97);
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 3px rgba(255, 128, 64, 0.45);
     }
   }
 
   &__prev-arrow {
-    // transform: rotateZ(90deg);
+    left: clamp(12px, 3vw, 32px);
     img {
       transform: rotateZ(90deg);
     }
   }
 
   &__next-arrow {
-    // transform: rotateZ(90deg);
+    right: clamp(12px, 3vw, 32px);
     img {
       transform: rotateZ(-90deg);
     }
@@ -87,5 +111,22 @@
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .album {
+    padding: 1.25rem;
+
+    &__photo {
+      width: 100%;
+      height: 70vh;
+    }
+
+    &__prev-arrow,
+    &__next-arrow {
+      width: 44px;
+      height: 44px;
+    }
   }
 }

@@ -1,21 +1,35 @@
 .current-work-page {
   &__block {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
   }
   &__album {
-    // width: 100%;
-
     flex-wrap: wrap;
     display: flex;
-    justify-content: space-evenly;
-    gap: 20px;
+    justify-content: center;
+    gap: 16px;
     flex-direction: row;
   }
 
   &__description {
     width: 100%;
-    font-size: 20px;
+    font-size: 18px;
     white-space: pre-line;
-    line-height: 35px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+@media (max-width: 768px) {
+  .current-work-page {
+    &__album {
+      gap: 12px;
+    }
+
+    &__description {
+      font-size: 16px;
+    }
   }
 }

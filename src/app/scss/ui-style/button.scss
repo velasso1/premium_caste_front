@@ -1,14 +1,19 @@
 @mixin buttonstyle {
   background-color: $mainColor;
-  width: max-content;
-  height: max-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 12px 18px;
   font-size: 16px;
-  padding: 12px 15px;
-  font-weight: 300;
-  line-height: 15px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  color: #000;
+  font-weight: 500;
+  line-height: 1.2;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease, border-color 0.2s ease;
+  color: #0f0f0f;
+  box-shadow: 0 10px 30px rgba(255, 128, 64, 0.25);
 }
 
 .button {
@@ -17,17 +22,15 @@
 
   &--outlined {
     @include buttonstyle;
-    background-color: inherit;
-    color: white;
-    border: 1px solid $mainColor;
-    transition: $transition;
+    background-color: transparent;
+    color: #f5f5f5;
+    border-color: rgba(255, 128, 64, 0.7);
+    box-shadow: none;
 
     &:hover {
-      // background-color: $mainColor;
-      // color: black;
-
-      background-color: rgba(255, 80, 0, 0.1);
-      border-radius: 10px;
+      background-color: rgba(255, 128, 64, 0.08);
+      color: #ffffff;
+      border-color: rgba(255, 128, 64, 0.9);
     }
 
     &:disabled {
@@ -35,13 +38,31 @@
       cursor: not-allowed;
       color: black;
       border-color: #707070;
+      box-shadow: none;
     }
+  }
+
+  &:hover:not(:disabled) {
+    background-color: lighten($mainColor, 6%);
+    box-shadow: 0 12px 32px rgba(255, 128, 64, 0.32);
+    transform: translateY(-1px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 8px 18px rgba(255, 128, 64, 0.22);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 128, 64, 0.3);
   }
 
   &:disabled {
     background-color: #707070;
     cursor: not-allowed;
     color: black;
+    box-shadow: none;
   }
 
   &::first-letter {

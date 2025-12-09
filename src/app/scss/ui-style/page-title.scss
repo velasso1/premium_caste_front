@@ -1,12 +1,14 @@
 .page-title {
   display: flex;
-  margin: 40px auto;
-  padding: 0px 0 2px 0;
+  justify-content: center;
+  margin: 36px auto 28px;
+  padding: 0 0 10px 0;
   border-bottom: 2px solid $mainColor;
-  font-size: 32px;
-  // width: max-content;
+  font-size: 30px;
   text-wrap: wrap;
   text-align: center;
+  letter-spacing: 0.3px;
+  font-weight: 600;
 
   &__text::first-letter {
     text-transform: uppercase;
@@ -15,12 +17,13 @@
 
 @media screen and (max-width: 1200px) {
   .page-title {
-    font-size: 25px;
+    font-size: 26px;
   }
 }
 
 @media screen and (max-width: 768px) {
   .page-title {
-    margin: 20px auto;
+    margin: 24px auto 18px;
+    font-size: 22px;
   }
 }
