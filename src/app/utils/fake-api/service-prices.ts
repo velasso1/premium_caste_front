@@ -1,6 +1,6 @@
 import { ITableData } from "#ui/price-table/price-table.tsx";
 import { serviceNames } from "#utils/auxuliary/services-items-list.ts";
-import { PriceBook } from "#utils/new-component/new-component.tsx";
+import { PriceBook } from "#utils/prices-types/price-table-types.ts";
 
 interface IPrices {
   readonly [key: string]: ITableData;

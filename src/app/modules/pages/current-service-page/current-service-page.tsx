@@ -29,8 +29,6 @@ const CurrentServicePage: FC = () => {
     }
   }, []);
 
-  console.log(service, PRICES, PRICES[`${service}`]);
-
   return (
     <PageLayout pageClassName="curent-service-page">
       <PageTitle pageName={service ? serviceNames[`${service}`].title : "Неизвестная ошибка"} />
