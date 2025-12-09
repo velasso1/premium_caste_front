@@ -26,7 +26,7 @@ const AttachImages: FC<IAttachImagesProps> = ({ images, userId, saveTarget = "id
 
   const handleObserver = useCallback(
     (entries: IntersectionObserverEntry[]) => {
-      // if (!images) return;
+      if (!images) return;
 
       const [entry] = entries;
 
@@ -37,13 +37,14 @@ const AttachImages: FC<IAttachImagesProps> = ({ images, userId, saveTarget = "id
           return;
         }
 
-        if (images?.meta.count && imagesLimit >= images.total) return;
+        // проверяем, загружены ли все изображения
+        if (imagesLimit >= images.total) return;
 
         dispatch(setImagesLimit(imagesLimit + 50));
         setHasIntersectedOnce(false); // сбрасываем, чтобы можно было подгрузить снова
       }
     },
-    [dispatch, hasIntersectedOnce]
+    [dispatch, hasIntersectedOnce, images, imagesLimit]
   );
 
   useEffect(() => {

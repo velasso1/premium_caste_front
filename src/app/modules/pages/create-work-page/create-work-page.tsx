@@ -8,6 +8,7 @@ import { useCreateNewGalleryMutation } from "../../../store/api/galleries-api";
 import { setEffect } from "../../../store/slices/effects";
 import { clearSelectedTags } from "../../../store/slices/galleries";
 import { clearAttachedImages } from "../../../store/slices/posts";
+import { setImagesLimit } from "../../../store/slices/user";
 
 import PostImages from "#pages/create-blog-post-page/components/post-images.tsx";
 
@@ -64,6 +65,13 @@ const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
       dispatch(setEffect({ status: "error", message: "Произошла ошибка, повторите позже" }));
     }
   }, [galleryStatus]);
+
+  // при размонтировании create-work-page вернем изначальное значение лимита
+  useEffect(() => {
+    return () => {
+      dispatch(setImagesLimit(50));
+    };
+  }, [dispatch]);
 
   const createGalleryHandler = (): SubmitHandler<ICreateGalleryPayload> => (data) => {
     createNewGallery({
