@@ -30,19 +30,21 @@ const AttachImages: FC<IAttachImagesProps> = ({ images, userId, saveTarget = "id
 
       const [entry] = entries;
 
-      if (entry.isIntersecting) {
-        // пропускаем первый вызов при монтировании
-        if (!hasIntersectedOnce) {
-          setHasIntersectedOnce(true);
-          return;
-        }
-
-        // проверяем, загружены ли все изображения
-        if (imagesLimit >= images.total) return;
-
-        dispatch(setImagesLimit(imagesLimit + 50));
-        setHasIntersectedOnce(false); // сбрасываем, чтобы можно было подгрузить снова
+      // сбрасываем флаг, когда элемент выходит из области видимости
+      if (!entry.isIntersecting) {
+        if (hasIntersectedOnce) setHasIntersectedOnce(false);
+        return;
       }
+
+      // проверяем, загружены ли все изображения (берём total если есть, иначе meta.count)
+      const totalAvailable = images.total ?? images?.meta.count ?? 0;
+      if (totalAvailable && imagesLimit >= totalAvailable) return;
+
+      // не даём стрелять повторно, пока не выйдем из области видимости или не загрузим новые данные
+      if (hasIntersectedOnce) return;
+
+      setHasIntersectedOnce(true);
+      dispatch(setImagesLimit(imagesLimit + 50));
     },
     [dispatch, hasIntersectedOnce, images, imagesLimit]
   );
@@ -67,10 +69,10 @@ const AttachImages: FC<IAttachImagesProps> = ({ images, userId, saveTarget = "id
     };
   }, [handleObserver, images]);
 
-  // useEffect(() => {
-  //   // сбрасываем флаг при подгрузке новых изображений
-  //   setHasIntersectedOnce(false);
-  // }, [images]);
+  useEffect(() => {
+    // сбрасываем флаг при подгрузке новых изображений
+    setHasIntersectedOnce(false);
+  }, [images]);
 
   // сбрасываем limitImages до 50
   useEffect(() => {
