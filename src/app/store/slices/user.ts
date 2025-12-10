@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { IUserSliceState, IUserData } from "#types/store-types/user-initial-state-types.ts";
 
-import { EXPIRES_SESSION_TIME, REFRESH_TOKEN, USER_ID } from "#utils/constants.ts";
+import { ACCESS_TOKEN, EXPIRES_SESSION_TIME, REFRESH_TOKEN, USER_ID } from "#utils/constants.ts";
 
 import { useLazyCheckUserStatusQuery } from "../api/user-api";
 
@@ -39,6 +39,7 @@ const userSlice = createSlice({
       localStorage.removeItem(EXPIRES_SESSION_TIME);
       localStorage.removeItem(USER_ID);
       localStorage.removeItem(REFRESH_TOKEN);
+      localStorage.removeItem(ACCESS_TOKEN);
       return initialState;
     },
 

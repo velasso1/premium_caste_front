@@ -26,7 +26,7 @@ import {
 
 import { setUserData, setExpiresSession } from "../slices/user";
 
-import { EXPIRES_SESSION_TIME, USER_ID, REFRESH_TOKEN } from "#utils/constants.ts";
+import { EXPIRES_SESSION_TIME, USER_ID, REFRESH_TOKEN, ACCESS_TOKEN } from "#utils/constants.ts";
 
 //  TESTING
 
@@ -34,7 +34,10 @@ const baseQuery = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_BASE_URL,
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
-    // headers.set("Content-Type", "application/json");
+    const accessToken = localStorage.getItem(ACCESS_TOKEN);
+    if (accessToken) {
+      headers.set("Authorization", `Bearer ${accessToken}`);
+    }
     return headers;
   },
 });
@@ -70,6 +73,7 @@ export const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, Fetch
       };
       // Сохраняем новые токены
       localStorage.setItem(REFRESH_TOKEN, responseData.refresh_token);
+      localStorage.setItem(ACCESS_TOKEN, responseData.access_token);
       // Повторяем оригинальный запрос с новым токеном
       result = await baseQuery(args, api, extraOptions);
     } else {
@@ -122,6 +126,7 @@ export const userApi = createApi({
           dispatch(setExpiresSession(data.data.session.expires_at));
           localStorage.setItem(USER_ID, data.data.user_id);
           localStorage.setItem(EXPIRES_SESSION_TIME, data.data.session.expires_at);
+          localStorage.setItem(ACCESS_TOKEN, data.data.access_token);
           localStorage.setItem(REFRESH_TOKEN, data.data.refresh_token);
         } catch (error) {
           console.error(error);
