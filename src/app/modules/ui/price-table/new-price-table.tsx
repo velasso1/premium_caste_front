@@ -129,6 +129,9 @@ const NewPriceTable: React.FC<PriceTableProps> = ({ sections }) => (
             "& .MuiTableCell-root": {
               color: "#fff",
               borderBottom: "1px solid #1f222b",
+              cursor: "pointer",
+            },
+            "& .MuiTableBody-root .MuiTableCell-root": {
               backgroundColor: "#0f1014",
             },
           }}
@@ -139,9 +142,13 @@ const NewPriceTable: React.FC<PriceTableProps> = ({ sections }) => (
                 colSpan={section.columns.length}
                 sx={{
                   fontWeight: 700,
-                  backgroundColor: "#16181f",
-                  color: "#fff",
-                  borderBottom: "1px solid #ff5000",
+                  backgroundColor: "#1a1d29",
+                  color: "#ffffff",
+                  borderBottom: "1px solid #2a2f3a",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.3px",
+                  boxShadow: "inset 0 1px 0 #1f222b, inset 0 -4px 0 #ff500022",
+                  py: 1.5,
                 }}
               >
                 {section.title}

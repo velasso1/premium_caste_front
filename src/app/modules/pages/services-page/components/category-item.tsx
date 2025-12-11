@@ -1,25 +1,20 @@
 import { FC } from "react";
-
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { routes } from "#utils/routes/main-routes/main-routes.ts";
 
 import { IServicesItem } from "#utils/auxuliary/services-items-list.ts";
 
 const CategoryItem: FC<IServicesItem> = ({ title, iconPath, serviceName }) => {
-  const navigate = useNavigate();
-
+  const linkTo = `../${routes.CURRENT_SERVICE_PAGE}/${serviceName}`;
   return (
-    <div
-      className="services-page__category-item"
-      onClick={() => navigate(`../${routes.CURRENT_SERVICE_PAGE}/` + serviceName)}
-    >
+    <Link className="services-page__category-item" to={linkTo}>
       <div className="services-page__image">
         <img className="services-page__icon" src={iconPath} alt="icon" />
       </div>
 
       <div className="services-page__title">{title}</div>
-    </div>
+    </Link>
   );
 };
 
