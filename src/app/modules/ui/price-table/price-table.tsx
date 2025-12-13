@@ -28,28 +28,47 @@ const PriceTable: FC<ITableProps> = ({ tableData }) => {
   return (
     <TableContainer
       component={Paper}
-      sx={{ backgroundColor: "#0f1014", borderRadius: 2 }}
+      sx={{
+        mb: 3,
+        overflowX: "auto",
+        backgroundColor: "#0f1014",
+        color: "#fff",
+        border: "1px solid #1f222b",
+        borderRadius: 2,
+      }}
     >
       <Table
+        size="small"
         sx={{
           minWidth: 650,
           backgroundColor: "#0f1014",
-          "& th, & td": { borderBottom: "1px solid #1f222b" },
+          color: "#fff",
+          "& .MuiTableCell-root": {
+            color: "#fff",
+            borderBottom: "1px solid #1f222b",
+            cursor: "pointer",
+          },
+          "& .MuiTableBody-root .MuiTableCell-root": {
+            backgroundColor: "#0f1014",
+          },
         }}
         aria-label="simple table"
       >
         <TableHead>
           {tableData.headTitle ? (
-            <TableRow className="price-table__row">
+            <TableRow>
               <TableCell
-                className="price-table__cell"
                 align="center"
                 colSpan={tableData.headCols.length}
                 sx={{
-                  color: "#fff",
-                  backgroundColor: "#16181f",
-                  borderBottomColor: "#ff5000",
                   fontWeight: 700,
+                  backgroundColor: "#1a1d29",
+                  color: "#ffffff",
+                  borderBottom: "1px solid #2a2f3a",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.3px",
+                  boxShadow: "inset 0 1px 0 #1f222b, inset 0 -4px 0 #ff500022",
+                  py: 1.5,
                 }}
               >
                 {tableData.headTitle}
@@ -64,10 +83,10 @@ const PriceTable: FC<ITableProps> = ({ tableData }) => {
                   key={item}
                   align="left"
                   sx={{
-                    fontWeight: 700,
-                    color: "#fff",
-                    borderBottomColor: "#ff5000",
+                    fontWeight: 600,
                     backgroundColor: "#16181f",
+                    color: "#fff",
+                    borderBottom: "1px solid #ff5000",
                   }}
                 >
                   {item}
@@ -80,11 +99,15 @@ const PriceTable: FC<ITableProps> = ({ tableData }) => {
           {tableData.data.map((item, index) => {
             return (
               <TableRow
-                className="price-table__row"
                 key={index}
+                hover
                 sx={{
+                  backgroundColor: "#0f1014",
                   "&:hover": { backgroundColor: "#15171f" },
-                  "& td": { color: "#fff", borderBottomColor: "#1f222b" },
+                  "& td": {
+                    color: "#fff",
+                    borderBottomColor: "#1f222b",
+                  },
                   "&:hover td": {
                     borderBottomColor: "#ff5000",
                     backgroundColor: "#15171f",
@@ -94,7 +117,6 @@ const PriceTable: FC<ITableProps> = ({ tableData }) => {
                 {item.map((row, rowIdx) => {
                   return (
                     <TableCell
-                      className="price-table__cell--xs"
                       key={rowIdx}
                       colSpan={row.colSpan}
                       rowSpan={row.rowSpan}
