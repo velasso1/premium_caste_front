@@ -59,7 +59,7 @@ export const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, Fetch
           "Content-Type": "application/json",
         },
         credentials: "include",
-        body: { refresh_token: localStorage.getItem(REFRESH_TOKEN) },
+        body: JSON.stringify({ refresh_token: localStorage.getItem(REFRESH_TOKEN) }),
       },
       api,
       extraOptions
