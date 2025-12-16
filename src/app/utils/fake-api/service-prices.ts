@@ -26,126 +26,126 @@ export const PRICES: IPrices = {
       "Экокожа",
       "Натуральная кожа текстурная",
       "Натуральная кожа гладкая (Nappa)",
-      "Ткань",
       "Алькантара",
+      "Доп. работы",
     ],
     data: [
       [
         { value: "Руль трёхспицевый" },
-        { value: "3 000" },
-        { value: "5 500" },
-        { value: "8 500" },
-        { value: "10 500" },
-        { value: " " },
-        { value: "13 500" },
+        { value: "3 000 ₽" },
+        { value: "5 500 ₽" },
+        { value: "8 500 ₽" },
+        { value: "10 500 ₽" },
+        { value: "13 500 ₽" },
+        { value: "" },
       ],
       [
         { value: "Руль четырёхспицевый" },
-        { value: "3 000" },
-        { value: "5 500" },
-        { value: "10 000" },
-        { value: "12 000" },
-        { value: " " },
-        { value: "15 000" },
+        { value: "3 000 ₽" },
+        { value: "5 500 ₽" },
+        { value: "10 000 ₽" },
+        { value: "12 000 ₽" },
+        { value: "15 000 ₽" },
+        { value: "" },
       ],
       [
         { value: "Руль с изменённой анатомией" },
-        { value: "3 000" },
-        { value: "10 500" },
-        { value: "15 000" },
-        { value: "18 000" },
-        { value: " " },
-        { value: "22 500" },
+        { value: "3 000 ₽" },
+        { value: "10 500 ₽" },
+        { value: "15 000 ₽" },
+        { value: "18 000 ₽" },
+        { value: "22 500 ₽" },
+        { value: "" },
       ],
       [
         { value: "Если есть обогрев" },
         { value: " " },
         { value: " " },
-        { value: "+2 000" },
+        { value: "" },
         { value: " " },
         { value: " " },
-        { value: " " },
+        { value: "+2 000 ₽" },
       ],
       [
         { value: "Добавить перфорацию" },
         { value: " " },
         { value: " " },
-        { value: "+2 000" },
+        { value: "" },
         { value: " " },
         { value: " " },
-        { value: " " },
+        { value: "+2 000 ₽" },
       ],
       [
         { value: "Замена подложки" },
         { value: " " },
         { value: " " },
-        { value: "+3 000" },
+        { value: "" },
         { value: " " },
         { value: " " },
-        { value: " " },
+        { value: "+3 000 ₽" },
       ],
       [
         { value: "Ремонт 'резиновой' основы руля, от" },
         { value: " " },
         { value: " " },
-        { value: "+2 000" },
+        { value: "" },
         { value: " " },
         { value: " " },
-        { value: " " },
+        { value: "+2 000 ₽" },
       ],
       [
         { value: "Утолщение, вкл. новое лекало" },
         { value: " " },
         { value: " " },
-        { value: "+7 000" },
+        { value: "" },
         { value: " " },
         { value: " " },
-        { value: " " },
+        { value: "+7 000 ₽" },
       ],
       [
         { value: "'Нулевая' отметка" },
         { value: " " },
         { value: " " },
-        { value: "+2 000" },
+        { value: "" },
         { value: " " },
         { value: " " },
-        { value: " " },
+        { value: "+2 000 ₽" },
       ],
       [
         { value: "Изменение анатомии руля" },
         { value: " " },
         { value: " " },
-        { value: "30 000" },
+        { value: "" },
         { value: " " },
         { value: " " },
-        { value: " " },
+        { value: "30 000 ₽" },
       ],
       [
         { value: "Изготовление 'косточек' для руля под ламинацию карбоном, аквапечать и т.д." },
         { value: " " },
         { value: " " },
-        { value: "22 000" },
+        { value: "" },
         { value: " " },
         { value: " " },
-        { value: " " },
+        { value: "22 000 ₽" },
       ],
       [
         { value: "Изменение анатомии автомобильного сиденья" },
         { value: " " },
         { value: " " },
-        { value: "45 000" },
+        { value: "" },
         { value: " " },
         { value: " " },
-        { value: " " },
+        { value: "45 000 ₽" },
       ],
       [
         { value: "Изменение анатомии мото сиденья" },
         { value: " " },
         { value: " " },
-        { value: "22 000" },
+        { value: "" },
         { value: " " },
         { value: " " },
-        { value: " " },
+        { value: "22 000 ₽" },
       ],
     ],
 
@@ -283,25 +283,97 @@ export const PRICES: IPrices = {
   detailing: {
     headCols: ["Услуга", "Класс 1", "Класс 2", "Класс 3", "Класс 4"],
     data: [
-      [{ value: "Чистка интерьера 'стандарт'" }, { value: "8 000" }, { value: "12 000" }, { value: "14 000" }, { value: "16 000" }],
-      [{ value: "Чистка интерьера 'детейлинг'" }, { value: "12 000" }, { value: "18 000" }, { value: "24 000" }, { value: "30 000" }],
-      [{ value: "Одношаговая полировка" }, { value: "9 000" }, { value: "12 000" }, { value: "15 000" }, { value: "18 000" }],
-      [{ value: "Двухшаговая полировка" }, { value: "14 000" }, { value: "18 000" }, { value: "23 000" }, { value: "29 000" }],
+      [
+        { value: "Чистка интерьера 'стандарт'" },
+        { value: "8 000 ₽" },
+        { value: "12 000 ₽" },
+        { value: "14 000 ₽" },
+        { value: "16 000 ₽" },
+      ],
+      [
+        { value: "Чистка интерьера 'детейлинг'" },
+        { value: "12 000 ₽" },
+        { value: "18 000 ₽" },
+        { value: "24 000 ₽" },
+        { value: "30 000 ₽" },
+      ],
+      [
+        { value: "Одношаговая полировка" },
+        { value: "9 000 ₽" },
+        { value: "12 000 ₽" },
+        { value: "15 000 ₽" },
+        { value: "18 000 ₽" },
+      ],
+      [
+        { value: "Двухшаговая полировка" },
+        { value: "14 000 ₽" },
+        { value: "18 000 ₽" },
+        { value: "23 000 ₽" },
+        { value: "29 000 ₽" },
+      ],
       [
         { value: "Нанесение 'жидкого стекла' (с полировкой)" },
-        { value: "24 000" },
-        { value: "30 000" },
-        { value: "36 000" },
-        { value: "42 000" },
+        { value: "24 000 ₽" },
+        { value: "30 000 ₽" },
+        { value: "36 000 ₽" },
+        { value: "42 000 ₽" },
       ],
-      [{ value: "Абразивная полировка" }, { value: "18 000" }, { value: "23 000" }, { value: "28 000" }, { value: "33 000" }],
-      [{ value: "Нанесение керамики (с полировкой)" }, { value: "30 000" }, { value: "38 000" }, { value: "46 000" }, { value: "54 000" }],
-      [{ value: "Нанесение керамики на плёнку" }, { value: "15 000" }, { value: "20 000" }, { value: "25 000" }, { value: "30 000" }],
-      [{ value: "Антидождь полный (все стёкла)" }, { value: "5 000" }, { value: "7 000" }, { value: "9 000" }, { value: "11 000" }],
-      [{ value: "Антидождь передняя полусфера" }, { value: "3 500" }, { value: "4 500" }, { value: "5 500" }, { value: "6 500" }],
-      [{ value: "Полировка одной детали" }, { value: "1 000" }, { value: "1 000" }, { value: "1 000" }, { value: "1 000" }],
-      [{ value: "Полировка фар, пара" }, { value: "3 000" }, { value: "3 000" }, { value: "3 000" }, { value: "3 000" }],
-      [{ value: "Шлифовка фар, пара" }, { value: "15 000" }, { value: "15 000" }, { value: "15 000" }, { value: "15 000" }],
+      [
+        { value: "Абразивная полировка" },
+        { value: "18 000 ₽" },
+        { value: "23 000 ₽" },
+        { value: "28 000 ₽" },
+        { value: "33 000 ₽" },
+      ],
+      [
+        { value: "Нанесение керамики (с полировкой)" },
+        { value: "30 000 ₽" },
+        { value: "38 000 ₽" },
+        { value: "46 000 ₽" },
+        { value: "54 000 ₽" },
+      ],
+      [
+        { value: "Нанесение керамики на плёнку" },
+        { value: "15 000 ₽" },
+        { value: "20 000 ₽" },
+        { value: "25 000 ₽" },
+        { value: "30 000 ₽" },
+      ],
+      [
+        { value: "Антидождь полный (все стёкла)" },
+        { value: "5 000 ₽" },
+        { value: "7 000 ₽" },
+        { value: "9 000 ₽" },
+        { value: "11 000 ₽" },
+      ],
+      [
+        { value: "Антидождь передняя полусфера" },
+        { value: "3 500 ₽" },
+        { value: "4 500 ₽" },
+        { value: "5 500 ₽" },
+        { value: "6 500 ₽" },
+      ],
+      [
+        { value: "Полировка одной детали" },
+        { value: "1 000 ₽" },
+        { value: "1 000 ₽" },
+        { value: "1 000 ₽" },
+        { value: "1 000 ₽" },
+      ],
+      [
+        { value: "Полировка фар, пара" },
+        { value: "3 000 ₽" },
+        { value: "3 000 ₽" },
+        { value: "3 000 ₽" },
+        { value: "3 000 ₽" },
+      ],
+      [
+        { value: "Шлифовка фар, пара" },
+        { value: "15 000 ₽" },
+        { value: "15 000 ₽" },
+        { value: "15 000 ₽" },
+        { value: "15 000 ₽" },
+      ],
     ],
   },
 
@@ -384,32 +456,32 @@ export const PRICES: IPrices = {
   disks: {
     headCols: ["Опция", "Стоимость за комплект, 4 диска"],
     data: [
-      [{ value: "Кованые диски VISSOL, ширина 8-13\", диаметр 18\"" }, { value: "244 000" }],
-      [{ value: "Кованые диски VISSOL, ширина 8-11\", диаметр 19\"" }, { value: "274 000" }],
-      [{ value: "Кованые диски VISSOL, ширина 8-12.5\", диаметр 20\"" }, { value: "284 000" }],
-      [{ value: "Кованые диски VISSOL, ширина 8.5-13\", диаметр 21\"" }, { value: "314 000" }],
-      [{ value: "Кованые диски VISSOL, ширина 8.5-12.5\", диаметр 22\"" }, { value: "340 000" }],
-      [{ value: "Кованые диски VISSOL, ширина 9.5-12.5\", диаметр 23\"" }, { value: "488 000" }],
-      [{ value: "Кованые диски VISSOL, ширина 9.5-12\", диаметр 24\"" }, { value: "518 000" }],
-      [{ value: "Дизайн с широкой полкой" }, { value: "+20 000" }],
-      [{ value: "Алмазная проточка" }, { value: "+16 000" }],
-      [{ value: "Металлическая плашка-табличка" }, { value: "+15 000" }],
-      [{ value: "Крышки PremiumCaste / VISSOL" }, { value: "0" }],
-      [{ value: "Колпачок однотонный" }, { value: "+8 000" }],
-      [{ value: "Колпачок цветной" }, { value: "+20 000" }],
-      [{ value: "Колпачок пластиковый" }, { value: "+20 000" }],
-      [{ value: "Спиннер с лого авто" }, { value: "+20 000" }],
-      [{ value: "Спиннер однотонный + лого" }, { value: "+50 000" }],
-      [{ value: "Спиннер цветной" }, { value: "+60 000" }],
-      [{ value: "Гравировка PremiumCaste / VISSOL в цвет диска" }, { value: "0" }],
-      [{ value: "Гравировка PremiumCaste / VISSOL в свой цвет" }, { value: "+8 000" }],
-      [{ value: "Гравировка своя в цвет диска" }, { value: "+12 000" }],
-      [{ value: "Гравировка своя в особый цвет" }, { value: "+20 000" }],
-      [{ value: "Декоративные болты" }, { value: "+20 000" }],
-      [{ value: "Ручная зеркальная полировка" }, { value: "+50 000" }],
-      [{ value: "Сквозные отверстия в спицах" }, { value: "+40 000" }],
-      [{ value: "Milling (проточка на скошенных гранях)" }, { value: "+50 000" }],
-      [{ value: "Насечки на ободе. Sport." }, { value: "+20 000" }],
+      [{ value: 'Кованые диски VISSOL, ширина 8-13", диаметр 18"' }, { value: "244 000 ₽" }],
+      [{ value: 'Кованые диски VISSOL, ширина 8-11", диаметр 19"' }, { value: "274 000 ₽" }],
+      [{ value: 'Кованые диски VISSOL, ширина 8-12.5", диаметр 20"' }, { value: "284 000 ₽" }],
+      [{ value: 'Кованые диски VISSOL, ширина 8.5-13", диаметр 21"' }, { value: "314 000 ₽" }],
+      [{ value: 'Кованые диски VISSOL, ширина 8.5-12.5", диаметр 22"' }, { value: "340 000 ₽" }],
+      [{ value: 'Кованые диски VISSOL, ширина 9.5-12.5", диаметр 23"' }, { value: "488 000 ₽" }],
+      [{ value: 'Кованые диски VISSOL, ширина 9.5-12", диаметр 24"' }, { value: "518 000 ₽" }],
+      [{ value: "Дизайн с широкой полкой" }, { value: "+20 000 ₽" }],
+      [{ value: "Алмазная проточка" }, { value: "+16 000 ₽" }],
+      [{ value: "Металлическая плашка-табличка" }, { value: "+15 000 ₽" }],
+      [{ value: "Крышки PremiumCaste / VISSOL" }, { value: "0 ₽" }],
+      [{ value: "Колпачок однотонный" }, { value: "+8 000 ₽" }],
+      [{ value: "Колпачок цветной" }, { value: "+20 000 ₽" }],
+      [{ value: "Колпачок пластиковый" }, { value: "+20 000 ₽" }],
+      [{ value: "Спиннер с лого авто" }, { value: "+20 000 ₽" }],
+      [{ value: "Спиннер однотонный + лого" }, { value: "+50 000 ₽" }],
+      [{ value: "Спиннер цветной" }, { value: "+60 000 ₽" }],
+      [{ value: "Гравировка PremiumCaste / VISSOL в цвет диска" }, { value: "0 ₽" }],
+      [{ value: "Гравировка PremiumCaste / VISSOL в свой цвет" }, { value: "+8 000 ₽" }],
+      [{ value: "Гравировка своя в цвет диска" }, { value: "+12 000 ₽" }],
+      [{ value: "Гравировка своя в особый цвет" }, { value: "+20 000 ₽" }],
+      [{ value: "Декоративные болты" }, { value: "+20 000 ₽" }],
+      [{ value: "Ручная зеркальная полировка" }, { value: "+50 000 ₽" }],
+      [{ value: "Сквозные отверстия в спицах" }, { value: "+40 000 ₽" }],
+      [{ value: "Milling (проточка на скошенных гранях)" }, { value: "+50 000 ₽" }],
+      [{ value: "Насечки на ободе. Sport." }, { value: "+20 000 ₽" }],
     ],
   },
 
@@ -453,11 +525,11 @@ export const NEW_PRICES: INewPrices = {
 
 export const samplePriceBook: PriceBook = [
   {
-    id: "ppf-front",
+    id: "ppf-Фронт",
     title:
-      'Защитные плёнки (прозрачный полиуретан), зона риска, "под ключ" — оклейка, разбор/сбор, плёнка, прочие материалы',
+      'ЗАЩИТНЫЕ ПЛЁНКИ (прозрачный полиуретан), зона риска, "под ключ" — оклейка, разбор/сбор, плёнка, прочие материалы',
     subtitle:
-      "Фронт — бампер, капот, крылья, фары (и ПТФ, если есть); Фронт+ добавляет стойки лобового, полосы на крышу, хром, зоны под ручками, погружную защиту бампера/бакабара",
+      "ФРОНТ — бампер, капот, крылья, фары (и ПТФ, если есть); ФРОНТ+ добавляет стойки лобового, полосы на крышу, хром, зоны под ручками, погружную защиту бампера/багажника",
     columns: [
       { id: "opt", label: "Опция" },
       { id: "c1", label: "Класс 1" },
@@ -467,9 +539,9 @@ export const samplePriceBook: PriceBook = [
     ],
     rows: [
       {
-        id: "front-union",
+        id: "Фронт-union",
         cells: [
-          { kind: "text", label: "Front, Union PPF 190" },
+          { kind: "text", label: "Фронт, Union PPF 190" },
           { kind: "price", value: 64000 },
           { kind: "price", value: 71000 },
           { kind: "price", value: 82000 },
@@ -477,9 +549,9 @@ export const samplePriceBook: PriceBook = [
         ],
       },
       {
-        id: "front-plus-union",
+        id: "Фронт-plus-union",
         cells: [
-          { kind: "text", label: "Front+, Union PPF 190" },
+          { kind: "text", label: "Фронт+, Union PPF 190" },
           { kind: "price", value: 91000 },
           { kind: "price", value: 98000 },
           { kind: "price", value: 109000 },
@@ -487,9 +559,9 @@ export const samplePriceBook: PriceBook = [
         ],
       },
       {
-        id: "front-hexis",
+        id: "Фронт-hexis",
         cells: [
-          { kind: "text", label: "Front, Hexis Bodyfence X" },
+          { kind: "text", label: "Фронт, Hexis Bodyfence X" },
           { kind: "price", value: 88000 },
           { kind: "price", value: 95000 },
           { kind: "price", value: 110000 },
@@ -497,9 +569,9 @@ export const samplePriceBook: PriceBook = [
         ],
       },
       {
-        id: "front-plus-hexis",
+        id: "Фронт-plus-hexis",
         cells: [
-          { kind: "text", label: "Front+, Hexis Bodyfence X" },
+          { kind: "text", label: "Фронт+, Hexis Bodyfence X" },
           { kind: "price", value: 119000 },
           { kind: "price", value: 126000 },
           { kind: "price", value: 141000 },
@@ -511,7 +583,7 @@ export const samplePriceBook: PriceBook = [
   {
     id: "ppf-body-full",
     title:
-      'Защитные плёнки (прозрачный полиуретан), кузов, "под ключ" — оклейка, разбор/сбор, плёнка, прочие материалы',
+      'ЗАЩИТНЫЕ ПЛЁНКИ (прозрачный полиуретан), кузов, "под ключ" — оклейка, разбор/сбор, плёнка, прочие материалы',
     columns: [
       { id: "opt", label: "Опция" },
       { id: "c1", label: "Класс 1" },
@@ -544,7 +616,7 @@ export const samplePriceBook: PriceBook = [
         id: "body-uppf215",
         cells: [
           { kind: "text", label: "UPPF 215 / MATTE" },
-          { kind: "price", value: 278000 },
+          { kind: "price", value: 210000 },
           { kind: "price", value: 250000 },
           { kind: "price", value: 295000 },
           { kind: "price", value: 350000 },
@@ -553,7 +625,7 @@ export const samplePriceBook: PriceBook = [
       {
         id: "body-hbxs-m",
         cells: [
-          { kind: "text", label: "HBX/M" },
+          { kind: "text", label: "HBXS/M" },
           { kind: "price", value: 290000 },
           { kind: "price", value: 340000 },
           { kind: "price", value: 395000 },
@@ -564,7 +636,7 @@ export const samplePriceBook: PriceBook = [
   },
   {
     id: "ppf-parts",
-    title: 'Защитные плёнки, отдельные элементы, "под ключ" — оклейка, плёнка',
+    title: 'ЗАЩИТНЫЕ ПЛЁНКИ, отдельные элементы, "под ключ" — оклейка, плёнка',
     columns: [
       { id: "opt", label: "Элемент" },
       { id: "union", label: "Union PPF" },
@@ -578,7 +650,7 @@ export const samplePriceBook: PriceBook = [
           { kind: "text", label: "ПТФ/небольшая фара, фонарь и т.д., ПАРА" },
           { kind: "price", value: 2000 },
           { kind: "price", value: 2000 },
-          { kind: "price", value: 2000 },
+          { kind: "price", value: 3000 },
         ],
       },
       {
@@ -596,16 +668,16 @@ export const samplePriceBook: PriceBook = [
           { kind: "text", label: "Полоса на крышу" },
           { kind: "price", value: 6000 },
           { kind: "price", value: 8000 },
-          { kind: "price", value: 8000 },
+          // { kind: "price", value: 8000 },
         ],
       },
       {
         id: "a-pillar",
         cells: [
-          { kind: "text", label: "Стойка лобового стекла" },
+          { kind: "text", label: "Стойки лобового стекла" },
           { kind: "price", value: 6000 },
           { kind: "price", value: 8000 },
-          { kind: "price", value: 8000 },
+          // { kind: "price", value: 8000 },
         ],
       },
       {
@@ -614,16 +686,16 @@ export const samplePriceBook: PriceBook = [
           { kind: "text", label: "Зона под ручками, ПАРА" },
           { kind: "price", value: 2000 },
           { kind: "price", value: 2000 },
-          { kind: "price", value: 2000 },
+          // { kind: "price", value: 2000 },
         ],
       },
       {
         id: "trunk-sill",
         cells: [
-          { kind: "text", label: "Порог/наружная зона багажника" },
-          { kind: "price", value: 3000 },
-          { kind: "price", value: 3000 },
-          { kind: "price", value: "" },
+          { kind: "text", label: "Погрузочная зона багажника" },
+          { kind: "price", value: 5000 },
+          { kind: "price", value: 6000 },
+          // { kind: "price", value: "" },
         ],
       },
       {
@@ -631,8 +703,8 @@ export const samplePriceBook: PriceBook = [
         cells: [
           { kind: "text", label: "Внутренний порог/зона входа, ПАРА" },
           { kind: "price", value: 5000 },
-          { kind: "price", value: 5000 },
-          { kind: "price", value: "" },
+          { kind: "price", value: 6000 },
+          // { kind: "price", value: "" },
         ],
       },
       {
@@ -643,7 +715,7 @@ export const samplePriceBook: PriceBook = [
             label: "Порог, накладка или внутренний длинный порог, ПАРА",
           },
           { kind: "price", value: 12000 },
-          { kind: "price", value: 12000 },
+          // { kind: "price", value: 12000 },
           { kind: "price", value: 16000 },
         ],
       },
@@ -696,7 +768,7 @@ export const samplePriceBook: PriceBook = [
   },
   {
     id: "colored-vinyl",
-    title: "Цветные виниловые плёнки, кузов, “под ключ” — оклейка, разбор/сбор, плёнка, прочие материалы",
+    title: "ЦВЕТНЫЕ ВИНИЛОВЫЕ ПЛЁНКИ, кузов, “под ключ” — оклейка, разбор/сбор, плёнка, прочие материалы",
     columns: [
       { id: "opt", label: "Опция" },
       { id: "c1", label: "Класс 1" },
@@ -739,7 +811,7 @@ export const samplePriceBook: PriceBook = [
   },
   {
     id: "colored-poly",
-    title: "Цветные полиуретановые плёнки, кузов, “под ключ”",
+    title: "ЦВЕТНЫЕ ПОЛИУРЕТАНОВЫЕ ПЛЁНКИ, кузов, “под ключ”",
     columns: [
       { id: "opt", label: "Опция" },
       { id: "c1", label: "Класс 1" },
@@ -795,10 +867,10 @@ export const samplePriceBook: PriceBook = [
         id: "design-std-clear-ink",
         cells: [
           { kind: "text", label: "стандарт / прозр / белила" },
-          { kind: "price", value: 331000 },
+          { kind: "price", value: 334000 },
           { kind: "price", value: 380000 },
           { kind: "price", value: 442000 },
-          { kind: "price", value: 514000 },
+          { kind: "price", value: 494000 },
         ],
       },
       {
@@ -815,9 +887,9 @@ export const samplePriceBook: PriceBook = [
         id: "design-prem-white",
         cells: [
           { kind: "text", label: "премиум / белая" },
-          { kind: "price", value: 355000 },
-          { kind: "price", value: 412000 },
-          { kind: "price", value: 480500 },
+          { kind: "price", value: 352000 },
+          { kind: "price", value: 400000 },
+          { kind: "price", value: 466500 },
           { kind: "price", value: 539000 },
         ],
       },
@@ -825,7 +897,7 @@ export const samplePriceBook: PriceBook = [
         id: "design-prem-clear-ink",
         cells: [
           { kind: "text", label: "премиум / прозр / белила" },
-          { kind: "price", value: 368000 },
+          { kind: "price", value: 388000 },
           { kind: "price", value: 440000 },
           { kind: "price", value: 514500 },
           { kind: "price", value: 578000 },
@@ -845,7 +917,7 @@ export const samplePriceBook: PriceBook = [
   },
   {
     id: "soundproof",
-    title: 'Шумоизоляция "под ключ" — разбор/сбор, установка, материалы',
+    title: 'ШУМОИЗОЛЯЦИЯ "под ключ" — разбор/сбор, установка, материалы',
     columns: [
       { id: "opt", label: "Опция" },
       { id: "c1-std", label: "Класс 1 — стандарт" },
@@ -867,8 +939,8 @@ export const samplePriceBook: PriceBook = [
           { kind: "price", value: 31500 },
           { kind: "price", value: 36500 },
           { kind: "price", value: 36500 },
-          { kind: "price", value: 42500 },
           { kind: "price", value: 42000 },
+          { kind: "price", value: 42500 },
           { kind: "price", value: 49500 },
         ],
       },
@@ -906,7 +978,7 @@ export const samplePriceBook: PriceBook = [
     id: "audio",
     title: "Установка / замена / доработка аудиосистем и мультимедиа",
     columns: [
-      { id: "opt", label: "Работа" },
+      { id: "opt", label: "Работа, от" },
       { id: "price", label: "Цена" },
     ],
     rows: [
@@ -963,7 +1035,7 @@ export const samplePriceBook: PriceBook = [
         id: "proc-more",
         cells: [
           { kind: "text", label: "уст/подкл процессорного усилителя, более 8 каналов" },
-          { kind: "price", value: 45000 },
+          { kind: "price", value: 55000 },
         ],
       },
       {
@@ -984,7 +1056,7 @@ export const samplePriceBook: PriceBook = [
         id: "stealth-box",
         cells: [
           { kind: "text", label: 'изготовление корпуса для сабвуфера "стелс"' },
-          { kind: "price", value: 18000 },
+          { kind: "price", value: 60000 },
         ],
       },
       {
@@ -1043,21 +1115,21 @@ export const samplePriceBook: PriceBook = [
         id: "dashcam-1-mirror",
         cells: [
           { kind: "text", label: "установка регистратора, 1 камера, подключение в зеркало" },
-          { kind: "price", value: 10000 },
+          { kind: "price", value: 6000 },
         ],
       },
       {
         id: "dashcam-2-mirror",
         cells: [
           { kind: "text", label: "установка регистратора, 2 камеры, подключение в зеркало" },
-          { kind: "price", value: 15000 },
+          { kind: "price", value: 10000 },
         ],
       },
       {
         id: "door-closer-2",
         cells: [
           { kind: "text", label: "установка доводчиков, 2 двери" },
-          { kind: "price", value: 16000 },
+          { kind: "price", value: 15000 },
         ],
       },
       {
@@ -1077,21 +1149,21 @@ export const samplePriceBook: PriceBook = [
       {
         id: "cam-360",
         cells: [
-          { kind: "text", label: "установка камеры 360/вида" },
-          { kind: "price", value: 35000 },
+          { kind: "text", label: "установка камеры з/вида" },
+          { kind: "price", value: 8000 },
         ],
       },
       {
         id: "surround-oem",
         cells: [
-          { kind: "text", label: "установка кругового обзора под ГУ штат" },
-          { kind: "price", value: 42000 },
+          { kind: "text", label: "установка кругового обзора под ГУ нештат" },
+          { kind: "price", value: 32000 },
         ],
       },
       {
         id: "surround-non-oem",
         cells: [
-          { kind: "text", label: "установка кругового обзора под ГУ нестандарт" },
+          { kind: "text", label: "установка кругового обзора под ГУ штат" },
           { kind: "price", value: 48000 },
         ],
       },
@@ -1113,7 +1185,7 @@ export const samplePriceBook: PriceBook = [
   },
   {
     id: "optics",
-    title: "Оптика",
+    title: "ОПТИКА",
     columns: [
       { id: "opt", label: "Работа" },
       { id: "price", label: "Цена" },
@@ -1144,7 +1216,7 @@ export const samplePriceBook: PriceBook = [
         id: "lens-reflector",
         cells: [
           { kind: "text", label: "уст/подкл линз в рефлектор без доработок" },
-          { kind: "price", value: 12000 },
+          { kind: "price", value: 10000 },
         ],
       },
       {
@@ -1174,15 +1246,15 @@ export const samplePriceBook: PriceBook = [
       {
         id: "extra-elements",
         cells: [
-          { kind: "text", label: "уст/подкл доп элементов в фаре (плазки и т.д.), за пару" },
-          { kind: "price", value: 10000 },
+          { kind: "text", label: "уст/подкл доп элементов в фаре (глазки и т.д.), за пару" },
+          { kind: "price", value: 6000 },
         ],
       },
       {
         id: "mask-paint",
         cells: [
           { kind: "text", label: "покраска масок фар, от" },
-          { kind: "price", value: 8000 },
+          { kind: "price", value: 6000 },
         ],
       },
       {
@@ -1196,41 +1268,34 @@ export const samplePriceBook: PriceBook = [
         id: "polish-in",
         cells: [
           { kind: "text", label: "полировка фары, пара, изнутри" },
-          { kind: "price", value: 9000 },
+          { kind: "price", value: 6000 },
         ],
       },
       {
         id: "sand-out",
         cells: [
-          { kind: "text", label: "шлифовка стёкол фар, пара, наружу" },
+          { kind: "text", label: "шлифовка стёкол фар, пара, снаружи" },
           { kind: "price", value: 15000 },
-        ],
-      },
-      {
-        id: "sand-in",
-        cells: [
-          { kind: "text", label: "шлифовка стёкол фар, пара, изнутри" },
-          { kind: "price", value: 20000 },
         ],
       },
       {
         id: "ppf-clear",
         cells: [
-          { kind: "text", label: "оклейка фары, прозрачный полиуретан" },
-          { kind: "price", value: 8000 },
+          { kind: "text", label: "оклейка фар, прозрачный полиуретан" },
+          { kind: "price", value: 6000 },
         ],
       },
       {
         id: "ppf-smoke",
         cells: [
-          { kind: "text", label: "оклейка фары, тонированный полиуретан" },
+          { kind: "text", label: "оклейка фары, тонирующий полиуретан" },
           { kind: "price", value: 9000 },
         ],
       },
       {
         id: "extra-light",
         cells: [
-          { kind: "text", label: "установка прочих дополнительных источников света (бары, стробоскопы и т.д.), от" },
+          { kind: "text", label: "установка прочих дополнительных источников света (балки, стробоскопы и т.д.), от" },
           { kind: "price", value: 12000 },
         ],
       },
@@ -1238,7 +1303,7 @@ export const samplePriceBook: PriceBook = [
   },
   {
     id: "belts-basic",
-    title: "Ремни — базовая замена (седаны, кроссоверы, 5-дверные хэтчбеки и т.д.)",
+    title: "РЕМНИ — базовая замена (седаны, кроссоверы, 5-дверные хэтчбеки и т.д.)",
     columns: [
       { id: "opt", label: "Опция" },
       { id: "b2", label: "2 ремня" },
@@ -1251,7 +1316,7 @@ export const samplePriceBook: PriceBook = [
         cells: [
           { kind: "text", label: "Палитра 1" },
           { kind: "price", value: 12800 },
-          { kind: "price", value: 28800 },
+          { kind: "price", value: 28600 },
           { kind: "price", value: 32000 },
         ],
       },
@@ -1278,7 +1343,7 @@ export const samplePriceBook: PriceBook = [
         cells: [
           { kind: "text", label: "Палитра 4" },
           { kind: "price", value: 16500 },
-          { kind: "price", value: 35000 },
+          { kind: "price", value: 36000 },
           { kind: "price", value: 41000 },
         ],
       },
@@ -1288,7 +1353,7 @@ export const samplePriceBook: PriceBook = [
           { kind: "text", label: "Палитра 5" },
           { kind: "price", value: 17500 },
           { kind: "price", value: 38000 },
-          { kind: "price", value: 43800 },
+          { kind: "price", value: 43500 },
         ],
       },
       {
@@ -1296,7 +1361,7 @@ export const samplePriceBook: PriceBook = [
         cells: [
           { kind: "text", label: "лента с индивидуальным дизайном" },
           { kind: "price", value: 22300 },
-          { kind: "price", value: 47800 },
+          { kind: "price", value: 47600 },
           { kind: "price", value: 54800 },
         ],
       },
@@ -1317,7 +1382,7 @@ export const samplePriceBook: PriceBook = [
         cells: [
           { kind: "text", label: "Палитра 1" },
           { kind: "price", value: 15800 },
-          { kind: "price", value: 38100 },
+          { kind: "price", value: 36100 },
           { kind: "price", value: 39500 },
         ],
       },
@@ -1370,7 +1435,7 @@ export const samplePriceBook: PriceBook = [
   },
   {
     id: "mats",
-    title: "Ковры",
+    title: "КОВРЫ",
     columns: [
       { id: "opt", label: "Опция" },
       { id: "c3", label: "Класс 3" },
