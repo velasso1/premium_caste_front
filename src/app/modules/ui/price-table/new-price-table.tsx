@@ -140,13 +140,13 @@ const NewPriceTable: React.FC<PriceTableProps> = ({ sections }) => (
             <TableRow>
               <TableCell
                 colSpan={section.columns.length}
-                align="center"
+                // align="center"
                 sx={{
                   fontWeight: 700,
                   backgroundColor: "#1a1d29",
                   color: "#ffffff",
                   borderBottom: "1px solid #2a2f3a",
-                  textTransform: "uppercase",
+                  // textTransform: "uppercase",
                   letterSpacing: "0.3px",
                   boxShadow: "inset 0 1px 0 #1f222b, inset 0 -4px 0 #ff500022",
                   py: 1.5,
