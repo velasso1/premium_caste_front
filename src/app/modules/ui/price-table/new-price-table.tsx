@@ -140,6 +140,7 @@ const NewPriceTable: React.FC<PriceTableProps> = ({ sections }) => (
             <TableRow>
               <TableCell
                 colSpan={section.columns.length}
+                align="center"
                 sx={{
                   fontWeight: 700,
                   backgroundColor: "#1a1d29",
@@ -159,6 +160,7 @@ const NewPriceTable: React.FC<PriceTableProps> = ({ sections }) => (
               {section.columns.map((col) => (
                 <TableCell
                   key={col.id}
+                  align="left"
                   sx={{
                     fontWeight: 600,
                     width: col.width,
