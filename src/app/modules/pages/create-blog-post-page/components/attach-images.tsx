@@ -133,32 +133,54 @@ const AttachImages: FC<IAttachImagesProps> = ({ images, userId, saveTarget = "id
   const { attachedImages } = useAppSelector((state) => state.postsSlice);
   const { imagesLimit } = useAppSelector((state) => state.userSlice);
 
+  // const handleObserver = useCallback(
+  //   (entries: IntersectionObserverEntry[]) => {
+  //     const target = entries[0];
+
+  //     // Если элемент не в зоне видимости - выходим
+  //     if (!target.isIntersecting) return;
+  //     if (!images) return;
+
+  //     const totalAvailable = images.total ?? images?.meta.count ?? 0;
+
+  //     // Если загружать больше нечего - выходим
+  //     if (imagesLimit >= totalAvailable) return;
+
+  //     // Здесь можно добавить проверку isLoading, если она есть в стейте,
+  //     // чтобы не отправлять запросы, пока идет предыдущий.
+  //     // Но базовая логика работает и так:
+      
+  //     // Если длина текущего массива меньше лимита, значит мы еще грузим данные
+  //     // (это простая защита от дублирования запросов)
+  //     // if (images.data.length < imagesLimit) return;
+
+  //     if (images.data.length < imagesLimit || images.data.length >= totalAvailable) {
+  //       return;
+  //     }
+
+  //     dispatch(setImagesLimit(imagesLimit + 50));
+  //   },
+  //   [dispatch, images, imagesLimit]
+  // );
+
   const handleObserver = useCallback(
     (entries: IntersectionObserverEntry[]) => {
       const target = entries[0];
-
-      // Если элемент не в зоне видимости - выходим
+  
       if (!target.isIntersecting) return;
       if (!images) return;
-
+  
       const totalAvailable = images.total ?? images?.meta.count ?? 0;
-
+  
       // Если загружать больше нечего - выходим
-      if (imagesLimit >= totalAvailable) return;
-
-      // Здесь можно добавить проверку isLoading, если она есть в стейте,
-      // чтобы не отправлять запросы, пока идет предыдущий.
-      // Но базовая логика работает и так:
-      
-      // Если длина текущего массива меньше лимита, значит мы еще грузим данные
-      // (это простая защита от дублирования запросов)
-      // if (images.data.length < imagesLimit) return;
-
-      if (images.data.length < imagesLimit || images.data.length >= totalAvailable) {
-        return;
+      if (totalAvailable && imagesLimit >= totalAvailable) return;
+  
+      // Если текущее количество загруженных изображений РАВНО лимиту
+      // (значит, мы уже загрузили все, что могли, и можно грузить еще)
+      // Это позволит начальную загрузку (0 === 0) и последующие (50 === 50)
+      if (images.data.length === imagesLimit) {
+        dispatch(setImagesLimit(imagesLimit + 50));
       }
-
-      dispatch(setImagesLimit(imagesLimit + 50));
     },
     [dispatch, images, imagesLimit]
   );
