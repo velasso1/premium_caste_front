@@ -132,7 +132,7 @@ const PreviewContainer: FC<IPreviewContainerProps> = ({ creatingStep, images, po
         setHasIntersectedOnce(false); // сбрасываем, чтобы можно было подгрузить снова
       }
     },
-    [dispatch, imagesLimit, hasIntersectedOnce]
+    [dispatch, imagesLimit, images]
   );
 
   useEffect(() => {
