@@ -152,7 +152,11 @@ const AttachImages: FC<IAttachImagesProps> = ({ images, userId, saveTarget = "id
       
       // Если длина текущего массива меньше лимита, значит мы еще грузим данные
       // (это простая защита от дублирования запросов)
-      if (images.data.length < imagesLimit) return;
+      // if (images.data.length < imagesLimit) return;
+
+      if (images.data.length < imagesLimit || images.data.length >= totalAvailable) {
+        return;
+      }
 
       dispatch(setImagesLimit(imagesLimit + 50));
     },
