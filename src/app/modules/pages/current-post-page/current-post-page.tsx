@@ -47,6 +47,7 @@ const CurrentPostPage: FC = () => {
   const [popupIsOpen, popupHandler] = useState<boolean>(false);
 
   useEffect(() => {
+    console.log(currentPost.data?.media_groups?.content);
     const savedImages: string[] = currentPost.data?.media_groups?.content.map((item) => item.storage_path) || [];
 
     if (savedImages.length !== 0) {
