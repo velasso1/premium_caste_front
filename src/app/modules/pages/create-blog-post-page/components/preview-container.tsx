@@ -109,6 +109,11 @@ const PreviewContainer: FC<IPreviewContainerProps> = ({ creatingStep, images, po
     (entries: IntersectionObserverEntry[]) => {
       const [entry] = entries;
 
+
+      if (!images) return;
+
+      const totalAvailable = images.total ?? images?.meta.count ?? 0;
+
       if (entry.isIntersecting) {
         // пропускаем первый вызов при монтировании
         if (!hasIntersectedOnce) {
@@ -116,8 +121,12 @@ const PreviewContainer: FC<IPreviewContainerProps> = ({ creatingStep, images, po
           return;
         }
 
+        if (imagesLimit >= totalAvailable) return;
+
         // если уже был один вызов — увеличиваем лимит
-        if (images?.meta.count && images?.meta.count < imagesLimit) return;
+        if (images.data.length < imagesLimit || images.data.length >= totalAvailable) {
+          return;
+        }
 
         dispatch(setImagesLimit(imagesLimit + 50));
         setHasIntersectedOnce(false); // сбрасываем, чтобы можно было подгрузить снова
