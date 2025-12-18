@@ -137,7 +137,7 @@ const NewPriceTable: React.FC<PriceTableProps> = ({ sections }) => (
           }}
         >
           <TableHead>
-            <TableRow>
+            {/* <TableRow>
               <TableCell
                 colSpan={section.columns.length}
                 // align="center"
@@ -155,7 +155,52 @@ const NewPriceTable: React.FC<PriceTableProps> = ({ sections }) => (
                 {section.title}
                 {section.subtitle ? ` — ${section.subtitle}` : ""}
               </TableCell>
-            </TableRow>
+            </TableRow> */}
+
+            <>
+  {/* Основная строка с заголовком */}
+  <TableRow>
+    <TableCell
+      colSpan={section.columns.length}
+      sx={{
+        fontWeight: 700,
+        backgroundColor: "#1a1d29",
+        color: "#ffffff",
+        borderBottom: "1px solid #2a2f3a",
+        letterSpacing: "0.3px",
+        boxShadow: "inset 0 1px 0 #1f222b, inset 0 -4px 0 #ff500022",
+        py: 1.5,
+      }}
+    >
+      {section.title}
+    </TableCell>
+  </TableRow>
+  
+  {/* Строки для subtitle, разделенного по ; */}
+  {section.subtitle && section.subtitle.split(';').map((part, index) => (
+    <TableRow key={`subtitle-${index}`}>
+      <TableCell
+        colSpan={section.columns.length}
+        sx={{
+          backgroundColor: "#1a1d29",
+          color: "#ffffff",
+          borderBottom: "1px solid #2a2f3a",
+          fontSize: "0.9em",
+          opacity: 0.9,
+          py: 1,
+          // fontStyle: "italic",
+          // Для второй и последующих строк убираем верхнюю тень
+          boxShadow: index === 0 
+            ? "inset 0 1px 0 #1f222b" 
+            : "none",
+        }}
+      >
+        {part.trim()}
+        {section.subtitle && index < section.subtitle.split(';').length - 1 ? ';' : ''}
+      </TableCell>
+    </TableRow>
+  ))}
+</>
             <TableRow>
               {section.columns.map((col) => (
                 <TableCell

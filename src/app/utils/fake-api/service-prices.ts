@@ -525,7 +525,7 @@ export const NEW_PRICES: INewPrices = {
 
 export const samplePriceBook: PriceBook = [
   {
-    id: "ppf-Фронт",
+    id: "ppf-front",
     title:
       'ЗАЩИТНЫЕ ПЛЁНКИ (прозрачный полиуретан), зона риска, "под ключ" — оклейка, разбор/сбор, плёнка, прочие материалы',
     subtitle:
