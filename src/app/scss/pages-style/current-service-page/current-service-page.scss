@@ -53,6 +53,11 @@
       }
     }
   }
+
+  &__bold-text {
+    text-decoration: underline;
+    text-decoration-color: $mainColor;
+  }
 }
 
 .collapse-button {

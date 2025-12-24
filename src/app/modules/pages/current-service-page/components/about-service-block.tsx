@@ -11,6 +11,15 @@ interface IAboutServiceBlockProps {
 const AboutServiceBlock: FC<IAboutServiceBlockProps> = ({ serviceDescription }) => {
   const description = serviceDescription.split(" \n ");
 
+  const parseBold = (text: string) => {
+  return text.split(/(\*\*.*?\*\*)/g).map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong className="curent-service-page__bold-text" key={i}>{part.slice(2, -2)}</strong>;
+    }
+    return part;
+  });
+};
+
   const [isExpanded, setIsExpanded] = useState(false);
   const [contentHeight, setContentHeight] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -29,11 +38,11 @@ const AboutServiceBlock: FC<IAboutServiceBlockProps> = ({ serviceDescription }) 
         className={`curent-service-page__about-block ${isExpanded ? "expanded" : ""}`}
         style={{ maxHeight: isExpanded ? `${contentHeight}px` : "400px" }}
       >
-        <div className="" ref={contentRef}>
-          {description.map((item, index) => {
-            return <p key={index}>{item}</p>;
-          })}
-        </div>
+<div ref={contentRef}>
+  {description.map((item, index) => (
+    <p key={index}>{parseBold(item)}</p>
+  ))}
+</div>
 
         {!isExpanded && (
           <div className="expand-overlay" onClick={toggleExpand}>
