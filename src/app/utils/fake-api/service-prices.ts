@@ -1301,13 +1301,201 @@ export const samplePriceBook: PriceBook = [
       },
     ],
   },
+
   {
     id: "disks",
+    title: "Кованные диски",
+    columns: [
+      { id: "opt", label: "Вариант" },
+      { id: "price", label: "Стоимость" },
+    ],
+    rows: [
+      {
+        id: "disks-v1",
+        cells: [
+          { kind: "text", label: 'Кованые диски VISSOL, ширина 8-13", диаметр 18' },
+          { kind: "price", value: 244000 },
+        ],
+      },
+      {
+        id: "disks-v2",
+        cells: [
+          { kind: "text", label: 'Кованые диски VISSOL, ширина 8-11", диаметр 19"' },
+          { kind: "price", value: 274000 },
+        ],
+      },
+      {
+        id: "disks-v3",
+        cells: [
+          { kind: "text", label: 'Кованые диски VISSOL, ширина 8-12.5", диаметр 20"' },
+          { kind: "price", value: 284000 },
+        ],
+      },
+      {
+        id: "disks-v4",
+        cells: [
+          { kind: "text", label: 'Кованые диски VISSOL, ширина 8.5-13", диаметр 21"' },
+          { kind: "price", value: 314000 },
+        ],
+      },
+      {
+        id: "disks-v5",
+        cells: [
+          { kind: "text", label: 'Кованые диски VISSOL, ширина 8.5-12.5", диаметр 22"' },
+          { kind: "price", value: 340000 },
+        ],
+      },
+      {
+        id: "disks-v5",
+        cells: [
+          { kind: "text", label: 'Кованые диски VISSOL, ширина 9.5-12.5", диаметр 23"' },
+          { kind: "price", value: 488000 },
+        ],
+      },
+      {
+        id: "disks-v6",
+        cells: [
+          { kind: "text", label: 'Кованые диски VISSOL, ширина 9.5-12", диаметр 24"' },
+          { kind: "price", value: 518000 },
+        ],
+      },
+    ],
+  },
+  {
+    id: "disks-dop",
     title: "Дополнительные опции",
     columns: [
-      {id: "opt", label: "Опция"}
+      { id: "opt", label: "Опция" },
+      { id: "price", label: "Стоимость" },
     ],
-    rows: [],
+    rows: [
+      {
+        id: "dop-v1",
+        cells: [
+          { kind: "text", label: "Дизайн с широкой полкой" },
+          { kind: "price", value: 20000 },
+        ],
+      },
+      {
+        id: "dop-v1",
+        cells: [
+          { kind: "text", label: "Алмазная проточка" },
+          { kind: "price", value: 16000 },
+        ],
+      },
+      {
+        id: "dop-v1",
+        cells: [
+          { kind: "text", label: "Металлическая плашка-табличка" },
+          { kind: "price", value: 15000 },
+        ],
+      },
+      {
+        id: "dop-v1",
+        cells: [
+          { kind: "text", label: "Крышки PremiumCaste / VISSOL" },
+          { kind: "price", value: 0 },
+        ],
+      },
+      {
+        id: "dop-v1",
+        cells: [
+          { kind: "text", label: "Колпачок однотонный" },
+          { kind: "price", value: 20000 },
+        ],
+      },
+      {
+        id: "dop-v1",
+        cells: [
+          { kind: "text", label: "Колпачок пластиковый" },
+          { kind: "price", value: 20000 },
+        ],
+      },
+      {
+        id: "dop-v1",
+        cells: [
+          { kind: "text", label: "Спиннер с лого авто" },
+          { kind: "price", value: 20000 },
+        ],
+      },
+      {
+        id: "dop-v1",
+        cells: [
+          { kind: "text", label: "Спиннер однотонный + лого" },
+          { kind: "price", value: 50000 },
+        ],
+      },
+      {
+        id: "dop-v1",
+        cells: [
+          { kind: "text", label: "Спиннер цветной" },
+          { kind: "price", value: 60000 },
+        ],
+      },
+      {
+        id: "dop-v1",
+        cells: [
+          { kind: "text", label: "Гравировка PremiumCaste / VISSOL в цвет диска" },
+          { kind: "price", value: 0 },
+        ],
+      },
+      {
+        id: "dop-v1",
+        cells: [
+          { kind: "text", label: "Гравировка PremiumCaste / VISSOL в свой цвет" },
+          { kind: "price", value: 8000 },
+        ],
+      },
+      {
+        id: "dop-v1",
+        cells: [
+          { kind: "text", label: "Гравировка своя в цвет диска" },
+          { kind: "price", value: 12000 },
+        ],
+      },
+      {
+        id: "dop-v1",
+        cells: [
+          { kind: "text", label: "Гравировка своя в особый цвет" },
+          { kind: "price", value: 20000 },
+        ],
+      },
+      {
+        id: "dop-v1",
+        cells: [
+          { kind: "text", label: "Декоративные болты" },
+          { kind: "price", value: 20000 },
+        ],
+      },
+      {
+        id: "dop-v1",
+        cells: [
+          { kind: "text", label: "Ручная зеркальная полировка" },
+          { kind: "price", value: 50000 },
+        ],
+      },
+      {
+        id: "dop-v1",
+        cells: [
+          { kind: "text", label: "Сквозные отверстия в спицах" },
+          { kind: "price", value: 40000 },
+        ],
+      },
+      {
+        id: "dop-v1",
+        cells: [
+          { kind: "text", label: "Milling (проточка на скошенных гранях)" },
+          { kind: "price", value: 50000 },
+        ],
+      },
+      {
+        id: "dop-v1",
+        cells: [
+          { kind: "text", label: "Насечки на ободе. Sport." },
+          { kind: "price", value: 20000 },
+        ],
+      },
+    ],
   },
   {
     id: "belts-basic",

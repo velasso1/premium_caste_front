@@ -39,7 +39,7 @@ const PriceServiceBlock: FC<PriceServiceBlockProps> = ({ tableData, serviceKey }
     equipment: sectionByIds(["additional-equipment"]),
     light: sectionByIds(["optics"]),
     belts: sectionByIds(["belts-basic", "belts-hard", "mats"]),
-    disks: sectionByIds(['disks']),
+    disks: sectionByIds(["disks", "disks-dop"]),
   };
 
   const sectionsFromUrl = serviceKey ? priceBookByCategory[serviceKey] ?? [] : [];
