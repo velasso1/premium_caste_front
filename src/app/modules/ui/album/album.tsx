@@ -57,24 +57,26 @@ const Album: FC<IAlbumProps> = ({ photos, toggleZoom, zoomPhotoIndex = 0 }) => {
         <img src={arrow} alt="previous_photo" />
       </div>
 
-      {photos.map((photo, index) => {
-        if (zoomIndex !== index) {
-          return;
-        }
+      {photos.length
+        ? photos.map((photo, index) => {
+            if (zoomIndex !== index) {
+              return;
+            }
 
-        return (
-          <img
-            className="album__photo"
-            key={photo}
-            src={import.meta.env.VITE_UPLOADS_FILES + photo}
-            alt=""
-            onClick={(e) => {
-              e.stopPropagation();
-              toggleZoom();
-            }}
-          />
-        );
-      })}
+            return (
+              <img
+                className="album__photo"
+                key={photo}
+                src={import.meta.env.VITE_UPLOADS_FILES + photo}
+                alt=""
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleZoom();
+                }}
+              />
+            );
+          })
+        : null}
 
       <div className="album__next-arrow" onClick={(event) => zoomHandler("next", event)}>
         <img src={arrow} alt="next_photo" />
