@@ -51,7 +51,7 @@ const CurrentPostPage: FC = () => {
 
     let savedImages: string[] = [];
 
-    if (currentPost.data?.media_groups) {
+    if (currentPost.data?.media_groups.content) {
       savedImages = currentPost.data?.media_groups?.content.map((item) => item.storage_path) || [];
     }
 
