@@ -25,7 +25,7 @@ export const sidebarItemsWorks: readonly ISidebarItem[] = [
   { itemName: "Пошив салонов" },
   { itemName: "Детейлинг" },
   { itemName: "Тонирование" },
-  { itemName: "Кованные диски на заказ" },
+  { itemName: "Кованые диски на заказ" },
   // { itemName: "Автоковры" },
 ] as const;
 

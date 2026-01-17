@@ -8,7 +8,7 @@ const AboutBlock: FC = () => {
   return (
     <div className="about-block">
       <div className="block-container">
-        <PageTitle pageName="О нас" isLink={true} linkHref={"../main/" + routes.ABOUT_PAGE} />
+        <PageTitle pageName="О нас" isLink={false} linkHref={"../main/" + routes.ABOUT_PAGE} />
         <div className="about-block__content">
           <div className="about-block__article">
             Студия создания АвтоСтиля PremiumCaste — это команда профессионалов и энтузиастов своего дела, главной
