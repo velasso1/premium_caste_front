@@ -87,7 +87,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
-    text-transform: lowercase;
+    // text-transform: lowercase;
 
     &::first-letter {
       text-transform: uppercase;
