@@ -111,7 +111,7 @@ const OurWorksPage: FC = () => {
                   })
                 : "Работ пока нет"
               : galleryByTagStatus.data?.galleries.length
-                ? galleryByTagStatus.data?.galleries.reverse().map((item) => {
+                ? galleryByTagStatus.data?.galleries.map((item) => {
                     return (
                       <WorkItem
                         key={item.id}
