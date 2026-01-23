@@ -111,16 +111,29 @@ const OurWorksPage: FC = () => {
                   })
                 : "Работ пока нет"
               : galleryByTagStatus.data?.galleries.length
-                ? galleryByTagStatus.data?.galleries.map((item) => {
-                    return (
-                      <WorkItem
-                        itemId={item.id}
-                        imageSource={item.images[item.cover_image_index]}
-                        itemTitle={item.title}
-                        toggleZoom={() => null}
-                      />
-                    );
-                  })
+                ? activeTag !== "Всё"
+                  ? galleryByTagStatus.data?.galleries.reverse().map((item) => {
+                      return (
+                        <WorkItem
+                          key={item.id}
+                          itemId={item.id}
+                          imageSource={item.images[item.cover_image_index]}
+                          itemTitle={item.title}
+                          toggleZoom={() => null}
+                        />
+                      );
+                    })
+                  : galleryByTagStatus.data?.galleries.map((item) => {
+                      return (
+                        <WorkItem
+                          key={item.id}
+                          itemId={item.id}
+                          imageSource={item.images[item.cover_image_index]}
+                          itemTitle={item.title}
+                          toggleZoom={() => null}
+                        />
+                      );
+                    })
                 : "Пока нет таких работ"}
           </div>
 
