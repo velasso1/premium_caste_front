@@ -31,7 +31,7 @@ const OurWorksPage: FC = () => {
 
   const { activeTag } = useAppSelector((state) => state.galleriesSlice);
 
-  const [pagination, setPagination] = useState<{ page: number; perPage: number }>({ page: 1, perPage: 25 });
+  const [pagination, setPagination] = useState<{ page: number; perPage: number }>({ page: 1, perPage: 24 });
 
   const [getGalleryByTag, galleryByTagStatus] = useLazyGetGalleryByTagQuery();
   const getGalleries = useGetAllGalleriesQuery({
@@ -111,23 +111,23 @@ const OurWorksPage: FC = () => {
                   })
                 : "Работ пока нет"
               : galleryByTagStatus.data?.galleries.length
-              ? galleryByTagStatus.data?.galleries.map((item) => {
-                  return (
-                    <WorkItem
-                      itemId={item.id}
-                      imageSource={item.images[item.cover_image_index]}
-                      itemTitle={item.title}
-                      toggleZoom={() => null}
-                    />
-                  );
-                })
-              : "Пока нет таких работ"}
+                ? galleryByTagStatus.data?.galleries.map((item) => {
+                    return (
+                      <WorkItem
+                        itemId={item.id}
+                        imageSource={item.images[item.cover_image_index]}
+                        itemTitle={item.title}
+                        toggleZoom={() => null}
+                      />
+                    );
+                  })
+                : "Пока нет таких работ"}
           </div>
 
           <div className="our-works-page__work-items-pagination">
             <Button
               buttonText="Загрузить еще"
-              onClickAction={() => setPagination({ ...pagination, perPage: pagination.perPage + 25 })}
+              onClickAction={() => setPagination({ ...pagination, perPage: pagination.perPage + 24 })}
               buttonStyle="OUTLINED"
               buttonType={getGalleries.status === "pending" ? "LOADING" : undefined}
               disabled={getGalleries.status === "pending" || pagination.perPage === 100}
@@ -136,7 +136,7 @@ const OurWorksPage: FC = () => {
               <Pagination
                 page={pagination.page}
                 onChange={(e: ChangeEvent<unknown>, value: number) => {
-                  setPagination({ perPage: 25, page: value });
+                  setPagination({ perPage: 24, page: value });
                   handleScroll();
                 }}
                 count={getGalleries.data?.total ? Math.round(getGalleries.data?.total / 100) : 0}
