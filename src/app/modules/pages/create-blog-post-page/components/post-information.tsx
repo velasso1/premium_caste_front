@@ -10,6 +10,7 @@ import {
   useGetAllImagesQuery,
   useAttachMediaToGroupMutation,
   useAttachMediaGroupToPostMutation,
+  useLazyGetImagesQuery,
 } from "../../../../store/api/media-api";
 
 import { setEffect } from "../../../../store/slices/effects";
@@ -55,7 +56,8 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
   const [previewSelected, setPreviewSelected] = useState<boolean>(false);
   const [creatingStep, setCreatingStep] = useState<STEPS>(1);
 
-  const images = useGetAllImagesQuery({ limit: imagesLimit });
+  // const images = useGetAllImagesQuery({ limit: imagesLimit });
+  const [getImages, images] = useLazyGetImagesQuery();
   const [createNewPost, creatingStatus] = useCreateNewPostMutation();
   const [createMediaGroup, mediaGroupStatus] = useCreateMediaGroupMutation();
   const [attachImages, attachImagesStatus] = useAttachMediaToGroupMutation();
@@ -198,6 +200,8 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
         setPostInfo={setPostInfo}
         userId={userId}
       />
+
+      <button onClick={() => getImages({ limit: imagesLimit })}>GET IMAGES</button>
 
       <>{creatingStep === STEPS.SECOND && <AttachImages images={images?.data} userId={userId} saveTarget="id" />}</>
 

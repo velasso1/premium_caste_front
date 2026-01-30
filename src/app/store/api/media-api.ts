@@ -33,6 +33,16 @@ export const mediaApi = createApi({
         result ? [...result.data.map(({ id }) => ({ type: "Images" as const, id })), "Images"] : ["Images"],
     }),
 
+    getImages: build.query<IGetAllImagesResponse, { limit: number }>({
+      query: (data) => ({
+        url: import.meta.env.VITE_GET_IMAGES,
+        credentials: "include",
+        params: {
+          limit: data.limit,
+        },
+      }),
+    }),
+
     // загружает одну картинку (в FormData поле 'file')
     uploadMedia: build.mutation<void, FormData>({
       query: (data) => ({
@@ -115,4 +125,5 @@ export const {
   useCreateMediaGroupMutation,
   useAttachMediaToGroupMutation,
   useAttachMediaGroupToPostMutation,
+  useLazyGetImagesQuery,
 } = mediaApi;
