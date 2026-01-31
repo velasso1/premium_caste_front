@@ -26,6 +26,7 @@ import TextField from "#ui/fields/text-field.tsx";
 import Loader from "#ui/loader/loader.tsx";
 import LineNotification from "#ui/notifications/line-notification.tsx";
 import TextEditor from "#ui/text-editor/text-editor.tsx";
+import Button from "#ui/button/button.tsx";
 import PreviewContainer from "./preview-container";
 
 import { STEPS } from "#utils/constants.ts";
@@ -214,6 +215,7 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
         updateHandler={updatePostHandler}
         createHandler={createPostHandler}
       />
+      <Button buttonText="Загрузить изображения" onClickAction={() => getImages({ limit: imagesLimit })}></Button>
     </ContentBlockLayout>
   );
 };

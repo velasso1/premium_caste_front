@@ -3,7 +3,7 @@ import { FC, useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 import { useAppDispatch, useAppSelector } from "../../../store";
-import { useGetAllImagesQuery } from "../../../store/api/media-api";
+import { useGetAllImagesQuery, useLazyGetImagesQuery } from "../../../store/api/media-api";
 import { useCreateNewGalleryMutation } from "../../../store/api/galleries-api";
 import { setEffect } from "../../../store/slices/effects";
 import { clearSelectedTags } from "../../../store/slices/galleries";
@@ -42,7 +42,8 @@ const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
 
   const [editorContent, setEditorContent] = useState<string>("");
 
-  const images = useGetAllImagesQuery({ limit: imagesLimit });
+  // const images = useGetAllImagesQuery({ limit: imagesLimit });
+  const [getImages, images] = useLazyGetImagesQuery();
   const [createNewGallery, galleryStatus] = useCreateNewGalleryMutation();
 
   const {
@@ -117,6 +118,8 @@ const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
             disabled={attachedImages.length <= 1}
             onClickAction={handleSubmit(createGalleryHandler())}
           />
+
+          <Button buttonText="Загрузить изображения" onClickAction={() => getImages({ limit: imagesLimit })}></Button>
         </div>
       </ContentBlockLayout>
     </PageLayout>
