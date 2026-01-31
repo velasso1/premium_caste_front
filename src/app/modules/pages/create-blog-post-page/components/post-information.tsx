@@ -216,7 +216,7 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
         createHandler={createPostHandler}
       />
       <Button
-        buttonText="Загрузить изображения"
+        buttonText="Обновить галерею"
         onClickAction={() => {
           getImages({ limit: imagesLimit });
           setImagesLimit(imagesLimit + 24);

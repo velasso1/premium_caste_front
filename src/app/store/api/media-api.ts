@@ -41,6 +41,7 @@ export const mediaApi = createApi({
           limit: data.limit,
         },
       }),
+      keepUnusedDataFor: 0,
     }),
 
     // загружает одну картинку (в FormData поле 'file')
