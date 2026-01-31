@@ -119,7 +119,13 @@ const CreateWorkPage: FC<ICreaateWorkPageProps> = ({ workInfo }) => {
             onClickAction={handleSubmit(createGalleryHandler())}
           />
 
-          <Button buttonText="Загрузить изображения" onClickAction={() => getImages({ limit: imagesLimit })}></Button>
+          <Button
+            buttonText="Загрузить изображения"
+            onClickAction={() => {
+              getImages({ limit: imagesLimit });
+              setImagesLimit(imagesLimit + 24);
+            }}
+          ></Button>
         </div>
       </ContentBlockLayout>
     </PageLayout>

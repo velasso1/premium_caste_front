@@ -215,7 +215,13 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
         updateHandler={updatePostHandler}
         createHandler={createPostHandler}
       />
-      <Button buttonText="Загрузить изображения" onClickAction={() => getImages({ limit: imagesLimit })}></Button>
+      <Button
+        buttonText="Загрузить изображения"
+        onClickAction={() => {
+          getImages({ limit: imagesLimit });
+          setImagesLimit(imagesLimit + 24);
+        }}
+      ></Button>
     </ContentBlockLayout>
   );
 };
