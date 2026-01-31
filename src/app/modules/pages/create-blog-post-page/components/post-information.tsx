@@ -202,7 +202,7 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
         userId={userId}
       />
 
-      <button onClick={() => getImages({ limit: imagesLimit })}>GET IMAGES</button>
+      {/* <button onClick={() => getImages({ limit: imagesLimit })}>GET IMAGES</button> */}
 
       <>{creatingStep === STEPS.SECOND && <AttachImages images={images?.data} userId={userId} saveTarget="id" />}</>
 
