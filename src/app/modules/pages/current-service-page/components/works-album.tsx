@@ -16,7 +16,7 @@ const WorksAlbum: FC<IWorksAlbumProps> = ({ galleries }) => {
     <div className="current-post-page__album">
       <Slider paginationInclude={false}>
         {galleries
-          ? galleries.map((galleries, index) => {
+          ? [...galleries].reverse().map((galleries, index) => {
               return (
                 <SwiperSlide>
                   <SlideLayout imageUrl="none">

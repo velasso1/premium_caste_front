@@ -10,7 +10,6 @@ import {
   useGetAllImagesQuery,
   useAttachMediaToGroupMutation,
   useAttachMediaGroupToPostMutation,
-  useLazyGetImagesQuery,
 } from "../../../../store/api/media-api";
 
 import { setEffect } from "../../../../store/slices/effects";
@@ -26,7 +25,6 @@ import TextField from "#ui/fields/text-field.tsx";
 import Loader from "#ui/loader/loader.tsx";
 import LineNotification from "#ui/notifications/line-notification.tsx";
 import TextEditor from "#ui/text-editor/text-editor.tsx";
-import Button from "#ui/button/button.tsx";
 import PreviewContainer from "./preview-container";
 
 import { STEPS } from "#utils/constants.ts";
@@ -57,8 +55,7 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
   const [previewSelected, setPreviewSelected] = useState<boolean>(false);
   const [creatingStep, setCreatingStep] = useState<STEPS>(1);
 
-  // const images = useGetAllImagesQuery({ limit: imagesLimit });
-  const [getImages, images] = useLazyGetImagesQuery();
+  const images = useGetAllImagesQuery({ limit: imagesLimit });
   const [createNewPost, creatingStatus] = useCreateNewPostMutation();
   const [createMediaGroup, mediaGroupStatus] = useCreateMediaGroupMutation();
   const [attachImages, attachImagesStatus] = useAttachMediaToGroupMutation();
@@ -215,13 +212,6 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
         updateHandler={updatePostHandler}
         createHandler={createPostHandler}
       />
-      <Button
-        buttonText="Обновить галерею"
-        onClickAction={() => {
-          getImages({ limit: imagesLimit });
-          setImagesLimit(imagesLimit + 24);
-        }}
-      ></Button>
     </ContentBlockLayout>
   );
 };
