@@ -4,6 +4,10 @@
     line-height: 35px;
     padding-bottom: 40px;
     white-space: pre-line;
+
+    a {
+      color: $mainColor;
+    }
   }
 
   &__post-wrapper {
