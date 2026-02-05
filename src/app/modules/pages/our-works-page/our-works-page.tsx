@@ -80,7 +80,7 @@ const OurWorksPage: FC = () => {
     if (getGalleries.data && getGalleries.isSuccess) {
       dispatch(setDownloadGalleries(getGalleries.data?.galleries));
     }
-  }, [getGalleries.requestId]);
+  }, [getGalleries.requestId, getGalleries.isSuccess]);
 
   useEffect(() => {
     if (activeTag === "Всё") {
