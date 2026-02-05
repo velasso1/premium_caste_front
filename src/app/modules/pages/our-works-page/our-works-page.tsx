@@ -55,7 +55,7 @@ const OurWorksPage: FC = () => {
 
   useEffect(() => {
     if (activeTag !== "Всё") {
-      getGalleryByTag({ tag: activeTag });
+      getGalleryByTag({ tag: activeTag, per_page: `${pagination.perPage}` });
     }
   }, [activeTag]);
 
