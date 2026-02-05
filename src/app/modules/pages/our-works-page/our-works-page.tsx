@@ -32,8 +32,6 @@ interface IPaginationState {
   perPage: number;
 }
 
-console.log("a");
-
 const OurWorksPage: FC = () => {
   const dispatch = useAppDispatch();
   const targetRef = useRef<HTMLDivElement>(null);
@@ -67,7 +65,7 @@ const OurWorksPage: FC = () => {
     if (galleryByTagStatus.data) {
       dispatch(setDownloadGalleries(galleryByTagStatus.data?.galleries));
     }
-  }, [galleryByTagStatus.data]);
+  }, [getGalleryByTag]);
 
   useEffect(() => {
     if (activeTag === "Всё") {
@@ -191,7 +189,7 @@ const OurWorksPage: FC = () => {
                 page={pagination.page}
                 onChange={(e: ChangeEvent<unknown>, value: number) => {
                   setDownloadMorePresses(false);
-
+                  dispatch(clearDownloadGalleries());
                   setPagination({ perPage: 24, page: value });
                   handleScroll();
                   sessionStorage.setItem(WORKS_PAGE, `${value}`);
