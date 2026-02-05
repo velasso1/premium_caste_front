@@ -141,13 +141,19 @@ const OurWorksPage: FC = () => {
               buttonText="Загрузить еще"
               onClickAction={() => {
                 setPagination({ ...pagination, page: pagination.page + 1 });
-                if (getGalleries.data) {
+                if (activeTag === "Всё" && getGalleries.data) {
                   saveGalleries(getGalleries.data.galleries);
+                } else if (activeTag !== "Всё" && galleryByTagStatus.data) {
+                  saveGalleries(galleryByTagStatus.data.galleries);
                 }
               }}
               buttonStyle="OUTLINED"
               buttonType={getGalleries.status === "pending" ? "LOADING" : undefined}
-              disabled={getGalleries.status === "pending" || pagination.perPage === 100}
+              disabled={
+                getGalleries.status === "pending" ||
+                pagination.page === getGalleries.data?.pagination.total_pages ||
+                pagination.page === galleryByTagStatus.data?.pagination.total_pages
+              }
             />
             <Stack spacing={2}>
               <Pagination
@@ -157,7 +163,11 @@ const OurWorksPage: FC = () => {
                   handleScroll();
                   sessionStorage.setItem(WORKS_PAGE, `${value}`);
                 }}
-                count={getGalleries.data?.pagination.total_pages}
+                count={
+                  activeTag === "Всё"
+                    ? getGalleries.data?.pagination.total_pages
+                    : galleryByTagStatus.data?.pagination.total_pages
+                }
                 variant="outlined"
                 shape="rounded"
                 size="large"
