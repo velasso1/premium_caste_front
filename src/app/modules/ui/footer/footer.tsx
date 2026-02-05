@@ -21,7 +21,13 @@ const Footer: FC = () => {
               );
             })}
           </ul>
-
+          <div className="footer__banner">
+            <iframe
+              src="https://yandex.ru/sprav/widget/rating-badge/233113979591?type=award&theme=dark"
+              width="150"
+              height="50"
+            ></iframe>
+          </div>
           <div className="footer__article">
             Вся представленная на сайте информация носит информационный характер и ни при каких условиях не является
             публичной офертой, определяемой положениями Статьи 437 (2) Гражданского кодекса РФ.
