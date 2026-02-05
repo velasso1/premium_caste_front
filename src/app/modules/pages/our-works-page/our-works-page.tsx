@@ -65,7 +65,7 @@ const OurWorksPage: FC = () => {
       return;
     }
     setDownloadDisabled(pagination.page === galleryByTagStatus.data?.pagination.total_pages);
-  }, [getGalleries.data, galleryByTagStatus.data, pagination.page]);
+  }, [getGalleries.data, galleryByTagStatus.data, pagination.page, activeTag]);
 
   const changeTagHandler = (tagName: string): void => {
     dispatch(setActiveTag(tagName));
