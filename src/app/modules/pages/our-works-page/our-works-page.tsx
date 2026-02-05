@@ -64,6 +64,12 @@ const OurWorksPage: FC = () => {
   }, [activeTag]);
 
   useEffect(() => {
+    if (galleryByTagStatus.data) {
+      dispatch(setDownloadGalleries(galleryByTagStatus.data?.galleries));
+    }
+  }, [getGalleryByTag.data]);
+
+  useEffect(() => {
     if (activeTag === "Всё") {
       setDownloadDisabled(pagination.page === getGalleries.data?.pagination.total_pages);
       return;
