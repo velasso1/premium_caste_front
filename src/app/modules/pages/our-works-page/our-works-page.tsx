@@ -67,7 +67,7 @@ const OurWorksPage: FC = () => {
     if (galleryByTagStatus.data) {
       dispatch(setDownloadGalleries(galleryByTagStatus.data?.galleries));
     }
-  }, [getGalleryByTag.data]);
+  }, [galleryByTagStatus.data]);
 
   useEffect(() => {
     if (activeTag === "Всё") {
