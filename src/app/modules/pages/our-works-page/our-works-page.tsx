@@ -24,6 +24,11 @@ import Stack from "@mui/material/Stack";
 
 import { sidebarItemsWorks } from "#utils/auxuliary/sidebar-items.ts";
 
+interface IPaginationState {
+  page: number; 
+  perPage: number;
+}
+
 const OurWorksPage: FC = () => {
   const dispatch = useAppDispatch();
   const targetRef = useRef<HTMLDivElement>(null);
@@ -31,7 +36,7 @@ const OurWorksPage: FC = () => {
 
   const { activeTag } = useAppSelector((state) => state.galleriesSlice);
 
-  const [pagination, setPagination] = useState<{ page: number; perPage: number }>({ page: 1, perPage: 24 });
+  const [pagination, setPagination] = useState<IPaginationState>({ page: 1, perPage: 24 });
 
   const [getGalleryByTag, galleryByTagStatus] = useLazyGetGalleryByTagQuery();
   const getGalleries = useGetAllGalleriesQuery({
@@ -40,19 +45,15 @@ const OurWorksPage: FC = () => {
     per_page: `${pagination.perPage}`,
   });
 
-  const changeTagHandler = (tagName: string): void => {
-    dispatch(setActiveTag(tagName));
-  };
-
-  useEffect(() => {
+    useEffect(() => {
     if (activeTag !== "Всё") {
       getGalleryByTag({ tag: activeTag });
     }
   }, [activeTag]);
 
-  // useEffect(() => {
-
-  // }, [getGalleries]);
+  const changeTagHandler = (tagName: string): void => {
+    dispatch(setActiveTag(tagName));
+  };
 
   const handleScroll = () => {
     if (!targetRef.current) return;
@@ -128,7 +129,7 @@ const OurWorksPage: FC = () => {
           <div className="our-works-page__work-items-pagination">
             <Button
               buttonText="Загрузить еще"
-              onClickAction={() => setPagination({ ...pagination, perPage: pagination.perPage + 24 })}
+              onClickAction={() => setPagination({ ...pagination, page: pagination.page + 1 })}
               buttonStyle="OUTLINED"
               buttonType={getGalleries.status === "pending" ? "LOADING" : undefined}
               disabled={getGalleries.status === "pending" || pagination.perPage === 100}
@@ -140,7 +141,7 @@ const OurWorksPage: FC = () => {
                   setPagination({ perPage: 24, page: value });
                   handleScroll();
                 }}
-                count={getGalleries.data?.total ? Math.round(getGalleries.data?.total / 100) : 0}
+                count={getGalleries.data?.pagination.total_pages}
                 variant="outlined"
                 shape="rounded"
                 size="large"
