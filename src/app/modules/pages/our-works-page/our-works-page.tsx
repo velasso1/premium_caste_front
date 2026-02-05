@@ -32,6 +32,8 @@ interface IPaginationState {
   perPage: number;
 }
 
+console.log("a");
+
 const OurWorksPage: FC = () => {
   const dispatch = useAppDispatch();
   const targetRef = useRef<HTMLDivElement>(null);
