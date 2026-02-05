@@ -1,13 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+import { IGetAllGalleriesResponse } from "#types/api-types/api-response-types.ts";
+
 interface IGallerySliceState {
   createGalleryTags: string[];
   activeTag: string;
+  downloadGalleries: IGetAllGalleriesResponse[];
 }
 
 const initialState: IGallerySliceState = {
   createGalleryTags: [],
   activeTag: "Всё",
+  downloadGalleries: [],
 };
 
 const galleriesSlice = createSlice({
@@ -34,8 +38,25 @@ const galleriesSlice = createSlice({
     clearSelectedTags(state) {
       state.createGalleryTags = [];
     },
+
+    setDownloadGalleries(state, action: PayloadAction<IGetAllGalleriesResponse>) {
+      state.downloadGalleries = [...state.downloadGalleries, action.payload];
+
+      console.log(state.downloadGalleries);
+    },
+
+    clearDownloadGalleries(state) {
+      state.downloadGalleries = [];
+    },
   },
 });
 
-export const { selectTags, setActiveTag, clearSelectedTags, editGalleryTags } = galleriesSlice.actions;
+export const {
+  selectTags,
+  setActiveTag,
+  clearSelectedTags,
+  editGalleryTags,
+  setDownloadGalleries,
+  clearDownloadGalleries,
+} = galleriesSlice.actions;
 export default galleriesSlice.reducer;

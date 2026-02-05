@@ -1,12 +1,14 @@
 import { FC, useState, useEffect, useRef, ChangeEvent } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../../store";
-import { setActiveTag } from "../../../store/slices/galleries";
+import { setActiveTag, setDownloadGalleries, clearDownloadGalleries } from "../../../store/slices/galleries";
 import { useGetAllGalleriesQuery, useLazyGetGalleryByTagQuery } from "../../../store/api/galleries-api";
 
 import { useMediaQuery } from "react-responsive";
 
 import WorkItem from "./components/work-item";
+
+import { IGetAllGalleriesResponse } from "#types/api-types/api-response-types.ts";
 
 import PageTitle from "#ui/page-title/page-title.tsx";
 import PageLayout from "#ui/page-layout/page-layout.tsx";
@@ -26,7 +28,7 @@ import { sidebarItemsWorks } from "#utils/auxuliary/sidebar-items.ts";
 import { WORKS_PAGE } from "#utils/constants.ts";
 
 interface IPaginationState {
-  page: number; 
+  page: number;
   perPage: number;
 }
 
@@ -37,7 +39,10 @@ const OurWorksPage: FC = () => {
 
   const { activeTag } = useAppSelector((state) => state.galleriesSlice);
 
-  const [pagination, setPagination] = useState<IPaginationState>({ page: Number(sessionStorage.getItem(WORKS_PAGE)) || 1, perPage: 24 });
+  const [pagination, setPagination] = useState<IPaginationState>({
+    page: Number(sessionStorage.getItem(WORKS_PAGE)) || 1,
+    perPage: 24,
+  });
 
   const [getGalleryByTag, galleryByTagStatus] = useLazyGetGalleryByTagQuery();
   const getGalleries = useGetAllGalleriesQuery({
@@ -46,7 +51,7 @@ const OurWorksPage: FC = () => {
     per_page: `${pagination.perPage}`,
   });
 
-    useEffect(() => {
+  useEffect(() => {
     if (activeTag !== "Всё") {
       getGalleryByTag({ tag: activeTag });
     }
@@ -63,6 +68,10 @@ const OurWorksPage: FC = () => {
       behavior: "smooth",
       block: "center",
     });
+  };
+
+  const saveGalleries = (galleries: IGetAllGalleriesResponse): void => {
+    dispatch(setDownloadGalleries(galleries));
   };
 
   return (
@@ -130,7 +139,12 @@ const OurWorksPage: FC = () => {
           <div className="our-works-page__work-items-pagination">
             <Button
               buttonText="Загрузить еще"
-              onClickAction={() => setPagination({ ...pagination, page: pagination.page + 1 })}
+              onClickAction={() => {
+                setPagination({ ...pagination, page: pagination.page + 1 });
+                if (getGalleries.data) {
+                  saveGalleries(getGalleries.data);
+                }
+              }}
               buttonStyle="OUTLINED"
               buttonType={getGalleries.status === "pending" ? "LOADING" : undefined}
               disabled={getGalleries.status === "pending" || pagination.perPage === 100}
