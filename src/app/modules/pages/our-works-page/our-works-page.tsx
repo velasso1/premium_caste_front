@@ -55,8 +55,8 @@ const OurWorksPage: FC = () => {
 
   const [downloadMorePressed, setDownloadMorePresses] = useState<boolean>(false);
 
-  const lastRequestIdAll = useRef<string | null>(null);
-  const lastRequestIdTag = useRef<string | null>(null);
+  let lastRequestIdAll = useRef<string | null>(null);
+  let lastRequestIdTag = useRef<string | null>(null);
 
   useEffect(() => {
     if (activeTag !== "Всё") {
@@ -72,6 +72,10 @@ const OurWorksPage: FC = () => {
 
   useEffect(() => {
     if (lastRequestIdAll.current === getGalleries.requestId) return;
+
+    if (getGalleries.requestId) {
+      lastRequestIdAll.current = getGalleries.requestId;
+    }
 
     if (getGalleries.data && getGalleries.isSuccess) {
       dispatch(setDownloadGalleries(getGalleries.data?.galleries));
