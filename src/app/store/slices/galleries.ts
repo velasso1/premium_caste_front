@@ -40,7 +40,9 @@ const galleriesSlice = createSlice({
     },
 
     setDownloadGalleries(state, action: PayloadAction<IGalleryResponse[]>) {
-      state.downloadGalleries = [...state.downloadGalleries, ...action.payload];
+      if (action.payload.length) {
+        state.downloadGalleries = [...state.downloadGalleries, ...action.payload];
+      }
 
       console.log(state.downloadGalleries);
     },

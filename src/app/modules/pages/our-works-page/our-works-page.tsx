@@ -37,7 +37,7 @@ const OurWorksPage: FC = () => {
   const targetRef = useRef<HTMLDivElement>(null);
   const isMobile = useMediaQuery({ maxWidth: 769 });
 
-  const { activeTag } = useAppSelector((state) => state.galleriesSlice);
+  const { activeTag, downloadGalleries } = useAppSelector((state) => state.galleriesSlice);
 
   const [pagination, setPagination] = useState<IPaginationState>({
     page: Number(sessionStorage.getItem(WORKS_PAGE)) || 1,
@@ -52,6 +52,8 @@ const OurWorksPage: FC = () => {
     page: `${pagination.page}`,
     per_page: `${pagination.perPage}`,
   });
+
+  const [downloadMorePressed, setDownloadMorePresses] = useState<boolean>(false);
 
   useEffect(() => {
     if (activeTag !== "Всё") {
@@ -119,33 +121,45 @@ const OurWorksPage: FC = () => {
         <div className="our-works-page__work-items-wrapper">
           {getGalleries.status === "pending" && <Loader loaderType="circle" />}
           <div className="our-works-page__work-items">
-            {activeTag === "Всё"
-              ? getGalleries.data?.galleries
-                ? getGalleries.data?.galleries.map((item) => {
-                    return (
-                      <WorkItem
-                        key={item.id}
-                        itemId={item.id}
-                        imageSource={item.images[item.cover_image_index]}
-                        itemTitle={item.title}
-                        toggleZoom={() => null}
-                      />
-                    );
-                  })
-                : "Работ пока нет"
-              : galleryByTagStatus.data?.galleries.length
-                ? [...galleryByTagStatus.data?.galleries].reverse().map((item) => {
-                    return (
-                      <WorkItem
-                        key={item.id}
-                        itemId={item.id}
-                        imageSource={item.images[item.cover_image_index]}
-                        itemTitle={item.title}
-                        toggleZoom={() => null}
-                      />
-                    );
-                  })
-                : "Пока нет таких работ"}
+            {downloadMorePressed
+              ? downloadGalleries.map((item) => {
+                  return (
+                    <WorkItem
+                      key={item.id}
+                      itemId={item.id}
+                      imageSource={item.images[item.cover_image_index]}
+                      itemTitle={item.title}
+                      toggleZoom={() => null}
+                    />
+                  );
+                })
+              : activeTag === "Всё"
+                ? getGalleries.data?.galleries
+                  ? getGalleries.data?.galleries.map((item) => {
+                      return (
+                        <WorkItem
+                          key={item.id}
+                          itemId={item.id}
+                          imageSource={item.images[item.cover_image_index]}
+                          itemTitle={item.title}
+                          toggleZoom={() => null}
+                        />
+                      );
+                    })
+                  : "Работ пока нет"
+                : galleryByTagStatus.data?.galleries.length
+                  ? [...galleryByTagStatus.data?.galleries].reverse().map((item) => {
+                      return (
+                        <WorkItem
+                          key={item.id}
+                          itemId={item.id}
+                          imageSource={item.images[item.cover_image_index]}
+                          itemTitle={item.title}
+                          toggleZoom={() => null}
+                        />
+                      );
+                    })
+                  : "Пока нет таких работ"}
           </div>
 
           <div className="our-works-page__work-items-pagination">
