@@ -141,7 +141,7 @@ const OurWorksPage: FC = () => {
                 onChange={(e: ChangeEvent<unknown>, value: number) => {
                   setPagination({ perPage: 24, page: value });
                   handleScroll();
-                  localStorage.setItem(WORKS_PAGE, `${pagination.page}`);
+                  localStorage.setItem(WORKS_PAGE, `${value}`);
                 }}
                 count={getGalleries.data?.pagination.total_pages}
                 variant="outlined"
