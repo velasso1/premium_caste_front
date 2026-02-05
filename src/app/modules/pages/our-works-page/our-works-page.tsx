@@ -57,7 +57,7 @@ const OurWorksPage: FC = () => {
 
   useEffect(() => {
     if (activeTag !== "Всё") {
-      getGalleryByTag({ tag: activeTag, per_page: `${pagination.perPage}` });
+      getGalleryByTag({ page: `${pagination.page}`, tag: activeTag, per_page: `${pagination.perPage}` });
     }
   }, [activeTag]);
 
@@ -65,13 +65,13 @@ const OurWorksPage: FC = () => {
     if (galleryByTagStatus.data && galleryByTagStatus.isSuccess) {
       dispatch(setDownloadGalleries(galleryByTagStatus.data?.galleries));
     }
-  }, [galleryByTagStatus.data, galleryByTagStatus.isSuccess]);
+  }, [galleryByTagStatus.isSuccess]);
 
   useEffect(() => {
     if (getGalleries.data && getGalleries.isSuccess) {
       dispatch(setDownloadGalleries(getGalleries.data?.galleries));
     }
-  }, [getGalleries.data, getGalleries.isSuccess]);
+  }, [getGalleries.isSuccess]);
 
   useEffect(() => {
     if (activeTag === "Всё") {

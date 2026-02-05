@@ -57,12 +57,16 @@ export const galleriesApi = createApi({
       }),
     }),
     // возвращает галерею по тегу
-    getGalleryByTag: build.query<IGetAllGalleriesResponse, { tag: string | string[]; per_page?: string }>({
+    getGalleryByTag: build.query<
+      IGetAllGalleriesResponse,
+      { tag: string | string[]; per_page?: string; page?: string }
+    >({
       query: (payload) => ({
         url: import.meta.env.VITE_GALLERIES_ACTION + "/by-tags",
         params: {
           tags: [payload.tag],
           per_page: payload.per_page,
+          page: payload.page,
           // match_all: true,
         },
       }),
