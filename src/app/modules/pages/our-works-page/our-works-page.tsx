@@ -60,10 +60,11 @@ const OurWorksPage: FC = () => {
   }, [activeTag]);
 
   useEffect(() => {
-    setDownloadDisabled(
-      pagination.page === getGalleries.data?.pagination.total_pages ||
-        pagination.page === galleryByTagStatus.data?.pagination.total_pages
-    );
+    if (activeTag === "Всё") {
+      setDownloadDisabled(pagination.page === getGalleries.data?.pagination.total_pages);
+      return;
+    }
+    setDownloadDisabled(pagination.page === galleryByTagStatus.data?.pagination.total_pages);
   }, [getGalleries.data, galleryByTagStatus.data, pagination.page]);
 
   const changeTagHandler = (tagName: string): void => {
