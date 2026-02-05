@@ -8,7 +8,7 @@ import { useMediaQuery } from "react-responsive";
 
 import WorkItem from "./components/work-item";
 
-import { IGetAllGalleriesResponse } from "#types/api-types/api-response-types.ts";
+import { IGetAllGalleriesResponse, IGalleryResponse } from "#types/api-types/api-response-types.ts";
 
 import PageTitle from "#ui/page-title/page-title.tsx";
 import PageLayout from "#ui/page-layout/page-layout.tsx";
@@ -70,7 +70,7 @@ const OurWorksPage: FC = () => {
     });
   };
 
-  const saveGalleries = (galleries: IGetAllGalleriesResponse): void => {
+  const saveGalleries = (galleries: IGalleryResponse[]): void => {
     dispatch(setDownloadGalleries(galleries));
   };
 
@@ -142,7 +142,7 @@ const OurWorksPage: FC = () => {
               onClickAction={() => {
                 setPagination({ ...pagination, page: pagination.page + 1 });
                 if (getGalleries.data) {
-                  saveGalleries(getGalleries.data);
+                  saveGalleries(getGalleries.data.galleries);
                 }
               }}
               buttonStyle="OUTLINED"

@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IGetAllGalleriesResponse } from "#types/api-types/api-response-types.ts";
+import { IGetAllGalleriesResponse, IGalleryResponse } from "#types/api-types/api-response-types.ts";
 
 interface IGallerySliceState {
   createGalleryTags: string[];
   activeTag: string;
-  downloadGalleries: IGetAllGalleriesResponse[];
+  downloadGalleries: IGalleryResponse[];
 }
 
 const initialState: IGallerySliceState = {
@@ -39,8 +39,8 @@ const galleriesSlice = createSlice({
       state.createGalleryTags = [];
     },
 
-    setDownloadGalleries(state, action: PayloadAction<IGetAllGalleriesResponse>) {
-      state.downloadGalleries = [...state.downloadGalleries, action.payload];
+    setDownloadGalleries(state, action: PayloadAction<IGalleryResponse[]>) {
+      state.downloadGalleries = [...state.downloadGalleries, ...action.payload];
 
       console.log(state.downloadGalleries);
     },
