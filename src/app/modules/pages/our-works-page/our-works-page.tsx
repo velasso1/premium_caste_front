@@ -168,6 +168,7 @@ const OurWorksPage: FC = () => {
             <Button
               buttonText="Загрузить еще"
               onClickAction={() => {
+                setDownloadMorePresses(true);
                 setPagination({ ...pagination, page: pagination.page + 1 });
                 if (activeTag === "Всё" && getGalleries.data) {
                   saveGalleries(getGalleries.data.galleries);
@@ -183,6 +184,8 @@ const OurWorksPage: FC = () => {
               <Pagination
                 page={pagination.page}
                 onChange={(e: ChangeEvent<unknown>, value: number) => {
+                  setDownloadMorePresses(false);
+
                   setPagination({ perPage: 24, page: value });
                   handleScroll();
                   sessionStorage.setItem(WORKS_PAGE, `${value}`);
