@@ -65,13 +65,13 @@ const OurWorksPage: FC = () => {
     if (galleryByTagStatus.data) {
       dispatch(setDownloadGalleries(galleryByTagStatus.data?.galleries));
     }
-  }, [getGalleryByTag, galleryByTagStatus.data]);
+  }, [galleryByTagStatus.data]);
 
   useEffect(() => {
     if (getGalleries.data) {
       dispatch(setDownloadGalleries(getGalleries.data?.galleries));
     }
-  }, [getGalleries, getGalleries.data]);
+  }, [getGalleries.data]);
 
   useEffect(() => {
     if (activeTag === "Всё") {
