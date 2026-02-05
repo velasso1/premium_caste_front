@@ -62,16 +62,16 @@ const OurWorksPage: FC = () => {
   }, [activeTag]);
 
   useEffect(() => {
-    if (galleryByTagStatus.data) {
+    if (galleryByTagStatus.data && galleryByTagStatus.isSuccess) {
       dispatch(setDownloadGalleries(galleryByTagStatus.data?.galleries));
     }
-  }, [galleryByTagStatus.data]);
+  }, [galleryByTagStatus.data, galleryByTagStatus.isSuccess]);
 
   useEffect(() => {
-    if (getGalleries.data) {
+    if (getGalleries.data && getGalleries.isSuccess) {
       dispatch(setDownloadGalleries(getGalleries.data?.galleries));
     }
-  }, [getGalleries.data]);
+  }, [getGalleries.data, getGalleries.isSuccess]);
 
   useEffect(() => {
     if (activeTag === "Всё") {
