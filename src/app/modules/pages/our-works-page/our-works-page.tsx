@@ -23,6 +23,7 @@ import Stack from "@mui/material/Stack";
 // //////////////////////
 
 import { sidebarItemsWorks } from "#utils/auxuliary/sidebar-items.ts";
+import { WORKS_PAGE } from "#utils/constants.ts";
 
 interface IPaginationState {
   page: number; 
@@ -36,7 +37,7 @@ const OurWorksPage: FC = () => {
 
   const { activeTag } = useAppSelector((state) => state.galleriesSlice);
 
-  const [pagination, setPagination] = useState<IPaginationState>({ page: 1, perPage: 24 });
+  const [pagination, setPagination] = useState<IPaginationState>({ page: Number(localStorage.getItem(WORKS_PAGE)) || 1, perPage: 24 });
 
   const [getGalleryByTag, galleryByTagStatus] = useLazyGetGalleryByTagQuery();
   const getGalleries = useGetAllGalleriesQuery({
@@ -140,6 +141,7 @@ const OurWorksPage: FC = () => {
                 onChange={(e: ChangeEvent<unknown>, value: number) => {
                   setPagination({ perPage: 24, page: value });
                   handleScroll();
+                  localStorage.setItem(WORKS_PAGE, `${pagination.page}`);
                 }}
                 count={getGalleries.data?.pagination.total_pages}
                 variant="outlined"
