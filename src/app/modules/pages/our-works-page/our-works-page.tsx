@@ -44,6 +44,8 @@ const OurWorksPage: FC = () => {
     perPage: 24,
   });
 
+  const [downloadMoreDisabled, setDownloadDisabled] = useState<boolean>(false);
+
   const [getGalleryByTag, galleryByTagStatus] = useLazyGetGalleryByTagQuery();
   const getGalleries = useGetAllGalleriesQuery({
     status: "published",
@@ -56,6 +58,13 @@ const OurWorksPage: FC = () => {
       getGalleryByTag({ tag: activeTag });
     }
   }, [activeTag]);
+
+  useEffect(() => {
+    setDownloadDisabled(
+      pagination.page === getGalleries.data?.pagination.total_pages ||
+        pagination.page === galleryByTagStatus.data?.pagination.total_pages
+    );
+  }, [getGalleries.data, galleryByTagStatus.data, pagination.page]);
 
   const changeTagHandler = (tagName: string): void => {
     dispatch(setActiveTag(tagName));
@@ -95,7 +104,9 @@ const OurWorksPage: FC = () => {
               return (
                 <SidebarItem
                   key={item.itemName}
-                  onClick={() => changeTagHandler(item.itemName)}
+                  onClick={() => {
+                    changeTagHandler(item.itemName);
+                  }}
                   itemInfo={item}
                   activeElement={activeTag === item.itemName}
                 />
@@ -149,11 +160,7 @@ const OurWorksPage: FC = () => {
               }}
               buttonStyle="OUTLINED"
               buttonType={getGalleries.status === "pending" ? "LOADING" : undefined}
-              disabled={
-                getGalleries.status === "pending" ||
-                pagination.page === getGalleries.data?.pagination.total_pages ||
-                pagination.page === galleryByTagStatus.data?.pagination.total_pages
-              }
+              disabled={getGalleries.status === "pending" || downloadMoreDisabled}
             />
             <Stack spacing={2}>
               <Pagination
