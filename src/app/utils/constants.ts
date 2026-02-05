@@ -11,6 +11,7 @@ export const EXPIRES_SESSION_TIME = "_pc_seAt";
 export const USER_ID = "_pc_uid";
 export const REFRESH_TOKEN = "_pc_rt";
 export const ACCESS_TOKEN = "_pc_at";
+export const WORKS_PAGE = '_pc_works_page';
 
 export enum STEPS {
   FIRST = 1,

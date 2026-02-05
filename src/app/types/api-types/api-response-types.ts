@@ -118,7 +118,14 @@ export interface IGalleryResponse extends ICreateGalleryPayload {
   updated_at: string;
 }
 
+export interface IPagination {
+  page: number;
+  per_page: number;
+  total: number;
+  total_pages: number;
+}
+
 export interface IGetAllGalleriesResponse {
   galleries: IGalleryResponse[];
-  total: number;
+  pagination: IPagination;
 }
