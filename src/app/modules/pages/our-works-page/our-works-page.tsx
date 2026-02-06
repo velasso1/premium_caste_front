@@ -67,6 +67,7 @@ const OurWorksPage: FC = () => {
 
   useEffect(() => {
     if (galleryByTagStatus.data && galleryByTagStatus.isSuccess) {
+      console.log("SAVED TAGS");
       dispatch(setDownloadGalleries(galleryByTagStatus.data?.galleries));
     }
   }, [galleryByTagStatus.requestId]);
@@ -79,7 +80,7 @@ const OurWorksPage: FC = () => {
     }
 
     if (getGalleries.data && getGalleries.isSuccess) {
-      console.log("SAVED");
+      console.log("SAVED ALL");
       dispatch(setDownloadGalleries(getGalleries.data?.galleries));
     }
   }, [getGalleries.requestId, getGalleries.isSuccess]);
