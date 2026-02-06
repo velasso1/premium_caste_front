@@ -56,8 +56,8 @@ const OurWorksPage: FC = () => {
   const [downloadMorePressed, setDownloadMorePresses] = useState<boolean>(false);
   const [queryId, setQueryId] = useState<string | undefined>(undefined);
 
-  let lastRequestIdAll = useRef<string | null>(null);
-  let lastRequestIdTag = useRef<string | null>(null);
+  const lastRequestIdAll = useRef<string | null>(null);
+  const lastRequestIdTag = useRef<string | null>(null);
 
   // делаем запрос на получение галерей по тегу, если тег не равен "Всё"
   useEffect(() => {
@@ -76,11 +76,17 @@ const OurWorksPage: FC = () => {
   }, [activeTag]);
 
   useEffect(() => {
-    if (galleryByTagStatus.data && galleryByTagStatus.isSuccess) {
-      console.log("SAVED TAGS");
-      dispatch(setDownloadGalleries(galleryByTagStatus.data?.galleries));
-    }
-  }, [galleryByTagStatus.requestId]);
+    const { data, isSuccess, isFetching, requestId } = galleryByTagStatus;
+
+    // ждём завершения запроса с новыми данными
+    if (!data || !isSuccess || isFetching) return;
+
+    // защищаемся от повторных срабатываний/старых requestId
+    if (requestId && requestId === lastRequestIdTag.current) return;
+
+    lastRequestIdTag.current = requestId ?? null;
+    dispatch(setDownloadGalleries(data.galleries));
+  }, [galleryByTagStatus, dispatch]);
 
   useEffect(() => {
     if (queryId === getGalleries.requestId) return;
