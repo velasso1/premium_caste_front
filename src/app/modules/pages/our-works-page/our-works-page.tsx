@@ -1,4 +1,5 @@
 import { FC, useState, useEffect, useRef, ChangeEvent } from "react";
+import { skipToken } from "@reduxjs/toolkit/query";
 
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setActiveTag, setDownloadGalleries, clearDownloadGalleries } from "../../../store/slices/galleries";
@@ -47,11 +48,15 @@ const OurWorksPage: FC = () => {
   const [downloadMoreDisabled, setDownloadDisabled] = useState<boolean>(false);
 
   const [getGalleryByTag, galleryByTagStatus] = useLazyGetGalleryByTagQuery();
-  const getGalleries = useGetAllGalleriesQuery({
-    status: "published",
-    page: `${pagination.page}`,
-    per_page: `${pagination.perPage}`,
-  });
+  const getGalleries = useGetAllGalleriesQuery(
+    activeTag === "Всё"
+      ? {
+          status: "published",
+          page: `${pagination.page}`,
+          per_page: `${pagination.perPage}`,
+        }
+      : skipToken
+  );
 
   const [downloadMorePressed, setDownloadMorePresses] = useState<boolean>(false);
   const lastRequestIdAll = useRef<string | null>(null);
