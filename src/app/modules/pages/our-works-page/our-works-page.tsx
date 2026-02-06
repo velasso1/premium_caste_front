@@ -54,15 +54,25 @@ const OurWorksPage: FC = () => {
   });
 
   const [downloadMorePressed, setDownloadMorePresses] = useState<boolean>(false);
+  const [queryId, setQueryId] = useState<string | undefined>(undefined);
 
   let lastRequestIdAll = useRef<string | null>(null);
   let lastRequestIdTag = useRef<string | null>(null);
 
   // делаем запрос на получение галерей по тегу, если тег не равен "Всё"
   useEffect(() => {
+    setQueryId(getGalleries.requestId);
+  }, []);
+
+  useEffect(() => {
     if (activeTag !== "Всё") {
       getGalleryByTag({ page: `${pagination.page}`, tag: activeTag, per_page: `${pagination.perPage}` });
+      setQueryId(galleryByTagStatus.requestId);
+      return;
     }
+
+    getGalleries.refetch();
+    setQueryId(getGalleries.requestId);
   }, [activeTag]);
 
   useEffect(() => {
@@ -73,11 +83,7 @@ const OurWorksPage: FC = () => {
   }, [galleryByTagStatus.requestId]);
 
   useEffect(() => {
-    if (lastRequestIdAll.current === getGalleries.requestId) return;
-
-    if (getGalleries.requestId) {
-      lastRequestIdAll.current = getGalleries.requestId;
-    }
+    if (queryId !== getGalleries.requestId) return;
 
     if (getGalleries.data && getGalleries.isSuccess) {
       console.log("SAVED ALL");
