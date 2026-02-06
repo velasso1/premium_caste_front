@@ -58,6 +58,7 @@ const OurWorksPage: FC = () => {
   let lastRequestIdAll = useRef<string | null>(null);
   let lastRequestIdTag = useRef<string | null>(null);
 
+  // делаем запрос на получение галерей по тегу, если тег не равен "Всё"
   useEffect(() => {
     if (activeTag !== "Всё") {
       getGalleryByTag({ page: `${pagination.page}`, tag: activeTag, per_page: `${pagination.perPage}` });
@@ -78,10 +79,12 @@ const OurWorksPage: FC = () => {
     }
 
     if (getGalleries.data && getGalleries.isSuccess) {
+      console.log("SAVED");
       dispatch(setDownloadGalleries(getGalleries.data?.galleries));
     }
   }, [getGalleries.requestId, getGalleries.isSuccess]);
 
+  // блокируем кнопку "загрузить еще", если текущая страница равна последней
   useEffect(() => {
     if (activeTag === "Всё") {
       setDownloadDisabled(pagination.page === getGalleries.data?.pagination.total_pages);
@@ -90,10 +93,12 @@ const OurWorksPage: FC = () => {
     setDownloadDisabled(pagination.page === galleryByTagStatus.data?.pagination.total_pages);
   }, [getGalleries.data, galleryByTagStatus.data, pagination.page, activeTag]);
 
+  // менем tagName для запроса getGalleriesByTag
   const changeTagHandler = (tagName: string): void => {
     dispatch(setActiveTag(tagName));
   };
 
+  // поднимаем страницу вверх
   const handleScroll = () => {
     if (!targetRef.current) return;
 
@@ -103,6 +108,8 @@ const OurWorksPage: FC = () => {
     });
   };
 
+  // сохраняем полученные галереи в стейт,
+  // чтобы отрисовывать их подряд, а не постранично
   const saveGalleries = (galleries: IGalleryResponse[]): void => {
     dispatch(setDownloadGalleries(galleries));
   };
