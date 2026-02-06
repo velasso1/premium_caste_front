@@ -54,48 +54,23 @@ const OurWorksPage: FC = () => {
   });
 
   const [downloadMorePressed, setDownloadMorePresses] = useState<boolean>(false);
-  const [queryId, setQueryId] = useState<string | undefined>(undefined);
-
-  const lastRequestIdAll = useRef<string | null>(null);
   const lastRequestIdTag = useRef<string | null>(null);
-
-  // делаем запрос на получение галерей по тегу, если тег не равен "Всё"
-  useEffect(() => {
-    setQueryId(getGalleries.requestId);
-  }, []);
 
   useEffect(() => {
     if (activeTag !== "Всё") {
       getGalleryByTag({ page: `${pagination.page}`, tag: activeTag, per_page: `${pagination.perPage}` });
-      setQueryId(galleryByTagStatus.requestId);
-      return;
     }
-
-    getGalleries.refetch();
-    setQueryId(getGalleries.requestId);
-  }, [activeTag]);
+  }, [activeTag, pagination.page, pagination.perPage, getGalleryByTag]);
 
   useEffect(() => {
     const { data, isSuccess, isFetching, requestId } = galleryByTagStatus;
 
-    // ждём завершения запроса с новыми данными
     if (!data || !isSuccess || isFetching) return;
-
-    // защищаемся от повторных срабатываний/старых requestId
     if (requestId && requestId === lastRequestIdTag.current) return;
 
     lastRequestIdTag.current = requestId ?? null;
     dispatch(setDownloadGalleries(data.galleries));
-  }, [galleryByTagStatus, dispatch]);
-
-  useEffect(() => {
-    if (queryId === getGalleries.requestId) return;
-
-    if (getGalleries.data && getGalleries.isSuccess) {
-      console.log("SAVED ALL");
-      dispatch(setDownloadGalleries(getGalleries.data?.galleries));
-    }
-  }, [getGalleries.requestId, getGalleries.isSuccess]);
+  }, [galleryByTagStatus.data, galleryByTagStatus.isSuccess, galleryByTagStatus.isFetching, galleryByTagStatus.requestId, dispatch]);
 
   // блокируем кнопку "загрузить еще", если текущая страница равна последней
   useEffect(() => {
