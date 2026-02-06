@@ -83,7 +83,7 @@ const OurWorksPage: FC = () => {
   }, [galleryByTagStatus.requestId]);
 
   useEffect(() => {
-    if (queryId !== getGalleries.requestId) return;
+    if (queryId === getGalleries.requestId) return;
 
     if (getGalleries.data && getGalleries.isSuccess) {
       console.log("SAVED ALL");
