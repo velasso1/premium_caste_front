@@ -54,6 +54,7 @@ const OurWorksPage: FC = () => {
   });
 
   const [downloadMorePressed, setDownloadMorePresses] = useState<boolean>(false);
+  const lastRequestIdAll = useRef<string | null>(null);
   const lastRequestIdTag = useRef<string | null>(null);
 
   useEffect(() => {
@@ -83,6 +84,10 @@ const OurWorksPage: FC = () => {
 
   // менем tagName для запроса getGalleriesByTag
   const changeTagHandler = (tagName: string): void => {
+    // при смене тега сбрасываем накопленные галереи и пагинацию
+    dispatch(clearDownloadGalleries());
+    setDownloadMorePresses(false);
+    setPagination({ page: 1, perPage: 24 });
     dispatch(setActiveTag(tagName));
   };
 
@@ -96,11 +101,22 @@ const OurWorksPage: FC = () => {
     });
   };
 
-  // сохраняем полученные галереи в стейт,
-  // чтобы отрисовывать их подряд, а не постранично
-  const saveGalleries = (galleries: IGalleryResponse[]): void => {
-    dispatch(setDownloadGalleries(galleries));
-  };
+  // сохраняем полученные галереи (общие, без тега) в стейт один раз на каждый успешный запрос
+  useEffect(() => {
+    const { data, isSuccess, isFetching, requestId } = getGalleries;
+
+    if (!data || !isSuccess || isFetching) return;
+    if (requestId && requestId === lastRequestIdAll.current) return;
+
+    lastRequestIdAll.current = requestId ?? null;
+    dispatch(setDownloadGalleries(data.galleries));
+  }, [
+    getGalleries.data,
+    getGalleries.isSuccess,
+    getGalleries.isFetching,
+    getGalleries.requestId,
+    dispatch,
+  ]);
 
   return (
     <PageLayout pageClassName="our-works-page">
@@ -184,11 +200,6 @@ const OurWorksPage: FC = () => {
               onClickAction={() => {
                 setDownloadMorePresses(true);
                 setPagination({ ...pagination, page: pagination.page + 1 });
-                if (activeTag === "Всё" && getGalleries.data) {
-                  saveGalleries(getGalleries.data.galleries);
-                } else if (activeTag !== "Всё" && galleryByTagStatus.data) {
-                  saveGalleries(galleryByTagStatus.data.galleries);
-                }
               }}
               buttonStyle="OUTLINED"
               buttonType={getGalleries.status === "pending" ? "LOADING" : undefined}
