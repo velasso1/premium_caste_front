@@ -76,7 +76,13 @@ const OurWorksPage: FC = () => {
 
     lastRequestIdTag.current = requestId ?? null;
     dispatch(setDownloadGalleries(data.galleries));
-  }, [galleryByTagStatus.data, galleryByTagStatus.isSuccess, galleryByTagStatus.isFetching, galleryByTagStatus.requestId, dispatch]);
+  }, [
+    galleryByTagStatus.data,
+    galleryByTagStatus.isSuccess,
+    galleryByTagStatus.isFetching,
+    galleryByTagStatus.requestId,
+    dispatch,
+  ]);
 
   // блокируем кнопку "загрузить еще", если текущая страница равна последней
   useEffect(() => {
@@ -115,13 +121,7 @@ const OurWorksPage: FC = () => {
 
     lastRequestIdAll.current = requestId ?? null;
     dispatch(setDownloadGalleries(data.galleries));
-  }, [
-    getGalleries.data,
-    getGalleries.isSuccess,
-    getGalleries.isFetching,
-    getGalleries.requestId,
-    dispatch,
-  ]);
+  }, [getGalleries.data, getGalleries.isSuccess, getGalleries.isFetching, getGalleries.requestId, dispatch]);
 
   return (
     <PageLayout pageClassName="our-works-page">
@@ -185,7 +185,7 @@ const OurWorksPage: FC = () => {
                     })
                   : "Работ пока нет"
                 : galleryByTagStatus.data?.galleries.length
-                  ? [...galleryByTagStatus.data?.galleries].reverse().map((item) => {
+                  ? galleryByTagStatus.data?.galleries.map((item) => {
                       return (
                         <WorkItem
                           key={item.id}
