@@ -217,7 +217,9 @@ const OurWorksPage: FC = () => {
                   setDownloadMorePresses(false);
                   dispatch(clearDownloadGalleries());
                   setPagination({ perPage: 24, page: value });
-                  handleScroll();
+                  if (activeTag === "Всё") {
+                    handleScroll();
+                  }
                   sessionStorage.setItem(WORKS_PAGE, `${value}`);
                 }}
                 count={
