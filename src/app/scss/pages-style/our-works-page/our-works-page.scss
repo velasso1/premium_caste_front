@@ -9,6 +9,8 @@
   &__work-item {
     height: max-content;
     width: 230px;
+    color: #fff;
+    text-decoration: none;
 
     &:hover {
       cursor: pointer;
@@ -83,6 +85,7 @@
     text-align: center;
     margin-top: 10px;
     font-weight: 500;
+    color: #fff;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
