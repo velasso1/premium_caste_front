@@ -1,7 +1,7 @@
 import { FC, useLayoutEffect, useEffect, useState } from "react";
 
 // import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAppSelector } from "../../../../store";
 
 import { useDeleteGalleryMutation } from "../../../../store/api/galleries-api";
@@ -47,6 +47,8 @@ const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumP
     deleteGallery({ id: id });
   };
 
+  const linkTo = "../" + routes.CURRENT_GALLERY_PAGE + `/${itemId}`;
+
   return (
     <>
       <Popup
@@ -54,12 +56,10 @@ const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumP
         action={() => deleteGalelryHandler(idGalleryToDelete)}
         onClose={() => popupHandler(false)}
       />
-      <div
+      <Link
+        to={linkTo}
         data-album={isAlbumPhoto}
         className="our-works-page__work-item"
-        onClick={(e) => {
-          navigate("../" + routes.CURRENT_GALLERY_PAGE + `/${itemId}`);
-        }}
       >
         <div className="our-works-page__banner">
           {!imageState.isLoaded && <Loader />}
@@ -74,6 +74,7 @@ const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumP
             onClick={(e) => {
               if (isAlbumPhoto) {
                 e.stopPropagation();
+                e.preventDefault();
                 toggleZoom();
               }
             }}
@@ -87,6 +88,7 @@ const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumP
                 className="our-works-page__change-button"
                 onClick={(e) => {
                   e.stopPropagation();
+                  e.preventDefault();
                   navigate("../" + routes.EDIT_WORK_PAGE + `/${itemId}`);
                 }}
               >
@@ -96,6 +98,7 @@ const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumP
                 className="our-works-page__delete-button"
                 onClick={(e) => {
                   e.stopPropagation();
+                  e.preventDefault();
                   selectGalleryId(itemId);
                   popupHandler(true);
                 }}
@@ -108,7 +111,7 @@ const WorkItem: FC<IWorkItemProps> = ({ itemTitle, imageSource, itemId, isAlbumP
           {!isAlbumPhoto && <span className="our-works-page__notice">подробнее</span>}
         </div>
         <div className="our-works-page__item-title">{itemTitle}</div>
-      </div>
+      </Link>
     </>
   );
 };

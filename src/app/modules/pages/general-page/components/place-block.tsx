@@ -12,7 +12,7 @@ const PlaceBlock: FC = () => {
   return (
     <div className="place-block">
       <div className="block-container">
-        <PageTitle pageName="контакты" isLink={true} linkHref={"../main/" + routes.CONTACTS_PAGE} />
+        <PageTitle pageName="контакты" isLink={false} linkHref={"../main/" + routes.CONTACTS_PAGE} />
         <div className="place-block__address">г. Москва, ул. Никулинская, 23, корп. 4, стр. 1</div>
         <div className="general-page__map-block">
           <YandexMap />
@@ -20,7 +20,7 @@ const PlaceBlock: FC = () => {
         <div className="place-block__action">
           <div className="place-block__button">
             <Button
-              buttonText="открыть в картах"
+              buttonText="Открыть в картах"
               onClickAction={() => window.open("https://yandex.ru/maps/-/CHVqFALm", "_blank")}
             />
           </div>

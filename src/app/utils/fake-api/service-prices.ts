@@ -1000,8 +1000,8 @@ export const samplePriceBook: PriceBook = [
       {
         id: "hu-remove",
         cells: [
-          { kind: "text", label: "с/у ГУ для прочих работ" },
-          { kind: "price", value: "от 3 000" },
+          { kind: "text", label: "с/у ГУ для прочих работ, от" },
+          { kind: "price", value: 3000 },
         ],
       },
       {
