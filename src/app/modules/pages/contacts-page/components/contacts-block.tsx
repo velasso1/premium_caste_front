@@ -9,12 +9,12 @@ import { Link } from "react-router-dom";
 const ContactsBlock: FC = () => {
   const contactIcons = [
     { className: "item-telegram", linkTo: "https://t.me/premiumcaste_admin", iconSrc: telegram, alt: "telegram" },
-    {
-      className: "item-whatsapp",
-      linkTo: "https://api.whatsapp.com/send?text=&phone=79684373983",
-      iconSrc: whatsapp,
-      alt: "whatsapp",
-    },
+    // {
+    //   className: "item-whatsapp",
+    //   linkTo: "https://api.whatsapp.com/send?text=&phone=79684373983",
+    //   iconSrc: whatsapp,
+    //   alt: "whatsapp",
+    // },
   ];
 
   return (
