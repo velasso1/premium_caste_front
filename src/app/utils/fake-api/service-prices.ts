@@ -1,4 +1,5 @@
 import { ITableData } from "#ui/price-table/price-table.tsx";
+// import { serviceNames } from "#utils/auxuliary/services-items-list.ts";
 import { serviceNames } from "#utils/auxuliary/services-items-list.ts";
 import { PriceBook } from "#utils/prices-types/price-table-types.ts";
 
