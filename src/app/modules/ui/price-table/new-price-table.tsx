@@ -106,8 +106,6 @@ type PriceTableProps = { sections: PriceBook };
 const formatValue = (val: PriceValue) => (typeof val === "number" ? `${val.toLocaleString("ru-RU")} ₽` : val);
 
 const NewPriceTable: React.FC<PriceTableProps> = ({ sections }) => {
-  console.log(sections);
-
   return (
     <>
       {sections.map((section) => (
@@ -250,7 +248,7 @@ const NewPriceTable: React.FC<PriceTableProps> = ({ sections }) => {
             </TableBody>
           </Table>
         </TableContainer>
-        <span style={{"margin": "20px"}}>{section.description}</span>
+        <div style={{"margin": "20px 0 20px 0"}}>{section.description}</div>
         </>
       ))}
     </>

@@ -44,7 +44,6 @@ const galleriesSlice = createSlice({
         state.downloadGalleries = [...state.downloadGalleries, ...action.payload];
       }
 
-      console.log(state.downloadGalleries);
     },
 
     clearDownloadGalleries(state) {
