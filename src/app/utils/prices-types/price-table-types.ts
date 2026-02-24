@@ -14,6 +14,7 @@ export type Column = { id: string; label: string; width?: number | string };
 export type Section = {
   id: string;
   title: string;
+  description?: string | undefined;
   subtitle?: string;
   columns: Column[]; // названия столбцов (классы, варианты ремней и т.п.)
   rows: TableRowData[];

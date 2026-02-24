@@ -116,11 +116,7 @@ const PriceTable: FC<ITableProps> = ({ tableData }) => {
               >
                 {item.map((row, rowIdx) => {
                   return (
-                    <TableCell
-                      key={rowIdx}
-                      colSpan={row.colSpan}
-                      rowSpan={row.rowSpan}
-                    >
+                    <TableCell key={rowIdx} colSpan={row.colSpan} rowSpan={row.rowSpan}>
                       {row.value}
                     </TableCell>
                   );
