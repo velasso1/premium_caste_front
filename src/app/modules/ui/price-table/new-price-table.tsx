@@ -255,7 +255,7 @@ const NewPriceTable: React.FC<PriceTableProps> = ({ sections }) => {
   );
 };
 
-// Пример минимальных данных. Замените/дополните фактическим прайсом из макетов.
+// Пример минимальных данных.
 export const samplePriceBook: PriceBook = [
   {
     id: "paint-protection-ppf-front",
