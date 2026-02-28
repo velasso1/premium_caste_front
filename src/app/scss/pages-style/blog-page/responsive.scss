@@ -352,7 +352,30 @@
   }
 }
 
-// Дополнительные стили для очень маленьких экранов
+// Стили для маленьких экранов (400px)
+@media screen and (max-width: 400px) {
+  .blog-page {
+    &__main-news,
+    &__second-news {
+      height: 270px;
+    }
+
+    &__main-news-title,
+    &__second-news-title {
+      font-size: 17px;
+    }
+
+    &__item-preview {
+      height: 230px;
+    }
+
+    &__item-description {
+      font-size: 14.5px;
+    }
+  }
+}
+
+// Дополнительные стили для очень маленьких экранов (380px)
 @media screen and (max-width: 380px) {
   .blog-page {
     &__main-news,

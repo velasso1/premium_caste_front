@@ -208,7 +208,59 @@
   }
 }
 
-/* Маленькие мобильные (380px) */
+/* Маленькие мобильные (400px) */
+@media screen and (max-width: 400px) {
+  .contacts-page {
+    &__map {
+      height: 180px;
+    }
+
+    &__item,
+    &__item--contact {
+      font-size: 15px;
+      padding-top: 13px;
+    }
+
+    &__item-telegram,
+    &__item-whatsapp {
+      width: 26px;
+      margin-left: 9px;
+    }
+
+    &__item-whatsapp {
+      width: 29px;
+    }
+
+    &__links-title {
+      margin-top: 28px;
+      font-size: 17px;
+    }
+
+    .feedback-form {
+      &__title {
+        font-size: 17px;
+      }
+
+      &__name,
+      &__telegram,
+      &__message {
+        padding: 7px 0 7px 6px;
+        font-size: 13.5px;
+      }
+
+      &__message {
+        min-height: 75px;
+      }
+
+      &__submit {
+        padding: 8px 15px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+/* Очень маленькие мобильные (380px) */
 @media screen and (max-width: 380px) {
   .contacts-page {
     &__item,

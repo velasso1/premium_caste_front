@@ -102,6 +102,18 @@
     }
   }
 
+  @media screen and (max-width: 400px) {
+    &__item {
+      min-width: 88px;
+
+      span {
+        padding: 5px 3px;
+        font-size: 10.5px;
+        border-radius: 10px;
+      }
+    }
+  }
+
   @media screen and (max-width: 380px) {
     &__item {
       min-width: 80px;

@@ -159,7 +159,23 @@
     }
   }
 
-  // Маленькие мобильные
+  // Маленькие мобильные (400px)
+  @media (max-width: 400px) {
+    &__title {
+      font-size: 1.35rem;
+    }
+
+    &__message {
+      font-size: 0.88rem;
+    }
+
+    &__home-button {
+      padding: 8px 19px;
+      font-size: 0.88rem;
+    }
+  }
+
+  // Очень маленькие мобильные
   @media (max-width: 380px) {
     &__title {
       font-size: 1.3rem;

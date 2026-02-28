@@ -32,6 +32,7 @@
     }
 
     .place-block {
+
       &__address,
       &__contanct-phone {
         font-size: 22px;
@@ -79,6 +80,7 @@
     }
 
     .place-block {
+
       &__address,
       &__contanct-phone {
         font-size: 20px;
@@ -153,6 +155,7 @@
     }
 
     .place-block {
+
       &__address,
       &__contanct-phone {
         font-size: 18px;
@@ -234,6 +237,7 @@
   }
 
   .place-block {
+
     &__address,
     &__contanct-phone {
       font-size: 16px;
@@ -276,7 +280,54 @@
   }
 }
 
-/* ========== Маленькие мобильные (380px) ========== */
+/* ========== Маленькие мобильные (400px) ========== */
+@media screen and (max-width: 400px) {
+  .general-page {
+    &__video {
+      height: 55vh;
+    }
+
+    &__banner {
+      top: 18%;
+      width: 95%;
+      font-size: 1rem;
+    }
+
+    &__map-block {
+      height: 190px;
+    }
+  }
+
+  .about-block {
+    &__article {
+      font-size: 15px;
+      line-height: 23px;
+    }
+
+    &__works-item {
+      font-size: 14px;
+    }
+  }
+
+  .place-block {
+
+    &__address,
+    &__contanct-phone {
+      font-size: 15px;
+      padding: 0 10px;
+    }
+
+    &__icons {
+      padding: 35px 0;
+    }
+
+    &__icon-image {
+      width: 32px;
+    }
+  }
+}
+
+/* ========== Очень маленькие мобильные (380px) ========== */
 @media screen and (max-width: 380px) {
   .general-page {
     &__video {
@@ -285,6 +336,10 @@
 
     &__banner {
       top: 15%;
+    }
+
+    &__map-block {
+      height: 180px;
     }
   }
 
@@ -300,6 +355,7 @@
   }
 
   .place-block {
+
     &__address,
     &__contanct-phone {
       font-size: 14px;
@@ -323,9 +379,16 @@
       width: 30px;
     }
   }
+}
+
+@media screen and (max-width: 300px) {
   .general-page {
-    &__map-block {
-      height: 180px;
+    &__video {
+      height: 35vh;
+    }
+
+    &__banner {
+      top: 35%;
     }
   }
 }

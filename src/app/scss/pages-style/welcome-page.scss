@@ -90,7 +90,12 @@
       width: 300px;
     }
 
-    // Маленькие мобильные
+    // Маленькие мобильные (400px)
+    @media screen and (max-width: 400px) {
+      width: 280px;
+    }
+
+    // Очень маленькие мобильные
     @media screen and (max-width: 380px) {
       width: 260px;
     }
@@ -133,12 +138,20 @@
       border-radius: 14px;
     }
 
-    // Маленькие мобильные
-    @media screen and (max-width: 380px) {
-      padding: 6px 25px;
+    // Маленькие мобильные (400px)
+    @media screen and (max-width: 400px) {
+      padding: 6px 26px;
       font-size: 13px;
       margin-top: -15px;
       border-radius: 12px;
+    }
+
+    // Очень маленькие мобильные
+    @media screen and (max-width: 380px) {
+      padding: 6px 22px;
+      font-size: 12px;
+      margin-top: -12px;
+      border-radius: 10px;
     }
 
     &:hover {

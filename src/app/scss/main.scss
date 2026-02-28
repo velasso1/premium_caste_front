@@ -117,10 +117,21 @@ input:-moz-autofill:active {
   }
 }
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 400px) {
   .container,
   .block-container {
     padding: 0 10px;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .container,
+  .block-container {
+    padding: 0 8px;
   }
 }
 // ============================================

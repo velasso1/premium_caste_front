@@ -122,6 +122,20 @@
   }
 }
 
+// Very small screens (400px and below)
+@media (max-width: 400px) {
+  .page-layout {
+    padding: 36px 0 24px 0;
+    padding-top: 36px;
+
+    &__banner {
+      font-size: 1.1rem;
+      padding: 16px 10px;
+      max-width: 98%;
+    }
+  }
+}
+
 // Адаптация для вертикальной ориентации
 @media (orientation: portrait) and (max-width: 768px) {
   .page-layout {

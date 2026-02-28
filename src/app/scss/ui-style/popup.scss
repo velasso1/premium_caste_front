@@ -80,3 +80,28 @@
     }
   }
 }
+
+@media screen and (max-width: 400px) {
+  .popup {
+    &__container {
+      max-width: 95vw;
+      margin: 0 10px;
+      padding: 24px 16px;
+    }
+
+    &__question {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    &__buttons {
+      gap: 12px;
+    }
+
+    &__button {
+      min-width: 80px;
+      padding: 10px 18px;
+      font-size: 14px;
+    }
+  }
+}

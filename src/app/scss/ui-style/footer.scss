@@ -140,7 +140,33 @@
   }
 }
 
-/* ========== Маленькие мобильные (380px) ========== */
+/* ========== Маленькие мобильные (400px) ========== */
+@media screen and (max-width: 400px) {
+  .footer {
+    &__list {
+      padding: 22px 0;
+      gap: 18px;
+    }
+
+    &__nav-item {
+      &:not(:last-child) {
+        padding-bottom: 14px;
+      }
+    }
+
+    &__article {
+      padding: 0 12px;
+      font-size: 12.5px;
+    }
+
+    &__copyright {
+      padding: 22px 10px;
+      font-size: 12.5px;
+    }
+  }
+}
+
+/* ========== Очень маленькие мобильные (380px) ========== */
 @media screen and (max-width: 380px) {
   .footer {
     &__list {
@@ -155,12 +181,12 @@
     }
 
     &__article {
-      padding: 0 15px;
+      padding: 0 10px;
       font-size: 12px;
     }
 
     &__copyright {
-      padding: 20px 10px;
+      padding: 20px 8px;
       font-size: 12px;
     }
   }

@@ -114,12 +114,36 @@
   }
 }
 
-/* ========== Маленькие мобильные (380px) ========== */
+/* ========== Маленькие мобильные (400px) ========== */
+@media screen and (max-width: 400px) {
+  .services-page {
+    &__content {
+      gap: 12px;
+      padding: 0 10px;
+    }
+
+    &__category-item {
+      height: 170px;
+      padding: 5px;
+    }
+
+    &__image img {
+      width: 90px;
+    }
+
+    &__title {
+      font-size: 13px;
+      padding-top: 7px;
+    }
+  }
+}
+
+/* ========== Очень маленькие мобильные (380px) ========== */
 @media screen and (max-width: 380px) {
   .services-page {
     &__content {
       gap: 10px;
-      padding: 0 10px;
+      padding: 0 8px;
     }
 
     &__category-item {
