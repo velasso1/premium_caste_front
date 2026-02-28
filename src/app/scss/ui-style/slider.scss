@@ -60,7 +60,7 @@
   text-align: center;
   margin: 0 20px;
   overflow: hidden;
-  border-radius: 15px;
+  // border-radius: 15px;
 
   &:hover {
     cursor: pointer;
@@ -89,6 +89,7 @@
     display: block;
 
     @include animationOnHover;
+
     &:hover {
       filter: brightness(60%);
     }

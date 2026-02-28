@@ -39,7 +39,7 @@ const Header: FC = () => {
 
   return (
     <header className={`header ${headerSticky && "header--sticky"}`}>
-      <div
+      <a
         className="header__logo"
         onClick={() => {
           navigate(routes.GENERAL_PAGE);
@@ -47,7 +47,7 @@ const Header: FC = () => {
         }}
       >
         <img src={logo} alt="logotype" className="header__logo-image" />
-      </div>
+      </a>
       <NavigationMenu menuIsOpen={burgerOpen} menuItemClick={() => openBurger(false)} />
       <NavigationIcons />
 

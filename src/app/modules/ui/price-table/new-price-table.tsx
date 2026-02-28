@@ -111,37 +111,37 @@ const NewPriceTable: React.FC<PriceTableProps> = ({ sections }) => {
       {sections.map((section) => (
         <>
 
-        <TableContainer
-          key={section.id}
-          component={Paper}
-          sx={{
-            mb: 3,
-            overflowX: "auto",
-            backgroundColor: "#0f1014",
-            color: "#fff",
-            border: "1px solid #1f222b",
-            borderRadius: 2,
-          }}
-        >
-          <Table
-            size="small"
-            aria-label={section.title}
+          <TableContainer
+            key={section.id}
+            component={Paper}
             sx={{
-              minWidth: 650,
+              mb: 3,
+              overflowX: "auto",
               backgroundColor: "#0f1014",
               color: "#fff",
-              "& .MuiTableCell-root": {
-                color: "#fff",
-                borderBottom: "1px solid #1f222b",
-                cursor: "pointer",
-              },
-              "& .MuiTableBody-root .MuiTableCell-root": {
-                backgroundColor: "#0f1014",
-              },
+              border: "1px solid #1f222b",
+              borderRadius: 2,
             }}
           >
-            <TableHead>
-              {/* <TableRow>
+            <Table
+              size="small"
+              aria-label={section.title}
+              sx={{
+                minWidth: 650,
+                backgroundColor: "#0f1014",
+                color: "#fff",
+                "& .MuiTableCell-root": {
+                  color: "#fff",
+                  borderBottom: "1px solid #1f222b",
+                  cursor: "pointer",
+                },
+                "& .MuiTableBody-root .MuiTableCell-root": {
+                  backgroundColor: "#0f1014",
+                },
+              }}
+            >
+              <TableHead>
+                {/* <TableRow>
               <TableCell
                 colSpan={section.columns.length}
                 // align="center"
@@ -161,94 +161,94 @@ const NewPriceTable: React.FC<PriceTableProps> = ({ sections }) => {
               </TableCell>
             </TableRow> */}
 
-              <>
-                {/* Основная строка с заголовком */}
-                <TableRow>
-                  <TableCell
-                    colSpan={section.columns.length}
-                    sx={{
-                      fontWeight: 700,
-                      backgroundColor: "#1a1d29",
-                      color: "#ffffff",
-                      borderBottom: "1px solid #2a2f3a",
-                      letterSpacing: "0.3px",
-                      boxShadow: "inset 0 1px 0 #1f222b, inset 0 -4px 0 #ff500022",
-                      py: 1.5,
-                    }}
-                  >
-                    {section.title}
-                  </TableCell>
-                </TableRow>
+                <>
+                  {/* Основная строка с заголовком */}
+                  <TableRow>
+                    <TableCell
+                      colSpan={section.columns.length}
+                      sx={{
+                        fontWeight: 700,
+                        backgroundColor: "#1a1d29",
+                        color: "#ffffff",
+                        borderBottom: "1px solid #2a2f3a",
+                        letterSpacing: "0.3px",
+                        boxShadow: "inset 0 1px 0 #1f222b, inset 0 -4px 0 #ff500022",
+                        py: 1.5,
+                      }}
+                    >
+                      {section.title}
+                    </TableCell>
+                  </TableRow>
 
-                {/* Строки для subtitle, разделенного по ; */}
-                {section.subtitle &&
-                  section.subtitle.split(";").map((part, index) => (
-                    <TableRow key={`subtitle-${index}`}>
-                      <TableCell
-                        colSpan={section.columns.length}
-                        sx={{
-                          backgroundColor: "#1a1d29",
-                          color: "#ffffff",
-                          borderBottom: "1px solid #2a2f3a",
-                          fontSize: "0.9em",
-                          opacity: 0.9,
-                          py: 1,
-                          // fontStyle: "italic",
-                          // Для второй и последующих строк убираем верхнюю тень
-                          boxShadow: index === 0 ? "inset 0 1px 0 #1f222b" : "none",
-                        }}
-                      >
-                        {part.trim()}
-                        {section.subtitle && index < section.subtitle.split(";").length - 1 ? ";" : ""}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-              </>
-              <TableRow>
-                {section.columns.map((col) => (
-                  <TableCell
-                    key={col.id}
-                    align="left"
-                    sx={{
-                      fontWeight: 600,
-                      width: col.width,
-                      backgroundColor: "#16181f",
-                      color: "#fff",
-                      borderBottom: "1px solid #ff5000",
-                    }}
-                  >
-                    {col.label}
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {section.rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  hover
-                  sx={{
-                    backgroundColor: "#0f1014",
-                    "&:hover": { backgroundColor: "#15171f" },
-                    "& td": {
-                      color: "#fff",
-                      borderBottomColor: "#1f222b",
-                    },
-                    "&:hover td": {
-                      borderBottomColor: "#ff5000",
-                      backgroundColor: "#15171f",
-                    },
-                  }}
-                >
-                  {row.cells.map((cell, idx) => (
-                    <TableCell key={idx}>{cell.kind === "text" ? cell.label : formatValue(cell.value)}</TableCell>
+                  {/* Строки для subtitle, разделенного по ; */}
+                  {section.subtitle &&
+                    section.subtitle.split(";").map((part, index) => (
+                      <TableRow key={`subtitle-${index}`}>
+                        <TableCell
+                          colSpan={section.columns.length}
+                          sx={{
+                            backgroundColor: "#1a1d29",
+                            color: "#ffffff",
+                            borderBottom: "1px solid #2a2f3a",
+                            fontSize: "0.9em",
+                            opacity: 0.9,
+                            py: 1,
+                            // fontStyle: "italic",
+                            // Для второй и последующих строк убираем верхнюю тень
+                            boxShadow: index === 0 ? "inset 0 1px 0 #1f222b" : "none",
+                          }}
+                        >
+                          {part.trim()}
+                          {section.subtitle && index < section.subtitle.split(";").length - 1 ? ";" : ""}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                </>
+                <TableRow>
+                  {section.columns.map((col) => (
+                    <TableCell
+                      key={col.id}
+                      align="left"
+                      sx={{
+                        fontWeight: 600,
+                        width: col.width,
+                        backgroundColor: "#16181f",
+                        color: "#fff",
+                        borderBottom: "1px solid #ff5000",
+                      }}
+                    >
+                      {col.label}
+                    </TableCell>
                   ))}
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <div style={{"margin": "20px 0 20px 0"}}>{section.description}</div>
+              </TableHead>
+              <TableBody>
+                {section.rows.map((row) => (
+                  <TableRow
+                    key={row.id}
+                    hover
+                    sx={{
+                      backgroundColor: "#0f1014",
+                      "&:hover": { backgroundColor: "#15171f" },
+                      "& td": {
+                        color: "#fff",
+                        borderBottomColor: "#1f222b",
+                      },
+                      "&:hover td": {
+                        borderBottomColor: "#ff5000",
+                        backgroundColor: "#15171f",
+                      },
+                    }}
+                  >
+                    {row.cells.map((cell, idx) => (
+                      <TableCell key={idx}>{cell.kind === "text" ? cell.label : formatValue(cell.value)}</TableCell>
+                    ))}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <div style={{ "margin": "20px 0 20px 0", "fontWeight": "400" }}>{section.description}</div>
         </>
       ))}
     </>
