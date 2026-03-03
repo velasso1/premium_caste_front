@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import NavigationMenu from "./components/navigation-menu";
 import NavigationIcons from "./components/navigation-icons";
@@ -39,15 +39,13 @@ const Header: FC = () => {
 
   return (
     <header className={`header ${headerSticky && "header--sticky"}`}>
-      <a
+      <Link
+        to={routes.GENERAL_PAGE}
         className="header__logo"
-        onClick={() => {
-          navigate(routes.GENERAL_PAGE);
-          window.scroll({ top: 0, behavior: "smooth" });
-        }}
+        onClick={() => window.scroll({ top: 0, behavior: "smooth" })}
       >
         <img src={logo} alt="logotype" className="header__logo-image" />
-      </a>
+      </Link>
       <NavigationMenu menuIsOpen={burgerOpen} menuItemClick={() => openBurger(false)} />
       <NavigationIcons />
 
