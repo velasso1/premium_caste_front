@@ -55,14 +55,15 @@ const CurrentPostPage: FC = () => {
 
     if (savedImages.length !== 0) {
       setCurrentAlbum(savedImages);
-    } else {
-      dispatch(
-        setEffect({
-          status: "error",
-          message: "Возникла ошибка с альбомом, попробуйте позже",
-        })
-      );
     }
+    // else {
+    //   dispatch(
+    //     setEffect({
+    //       status: "error",
+    //       message: "Возникла ошибка с альбомом, попробуйте позже",
+    //     })
+    //   );
+    // }
   }, [currentPost]);
 
   useEffect(() => {
