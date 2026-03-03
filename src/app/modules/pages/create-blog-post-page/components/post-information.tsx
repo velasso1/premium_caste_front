@@ -84,6 +84,15 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
         id: postForEdit.id,
       });
 
+      setEditorContent(postForEdit.content);
+
+      // Сбрасываем форму с актуальными значениями
+      reset({
+        title: postForEdit.title,
+        excerpt: postForEdit.excerpt,
+        // Если в форме есть другие поля, добавьте их
+      });
+
       postForEdit.media_groups.content.map((item) => {
         attachedImagesEdit.push(item.id);
       });
@@ -133,27 +142,27 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
   // создание поста и пустой медиа-группы
   const createPostHandler =
     (postStatus: "draft" | "published"): SubmitHandler<IPostInfoPayload> =>
-    (data) => {
-      if (postInfo.featured_image_id === "") {
-        setPreviewSelected(true);
-        return;
-      }
+      (data) => {
+        if (postInfo.featured_image_id === "") {
+          setPreviewSelected(true);
+          return;
+        }
 
-      createNewPost({
-        ...data,
-        author_id: userId,
-        status: postStatus,
-        featured_image_id: postInfo.featured_image_id,
-        content: editorContent,
-      });
-      createMediaGroup({ owner_id: userId, description: "w/o_description" });
-      setPreviewSelected(false);
-      setCreatingStep(STEPS.FIRST);
-      reset();
-    };
+        createNewPost({
+          ...data,
+          author_id: userId,
+          status: postStatus,
+          featured_image_id: postInfo.featured_image_id,
+          content: editorContent,
+        });
+        createMediaGroup({ owner_id: userId, description: "w/o_description" });
+        setPreviewSelected(false);
+        setCreatingStep(STEPS.FIRST);
+        reset();
+      };
 
   const updatePostHandler = (): SubmitHandler<IPostInfoPayload> => (data) => {
-    updatePost({ ...data, id: postInfo.id });
+    updatePost({ ...data, id: postInfo.id, content: editorContent, featured_image_id: postInfo.featured_image_id, });
     setCreatingStep(STEPS.FIRST);
   };
 
@@ -198,8 +207,6 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
         setPostInfo={setPostInfo}
         userId={userId}
       />
-
-      {/* <button onClick={() => getImages({ limit: imagesLimit })}>GET IMAGES</button> */}
 
       <>{creatingStep === STEPS.SECOND && <AttachImages images={images?.data} userId={userId} saveTarget="id" />}</>
 
