@@ -12,7 +12,8 @@ export interface IPostInfoPayload {
   content: string | undefined;
   excerpt: string | undefined;
   author_id: string | undefined;
-  featured_image_id?: string | undefined;
   status: "draft" | "published" | "archived" | undefined;
+  featured_image_id?: string | undefined;
+  media_group_id?: string;
   id?: string;
 }
