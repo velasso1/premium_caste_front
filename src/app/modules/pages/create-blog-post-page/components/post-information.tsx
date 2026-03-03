@@ -161,38 +161,9 @@ const PostInformation: FC<IPostInformationProps> = ({ postForEdit }) => {
         reset();
       };
 
-  const updatePostHandler = (): SubmitHandler<IPostInfoPayload> => async (data) => {
-    // updatePost({ ...data, id: postInfo.id, content: editorContent, featured_image_id: postInfo.featured_image_id, });
-    // setCreatingStep(STEPS.FIRST);
-
-
-    let mediaGroupId: string | undefined;
-
-    // Если есть прикреплённые изображения, создаём группу
-    if (attachedImages.length > 0) {
-      try {
-        const group = await createMediaGroup({ owner_id: userId, description: "w/o_description" }).unwrap();
-        mediaGroupId = group.data;
-        await attachImages({ group_id: mediaGroupId, media_id: attachedImages }).unwrap();
-      } catch (error) {
-        dispatch(setEffect({ status: "error", message: "Ошибка при загрузке изображений" }));
-        return;
-      }
-    }
-
-    try {
-      await updatePost({
-        ...data,
-        id: postInfo.id,
-        content: editorContent,
-        featured_image_id: postInfo.featured_image_id,
-        media_group_id: mediaGroupId, // если API поддерживает
-      }).unwrap();
-      setCreatingStep(STEPS.FIRST);
-      dispatch(setEffect({ status: "success", message: "Пост успешно обновлён!" }));
-    } catch (error) {
-      dispatch(setEffect({ status: "error", message: "Ошибка при обновлении поста" }));
-    }
+  const updatePostHandler = (): SubmitHandler<IPostInfoPayload> => (data) => {
+    updatePost({ ...data, id: postInfo.id, content: editorContent, featured_image_id: postInfo.featured_image_id, });
+    setCreatingStep(STEPS.FIRST);
   };
 
   return (
