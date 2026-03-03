@@ -144,7 +144,7 @@ const CurrentPostPage: FC = () => {
         ></div>
       </ContentBlockLayout>
       <ContentBlockLayout customClassName="current-work-page__block" customContentClass="current-work-page__album">
-        <Slider paginationInclude={false}>
+        <Slider paginationInclude={false} marginRemove={true}>
           {currentPost.data ? (
             currentPost.data?.media_groups?.content?.map((item, index) => {
               return (

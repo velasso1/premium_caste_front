@@ -16,9 +16,10 @@ interface ISliderProps {
   children: React.ReactElement[] | React.ReactNode;
   navigationInclude?: boolean;
   paginationInclude?: boolean;
+  marginRemove?: boolean;
 }
 
-const Slider: FC<ISliderProps> = ({ children, paginationInclude = true, navigationInclude = true }) => {
+const Slider: FC<ISliderProps> = ({ children, paginationInclude = true, navigationInclude = true, marginRemove = false }) => {
   const progressCircle = useRef<SVGSVGElement>(null);
   const progressContent = useRef<HTMLSpanElement>(null);
 
@@ -30,7 +31,7 @@ const Slider: FC<ISliderProps> = ({ children, paginationInclude = true, navigati
   };
 
   return (
-    <div className="swiper-wrapper">
+    <div className="swiper-wrapper" style={marginRemove ? { "marginBottom": '0px' } : {}}>
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         slidesPerView={4}
