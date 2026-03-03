@@ -59,7 +59,7 @@ const CurrentPostPage: FC = () => {
       dispatch(
         setEffect({
           status: "error",
-          message: "Возникла ошибка, попробуйте позже",
+          message: "Возникла ошибка с альбомом, попробуйте позже",
         })
       );
     }
@@ -74,7 +74,7 @@ const CurrentPostPage: FC = () => {
       dispatch(
         setEffect({
           status: "error",
-          message: "Возникла ошибка, попробуйте позже",
+          message: "Возникла ошибка изменения статуса, попробуйте позже",
         })
       );
     }
